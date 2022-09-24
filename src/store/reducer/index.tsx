@@ -1,28 +1,18 @@
 import {
-  applyMiddleware,
+  configureStore,
   combineReducers,
-  createStore,
-} from "redux";
-import createSagaMiddleware from "redux-saga";
-// import dragCardsReducer from "./dragCardsReducer";
-// import simpleCalcReducer from "./simpleCalcReducer";
-// import { rootWatcher } from "../saga";
+} from "@reduxjs/toolkit";
 
-import logger from "redux-logger";
-
-const sagaMiddleware = createSagaMiddleware();
+import alcoReducer from "./alcoReducer/alcoReducer";
+import { timeReducer } from "./timeReducer/timeReducer";
 
 const rootReducer = combineReducers({
-  dragCardsReducer,
-  simpleCalcReducer,
+  alcoReducer,
+  timeReducer,
 });
 
-export type StateType = ReturnType<typeof rootReducer>;
-
-const store = createStore(
-  rootReducer,
-  applyMiddleware(sagaMiddleware, logger)
-);
-sagaMiddleware.run(rootWatcher);
+const store = configureStore({
+  reducer: rootReducer,
+});
 
 export default store;
