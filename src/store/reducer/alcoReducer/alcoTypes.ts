@@ -12,3 +12,11 @@ export type Action = {
     percentAlc: number;
   };
 };
+
+export const initialState = {
+  beer: 0,
+  heightAlc: 0,
+  vine: 0,
+  others: 0,
+  totalVodka: 0,
+};

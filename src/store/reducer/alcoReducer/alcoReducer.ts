@@ -1,15 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import {KindOfDrunkAlcohol,Action} from './alcoTypes'
+import { initialState } from "./alcoTypes";
 
 const alcoReducer = createSlice({
   name: "alcoState",
-  initialState: {
-    beer: 0,
-    heightAlc: 0,
-    vine: 0,
-    others: 0,
-    totalVodka: 0,
-  },
+  initialState, // only name initialState
   reducers: {
     beer(state, action) {
       const liters = action.payload.liters;

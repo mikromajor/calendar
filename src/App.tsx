@@ -1,13 +1,13 @@
-import {
+import { useAppSelector } from "./store/hooks/redux";
+import { useDispatch } from "react-redux";
+import alcoState, {
   beer,
   vine,
   heightAlc,
   others,
-  testerAsync,
 } from "./store/reducer/alcoReducer/alcoReducer";
-import { useAppSelector } from "./store/hooks/redux";
 
-import { KindOfDrunkAlcohol } from "./store/reducer/alcoReducer/alcoTypes";
+// import { KindOfDrunkAlcohol } from "./store/reducer/alcoReducer/alcoTypes";
 // const myAsync = () => {
 //   return async (dispatch) => {
 //     setTimeout(() => {
@@ -16,8 +16,9 @@ import { KindOfDrunkAlcohol } from "./store/reducer/alcoReducer/alcoTypes";
 //   };
 // };
 
+// TODO write mini test using alcoState
 function App() {
-  const {} = useAppSelector((state) => state);
+  const { alcoReducer } = useAppSelector((state) => state);
   return (
     <>
       <h1>Hi!!!</h1>
