@@ -7,12 +7,18 @@ import alcoReducer from "./reducer/alcoReducer/alcoReducer";
 import { timeReducer } from "./reducer/timeReducer/timeReducer";
 
 const rootReducer = combineReducers({
-  // alcoReducer,
+  alcoReducer,
   // timeReducer,
 });
 
-const store = configureStore({
-  reducer: rootReducer,
-});
+const setupStore = () => {
+  return configureStore({
+    reducer: rootReducer,
+  });
+};
 
-export default store;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore["dispatch"];
+
+export default setupStore;
