@@ -5,33 +5,38 @@ import {
 } from "./store/hooks/redux";
 import { beer } from "./store/reducer/alcoReducer/alcoReducer";
 import React from "react";
+import { PayloadType } from "./store/reducer/alcoReducer/alcoTypes";
 
 function App() {
-  const [incrementAmount, setIncrementAmount] =
-    useState("2");
-  const incrementValue = Number(incrementAmount) || 0;
+  const [liters, setLiters] = useState("1");
+  const [percent, setPercent] = useState("5");
 
   const { alcoReducer } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
-
-  // const probnik_1 = {
-  //   liters: 1,
-  //   percentAlc: 5,
-  // }
-
+  const drink = {
+    liters: liters,
+    percentAlc: percent,
+  };
   return (
     <>
-      <h1>Hi!!!</h1>
-      <h3>Your calendar waiting you.</h3>
+      <h2>You drunk</h2>
+      <h2>Volume - {liters}</h2>
+      <h2>Percent - {percent}</h2>
       <input
-        value={incrementAmount}
-        onChange={(e) => setIncrementAmount(e.target.value)}
+        value={liters}
+        onChange={(e) => setLiters(e.target.value)}
       />
-      <button onClick={() => dispatch()}>
-        {" "}
-        Add 1 beer
+      <input
+        value={percent}
+        onChange={(e) => setPercent(e.target.value)}
+      />
+      <button onClick={() => dispatch(beer(drink))}>
+        Click to add beer
       </button>
-
+      <h1>You total drunk beer - {alcoReducer.beer}</h1>
+      <h1>
+        You total drunk alcohol - {alcoReducer.totalVodka}
+      </h1>
       {/* <label htmlFor='kindOfAlc'>
         Choose a drink:
         <select name='kindOfAlc' id='alc'>

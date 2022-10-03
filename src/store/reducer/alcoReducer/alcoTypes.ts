@@ -1,6 +1,6 @@
 export type PayloadType = {
-  liters: number;
-  percentAlc: number;
+  liters: string;
+  percentAlc: string;
 };
 
 export const initialAlcoState = {
