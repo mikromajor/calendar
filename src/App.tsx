@@ -1,35 +1,33 @@
+import { useState } from "react";
 import {
   useAppSelector,
   useAppDispatch,
 } from "./store/hooks/redux";
-import { alcoReducer as alcoSlice } from "./store/reducer/alcoReducer/alcoReducer";
+import { beer } from "./store/reducer/alcoReducer/alcoReducer";
+import React from "react";
 
-// import { KindOfDrunkAlcohol } from "./store/reducer/alcoReducer/alcoTypes";
-// const myAsync = () => {
-//   return async (dispatch) => {
-//     setTimeout(() => {
-//       dispatch(testerAsync());
-//     }, 1000);
-//   };
-// };
-
-// TODO write mini test using alcoState
 function App() {
-  const { beer, vine, heightAlc, others } =
-    alcoSlice.actions;
+  const [incrementAmount, setIncrementAmount] =
+    useState("2");
+  const incrementValue = Number(incrementAmount) || 0;
+
   const { alcoReducer } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
+
+  // const probnik_1 = {
+  //   liters: 1,
+  //   percentAlc: 5,
+  // }
 
   return (
     <>
       <h1>Hi!!!</h1>
       <h3>Your calendar waiting you.</h3>
-      <h4>Beer - {alcoReducer.beer}</h4>
-      <button
-        onClick={() => {
-          // dispatch(beer());
-        }}
-      >
+      <input
+        value={incrementAmount}
+        onChange={(e) => setIncrementAmount(e.target.value)}
+      />
+      <button onClick={() => dispatch()}>
         {" "}
         Add 1 beer
       </button>
