@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "./alcoTypes";
+import { PayloadAction } from "typesafe-actions";
+import { initialAlcoState, PayloadType } from "./alcoTypes";
 
-const alcoReducer = createSlice({
+export const alcoReducer = createSlice({
   name: "alcoState",
-  initialState, // only name initialState
+  initialState: initialAlcoState, // only name initialState
   reducers: {
-    beer(state, action) {
+    beer(
+      state,
+      action: PayloadAction<string, PayloadType>
+    ) {
       const liters = action.payload.liters;
       const percent = action.payload.percentAlc;
-
       state.beer += liters;
       state.totalVodka += liters * percent * 0.015;
     },
@@ -44,10 +47,5 @@ const alcoReducer = createSlice({
 });
 
 export default alcoReducer.reducer;
-export const {
-  beer,
-  vine,
-  heightAlc,
-  others,
-  testerAsync,
-} = alcoReducer.actions;
+
+// export const actions = alcoReducer.actions;
