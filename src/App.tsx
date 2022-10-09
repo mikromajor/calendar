@@ -19,17 +19,24 @@ function App() {
   };
   return (
     <>
-      <h2>You drunk</h2>
+      <h1>You drunk</h1>
       <h2>Volume - {liters}</h2>
       <h2>Percent - {percent}</h2>
-      <input
-        value={liters}
-        onChange={(e) => setLiters(e.target.value)}
-      />
-      <input
-        value={percent}
-        onChange={(e) => setPercent(e.target.value)}
-      />
+      <label htmlFor=''>
+        Liters
+        <input
+          value={liters}
+          onChange={(e) => setLiters(e.target.value)}
+        />
+      </label>
+      <label>
+        Percent
+        <input
+          value={percent}
+          onChange={(e) => setPercent(e.target.value)}
+        />
+      </label>
+
       <button onClick={() => dispatch(beer(drink))}>
         Click to add beer
       </button>
