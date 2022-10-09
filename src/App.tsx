@@ -3,9 +3,9 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "./store/hooks/redux";
-import { beer } from "./store/reducer/alcoReducer/alcoReducer";
-import React from "react";
-import { PayloadType } from "./store/reducer/alcoReducer/alcoTypes";
+import { addBeer } from "./store/reducer/alcoReducer/alcoReducer";
+import { QuantityPanel } from "./ui/buttons/QuantityPanel";
+// import { PayloadType } from "./store/reducer/alcoReducer/alcoTypes";
 
 function App() {
   const [liters, setLiters] = useState("1");
@@ -37,7 +37,7 @@ function App() {
         />
       </label>
 
-      <button onClick={() => dispatch(beer(drink))}>
+      <button onClick={() => dispatch(addBeer(drink))}>
         Click to add beer
       </button>
       <h1>You total drunk beer - {alcoReducer.beer}</h1>

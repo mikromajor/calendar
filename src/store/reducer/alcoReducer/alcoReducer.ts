@@ -8,12 +8,25 @@ export const alcoReducer = createSlice({
   name: "alcoState",
   initialState: initialAlcoState,
   reducers: {
-    beer: (state, action: PayloadAction<PayloadType>) => {
+    addBeer: (
+      state,
+      action: PayloadAction<PayloadType>
+    ) => {
       const liters = Number(action.payload.liters);
       const percent = Number(action.payload.percentAlc);
 
       state.beer += liters;
       state.totalVodka += liters * percent * 0.015;
+    },
+    subtractBeer: (
+      state,
+      action: PayloadAction<PayloadType>
+    ) => {
+      const liters = Number(action.payload.liters);
+      const percent = Number(action.payload.percentAlc);
+
+      state.beer -= liters;
+      state.totalVodka -= liters * percent * 0.015;
     },
     // vine(state, action) {
     //   const liters = action.payload.liters;
@@ -47,4 +60,5 @@ export const alcoReducer = createSlice({
 });
 
 export default alcoReducer.reducer;
-export const { beer } = alcoReducer.actions;
+export const { addBeer, subtractBeer } =
+  alcoReducer.actions;
