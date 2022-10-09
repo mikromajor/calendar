@@ -22,13 +22,13 @@ function App() {
       <h1>You drunk</h1>
       <h2>Volume - {liters}</h2>
       <h2>Percent - {percent}</h2>
-      <label htmlFor=''>
-        Liters
-        <input
-          value={liters}
-          onChange={(e) => setLiters(e.target.value)}
-        />
-      </label>
+      <label htmlFor='lt'>Liters</label>
+      <input
+        id='lt'
+        value={liters}
+        onChange={(e) => setLiters(e.target.value)}
+      />
+
       <label>
         Percent
         <input
