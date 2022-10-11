@@ -1,51 +1,31 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { useState } from "react";
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../store/hooks/redux";
-import { PayloadType } from "../../store/reducer/alcoReducer/alcoTypes";
+import { initChangingState } from "../../constants";
 
-type Props = {
+type Init = typeof initChangingState;
+
+type DrinkQuantityProps = {
   alcoName: string;
-  alcoProportions: number;
-  add: ActionCreatorWithPayload<PayloadType, string>;
-  subtract: ActionCreatorWithPayload<PayloadType, string>;
+  changingStateDispatch: [
+    changingState: Init,
+    useChangingState: (i: Init) => Init
+  ];
 };
 
-export const QuantityPanel = (props: Props) => {
-  const [quantity, setQuantity] = useState(0);
-
-  const { alcoReducer } = useAppSelector((state) => state);
-  const dispatch = useAppDispatch();
-  //TODO переписать логику
-  // const drink = {
-  //   liters: liters,
-  //   percentAlc: percent,
-  // };
+export const DrinkQuantity = ({
+  alcoName,
+  changingStateDispatch,
+}: DrinkQuantityProps) => {
+  const [changingState, useChangingState] =
+    changingStateDispatch;
 
   return (
     <>
-      <h4>{props.alcoName}</h4>
       <button
         onClick={() => {
-          setQuantity(
-            (prev) => prev + props.alcoProportions
-          );
-          // dispatch(add());
+          // useChangingState(prev=>{ return prev})
         }}
       >
-        Add to {props.alcoProportions}{" "}
-      </button>
-      <div>{quantity}</div>
-      <button
-        onClick={() => {
-          setQuantity(
-            (prev) => prev - props.alcoProportions
-          );
-        }}
-      >
-        Subtract to {props.alcoProportions}
+        "-"
       </button>
     </>
   );
