@@ -18,8 +18,8 @@ function App() {
 
   const handlerQuantityVodka = () => {
     const spirt = (liters * percent) / 100;
-    const vd = spirt * 1.4;
-    setVodka(vd);
+    const vd = spirt * 2.4;
+    return vd;
   };
 
   return (
@@ -29,7 +29,7 @@ function App() {
       >
         Add 0.1 L{" "}
       </button>
-      <div>Change quantity rink : {liters} L </div>
+      <div>Change quantity drink : {liters} L </div>
       <button
         onClick={() => setLiters((prev) => (prev -= 0.1))}
       >
@@ -47,11 +47,13 @@ function App() {
       >
         Subtract percent -0.1%
       </button>
-
+      <br />
       <button
-        onClick={() => handlerQuantityVodka()}
-      ></button>
-      <div>Liters voka : {vodka}</div>
+        onClick={() => setVodka(handlerQuantityVodka())}
+      >
+        Accept
+      </button>
+      <div>Liters vodka : {vodka}</div>
     </>
   );
 }
