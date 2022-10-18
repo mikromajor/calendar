@@ -1,14 +1,12 @@
-import { useState } from "react";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+// import { useState } from "react";
+// import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import {
   useAppSelector,
   useAppDispatch,
 } from "./store/hooks/redux";
 import { alcoActions } from "./store/reducer/alcoReducer/alcoReducer";
-import { initChangingState } from "./constants";
 
 function App() {
-  const changingStateDispatch = useState(initChangingState);
   const { alcoReducer } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
   const {
@@ -20,57 +18,62 @@ function App() {
     subtractionVodka,
   } = alcoActions;
 
-  const [liters, setLiters] = useState(0);
-  const [percent, setPercent] = useState(5);
-  const [vodka, setVodka] = useState(0);
+  // const [liters, setLiters] = useState(0);
+  // const [percent, setPercent] = useState(5);
+  // const [vodka, setVodka] = useState(0);
 
-  const handlerQuantityVodka = () => {
-    const spirt = (liters * percent) / 100;
-    const vd = spirt * 2.4;
-    return vd;
-  };
+  // const handlerQuantityVodka = () => {
+  //   const spirt = (liters * percent) / 100;
+  //   const vd = spirt * 2.4;
+  //   return vd;
+  // };
 
   return (
     <>
       <button
         onClick={() => dispatch(additionVolume())}
-        // onClick={() => setLiters((prev) => (prev += 0.1))}
+        // onClick={() => setLiters((prev) => (prev += 1))}
       >
-        Add 0.1 L{" "}
+        Add 1 L{" "}
       </button>
-      <div>Change volume drink : {liters} L </div>
+      <div>
+        Change volume drink : {alcoReducer.liters} L{" "}
+      </div>
       <button
         onClick={() =>
           dispatch(
-            subtractionVolume({ liters: 0.1, percent: 0 })
+            subtractionVolume({ liters: 1, percent: 0 })
           )
         }
-        //onClick={() => setLiters((prev) => (prev -= 0.1))}
+        //onClick={() => setLiters((prev) => (prev -= 1))}
       >
-        Subtract 0.1 L
+        Subtract 1 L
       </button>
-
+      <br />
       <button
         onClick={() =>
           dispatch(
-            additionPercent({ liters: 0.1, percent: 1 })
+            additionPercent({ liters: 1, percent: 1 })
           )
         }
-        // onClick={() => setPercent((prev) => (prev += 0.1))}
+        // onClick={() => setPercent((prev) => (prev += 1))}
       >
-        Add percent +0.1%
+        Add percent +1%
       </button>
-      <div>Change percent drink : {percent}</div>
+      <div>
+        Change percent drink : {alcoReducer.percent}
+      </div>
       <button
         onClick={() =>
           dispatch(
-            subtractionPercent({ liters: 0.1, percent: 1 })
+            subtractionPercent({ liters: 1, percent: 1 })
           )
         }
-        // onClick={() => setPercent((prev) => (prev -= 0.1))}
+        // onClick={() => setPercent((prev) => (prev -= 1))}
       >
-        Subtract percent -0.1%
+        Subtract percent -1%
       </button>
+      <br />
       <br />
       <button
         onClick={() => dispatch(additionVodka())}
@@ -78,7 +81,7 @@ function App() {
       >
         Add drunk vodka
       </button>
-      <div>Liters vodka : {vodka}</div>
+      <div>Liters vodka : {alcoReducer.totalVodka}</div>
 
       <button
         onClick={() => dispatch(subtractionVodka())}
