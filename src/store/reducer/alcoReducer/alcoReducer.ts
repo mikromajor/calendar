@@ -40,12 +40,12 @@ export const alcoReducer = createSlice({
         : state) as unknown as typeof initialAlcoState;
 
       const { liters, percent } = state;
+      state.month = action.payload;
       state.totalVodka =
         tempStore.totalVodka +
         Math.floor(liters * percent * 2.4) / 100;
-      // state.totalVodka += liters * percent * 0.024;
       window.localStorage.setItem(
-        "vodka",
+        action.payload,
         JSON.stringify(state)
       );
     },
@@ -61,11 +61,12 @@ export const alcoReducer = createSlice({
         : state) as unknown as typeof initialAlcoState;
 
       const { liters, percent } = state;
+      state.month = action.payload;
       state.totalVodka =
         tempStore.totalVodka - liters * percent * 0.024;
       // state.totalVodka += liters * percent * 0.024;
       window.localStorage.setItem(
-        "vodka",
+        action.payload,
         JSON.stringify(state)
       );
     },
