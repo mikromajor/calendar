@@ -23,6 +23,7 @@ const ControlPanel = ({
 
   return (
     <>
+      <br />
       <button onClick={() => dispatch(addCallback())}>
         Add 0.1
       </button>
@@ -32,6 +33,7 @@ const ControlPanel = ({
       <button onClick={() => dispatch(subtractCallback())}>
         Subtract 0.1
       </button>
+      <br />
     </>
   );
 };

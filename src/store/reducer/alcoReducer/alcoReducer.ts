@@ -12,16 +12,20 @@ export const alcoReducer = createSlice({
       state
       // action: PayloadAction<PayloadType>
     ) => {
-      state.liters += 0.1;
+      state.liters =
+        Math.floor((state.liters + 0.1) * 100) / 100;
     },
     subtractionVolume: (state) => {
-      state.liters -= 0.1;
+      state.liters =
+        Math.floor((state.liters - 0.1) * 100) / 100;
     },
     additionPercent: (state) => {
-      state.percent += 0.1;
+      state.percent =
+        Math.floor((state.percent + 0.1) * 100) / 100;
     },
     subtractionPercent: (state) => {
-      state.percent -= 0.1;
+      state.percent =
+        Math.floor((state.percent - 0.1) * 100) / 100;
     },
     additionVodka: (state) => {
       const item = window.localStorage.getItem("vodka");
@@ -31,7 +35,8 @@ export const alcoReducer = createSlice({
 
       const { liters, percent } = state;
       state.totalVodka =
-        tempStore.totalVodka + liters * percent * 0.024;
+        tempStore.totalVodka +
+        Math.floor(liters * percent * 2.4) / 100;
       // state.totalVodka += liters * percent * 0.024;
       window.localStorage.setItem(
         "vodka",
@@ -52,6 +57,15 @@ export const alcoReducer = createSlice({
         "vodka",
         JSON.stringify(state)
       );
+    },
+    clearStorageForMonth: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      window.localStorage.removeItem(action.payload);
+    },
+    clearAllStor: () => {
+      window.localStorage.clear();
     },
   },
 });

@@ -33,7 +33,7 @@ function App() {
       />
       <br />
       <ControlPanel
-        indicatorName={"totalVodka"}
+        indicatorName={"total vodka"}
         indicatorValue={alcoReducer.totalVodka}
         subtractCallback={subtractionVodka}
         addCallback={additionVodka}
