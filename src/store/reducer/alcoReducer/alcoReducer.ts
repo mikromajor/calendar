@@ -8,7 +8,10 @@ export const alcoReducer = createSlice({
   name: "alcoState",
   initialState: initialAlcoState,
   reducers: {
-    additionVolume: (state) => {
+    additionVolume: (
+      state,
+      action: PayloadAction<PayloadType>
+    ) => {
       state.liters++;
     },
     subtractionVolume: (
