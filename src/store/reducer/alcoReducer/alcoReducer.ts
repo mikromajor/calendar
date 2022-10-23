@@ -9,36 +9,49 @@ export const alcoReducer = createSlice({
   initialState: initialAlcoState,
   reducers: {
     additionVolume: (
-      state,
-      action: PayloadAction<PayloadType>
+      state
+      // action: PayloadAction<PayloadType>
     ) => {
-      state.liters++;
+      state.liters += 0.1;
     },
-    subtractionVolume: (
-      state,
-      action: PayloadAction<PayloadType>
-    ) => {
-      state.liters--;
+    subtractionVolume: (state) => {
+      state.liters -= 0.1;
     },
-    additionPercent: (
-      state,
-      action: PayloadAction<PayloadType>
-    ) => {
-      state.percent++;
+    additionPercent: (state) => {
+      state.percent += 0.1;
     },
-    subtractionPercent: (
-      state,
-      action: PayloadAction<PayloadType>
-    ) => {
-      state.percent--;
+    subtractionPercent: (state) => {
+      state.percent -= 0.1;
     },
     additionVodka: (state) => {
+      const item = window.localStorage.getItem("vodka");
+      const tempStore = (item
+        ? JSON.parse(item)
+        : state) as unknown as typeof initialAlcoState;
+
       const { liters, percent } = state;
-      state.totalVodka += liters * percent * 0.024;
+      state.totalVodka =
+        tempStore.totalVodka + liters * percent * 0.024;
+      // state.totalVodka += liters * percent * 0.024;
+      window.localStorage.setItem(
+        "vodka",
+        JSON.stringify(state)
+      );
     },
     subtractionVodka: (state) => {
+      const item = window.localStorage.getItem("vodka");
+      const tempStore = (item
+        ? JSON.parse(item)
+        : state) as unknown as typeof initialAlcoState;
+
       const { liters, percent } = state;
-      state.totalVodka -= liters * percent * 0.024;
+      state.totalVodka =
+        tempStore.totalVodka - liters * percent * 0.024;
+      // state.totalVodka += liters * percent * 0.024;
+      window.localStorage.setItem(
+        "vodka",
+        JSON.stringify(state)
+      );
     },
   },
 });

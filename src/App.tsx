@@ -3,11 +3,10 @@ import {
   useAppDispatch,
 } from "./store/hooks/redux";
 import { alcoActions } from "./store/reducer/alcoReducer/alcoReducer";
-import ControlPanel from "./ui/ControlPanel";
+import ControlPanel from "./ui/ControlPanel/ControlPanel";
 
 function App() {
   const { alcoReducer } = useAppSelector((state) => state);
-  const dispatch = useAppDispatch();
   const {
     additionPercent,
     additionVodka,
@@ -25,32 +24,20 @@ function App() {
         subtractCallback={subtractionVolume}
         addCallback={additionVolume}
       />
-
       <br />
-
       <ControlPanel
         indicatorName={"percent"}
         indicatorValue={alcoReducer.percent}
         subtractCallback={subtractionPercent}
         addCallback={additionPercent}
       />
-
       <br />
-      <br />
-      <button
-        onClick={() => dispatch(additionVodka())}
-        // onClick={() => setVodka(handlerQuantityVodka())}
-      >
-        Add drunk vodka
-      </button>
-      <div>Liters vodka : {alcoReducer.totalVodka}</div>
-
-      <button
-        onClick={() => dispatch(subtractionVodka())}
-        // onClick={() => setVodka(handlerQuantityVodka())}
-      >
-        Add drunk vodka
-      </button>
+      <ControlPanel
+        indicatorName={"totalVodka"}
+        indicatorValue={alcoReducer.totalVodka}
+        subtractCallback={subtractionVodka}
+        addCallback={additionVodka}
+      />
     </>
   );
 }
