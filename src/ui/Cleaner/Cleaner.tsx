@@ -4,7 +4,7 @@ import { alcoActions } from "../../store/reducer/alcoReducer/alcoReducer";
 
 //TODO : записывать текущий месяц как ключ для хранилища (вместо "водка") используя асинхронщину Time().....
 
-const Cleaner = () => {
+export const Cleaner = () => {
   const [month, setMonth] = useState("01");
   const dispatch = useAppDispatch();
   const { clearAllStor, clearStorageForMonth } =
@@ -38,4 +38,3 @@ const Cleaner = () => {
     </>
   );
 };
-export default Cleaner;

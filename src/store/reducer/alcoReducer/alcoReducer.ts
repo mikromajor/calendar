@@ -1,4 +1,5 @@
 import {
+  createAsyncThunk,
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
@@ -27,8 +28,13 @@ export const alcoReducer = createSlice({
       state.percent =
         Math.floor((state.percent - 0.1) * 100) / 100;
     },
-    additionVodka: (state) => {
-      const item = window.localStorage.getItem("vodka");
+    additionVodka: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      const item = window.localStorage.getItem(
+        action.payload
+      );
       const tempStore = (item
         ? JSON.parse(item)
         : state) as unknown as typeof initialAlcoState;
@@ -43,8 +49,13 @@ export const alcoReducer = createSlice({
         JSON.stringify(state)
       );
     },
-    subtractionVodka: (state) => {
-      const item = window.localStorage.getItem("vodka");
+    subtractionVodka: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      const item = window.localStorage.getItem(
+        action.payload
+      );
       const tempStore = (item
         ? JSON.parse(item)
         : state) as unknown as typeof initialAlcoState;

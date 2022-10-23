@@ -13,7 +13,7 @@ type ControlPanelProps = {
   subtractCallback: ActionCreatorWithoutPayload<string>;
 };
 
-const ControlPanel = ({
+export const ControlPanel = ({
   indicatorName,
   indicatorValue,
   addCallback,
@@ -37,4 +37,3 @@ const ControlPanel = ({
     </>
   );
 };
-export default ControlPanel;
