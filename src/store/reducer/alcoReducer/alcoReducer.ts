@@ -64,7 +64,6 @@ export const alcoReducer = createSlice({
       state.month = action.payload;
       state.totalVodka =
         tempStore.totalVodka - liters * percent * 0.024;
-      // state.totalVodka += liters * percent * 0.024;
       window.localStorage.setItem(
         action.payload,
         JSON.stringify(state)

@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useAppDispatch } from "../../store/hooks/redux";
 import { alcoActions } from "../../store/reducer/alcoReducer/alcoReducer";
 
-//TODO : записывать текущий месяц как ключ для хранилища (вместо "водка") используя асинхронщину Time().....
-
 export const Cleaner = () => {
-  const [month, setMonth] = useState("01");
+  const [month, setMonth] = useState("1");
   const dispatch = useAppDispatch();
   const { clearAllStor, clearStorageForMonth } =
     alcoActions;
@@ -16,11 +14,12 @@ export const Cleaner = () => {
         type='text'
         name=''
         id=''
-        placeholder='month: "01" '
+        placeholder='month: "1" '
         value={month}
         onChange={(e) => setMonth(e.currentTarget.value)}
       />
       <button
+        style={{ color: "violet" }}
         onClick={() => {
           dispatch(clearStorageForMonth(month));
         }}
@@ -29,6 +28,7 @@ export const Cleaner = () => {
       </button>
       <br />
       <button
+        style={{ color: "red" }}
         onClick={() => {
           dispatch(clearAllStor());
         }}
