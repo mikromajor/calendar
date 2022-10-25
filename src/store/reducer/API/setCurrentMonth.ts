@@ -1,12 +1,11 @@
-import { AppDispatch } from "..";
+import { AppDispatch } from "../..";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { getCurrentMonth } from "../handler/getCurrentMonth";
 
-const getM = async () => new Date().getMonth().toString();
-
-export const getCurrentMonth =
+export const setCurrentMonth =
   (callback: ActionCreatorWithPayload<string, string>) =>
   async (dispatch: AppDispatch) => {
     const currentMonth =
-      (await getM()) as unknown as string;
+      (await getCurrentMonth()) as unknown as string;
     dispatch(callback(currentMonth));
   };

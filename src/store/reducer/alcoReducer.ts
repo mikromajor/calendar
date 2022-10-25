@@ -28,10 +28,7 @@ export const alcoReducer = createSlice({
       state.percent =
         Math.floor((state.percent - 0.1) * 100) / 100;
     },
-    additionVodka: (
-      state,
-      action: PayloadAction<string>
-    ) => {
+    additionVd: (state, action: PayloadAction<string>) => {
       const item = window.localStorage.getItem(
         action.payload
       );
@@ -49,7 +46,7 @@ export const alcoReducer = createSlice({
         JSON.stringify(state)
       );
     },
-    subtractionVodka: (
+    subtractionVd: (
       state,
       action: PayloadAction<string>
     ) => {

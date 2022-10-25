@@ -3,20 +3,20 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { alcoActions } from "../../store/reducer/alcoReducer";
-import { getCurrentMonth } from "../../store/reducer/getCurrentMonth";
+import { setCurrentMonth } from "../../store/reducer/API/setCurrentMonth";
 import { DisplayVd40 } from "../../ui";
 
 export const MainPanel = () => {
   const { alcoReducer } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
-  const { additionVodka, subtractionVodka } = alcoActions;
+  const { additionVd, subtractionVd } = alcoActions;
 
   return (
     <>
       <br />
       <button
         onClick={() =>
-          dispatch(getCurrentMonth(additionVodka))
+          dispatch(setCurrentMonth(additionVd))
         }
       >
         "+" VD-40
@@ -29,7 +29,7 @@ export const MainPanel = () => {
 
       <button
         onClick={() =>
-          dispatch(getCurrentMonth(subtractionVodka))
+          dispatch(setCurrentMonth(subtractionVd))
         }
       >
         "-" VD-40
