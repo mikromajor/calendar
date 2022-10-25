@@ -1,17 +1,18 @@
 import { useState } from "react";
-import {
-  ActionCreatorWithPayload,
-  ActionCreatorWithoutPayload,
-} from "@reduxjs/toolkit";
+// import {
+//   ActionCreatorWithPayload,
+//   ActionCreatorWithoutPayload,
+// } from "@reduxjs/toolkit";
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../store/hooks/redux";
-import { alcoActions } from "../../store/reducer/alcoReducer";
-import { getCurrentMonth } from "../../store/reducer/API/setCurrentMonth";
+import { DisplayVd40 } from "../../ui";
 
 export const ChosenMonthInfo = () => {
+  // TODO change to redux and write logics
   const [month, setMonth] = useState("");
+
   return (
     <>
       <h3>Information for the month</h3>
@@ -21,6 +22,7 @@ export const ChosenMonthInfo = () => {
         value={month}
         onChange={(e) => setMonth(e.currentTarget.value)}
       />
+      <DisplayVd40 volume={1} month={month} />
     </>
   );
 };
