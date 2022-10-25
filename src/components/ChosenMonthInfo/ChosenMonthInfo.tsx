@@ -7,8 +7,8 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "../../store/hooks/redux";
-import { alcoActions } from "../../store/reducer/alcoReducer/alcoReducer";
-import { getCurrentMonth } from "../../store/reducer/alcoReducer/getCurrentMonth";
+import { alcoActions } from "../../store/reducer/alcoReducer";
+import { getCurrentMonth } from "../../store/reducer/getCurrentMonth";
 
 export const ChosenMonthInfo = () => {
   const [month, setMonth] = useState("");

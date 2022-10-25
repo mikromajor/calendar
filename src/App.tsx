@@ -2,7 +2,7 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "./store/hooks/redux";
-import { alcoActions } from "./store/reducer/alcoReducer/alcoReducer";
+import { alcoActions } from "./store/reducer/alcoReducer";
 import {
   ControlPanel,
   MainPanel,

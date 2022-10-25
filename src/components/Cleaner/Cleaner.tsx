@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../store/hooks/redux";
-import { alcoActions } from "../../store/reducer/alcoReducer/alcoReducer";
+import { alcoActions } from "../../store/reducer/alcoReducer";
 
 export const Cleaner = () => {
   const [month, setMonth] = useState("1");

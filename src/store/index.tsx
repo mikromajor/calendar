@@ -3,7 +3,7 @@ import {
   ThunkAction,
   Action,
 } from "@reduxjs/toolkit";
-import alcoReducer from "./reducer/alcoReducer/alcoReducer";
+import alcoReducer from "./reducer/alcoReducer";
 
 const rootReducer = {
   alcoReducer,

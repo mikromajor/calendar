@@ -1,8 +1,5 @@
-import {
-  ActionCreatorWithPayload,
-  ActionCreatorWithoutPayload,
-} from "@reduxjs/toolkit";
-import { PayloadType } from "../../store/reducer/alcoReducer/alcoTypes";
+import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
+//
 import { useAppDispatch } from "../../store/hooks/redux";
 import "./ControlPanel.scss";
 

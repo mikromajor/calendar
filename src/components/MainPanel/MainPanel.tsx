@@ -2,8 +2,8 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "../../store/hooks/redux";
-import { alcoActions } from "../../store/reducer/alcoReducer/alcoReducer";
-import { getCurrentMonth } from "../../store/reducer/alcoReducer/getCurrentMonth";
+import { alcoActions } from "../../store/reducer/alcoReducer";
+import { getCurrentMonth } from "../../store/reducer/getCurrentMonth";
 import { DisplayVd40 } from "../../ui";
 
 export const MainPanel = () => {
