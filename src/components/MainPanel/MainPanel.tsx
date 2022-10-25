@@ -3,7 +3,8 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { alcoActions } from "../../store/reducer/alcoReducer/alcoReducer";
-import { getMonth } from "../../store/reducer/alcoReducer/getMonth";
+import { getCurrentMonth } from "../../store/reducer/alcoReducer/getCurrentMonth";
+import { DisplayVd40 } from "../../ui";
 
 export const MainPanel = () => {
   const { alcoReducer } = useAppSelector((state) => state);
@@ -14,16 +15,22 @@ export const MainPanel = () => {
     <>
       <br />
       <button
-        onClick={() => dispatch(getMonth(additionVodka))}
+        onClick={() =>
+          dispatch(getCurrentMonth(additionVodka))
+        }
       >
         "+" VD-40
       </button>
-      <h4>
-        Current volume VD-40 : {alcoReducer.totalVodka}
-      </h4>
-      <h5>Current month : {alcoReducer.month}</h5>
+
+      <DisplayVd40
+        volume={alcoReducer.totalVodka}
+        month={alcoReducer.month}
+      />
+
       <button
-        onClick={() => dispatch(getMonth(subtractionVodka))}
+        onClick={() =>
+          dispatch(getCurrentMonth(subtractionVodka))
+        }
       >
         "-" VD-40
       </button>

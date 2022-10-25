@@ -4,7 +4,7 @@ import {
   useSelector,
 } from "react-redux";
 
-import { AppDispatch, RootState } from "../.";
+import { AppDispatch, RootState } from "..";
 
 export const useAppDispatch = () =>
   useDispatch<AppDispatch>();

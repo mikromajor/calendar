@@ -3,7 +3,11 @@ import {
   useAppDispatch,
 } from "./store/hooks/redux";
 import { alcoActions } from "./store/reducer/alcoReducer/alcoReducer";
-import { ControlPanel, MainPanel, Cleaner } from "./ui";
+import {
+  ControlPanel,
+  MainPanel,
+  Cleaner,
+} from "./components";
 
 function App() {
   const { alcoReducer } = useAppSelector((state) => state);
