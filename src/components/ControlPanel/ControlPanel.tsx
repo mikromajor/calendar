@@ -1,7 +1,6 @@
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 //
 import { useAppDispatch } from "../../store/hooks/redux";
-import "./ControlPanel.scss";
 
 type ControlPanelProps = {
   indicatorName: string;
@@ -19,8 +18,7 @@ export const ControlPanel = ({
   const dispatch = useAppDispatch();
 
   return (
-    <>
-      <br />
+    <div className='calendar-controlPanel'>
       <button onClick={() => dispatch(addCallback())}>
         Add 0.1
       </button>
@@ -31,6 +29,6 @@ export const ControlPanel = ({
         Subtract 0.1
       </button>
       <br />
-    </>
+    </div>
   );
 };

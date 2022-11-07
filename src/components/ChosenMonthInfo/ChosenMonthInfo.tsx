@@ -10,7 +10,7 @@ import {
 import { DisplayVd40 } from "../../ui";
 
 export const ChosenMonthInfo = () => {
-  // TODO change to redux and write logics
+  // TODO use redux 
   const [month, setMonth] = useState("");
 
   return (

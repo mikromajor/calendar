@@ -19,7 +19,7 @@ function App() {
   } = alcoActions;
 
   return (
-    <>
+    <div className='calendar'>
       <ControlPanel
         indicatorName={"liters"}
         indicatorValue={alcoReducer.liters}
@@ -34,7 +34,7 @@ function App() {
       />
       <MainPanel />
       <Cleaner />
-    </>
+    </div>
   );
 }
 export default App;

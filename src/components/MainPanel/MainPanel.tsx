@@ -12,8 +12,7 @@ export const MainPanel = () => {
   const { additionVd, subtractionVd } = alcoActions;
 
   return (
-    <>
-      <br />
+    <div className='calendar-mainPanel'>
       <button
         onClick={() =>
           dispatch(setCurrentMonth(additionVd))
@@ -35,6 +34,6 @@ export const MainPanel = () => {
         "-" VD-40
       </button>
       <br />
-    </>
+    </div>
   );
 };
