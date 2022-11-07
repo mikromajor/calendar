@@ -1,13 +1,19 @@
-import { useAppDispatch } from "../../store/hooks/redux";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../store/hooks/redux";
 import { alcoActions } from "../../store/reducer/alcoReducer";
 import { PAYLOAD } from "../../store/reducer/alcoTypes";
 
 export const Multiplier = () => {
   const dispatch = useAppDispatch();
   const { setMultipliers } = alcoActions;
+  const multiplier = useAppSelector(
+    (state) => state.alcoReducer.multiplier
+  );
 
   const changeMultiplier = (
-    e: React.MouseEvent<HTMLInputElement, MouseEvent>
+    e: React.ChangeEvent<HTMLInputElement>
   ) => {
     PAYLOAD.multiplier = Number(e.currentTarget.value);
     dispatch(setMultipliers(PAYLOAD));
@@ -20,24 +26,26 @@ export const Multiplier = () => {
           id='zeroOne'
           type='radio'
           value='0.1'
-          onClick={changeMultiplier}
+          onChange={changeMultiplier}
+          checked={multiplier === 0.1}
         />
         <label htmlFor='zeroOne'>x0.1</label>
         <input
           type='radio'
           id='one'
           value='1'
-          checked
-          onClick={changeMultiplier}
+          onChange={changeMultiplier}
+          checked={multiplier === 1}
         />
         <label htmlFor='one'>x1</label>
         <input
           type='radio'
           id='ten'
           value='10'
-          onClick={changeMultiplier}
+          onChange={changeMultiplier}
+          checked={multiplier === 10}
         />
-        <label htmlFor='javascript'>x10</label>
+        <label htmlFor='ten'>x10</label>
       </div>
     </fieldset>
   );

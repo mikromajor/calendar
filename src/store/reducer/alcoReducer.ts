@@ -20,44 +20,48 @@ export const alcoReducer = createSlice({
       // action: PayloadAction<PayloadType>
     ) => {
       state.liters =
-        Math.floor(
-          (state.liters + state.multiplier) * 100
-        ) / 100;
+        Math.floor((state.liters + state.multiplier) * 10) /
+        10;
     },
     subtractionVolume: (state) => {
       state.liters =
-        Math.floor(
-          (state.liters - state.multiplier) * 100
-        ) / 100;
+        Math.floor((state.liters - state.multiplier) * 10) /
+        10;
     },
     additionPercent: (state) => {
       state.percent =
         Math.floor(
-          (state.percent + state.multiplier) * 100
-        ) / 100;
+          (state.percent + state.multiplier) * 10
+        ) / 10;
     },
     subtractionPercent: (state) => {
       state.percent =
         Math.floor(
-          (state.percent - state.multiplier) * 100
-        ) / 100;
+          (state.percent - state.multiplier) * 10
+        ) / 10;
     },
+    //TODO FIX additionVd subtractionVd
     additionVd: (state, action: PayloadAction<string>) => {
       const item = window.localStorage.getItem(
         action.payload
       );
+      const currentMonth = action.payload;
+
       const tempStore = (item
         ? JSON.parse(item)
-        : state) as unknown as typeof initialAlcoState;
+        : {
+            ...state,
+          }) as unknown as typeof initialAlcoState;
 
       const { liters, percent } = state;
-      state.month = action.payload;
-      state.totalVodka =
-        tempStore.totalVodka +
-        Math.floor(liters * percent * 2.4) / 100;
+      tempStore.month = currentMonth;
+      tempStore.totalVodka =
+        Math.floor(
+          tempStore.totalVodka + liters * percent * 2.4
+        ) / 100;
       window.localStorage.setItem(
-        action.payload,
-        JSON.stringify(state)
+        currentMonth,
+        JSON.stringify(tempStore)
       );
     },
     subtractionVd: (
@@ -67,17 +71,23 @@ export const alcoReducer = createSlice({
       const item = window.localStorage.getItem(
         action.payload
       );
+      const currentMonth = action.payload;
+
       const tempStore = (item
         ? JSON.parse(item)
-        : state) as unknown as typeof initialAlcoState;
+        : {
+            ...state,
+          }) as unknown as typeof initialAlcoState;
 
       const { liters, percent } = state;
-      state.month = action.payload;
-      state.totalVodka =
-        tempStore.totalVodka - liters * percent * 0.024;
+      tempStore.month = currentMonth;
+      tempStore.totalVodka =
+        Math.floor(
+          tempStore.totalVodka - liters * percent * 2.4
+        ) / 100;
       window.localStorage.setItem(
-        action.payload,
-        JSON.stringify(state)
+        currentMonth,
+        JSON.stringify(tempStore)
       );
     },
     clearStorageForMonth: (
