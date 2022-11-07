@@ -9,24 +9,38 @@ export const alcoReducer = createSlice({
   name: "alcoState",
   initialState: initialAlcoState,
   reducers: {
+    setMultipliers: (
+      state,
+      action: PayloadAction<PayloadType>
+    ) => {
+      state.multiplier = action.payload.multiplier;
+    },
     additionVolume: (
       state
       // action: PayloadAction<PayloadType>
     ) => {
       state.liters =
-        Math.floor((state.liters + 0.1) * 100) / 100;
+        Math.floor(
+          (state.liters + state.multiplier) * 100
+        ) / 100;
     },
     subtractionVolume: (state) => {
       state.liters =
-        Math.floor((state.liters - 0.1) * 100) / 100;
+        Math.floor(
+          (state.liters - state.multiplier) * 100
+        ) / 100;
     },
     additionPercent: (state) => {
       state.percent =
-        Math.floor((state.percent + 0.1) * 100) / 100;
+        Math.floor(
+          (state.percent + state.multiplier) * 100
+        ) / 100;
     },
     subtractionPercent: (state) => {
       state.percent =
-        Math.floor((state.percent - 0.1) * 100) / 100;
+        Math.floor(
+          (state.percent - state.multiplier) * 100
+        ) / 100;
     },
     additionVd: (state, action: PayloadAction<string>) => {
       const item = window.localStorage.getItem(

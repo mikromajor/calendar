@@ -7,6 +7,7 @@ import {
   ControlPanel,
   MainPanel,
   Cleaner,
+  Multiplier,
 } from "./components";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <div className='calendar'>
+      <Multiplier />
       <ControlPanel
         indicatorName={"liters"}
         indicatorValue={alcoReducer.liters}

@@ -1,6 +1,8 @@
 import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
-//
-import { useAppDispatch } from "../../store/hooks/redux";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../store/hooks/redux";
 
 type ControlPanelProps = {
   indicatorName: string;
@@ -16,17 +18,18 @@ export const ControlPanel = ({
   subtractCallback,
 }: ControlPanelProps) => {
   const dispatch = useAppDispatch();
-
+  const { alcoReducer } = useAppSelector((state) => state);
+  const multiplier = alcoReducer.multiplier;
   return (
     <div className='calendar-controlPanel'>
       <button onClick={() => dispatch(addCallback())}>
-        Add 0.1
+        Add {multiplier}
       </button>
       <div>
         {indicatorName} : {indicatorValue}
       </div>
       <button onClick={() => dispatch(subtractCallback())}>
-        Subtract 0.1
+        Subtract {multiplier}
       </button>
       <br />
     </div>

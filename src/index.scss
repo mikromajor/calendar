@@ -17,6 +17,14 @@ code {
   align-items: center;
   justify-content: center;
   background-color: rgb(242, 242, 190);
+  &-multiplier {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: aquamarine;
+
+    margin: 3px;
+  }
   &-controlPanel {
     display: flex;
     align-items: center;
