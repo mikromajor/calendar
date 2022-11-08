@@ -5,28 +5,34 @@ import { alcoActions } from "../../store/reducer/alcoReducer";
 export const Cleaner = () => {
   const [month, setMonth] = useState("1");
   const dispatch = useAppDispatch();
-  const { clearAllStor, clearStorageForMonth } =
-    alcoActions;
+  const {
+    clearAllStor,
+    clearStorageForMonth,
+    showStorageForMonth,
+  } = alcoActions;
   return (
-    <>
-      <br />
+    <div className='calendar-cleaner'>
+      <button
+        style={{ color: "blue" }}
+        onClick={() => {
+          dispatch(showStorageForMonth(month));
+        }}
+      >
+        Show storage for the month
+      </button>
       <input
         type='text'
-        name=''
-        id=''
-        placeholder='month: "1" '
         value={month}
         onChange={(e) => setMonth(e.currentTarget.value)}
       />
       <button
-        style={{ color: "violet" }}
+        style={{ color: "red" }}
         onClick={() => {
           dispatch(clearStorageForMonth(month));
         }}
       >
         Clear storage for the month
       </button>
-      <br />
       <button
         style={{ color: "red" }}
         onClick={() => {
@@ -35,6 +41,6 @@ export const Cleaner = () => {
       >
         Clear all storage data
       </button>
-    </>
+    </div>
   );
 };

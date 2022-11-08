@@ -1,2 +1,2 @@
 export const getCurrentMonth = async () =>
-  new Date().getMonth().toString();
+  Number(new Date().getMonth().toString()) + 1 + "";

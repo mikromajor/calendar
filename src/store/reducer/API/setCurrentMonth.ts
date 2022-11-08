@@ -5,7 +5,6 @@ import { getCurrentMonth } from "../handler/getCurrentMonth";
 export const setCurrentMonth =
   (callback: ActionCreatorWithPayload<string, string>) =>
   async (dispatch: AppDispatch) => {
-    const currentMonth =
-      (await getCurrentMonth()) as unknown as string;
+    const currentMonth = await getCurrentMonth();
     dispatch(callback(currentMonth));
   };

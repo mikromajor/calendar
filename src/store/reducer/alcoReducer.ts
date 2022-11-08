@@ -1,9 +1,10 @@
 import {
-  createAsyncThunk,
+  // createAsyncThunk,
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { initialAlcoState, PayloadType } from "./alcoTypes";
+import { setDecimal } from "./handler";
 
 export const alcoReducer = createSlice({
   name: "alcoState",
@@ -15,79 +16,63 @@ export const alcoReducer = createSlice({
     ) => {
       state.multiplier = action.payload.multiplier;
     },
-    additionVolume: (
-      state
-      // action: PayloadAction<PayloadType>
-    ) => {
-      state.liters =
-        Math.floor((state.liters + state.multiplier) * 10) /
-        10;
+    additionVolume: (state) => {
+      const { liters, multiplier } = state;
+      state.liters = setDecimal(liters + multiplier, 2);
     },
     subtractionVolume: (state) => {
-      state.liters =
-        Math.floor((state.liters - state.multiplier) * 10) /
-        10;
+      const { liters, multiplier } = state;
+      state.liters = setDecimal(liters - multiplier, 2);
     },
     additionPercent: (state) => {
-      state.percent =
-        Math.floor(
-          (state.percent + state.multiplier) * 10
-        ) / 10;
+      const { percent, multiplier } = state;
+      state.percent = setDecimal(percent + multiplier, 1);
     },
     subtractionPercent: (state) => {
-      state.percent =
-        Math.floor(
-          (state.percent - state.multiplier) * 10
-        ) / 10;
+      const { percent, multiplier } = state;
+      state.percent = setDecimal(percent - multiplier, 1);
     },
-    //TODO FIX additionVd subtractionVd
     additionVd: (state, action: PayloadAction<string>) => {
-      const item = window.localStorage.getItem(
-        action.payload
-      );
       const currentMonth = action.payload;
+      const item =
+        window.localStorage.getItem(currentMonth);
 
-      const tempStore = (item
+      const { totalVodka } = (item
         ? JSON.parse(item)
-        : {
-            ...state,
-          }) as unknown as typeof initialAlcoState;
+        : state) as unknown as typeof initialAlcoState;
 
       const { liters, percent } = state;
-      tempStore.month = currentMonth;
-      tempStore.totalVodka =
-        Math.floor(
-          tempStore.totalVodka + liters * percent * 2.4
-        ) / 100;
+      state.month = currentMonth;
+      state.totalVodka = setDecimal(
+        liters * percent * 0.024 + totalVodka,
+        2
+      );
       window.localStorage.setItem(
         currentMonth,
-        JSON.stringify(tempStore)
+        JSON.stringify(state)
       );
     },
     subtractionVd: (
       state,
       action: PayloadAction<string>
     ) => {
-      const item = window.localStorage.getItem(
-        action.payload
-      );
       const currentMonth = action.payload;
+      const item =
+        window.localStorage.getItem(currentMonth);
 
-      const tempStore = (item
+      const { totalVodka } = (item
         ? JSON.parse(item)
-        : {
-            ...state,
-          }) as unknown as typeof initialAlcoState;
+        : state) as unknown as typeof initialAlcoState;
 
       const { liters, percent } = state;
-      tempStore.month = currentMonth;
-      tempStore.totalVodka =
-        Math.floor(
-          tempStore.totalVodka - liters * percent * 2.4
-        ) / 100;
+      state.month = currentMonth;
+      state.totalVodka = setDecimal(
+        totalVodka - liters * percent * 0.024,
+        2
+      );
       window.localStorage.setItem(
         currentMonth,
-        JSON.stringify(tempStore)
+        JSON.stringify(state)
       );
     },
     clearStorageForMonth: (
@@ -98,6 +83,36 @@ export const alcoReducer = createSlice({
     },
     clearAllStor: () => {
       window.localStorage.clear();
+    },
+    showStorageForMonth: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      const currentMonth = action.payload;
+      const item =
+        window.localStorage.getItem(currentMonth);
+      console.log(
+        "currentMonth",
+        currentMonth,
+        "item",
+        item
+      );
+
+      if (item) {
+        const { totalVodka, month } = JSON.parse(
+          item
+        ) as unknown as typeof initialAlcoState;
+        state.totalVodka = totalVodka;
+        state.month = month;
+      } else {
+        state.month = "0";
+      }
+      // state = (item
+      //   ? JSON.parse(item)
+      //   : {
+      //       ...initialAlcoState,
+      //       month: "0",
+      //     }) as unknown as typeof initialAlcoState;
     },
   },
 });

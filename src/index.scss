@@ -45,6 +45,15 @@ code {
     border-radius: 5px;
     border: 1px solid grey;
   }
+  &-cleaner {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    margin: 3px;
+    border-radius: 5px;
+    border: 1px solid grey;
+  }
   button {
     margin: 5px;
   }
