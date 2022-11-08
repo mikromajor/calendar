@@ -91,13 +91,6 @@ export const alcoReducer = createSlice({
       const currentMonth = action.payload;
       const item =
         window.localStorage.getItem(currentMonth);
-      console.log(
-        "currentMonth",
-        currentMonth,
-        "item",
-        item
-      );
-
       if (item) {
         const { totalVodka, month } = JSON.parse(
           item
@@ -107,12 +100,6 @@ export const alcoReducer = createSlice({
       } else {
         state.month = "0";
       }
-      // state = (item
-      //   ? JSON.parse(item)
-      //   : {
-      //       ...initialAlcoState,
-      //       month: "0",
-      //     }) as unknown as typeof initialAlcoState;
     },
   },
 });
