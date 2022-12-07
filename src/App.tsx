@@ -1,7 +1,4 @@
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "./store/hooks/redux";
+import { useAppSelector } from "./store/hooks/redux";
 import { alcoActions } from "./store/reducer/alcoReducer";
 import {
   ControlPanel,
