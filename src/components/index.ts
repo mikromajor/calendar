@@ -4,3 +4,4 @@ export { Cleaner } from "./Cleaner/Cleaner";
 export { ChosenMonthInfo } from "./ChosenMonthInfo/ChosenMonthInfo";
 export { Multiplier } from "./Multiplier/Multiplier";
 export { AlcoCalendar } from "./AlcoCalendar/AlcoCalendar";
+export { WorkHoursCalculator } from "./WorkHoursCalculator/WorkHoursCalculator";

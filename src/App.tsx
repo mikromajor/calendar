@@ -1,6 +1,14 @@
-import { AlcoCalendar } from "./components";
+import {
+  AlcoCalendar,
+  WorkHoursCalculator,
+} from "./components";
 
 const App = () => {
-  return <AlcoCalendar />;
+  return (
+    <>
+      <AlcoCalendar />
+      <WorkHoursCalculator />
+    </>
+  );
 };
 export default App;

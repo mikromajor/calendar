@@ -2,12 +2,14 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../store/hooks/redux";
-import { alcoActions } from "../../store/reducer/alcoReducer";
 import { PAYLOAD } from "../../store/reducer/alcoTypes";
+import { MultiplierProps } from "./MultiplierProps";
 
-export const Multiplier = () => {
+export const Multiplier = ({
+  setMultipliers,
+  values,
+}: MultiplierProps) => {
   const dispatch = useAppDispatch();
-  const { setMultipliers } = alcoActions;
   const multiplier = useAppSelector(
     (state) => state.alcoReducer.multiplier
   );
@@ -23,29 +25,29 @@ export const Multiplier = () => {
       <legend>Select the multiplier:</legend>
       <div>
         <input
-          id='zeroOne'
+          id={values.a}
           type='radio'
-          value='0.1'
+          value={values.a}
           onChange={changeMultiplier}
-          checked={multiplier === 0.1}
+          checked={multiplier === Number(values.a)}
         />
-        <label htmlFor='zeroOne'>x0.1</label>
+        <label htmlFor={values.a}>{values.a}</label>
         <input
+          id={values.b}
           type='radio'
-          id='one'
-          value='1'
+          value={values.b}
           onChange={changeMultiplier}
-          checked={multiplier === 1}
+          checked={multiplier === Number(values.b)}
         />
-        <label htmlFor='one'>x1</label>
+        <label htmlFor={values.b}>{values.b}</label>
         <input
+          id={values.c}
           type='radio'
-          id='ten'
-          value='10'
+          value={values.c}
           onChange={changeMultiplier}
-          checked={multiplier === 10}
+          checked={multiplier === Number(values.c)}
         />
-        <label htmlFor='ten'>x10</label>
+        <label htmlFor={values.c}>{values.c}</label>
       </div>
     </fieldset>
   );

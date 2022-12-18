@@ -11,6 +11,12 @@ export const PAYLOAD = {
   month: "0",
 };
 
+export const MULTIPLIER_VALUES = {
+  a: "0.1",
+  b: "1",
+  c: "10",
+};
+
 export const initialAlcoState = {
   liters: 0,
   percent: 5,
