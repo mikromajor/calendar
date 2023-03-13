@@ -7,7 +7,9 @@ import { setCurrentMonth } from "../../store/reducer/API/setCurrentMonth";
 import { DisplayVd40 } from "../../ui";
 
 export const MainPanel = () => {
-  const { alcoReducer } = useAppSelector((state) => state);
+  const { totalVodka, month } = useAppSelector(
+    (state) => state.alcoReducer
+  );
   const dispatch = useAppDispatch();
   const { additionVd, subtractionVd } = alcoActions;
 
@@ -21,10 +23,7 @@ export const MainPanel = () => {
         "+" VD-40
       </button>
 
-      <DisplayVd40
-        volume={alcoReducer.totalVodka}
-        month={alcoReducer.month}
-      />
+      <DisplayVd40 volume={totalVodka} month={month} />
 
       <button
         onClick={() =>

@@ -3,7 +3,8 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { initialAlcoState, PayloadType } from "./alcoTypes";
+import { initialAlcoState } from "./constants";
+import { InitialAlcoState, PayloadType } from "./alcoTypes";
 import { setDecimal } from "./handler";
 
 export const alcoReducer = createSlice({
@@ -39,7 +40,7 @@ export const alcoReducer = createSlice({
 
       const { totalVodka } = (item
         ? JSON.parse(item)
-        : state) as unknown as typeof initialAlcoState;
+        : state) as unknown as InitialAlcoState;
 
       const { liters, percent } = state;
       state.month = currentMonth;
@@ -62,7 +63,7 @@ export const alcoReducer = createSlice({
 
       const { totalVodka } = (item
         ? JSON.parse(item)
-        : state) as unknown as typeof initialAlcoState;
+        : state) as unknown as InitialAlcoState;
 
       const { liters, percent } = state;
       state.month = currentMonth;
@@ -94,7 +95,7 @@ export const alcoReducer = createSlice({
       if (item) {
         const { totalVodka, month } = JSON.parse(
           item
-        ) as unknown as typeof initialAlcoState;
+        ) as unknown as InitialAlcoState;
         state.totalVodka = totalVodka;
         state.month = month;
       } else {
