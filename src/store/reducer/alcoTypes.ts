@@ -1,4 +1,4 @@
-import { initialAlcoState } from "./constants";
+import { INIT_ALCO_STATE } from "./constants";
 
 export type PayloadType = {
   liters: number;
@@ -12,4 +12,4 @@ export const PAYLOAD = {
   multiplier: 1,
   month: "0",
 };
-export type InitialAlcoState = typeof initialAlcoState;
+export type InitialAlcoState = typeof INIT_ALCO_STATE;

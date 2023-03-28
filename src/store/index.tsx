@@ -6,10 +6,11 @@ import {
   combineReducers,
 } from "@reduxjs/toolkit";
 import alcoReducer from "./reducer/alcoReducer";
+import salaryReducer from "./reducer/salaryReducer";
 
 const rootReducer = combineReducers({
   alcoReducer,
-  // otherReducer,
+  salaryReducer,
 });
 // export function store(
 //   preloadedState?: PreloadedState<RootState>

@@ -3,13 +3,13 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { initialAlcoState } from "./constants";
+import { INIT_ALCO_STATE } from "./constants";
 import { InitialAlcoState, PayloadType } from "./alcoTypes";
 import { setDecimal } from "./handler";
 
 export const alcoReducer = createSlice({
   name: "alcoState",
-  initialState: initialAlcoState,
+  initialState: INIT_ALCO_STATE,
   reducers: {
     setMultipliers: (
       state,
@@ -89,12 +89,12 @@ export const alcoReducer = createSlice({
       state,
       action: PayloadAction<string>
     ) => {
-      const currentMonth = action.payload;
-      const item =
-        window.localStorage.getItem(currentMonth);
-      if (item) {
+      const getDataForMonth = action.payload;
+      const isStoreData =
+        window.localStorage.getItem(getDataForMonth);
+      if (isStoreData) {
         const { totalVodka, month } = JSON.parse(
-          item
+          isStoreData
         ) as unknown as InitialAlcoState;
         state.totalVodka = totalVodka;
         state.month = month;
