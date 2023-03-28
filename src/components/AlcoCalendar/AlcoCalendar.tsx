@@ -2,6 +2,7 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "../../store/hooks/redux";
+import { MULTIPLIER_VALUES } from "../../store/reducer/constants";
 import { alcoActions } from "../../store/reducer/alcoReducer";
 import {
   ControlPanel,
@@ -17,11 +18,15 @@ export const AlcoCalendar = () => {
     additionVolume,
     subtractionPercent,
     subtractionVolume,
+    setMultipliers,
   } = alcoActions;
 
   return (
     <div className='calendar'>
-      <Multiplier />
+      <Multiplier
+        setMultipliers={setMultipliers}
+        values={MULTIPLIER_VALUES}
+      />
       <ControlPanel
         indicatorName={"liters"}
         indicatorValue={alcoReducer.liters}

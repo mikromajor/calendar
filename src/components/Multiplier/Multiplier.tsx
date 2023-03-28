@@ -24,8 +24,8 @@ export const Multiplier = ({
     <fieldset className='calendar-multiplier'>
       <legend>Select the multiplier:</legend>
       <div>
-        {values.map((val) => (
-          <>
+        {values.map((val, i) => (
+          <div key={val + i}>
             <input
               id={val}
               type='radio'
@@ -34,7 +34,7 @@ export const Multiplier = ({
               checked={multiplier === Number(val)}
             />
             <label htmlFor={val}>{val}</label>
-          </>
+          </div>
         ))}
       </div>
     </fieldset>
