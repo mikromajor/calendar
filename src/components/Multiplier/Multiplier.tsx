@@ -2,7 +2,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../store/hooks/redux";
-import { PAYLOAD } from "../../store/reducer/alcoTypes";
+import { PAYLOAD } from "../../store/reducer/constants";
 import { MultiplierProps } from "./MultiplierProps";
 
 export const Multiplier = ({

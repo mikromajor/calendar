@@ -6,10 +6,5 @@ export type PayloadType = {
   multiplier: number;
   month: string;
 };
-export const PAYLOAD = {
-  liters: 0,
-  percent: 0,
-  multiplier: 1,
-  month: "0",
-};
+
 export type InitialAlcoState = typeof INIT_ALCO_STATE;

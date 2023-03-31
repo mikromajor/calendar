@@ -6,6 +6,13 @@ export const INIT_ALCO_STATE = {
   multiplier: 1,
 };
 
+export const PAYLOAD = {
+  liters: 0,
+  percent: 0,
+  multiplier: 1,
+  month: "0",
+};
+
 export const INIT_SALARY_STATE = {};
 
 export const MULTIPLIER_VALUES = ["0.1", "1", "10"];
