@@ -5,6 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import { INIT_SALARY_STATE } from "./constants/salaryConstants";
 import { PayloadType } from "./types/salaryTypes";
+import { amountWeekendsAndWeekdays } from "./salaryHandlers";
 
 export const salaryReducer = createSlice({
   name: "salaryState",
@@ -14,24 +15,34 @@ export const salaryReducer = createSlice({
       state,
       action: PayloadAction<PayloadType>
     ) => {},
-    getCurrentMonthSalary: (state) => {},
     getSalaryForTheMonth: (
       state,
       action: PayloadAction<PayloadType>
     ) => {
-      const key =
-        "salaryForTheMonth_" + action.payload.usersMonth;
+      const { usersMonth, usersYear } = action.payload;
+      const key = "salaryForTheMonth_" + usersMonth;
 
       if (typeof window === "undefined") {
         state = INIT_SALARY_STATE;
       }
 
+      const { weekends, weekdays } =
+        amountWeekendsAndWeekdays(usersYear, usersMonth);
+
       try {
         const item = window.localStorage.getItem(key);
-        state = item ? JSON.parse(item) : INIT_SALARY_STATE; // insted initState calculate standard work hours for the month
+
+        if (item) {
+          state = JSON.parse(item);
+        } else {
+          state.standardWorkHours = weekdays * 8;
+          state.weekDays = weekdays;
+          state.weekendDays = weekends;
+          state.standardSalary = weekdays * 8 * 36.06;
+        }
         // window.localStorage.setItem(
         //   key,
-        //   JSON.stringify(val)
+        //   JSON.stringify(state)
         // );
       } catch (error) {
         console.log(error);
