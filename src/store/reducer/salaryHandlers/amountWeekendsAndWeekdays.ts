@@ -1,17 +1,14 @@
 import { getCurrentDate, daysInMonth, dayOfWeek } from "./";
 
 export const amountWeekendsAndWeekdays = (
-  year: number | undefined,
-  month: number | undefined
+  year?: number,
+  month?: number
 ) => {
   let weekends = 0,
     weekdays,
     iterDay;
 
-  if (
-    typeof year === "undefined" ||
-    typeof month === "undefined"
-  ) {
+  if (!year || !month) {
     const { currentYear, currentMonth } = getCurrentDate();
     year = currentYear;
     month = currentMonth;
@@ -24,5 +21,5 @@ export const amountWeekendsAndWeekdays = (
     if (iterDay === 0 || iterDay === 6) weekends++;
   }
   weekdays = amountDaysInMonth - weekends;
-  return { weekends, weekdays };
+  return { weekends, weekdays, year, month };
 };
