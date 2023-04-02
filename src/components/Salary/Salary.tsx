@@ -9,22 +9,23 @@ export const Salary = () => {
     (state) => state
   );
   const {
-    month,
     year,
+    month,
     salaryRate,
     taxRate,
     premiumRate,
     weekDays,
     weekendDays,
+    standardWorkHours,
+    extraHours_50,
+    extraHours_100,
+    sickLeave,
     usedVacation,
     bloodDonation,
     standardSalary,
     extraSalary,
     totalSalary,
   } = salaryReducer;
-  const standardSal = standardSalary();
-  const extraSal = extraSalary();
-  const totalSal = totalSalary();
 
   return (
     <>
@@ -48,23 +49,32 @@ export const Salary = () => {
             <th>Кроводавство</th>
             <th>ЗП нормова</th>
             <th>ЗП понаднормова</th>
-            <th>ЗП</th>
+            <th>ЗП вся</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td>
+              <input
+                placeholder={String(year)}
+                type='number'
+              />
+            </td>
             <td>{month}</td>
-            <td>{year}</td>
             <td>{salaryRate}</td>
             <td>{taxRate}</td>
             <td>{premiumRate}</td>
             <td>{weekDays}</td>
             <td>{weekendDays}</td>
+            <td>{standardWorkHours}</td>
+            <td>{extraHours_50}</td>
+            <td>{extraHours_100}</td>
+            <td>{sickLeave}</td>
             <td>{usedVacation}</td>
             <td>{bloodDonation}</td>
-            <td>{standardSal}</td>
-            <td>{extraSal}</td>
-            <td>{totalSal}</td>
+            <td>{standardSalary}</td>
+            <td>{extraSalary}</td>
+            <td>{totalSalary}</td>
           </tr>
         </tbody>
       </table>

@@ -12,7 +12,12 @@ export type PayloadType = {
 
   usersMonth?: number;
   usersYear?: number;
+
+  sickLeave?: number;
+  usedVacation?: number;
+  bloodDonation?: number;
 };
+// TS PICK & OMIT EXAMPLE:
 
 // export type Payload = {
 //   extraHours: number;
