@@ -1,5 +1,5 @@
-export const getKey = (year?: number, month?: number) => {
-  let key = "salaryForTheDate_";
+export const getKey = (year?: number, month = 1) => {
+  let key = "salaryForTheYear_";
 
-  return (key += year && month ? "" + year + month : "");
+  return (key += year ? year + "_Month_" + month : "");
 };

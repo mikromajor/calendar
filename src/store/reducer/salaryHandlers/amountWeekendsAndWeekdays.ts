@@ -2,13 +2,13 @@ import { getCurrentDate, daysInMonth, dayOfWeek } from "./";
 
 export const amountWeekendsAndWeekdays = (
   year?: number,
-  month?: number
+  month = 1
 ) => {
   let weekends = 0,
     weekdays,
     iterDay;
 
-  if (!year || !month) {
+  if (!(year && month && month < 13 && month > 0)) {
     const { currentYear, currentMonth } = getCurrentDate();
     year = currentYear;
     month = currentMonth;

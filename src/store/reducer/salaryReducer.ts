@@ -19,10 +19,11 @@ export const salaryReducer = createSlice({
       action: PayloadAction<PayloadType>
     ) => {
       const isStorage = getStorageData(action.payload);
-
       state = isStorage
         ? isStorage
         : updateState(action.payload);
+
+      return state;
     },
   },
 });

@@ -3,10 +3,7 @@ import {
   PREMIUM_COEFFICIENT,
 } from "../constants/salaryConstants";
 import { amountWeekendsAndWeekdays, getKey } from "./";
-import {
-  PayloadType,
-  InitSalaryState,
-} from "../types/salaryTypes";
+import { PayloadType } from "../types/salaryTypes";
 
 export const updateState = (payload: PayloadType) => {
   const {

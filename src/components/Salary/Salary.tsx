@@ -8,6 +8,8 @@ export const Salary = () => {
   const { salaryReducer } = useAppSelector(
     (state) => state
   );
+  const { getSalaryForTheMonth } = salaryActions;
+  const dispatch = useAppDispatch();
   const {
     year,
     month,
@@ -58,6 +60,12 @@ export const Salary = () => {
               <input
                 placeholder={String(year)}
                 type='number'
+                onChange={(e) => {
+                  const val = Number(e.currentTarget.value);
+                  dispatch(
+                    getSalaryForTheMonth({ usersYear: val })
+                  );
+                }}
               />
             </td>
             <td>{month}</td>
