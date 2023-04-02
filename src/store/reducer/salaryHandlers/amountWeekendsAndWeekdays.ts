@@ -1,14 +1,27 @@
-import { getCurrentDate, daysInMonth, dayOfWeek } from "./";
+import {
+  getCurrentDate,
+  daysInMonth,
+  dayOfWeek,
+  checkYearAndMonth,
+} from "./";
 
 export const amountWeekendsAndWeekdays = (
   year?: number,
-  month = 1
+  month?: number
 ) => {
   let weekends = 0,
     weekdays,
     iterDay;
 
-  if (!(year && month && month < 13 && month > 0)) {
+  if (
+    !(
+      year &&
+      year >= 2020 &&
+      month &&
+      month >= 0 &&
+      month <= 13
+    )
+  ) {
     const { currentYear, currentMonth } = getCurrentDate();
     year = currentYear;
     month = currentMonth;

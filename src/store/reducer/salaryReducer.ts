@@ -4,7 +4,10 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { INIT_SALARY_STATE } from "./constants/salaryConstants";
-import { PayloadType } from "./types/salaryTypes";
+import {
+  PayloadType,
+  KeysInitSalaryState,
+} from "./types/salaryTypes";
 import {
   getStorageData,
   updateState,
@@ -18,12 +21,15 @@ export const salaryReducer = createSlice({
       state,
       action: PayloadAction<PayloadType>
     ) => {
-      const isStorage = getStorageData(action.payload);
-      state = isStorage
-        ? isStorage
-        : updateState(action.payload);
+      const isStorage = getStorageData(
+        state,
+        action.payload
+      );
+
+      isStorage && updateState(state, action.payload);
 
       //TODO: I have to change field in state, not to create new obj. Rewrite salaryReducer
+      // ok? test 1
     },
   },
 });

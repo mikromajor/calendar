@@ -1,15 +1,15 @@
 import {
   InitSalaryState,
+  KeysInitSalaryState,
   PayloadType,
 } from "../types/salaryTypes";
 import { getKey } from "./";
 
-export const getStorageData = ({
-  usersYear,
-  usersMonth,
-}: PayloadType) => {
+export const getStorageData = (
+  state: InitSalaryState,
+  { usersYear, usersMonth }: PayloadType
+) => {
   const key = getKey(usersYear, usersMonth);
-  let isStorage;
 
   if (typeof window === "undefined") {
     return undefined;
@@ -18,13 +18,21 @@ export const getStorageData = ({
   try {
     const item = window.localStorage.getItem(key);
     if (item) {
-      isStorage = JSON.parse(
+      const isStorage = JSON.parse(
         item
       ) as any as InitSalaryState;
+      const keys = Object.keys(
+        state
+      ) as any as KeysInitSalaryState[];
+
+      if (isStorage) {
+        keys.forEach((key) => {
+          state[key] = isStorage[key];
+        });
+        return true;
+      }
     }
   } catch (e) {
-    console.log(e);
-  } finally {
-    return isStorage;
+    console.log("Error caught in getStorageData ->", e);
   }
 };

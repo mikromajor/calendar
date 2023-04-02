@@ -2,6 +2,8 @@ import { INIT_SALARY_STATE } from "../constants/salaryConstants";
 
 export type InitSalaryState = typeof INIT_SALARY_STATE;
 
+export type KeysInitSalaryState = keyof InitSalaryState;
+
 export type PayloadType = {
   workedExtraHours_50?: number;
   workedExtraHours_100?: number;

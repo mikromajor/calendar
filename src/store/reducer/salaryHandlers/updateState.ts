@@ -1,11 +1,18 @@
+import { PREMIUM_COEFFICIENT } from "../constants/salaryConstants";
 import {
-  INIT_SALARY_STATE,
-  PREMIUM_COEFFICIENT,
-} from "../constants/salaryConstants";
-import { amountWeekendsAndWeekdays, getKey } from "./";
-import { PayloadType } from "../types/salaryTypes";
+  amountWeekendsAndWeekdays,
+  getKey,
+  checkYearAndMonth,
+} from "./";
+import {
+  PayloadType,
+  InitSalaryState,
+} from "../types/salaryTypes";
 
-export const updateState = (payload: PayloadType) => {
+export const updateState = (
+  state: InitSalaryState,
+  payload: PayloadType
+) => {
   const {
     usersMonth,
     usersYear,
@@ -19,13 +26,11 @@ export const updateState = (payload: PayloadType) => {
     bloodDonation,
   } = payload;
 
-  const state = { ...INIT_SALARY_STATE };
-
-  const { weekends, weekdays, year, month } =
+  const { weekends, weekdays, month, year } =
     amountWeekendsAndWeekdays(usersYear, usersMonth);
 
-  state.year = year;
-  state.month = month;
+  usersYear && (state.year = usersYear);
+  usersMonth && (state.month = usersMonth);
 
   usersSalaryRate && (state.salaryRate = usersSalaryRate);
 
@@ -70,9 +75,8 @@ export const updateState = (payload: PayloadType) => {
   state.totalSalary =
     state.standardSalary + state.extraSalary;
 
-  const key = getKey(usersYear, usersMonth);
-
-  window.localStorage.setItem(key, JSON.stringify(state));
-
-  return state;
+  if (checkYearAndMonth(year, month)) {
+    const key = getKey(year, month);
+    window.localStorage.setItem(key, JSON.stringify(state));
+  }
 };

@@ -5,3 +5,4 @@ export { getCurrentDate } from "./getCurrentDate";
 export { getStorageData } from "./getStorageData";
 export { updateState } from "./updateState";
 export { getKey } from "./getKey";
+export { checkYearAndMonth } from "./checkYearAndMonth";
