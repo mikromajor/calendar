@@ -4,7 +4,7 @@ export const INIT_SALARY_STATE = {
   salaryRate: 38,
   premiumRate: 1.3,
   taxRate: 0.73,
-  netto() {
+  nettoPerHours() {
     return (
       this.salaryRate * this.premiumRate * this.taxRate
     );
@@ -21,12 +21,13 @@ export const INIT_SALARY_STATE = {
   usedVacation: 0,
   bloodDonation: 0,
   standardSalary() {
-    return this.standardWorkHours() * this.netto();
+    return this.standardWorkHours() * this.nettoPerHours();
   },
   extraSalary() {
     return (
-      (this.extraHours_50 + this.extraHours_100) *
-      this.netto()
+      (this.extraHours_50 * PREMIUM_COEFFICIENT.pr_50 +
+        this.extraHours_100 * PREMIUM_COEFFICIENT.pr_100) *
+      this.nettoPerHours()
     );
   },
   totalSalary() {

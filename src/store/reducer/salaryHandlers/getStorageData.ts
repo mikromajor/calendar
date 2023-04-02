@@ -2,7 +2,6 @@ import {
   InitSalaryState,
   PayloadType,
 } from "../types/salaryTypes";
-import { INIT_SALARY_STATE } from "../constants/salaryConstants";
 import { getKey } from "./";
 
 export const getStorageData = ({
