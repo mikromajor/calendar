@@ -68,7 +68,20 @@ export const Salary = () => {
                 }}
               />
             </td>
-            <td>{month}</td>
+            <td>
+              <input
+                placeholder={String(month)}
+                type='number'
+                onChange={(e) => {
+                  const val = Number(e.currentTarget.value);
+                  dispatch(
+                    getSalaryForTheMonth({
+                      usersMonth: val,
+                    })
+                  );
+                }}
+              />
+            </td>
             <td>{salaryRate}</td>
             <td>{taxRate}</td>
             <td>{premiumRate}</td>

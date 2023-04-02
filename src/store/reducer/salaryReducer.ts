@@ -23,7 +23,7 @@ export const salaryReducer = createSlice({
         ? isStorage
         : updateState(action.payload);
 
-      return state;
+      //TODO: I have to change field in state, not to create new obj. Rewrite salaryReducer
     },
   },
 });
