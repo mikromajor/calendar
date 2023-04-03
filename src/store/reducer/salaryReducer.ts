@@ -9,7 +9,7 @@ import {
   KeysInitSalaryState,
 } from "./types/salaryTypes";
 import {
-  getStorageData,
+  seekSavedStateInStorage,
   updateState,
 } from "./salaryHandlers";
 
@@ -21,12 +21,10 @@ export const salaryReducer = createSlice({
       state,
       action: PayloadAction<PayloadType>
     ) => {
-      const isStorage = getStorageData(
-        state,
-        action.payload
-      );
+      let isKey: string | undefined =
+        seekSavedStateInStorage(state, action.payload);
 
-      !isStorage && updateState(state, action.payload);
+      updateState(state, action.payload, isKey);
     },
   },
 });

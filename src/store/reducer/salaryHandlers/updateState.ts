@@ -12,7 +12,8 @@ import {
 
 export const updateState = (
   state: InitSalaryState,
-  payload: PayloadType
+  payload: PayloadType,
+  isKey?: string
 ) => {
   const {
     usersYear,
@@ -27,7 +28,7 @@ export const updateState = (
     bloodDonation,
   } = payload;
 
-  if (!checkYearAndMonth(usersYear, usersMonth)) {
+  if (!isKey) {
     const { currentYear, currentMonth } = getCurrentDate();
     state.year = currentYear;
     state.month = currentMonth;
@@ -82,5 +83,5 @@ export const updateState = (
   state.totalSalary =
     state.standardSalary + state.extraSalary;
 
-  saveStateInStorage(state);
+  isKey && saveStateInStorage(state, isKey);
 };
