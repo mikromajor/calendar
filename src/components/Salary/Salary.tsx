@@ -28,6 +28,23 @@ export const Salary = () => {
     extraSalary,
     totalSalary,
   } = salaryReducer;
+  // const changeYear =(e:React.FormEvent<HTMLInputElement>) => {
+  //   const val = Number(e.currentTarget.value);
+  //   dispatch(
+  //     getSalaryForTheMonth(
+  //       { usersYear: val,
+  //      usersMonth:month,
+  //       })
+  //   );
+  // }
+  // const changeMonth =(e:React.FormEvent<HTMLInputElement>) => {
+  //   const val = Number(e.currentTarget.value);
+  //   dispatch(
+  //     getSalaryForTheMonth({
+  //       usersMonth: val,
+  //       usersYear: year })
+  //   );
+  // }
 
   return (
     <>

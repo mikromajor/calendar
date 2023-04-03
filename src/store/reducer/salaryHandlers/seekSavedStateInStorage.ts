@@ -12,6 +12,9 @@ export const seekSavedStateInStorage = (
   if (typeof window === "undefined") {
     return undefined;
   }
+
+  // TODO change checkYearAndMonth. Need check one parameter year or month and another get from state
+
   if (checkYearAndMonth(usersYear, usersMonth)) {
     const key = getKey(usersYear, usersMonth);
 

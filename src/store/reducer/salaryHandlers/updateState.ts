@@ -1,7 +1,6 @@
 import { PREMIUM_COEFFICIENT } from "../constants/salaryConstants";
 import {
   amountWeekendsAndWeekdays,
-  checkYearAndMonth,
   getCurrentDate,
   saveStateInStorage,
 } from "./";
@@ -16,8 +15,6 @@ export const updateState = (
   isKey?: string
 ) => {
   const {
-    usersYear,
-    usersMonth,
     usersSalaryRate,
     usersPremiumRate,
     usersTaxRate,
