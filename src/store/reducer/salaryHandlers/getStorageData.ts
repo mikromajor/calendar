@@ -18,19 +18,18 @@ export const getStorageData = (
   try {
     const item = window.localStorage.getItem(key);
     if (item) {
-      const isStorage = JSON.parse(
+      const storage = JSON.parse(
         item
       ) as any as InitSalaryState;
       const keys = Object.keys(
         state
       ) as any as KeysInitSalaryState[];
 
-      if (isStorage) {
-        keys.forEach((key) => {
-          state[key] = isStorage[key];
-        });
-        return true;
-      }
+      keys.forEach((key) => {
+        state[key] = storage[key];
+      });
+
+      return true;
     }
   } catch (e) {
     console.log("Error caught in getStorageData ->", e);

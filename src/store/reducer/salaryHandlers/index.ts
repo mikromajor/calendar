@@ -6,3 +6,4 @@ export { getStorageData } from "./getStorageData";
 export { updateState } from "./updateState";
 export { getKey } from "./getKey";
 export { checkYearAndMonth } from "./checkYearAndMonth";
+export { saveStateInStorage } from "./saveStateInStorage";

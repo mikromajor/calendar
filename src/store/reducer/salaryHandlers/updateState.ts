@@ -1,8 +1,9 @@
 import { PREMIUM_COEFFICIENT } from "../constants/salaryConstants";
 import {
   amountWeekendsAndWeekdays,
-  getKey,
   checkYearAndMonth,
+  getCurrentDate,
+  saveStateInStorage,
 } from "./";
 import {
   PayloadType,
@@ -14,8 +15,8 @@ export const updateState = (
   payload: PayloadType
 ) => {
   const {
-    usersMonth,
     usersYear,
+    usersMonth,
     usersSalaryRate,
     usersPremiumRate,
     usersTaxRate,
@@ -26,11 +27,16 @@ export const updateState = (
     bloodDonation,
   } = payload;
 
-  const { weekends, weekdays, month, year } =
-    amountWeekendsAndWeekdays(usersYear, usersMonth);
+  if (!checkYearAndMonth(usersYear, usersMonth)) {
+    const { currentYear, currentMonth } = getCurrentDate();
+    state.year = currentYear;
+    state.month = currentMonth;
+  }
 
-  usersYear && (state.year = usersYear);
-  usersMonth && (state.month = usersMonth);
+  const { weekends, weekdays } = amountWeekendsAndWeekdays(
+    state.year,
+    state.month
+  );
 
   usersSalaryRate && (state.salaryRate = usersSalaryRate);
 
@@ -48,6 +54,7 @@ export const updateState = (
     state.sickLeave -
     state.usedVacation -
     state.bloodDonation;
+
   state.weekendDays = weekends;
 
   workedExtraHours_50 &&
@@ -75,8 +82,5 @@ export const updateState = (
   state.totalSalary =
     state.standardSalary + state.extraSalary;
 
-  if (checkYearAndMonth(year, month)) {
-    const key = getKey(year, month);
-    window.localStorage.setItem(key, JSON.stringify(state));
-  }
+  saveStateInStorage(state);
 };
