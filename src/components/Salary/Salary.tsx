@@ -3,6 +3,11 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { salaryActions } from "../../store/reducer/salaryReducer";
+import {
+  KeysSalaryInit,
+  PayloadsKeys,
+} from "../../store/reducer/types/salaryTypes";
+import { Input } from "../../ui";
 
 export const Salary = () => {
   const { salaryReducer } = useAppSelector(
@@ -10,6 +15,7 @@ export const Salary = () => {
   );
   const { getSalary } = salaryActions;
   const dispatch = useAppDispatch();
+
   const {
     year,
     month,
@@ -57,17 +63,25 @@ export const Salary = () => {
         <tbody>
           <tr>
             <td>
-              <input
+              <Input
+                payloadsKey={PayloadsKeys.usersYear}
+                reducersKey='year'
+              />
+              {/* <input
                 placeholder={String(year)}
                 type='number'
                 onChange={(e) => {
                   const val = Number(e.currentTarget.value);
                   dispatch(getSalary({ usersYear: val }));
                 }}
-              />
+              /> */}
             </td>
             <td>
-              <input
+              <Input
+                payloadsKey={PayloadsKeys.usersMonth}
+                reducersKey='month'
+              />
+              {/* <input
                 placeholder={String(month)}
                 type='number'
                 onChange={(e) => {
@@ -78,7 +92,7 @@ export const Salary = () => {
                     })
                   );
                 }}
-              />
+              /> */}
             </td>
             <td>{salaryRate}</td>
             <td>{taxRate}</td>

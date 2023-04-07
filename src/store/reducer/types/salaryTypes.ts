@@ -19,7 +19,22 @@ export type PayloadType = {
   usedVacation?: number;
   bloodDonation?: number;
 };
-export type PayloadsKey = keyof PayloadType;
+export enum PayloadsKeys {
+  workedExtraHours_50 = "workedExtraHours_50",
+  workedExtraHours_100 = "workedExtraHours_100",
+
+  usersSalaryRate = "usersSalaryRate",
+  usersPremiumRate = "usersPremiumRate",
+  usersTaxRate = "usersTaxRate",
+
+  usersMonth = "usersMonth",
+  usersYear = "usersYear",
+
+  sickLeave = "sickLeave",
+  usedVacation = "usedVacation",
+  bloodDonation = "bloodDonation",
+}
+
 // TS PICK & OMIT EXAMPLE:
 
 // export type Payload = {

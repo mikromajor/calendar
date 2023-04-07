@@ -5,18 +5,16 @@ import {
 
 import { salaryActions } from "../../store/reducer/salaryReducer";
 import {
-  PayloadsKey,
   KeysSalaryInit,
+  PayloadsKeys,
 } from "../../store/reducer/types/salaryTypes";
 
 type InputProps = {
-  tip: string;
-  payloadsKey: PayloadsKey;
+  payloadsKey: PayloadsKeys;
   reducersKey: KeysSalaryInit;
 };
 
 export const Input = ({
-  tip,
   payloadsKey,
   reducersKey,
 }: InputProps) => {
@@ -28,7 +26,7 @@ export const Input = ({
 
   return (
     <input
-      placeholder={String(tip)}
+      placeholder={payloadsKey}
       type='number'
       onChange={(e) => {
         const val = Number(e.currentTarget.value);
