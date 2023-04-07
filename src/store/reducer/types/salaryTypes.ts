@@ -1,8 +1,8 @@
-import { INIT_SALARY_STATE } from "../constants/salaryConstants";
+import { SALARY_INIT } from "../constants/salaryConstants";
 
-export type InitSalaryState = typeof INIT_SALARY_STATE;
+export type SalaryInit = typeof SALARY_INIT;
 
-export type KeysInitSalaryState = keyof InitSalaryState;
+export type KeysSalaryInit = keyof SalaryInit;
 
 export type PayloadType = {
   workedExtraHours_50?: number;
@@ -19,6 +19,7 @@ export type PayloadType = {
   usedVacation?: number;
   bloodDonation?: number;
 };
+export type PayloadsKey = keyof PayloadType;
 // TS PICK & OMIT EXAMPLE:
 
 // export type Payload = {

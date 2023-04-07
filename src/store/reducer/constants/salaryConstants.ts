@@ -1,4 +1,4 @@
-export const INIT_SALARY_STATE = {
+export const SALARY_INIT = {
   year: 2023,
   month: 1,
   salaryRate: 38,

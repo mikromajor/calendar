@@ -8,7 +8,7 @@ export const Salary = () => {
   const { salaryReducer } = useAppSelector(
     (state) => state
   );
-  const { getSalaryForTheMonth } = salaryActions;
+  const { getSalary } = salaryActions;
   const dispatch = useAppDispatch();
   const {
     year,
@@ -28,23 +28,6 @@ export const Salary = () => {
     extraSalary,
     totalSalary,
   } = salaryReducer;
-  // const changeYear =(e:React.FormEvent<HTMLInputElement>) => {
-  //   const val = Number(e.currentTarget.value);
-  //   dispatch(
-  //     getSalaryForTheMonth(
-  //       { usersYear: val,
-  //      usersMonth:month,
-  //       })
-  //   );
-  // }
-  // const changeMonth =(e:React.FormEvent<HTMLInputElement>) => {
-  //   const val = Number(e.currentTarget.value);
-  //   dispatch(
-  //     getSalaryForTheMonth({
-  //       usersMonth: val,
-  //       usersYear: year })
-  //   );
-  // }
 
   return (
     <>
@@ -79,9 +62,7 @@ export const Salary = () => {
                 type='number'
                 onChange={(e) => {
                   const val = Number(e.currentTarget.value);
-                  dispatch(
-                    getSalaryForTheMonth({ usersYear: val })
-                  );
+                  dispatch(getSalary({ usersYear: val }));
                 }}
               />
             </td>
@@ -92,7 +73,7 @@ export const Salary = () => {
                 onChange={(e) => {
                   const val = Number(e.currentTarget.value);
                   dispatch(
-                    getSalaryForTheMonth({
+                    getSalary({
                       usersMonth: val,
                     })
                   );

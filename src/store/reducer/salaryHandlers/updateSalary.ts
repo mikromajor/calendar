@@ -2,17 +2,18 @@ import { PREMIUM_COEFFICIENT } from "../constants/salaryConstants";
 import {
   amountWeekendsAndWeekdays,
   getCurrentDate,
-  saveStateInStorage,
-} from "./";
+  saveSalaryInStorage,
+  getKey,
+} from ".";
 import {
   PayloadType,
-  InitSalaryState,
+  SalaryInit,
 } from "../types/salaryTypes";
 
-export const updateState = (
-  state: InitSalaryState,
+export const updateSalary = (
+  state: SalaryInit,
   payload: PayloadType,
-  isKey?: string
+  isKey: string
 ) => {
   const {
     usersSalaryRate,
@@ -80,5 +81,5 @@ export const updateState = (
   state.totalSalary =
     state.standardSalary + state.extraSalary;
 
-  isKey && saveStateInStorage(state, isKey);
+  saveSalaryInStorage(state);
 };

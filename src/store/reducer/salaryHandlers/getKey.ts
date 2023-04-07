@@ -1,2 +1,7 @@
-export const getKey = (year?: number, month?: number) =>
-  "salaryForTheYear_" + year + "_Month_" + month;
+import { SalaryInit } from "../types/salaryTypes";
+
+export const getKey = (state: SalaryInit) =>
+  "salaryForTheYear_" +
+  state.year +
+  "_Month_" +
+  state.month;
