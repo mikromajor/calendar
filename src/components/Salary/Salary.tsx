@@ -1,39 +1,11 @@
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../store/hooks/redux";
-import { salaryActions } from "../../store/reducer/salaryReducer";
-import {
-  KeysSalaryInit,
-  PayloadsKeys,
-} from "../../store/reducer/types/salaryTypes";
+import { PayloadsKeys } from "../../store/reducer/types/salaryTypes";
+import { useAppSelector } from "../../store/hooks/redux";
 import { Input } from "../../ui";
 
 export const Salary = () => {
   const { salaryReducer } = useAppSelector(
     (state) => state
   );
-  const { getSalary } = salaryActions;
-  const dispatch = useAppDispatch();
-
-  const {
-    year,
-    month,
-    salaryRate,
-    taxRate,
-    premiumRate,
-    weekDays,
-    weekendDays,
-    standardWorkHours,
-    extraHours_50,
-    extraHours_100,
-    sickLeave,
-    usedVacation,
-    bloodDonation,
-    standardSalary,
-    extraSalary,
-    totalSalary,
-  } = salaryReducer;
 
   return (
     <>
@@ -67,47 +39,71 @@ export const Salary = () => {
                 payloadsKey={PayloadsKeys.usersYear}
                 reducersKey='year'
               />
-              {/* <input
-                placeholder={String(year)}
-                type='number'
-                onChange={(e) => {
-                  const val = Number(e.currentTarget.value);
-                  dispatch(getSalary({ usersYear: val }));
-                }}
-              /> */}
             </td>
             <td>
               <Input
                 payloadsKey={PayloadsKeys.usersMonth}
                 reducersKey='month'
               />
-              {/* <input
-                placeholder={String(month)}
-                type='number'
-                onChange={(e) => {
-                  const val = Number(e.currentTarget.value);
-                  dispatch(
-                    getSalary({
-                      usersMonth: val,
-                    })
-                  );
-                }}
-              /> */}
             </td>
-            <td>{salaryRate}</td>
-            <td>{taxRate}</td>
-            <td>{premiumRate}</td>
-            <td>{weekDays}</td>
-            <td>{weekendDays}</td>
-            <td>{standardWorkHours}</td>
-            <td>{extraHours_50}</td>
-            <td>{extraHours_100}</td>
-            <td>{sickLeave}</td>
-            <td>{usedVacation}</td>
-            <td>{bloodDonation}</td>
-            <td>{standardSalary}</td>
-            <td>{extraSalary}</td>
-            <td>{totalSalary}</td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.usersSalaryRate}
+                reducersKey='salaryRate'
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.usersTaxRate}
+                reducersKey='taxRate'
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.usersPremiumRate}
+                reducersKey='premiumRate'
+              />
+            </td>
+            <td> {salaryReducer.weekDays} </td>
+            <td>{salaryReducer.weekendDays}</td>
+            <td> {salaryReducer.standardWorkHours}</td>
+            <td>
+              <Input
+                payloadsKey={
+                  PayloadsKeys.workedExtraHours_50
+                }
+                reducersKey='extraHours_50'
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={
+                  PayloadsKeys.workedExtraHours_100
+                }
+                reducersKey='extraHours_100'
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.sickLeave}
+                reducersKey='sickLeave'
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.usedVacation}
+                reducersKey='usedVacation'
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.bloodDonation}
+                reducersKey='bloodDonation'
+              />
+            </td>
+            <td>{salaryReducer.standardSalary}</td>
+            <td>{salaryReducer.extraSalary}</td>
+            <td>{salaryReducer.totalSalary}</td>
           </tr>
         </tbody>
       </table>
