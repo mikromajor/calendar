@@ -85,8 +85,16 @@ export const Salary = () => {
             </td>
             <td>
               <Input
-                payloadsKey={PayloadsKeys.sickLeave}
-                reducersKey='sickLeave'
+                payloadsKey={PayloadsKeys.sickLeaveWeekDays}
+                reducersKey='sickLeaveWeekDays'
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={
+                  PayloadsKeys.sickLeaveWeekendDays
+                }
+                reducersKey='sickLeaveWeekendDays'
               />
             </td>
             <td>

@@ -3,7 +3,6 @@ import {
   amountWeekendsAndWeekdays,
   getCurrentDate,
   saveSalaryInStorage,
-  getKey,
 } from ".";
 import {
   PayloadType,
@@ -21,7 +20,8 @@ export const updateSalary = (
     usersTaxRate,
     workedExtraHours_50,
     workedExtraHours_100,
-    sickLeave,
+    sickLeaveWeekDays,
+    sickLeaveWeekendDays,
     usedVacation,
     bloodDonation,
   } = payload;
@@ -44,23 +44,26 @@ export const updateSalary = (
 
   usersTaxRate && (state.taxRate = usersTaxRate);
 
-  sickLeave && (state.sickLeave += sickLeave);
-  usedVacation && (state.usedVacation += usedVacation);
-  bloodDonation && (state.bloodDonation += bloodDonation);
+  sickLeaveWeekDays &&
+    (state.sickLeaveWeekDays = sickLeaveWeekDays);
+  sickLeaveWeekendDays &&
+    (state.sickLeaveWeekendDays = sickLeaveWeekendDays);
+  usedVacation && (state.usedVacation = usedVacation);
+  bloodDonation && (state.bloodDonation = bloodDonation);
 
   state.weekDays =
     weekdays -
-    state.sickLeave -
+    state.sickLeaveWeekDays -
     state.usedVacation -
     state.bloodDonation;
 
   state.weekendDays = weekends;
 
   workedExtraHours_50 &&
-    (state.extraHours_50 += workedExtraHours_50);
+    (state.extraHours_50 = workedExtraHours_50);
 
   workedExtraHours_100 &&
-    (state.extraHours_100 += workedExtraHours_100);
+    (state.extraHours_100 = workedExtraHours_100);
 
   state.nettoPerHours =
     state.salaryRate * state.premiumRate * state.taxRate;
@@ -69,9 +72,15 @@ export const updateSalary = (
 
   state.standardSalary =
     state.standardWorkHours * state.nettoPerHours +
-    state.sickLeave * state.salaryRate * 8 * 0.8 +
-    state.bloodDonation * state.salaryRate * 8 * 1;
-  // TODO: не урахував хворобові в вихідні і відпустку
+    (state.sickLeaveWeekDays + state.sickLeaveWeekendDays) *
+      state.salaryRate *
+      8 *
+      0.8 +
+    (state.bloodDonation + state.usedVacation) *
+      state.salaryRate *
+      8 *
+      1;
+  // TODO:  рахував  відпустку не як середнє за 3 місяці а як звиклі дні з премією
 
   state.extraSalary =
     (state.extraHours_50 * PREMIUM_COEFFICIENT.pr_50 +

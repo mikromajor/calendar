@@ -20,7 +20,8 @@ export const SALARY_INIT = {
   extraHours_50: 0,
   extraHours_100: 0,
 
-  sickLeave: 0,
+  sickLeaveWeekDays: 0,
+  sickLeaveWeekendDays: 0,
   usedVacation: 0,
   bloodDonation: 0,
   standardSalary: 0,
@@ -37,7 +38,7 @@ export const SALARY_INIT = {
   // },
   totalSalary: 0,
   // totalSalary() {
-  //   return this.standardSalary() + this.extraSalary();
+  //   return this.standardSalary + this.extraSalary;
   // },
 };
 
