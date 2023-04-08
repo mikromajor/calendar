@@ -21,10 +21,12 @@ export const Salary = () => {
             <th>Премія</th>
             <th>Будні</th>
             <th>Вихідні</th>
+            <th>Святкові</th>
             <th>К-ть робочих годин</th>
             <th>Понаднормові 50%</th>
             <th>Понаднормові 100%</th>
-            <th>Хворобові</th>
+            <th>Хворобові в будні</th>
+            <th>Хворобові в вихідні</th>
             <th>Відпустка</th>
             <th>Кроводавство</th>
             <th>ЗП нормова</th>
@@ -66,6 +68,12 @@ export const Salary = () => {
             </td>
             <td> {salaryReducer.weekDays} </td>
             <td>{salaryReducer.weekendDays}</td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.holidays}
+                reducersKey='holidays'
+              />
+            </td>
             <td> {salaryReducer.standardWorkHours}</td>
             <td>
               <Input

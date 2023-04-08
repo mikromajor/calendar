@@ -17,6 +17,8 @@ export type PayloadType = {
 
   sickLeaveWeekDays?: number;
   sickLeaveWeekendDays?: number;
+
+  holidays?: number;
   usedVacation?: number;
   bloodDonation?: number;
 };
@@ -33,6 +35,8 @@ export enum PayloadsKeys {
 
   sickLeaveWeekendDays = "sickLeaveWeekendDays",
   sickLeaveWeekDays = "sickLeaveWeekDays",
+
+  holidays = "holidays",
   usedVacation = "usedVacation",
   bloodDonation = "bloodDonation",
 }

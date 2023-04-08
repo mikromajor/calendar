@@ -3,6 +3,7 @@ import {
   amountWeekendsAndWeekdays,
   getCurrentDate,
   saveSalaryInStorage,
+  numbersLetsGo,
 } from ".";
 import {
   PayloadType,
@@ -20,6 +21,7 @@ export const updateSalary = (
     usersTaxRate,
     workedExtraHours_50,
     workedExtraHours_100,
+    holidays,
     sickLeaveWeekDays,
     sickLeaveWeekendDays,
     usedVacation,
@@ -48,12 +50,17 @@ export const updateSalary = (
     (state.sickLeaveWeekDays = sickLeaveWeekDays);
   sickLeaveWeekendDays &&
     (state.sickLeaveWeekendDays = sickLeaveWeekendDays);
-  usedVacation && (state.usedVacation = usedVacation);
-  bloodDonation && (state.bloodDonation = bloodDonation);
+
+  numbersLetsGo(usedVacation) &&
+    (state.usedVacation = usedVacation);
+  numbersLetsGo(bloodDonation) &&
+    (state.bloodDonation = bloodDonation);
+  numbersLetsGo(holidays) && (state.holidays = holidays);
 
   state.weekDays =
     weekdays -
     state.sickLeaveWeekDays -
+    state.holidays -
     state.usedVacation -
     state.bloodDonation;
 
@@ -71,15 +78,13 @@ export const updateSalary = (
   state.standardWorkHours = state.weekDays * 8;
 
   state.standardSalary =
-    state.standardWorkHours * state.nettoPerHours +
+    (state.standardWorkHours + state.usedVacation) *
+      state.nettoPerHours +
     (state.sickLeaveWeekDays + state.sickLeaveWeekendDays) *
       state.salaryRate *
       8 *
       0.8 +
-    (state.bloodDonation + state.usedVacation) *
-      state.salaryRate *
-      8 *
-      1;
+    state.bloodDonation * state.salaryRate * 8 * 1;
   // TODO:  рахував  відпустку не як середнє за 3 місяці а як звиклі дні з премією
 
   state.extraSalary =

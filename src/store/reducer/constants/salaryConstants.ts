@@ -22,6 +22,7 @@ export const SALARY_INIT = {
 
   sickLeaveWeekDays: 0,
   sickLeaveWeekendDays: 0,
+  holidays: 0,
   usedVacation: 0,
   bloodDonation: 0,
   standardSalary: 0,
