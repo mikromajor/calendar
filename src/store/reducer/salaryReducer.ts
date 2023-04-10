@@ -10,6 +10,7 @@ import {
   seekSavedSalaryInStorage,
   updateSalary,
   getKey,
+  saveSalaryInStorage,
 } from "./salaryHandlers";
 
 export const salaryReducer = createSlice({
@@ -20,13 +21,17 @@ export const salaryReducer = createSlice({
       state,
       action: PayloadAction<PayloadType>
     ) => {
-      let dateKey = "";
-      changeDate(state, action.payload);
-      dateKey = getKey(state);
-      seekSavedSalaryInStorage(state, dateKey);
-
+      const dateKey = getKey(state);
       updateSalary(state, action.payload, dateKey);
-      dateKey = "";
+      saveSalaryInStorage(state);
+    },
+    changeSalaryDate: (
+      state,
+      action: PayloadAction<PayloadType>
+    ) => {
+      changeDate(state, action.payload);
+      const dateKey = getKey(state);
+      seekSavedSalaryInStorage(state, dateKey);
     },
   },
 });

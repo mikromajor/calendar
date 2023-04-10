@@ -6,12 +6,12 @@ import { checkMonth, checkYear } from ".";
 
 export const changeDate = (
   state: SalaryInit,
-  { usersYear, usersMonth }: PayloadType
+  { year, month }: PayloadType
 ) => {
-  if (checkMonth(usersMonth)) {
-    state.month = usersMonth;
+  if (checkMonth(month)) {
+    state.month = month;
   }
-  if (checkYear(usersYear)) {
-    state.year = usersYear;
+  if (checkYear(year)) {
+    state.year = year;
   }
 };

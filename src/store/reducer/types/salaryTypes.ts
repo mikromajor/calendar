@@ -4,18 +4,16 @@ export type SalaryInit = typeof SALARY_INIT;
 
 export type KeysSalaryInit = keyof SalaryInit;
 
-// type PT = {[KeysSalaryInit:number]}
-
 export type PayloadType = {
-  workedExtraHours_50?: number;
-  workedExtraHours_100?: number;
+  month?: number;
+  year?: number;
 
-  usersSalaryRate?: number;
-  usersPremiumRate?: number;
-  usersTaxRate?: number;
+  salaryRate?: number;
+  premiumRate?: number;
+  taxRate?: number;
 
-  usersMonth?: number;
-  usersYear?: number;
+  extraHours_50?: number;
+  extraHours_100?: number;
 
   sickLeaveWeekDays?: number;
   sickLeaveWeekendDays?: number;
@@ -24,16 +22,17 @@ export type PayloadType = {
   usedVacation?: number;
   bloodDonation?: number;
 };
+
 export enum PayloadsKeys {
-  workedExtraHours_50 = "workedExtraHours_50",
-  workedExtraHours_100 = "workedExtraHours_100",
+  extraHours_50 = "extraHours_50",
+  extraHours_100 = "extraHours_100",
 
-  usersSalaryRate = "usersSalaryRate",
-  usersPremiumRate = "usersPremiumRate",
-  usersTaxRate = "usersTaxRate",
+  salaryRate = "salaryRate",
+  premiumRate = "premiumRate",
+  taxRate = "taxRate",
 
-  usersMonth = "usersMonth",
-  usersYear = "usersYear",
+  month = "month",
+  year = "year",
 
   sickLeaveWeekendDays = "sickLeaveWeekendDays",
   sickLeaveWeekDays = "sickLeaveWeekDays",
@@ -45,10 +44,10 @@ export enum PayloadsKeys {
 
 // TS PICK & OMIT EXAMPLE:
 
-// export type Payload = {
+//  type Payload = {
 //   extraHours: number;
-//   usersMonth: number;
-//   usersYear: number;
+//   Month: number;
+//   Year: number;
 // };
 
 // type removeField = Omit<Payload, 'userMonth'|'userYear'>

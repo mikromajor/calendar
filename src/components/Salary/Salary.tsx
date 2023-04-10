@@ -37,64 +37,43 @@ export const Salary = () => {
         <tbody>
           <tr>
             <td>
-              <Input
-                payloadsKey={PayloadsKeys.usersYear}
-                reducersKey='year'
-              />
+              <Input payloadsKey={PayloadsKeys.year} />
+            </td>
+            <td>
+              <Input payloadsKey={PayloadsKeys.month} />
             </td>
             <td>
               <Input
-                payloadsKey={PayloadsKeys.usersMonth}
-                reducersKey='month'
+                payloadsKey={PayloadsKeys.salaryRate}
               />
             </td>
             <td>
-              <Input
-                payloadsKey={PayloadsKeys.usersSalaryRate}
-                reducersKey='salaryRate'
-              />
+              <Input payloadsKey={PayloadsKeys.taxRate} />
             </td>
             <td>
               <Input
-                payloadsKey={PayloadsKeys.usersTaxRate}
-                reducersKey='taxRate'
-              />
-            </td>
-            <td>
-              <Input
-                payloadsKey={PayloadsKeys.usersPremiumRate}
-                reducersKey='premiumRate'
+                payloadsKey={PayloadsKeys.premiumRate}
               />
             </td>
             <td> {salaryReducer.weekDays} </td>
             <td>{salaryReducer.weekendDays}</td>
             <td>
-              <Input
-                payloadsKey={PayloadsKeys.holidays}
-                reducersKey='holidays'
-              />
+              <Input payloadsKey={PayloadsKeys.holidays} />
             </td>
-            <td> {salaryReducer.standardWorkHours}</td>
+            <td> {salaryReducer.standardWorkHours()}</td>
             <td>
               <Input
-                payloadsKey={
-                  PayloadsKeys.workedExtraHours_50
-                }
-                reducersKey='extraHours_50'
+                payloadsKey={PayloadsKeys.extraHours_50}
               />
             </td>
             <td>
               <Input
-                payloadsKey={
-                  PayloadsKeys.workedExtraHours_100
-                }
-                reducersKey='extraHours_100'
+                payloadsKey={PayloadsKeys.extraHours_100}
               />
             </td>
             <td>
               <Input
                 payloadsKey={PayloadsKeys.sickLeaveWeekDays}
-                reducersKey='sickLeaveWeekDays'
               />
             </td>
             <td>
@@ -102,24 +81,21 @@ export const Salary = () => {
                 payloadsKey={
                   PayloadsKeys.sickLeaveWeekendDays
                 }
-                reducersKey='sickLeaveWeekendDays'
               />
             </td>
             <td>
               <Input
                 payloadsKey={PayloadsKeys.usedVacation}
-                reducersKey='usedVacation'
               />
             </td>
             <td>
               <Input
                 payloadsKey={PayloadsKeys.bloodDonation}
-                reducersKey='bloodDonation'
               />
             </td>
-            <td>{salaryReducer.standardSalary}</td>
-            <td>{salaryReducer.extraSalary}</td>
-            <td>{salaryReducer.totalSalary}</td>
+            <td>{salaryReducer.standardSalary()}</td>
+            <td>{salaryReducer.extraSalary()}</td>
+            <td>{salaryReducer.totalSalary()}</td>
           </tr>
         </tbody>
       </table>

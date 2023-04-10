@@ -4,35 +4,39 @@ import {
 } from "../../store/hooks/redux";
 
 import { salaryActions } from "../../store/reducer/salaryReducer";
-import {
-  KeysSalaryInit,
-  PayloadsKeys,
-} from "../../store/reducer/types/salaryTypes";
+import { PayloadsKeys } from "../../store/reducer/types/salaryTypes";
 
 type InputProps = {
   payloadsKey: PayloadsKeys;
-  reducersKey: KeysSalaryInit;
 };
 
-export const Input = ({
-  payloadsKey,
-  reducersKey,
-}: InputProps) => {
+export const Input = ({ payloadsKey }: InputProps) => {
   const dispatch = useAppDispatch();
   const { salaryReducer } = useAppSelector(
     (state) => state
   );
-  const { getSalary } = salaryActions;
+  const { getSalary, changeSalaryDate } = salaryActions;
+
+  const handlerInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const val = Number(e.currentTarget.value);
+    if (
+      payloadsKey === PayloadsKeys.month ||
+      payloadsKey === PayloadsKeys.year
+    ) {
+      dispatch(changeSalaryDate({ [payloadsKey]: val }));
+    } else {
+      dispatch(getSalary({ [payloadsKey]: val }));
+    }
+  };
 
   return (
     <input
       placeholder={payloadsKey}
       type='number'
-      onChange={(e) => {
-        const val = Number(e.currentTarget.value);
-        dispatch(getSalary({ [payloadsKey]: val }));
-      }}
-      value={String(salaryReducer[reducersKey])}
+      onChange={handlerInputChange}
+      value={String(salaryReducer[payloadsKey])}
     />
   );
 };

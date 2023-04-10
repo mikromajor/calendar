@@ -1,4 +1,3 @@
-import { PREMIUM_COEFFICIENT } from "../constants/salaryConstants";
 import {
   amountWeekendsAndWeekdays,
   getCurrentDate,
@@ -13,14 +12,14 @@ import {
 export const updateSalary = (
   state: SalaryInit,
   payload: PayloadType,
-  isKey: string
+  dateKey: string
 ) => {
   const {
-    usersSalaryRate,
-    usersPremiumRate,
-    usersTaxRate,
-    workedExtraHours_50,
-    workedExtraHours_100,
+    salaryRate,
+    premiumRate,
+    taxRate,
+    extraHours_50,
+    extraHours_100,
     holidays,
     sickLeaveWeekDays,
     sickLeaveWeekendDays,
@@ -28,23 +27,16 @@ export const updateSalary = (
     bloodDonation,
   } = payload;
 
-  if (!isKey) {
-    const { currentYear, currentMonth } = getCurrentDate();
-    state.year = currentYear;
-    state.month = currentMonth;
-  }
-
   const { weekends, weekdays } = amountWeekendsAndWeekdays(
     state.year,
     state.month
   );
 
-  usersSalaryRate && (state.salaryRate = usersSalaryRate);
+  salaryRate && (state.salaryRate = salaryRate);
 
-  usersPremiumRate &&
-    (state.premiumRate = usersPremiumRate);
+  premiumRate && (state.premiumRate = premiumRate);
 
-  usersTaxRate && (state.taxRate = usersTaxRate);
+  taxRate && (state.taxRate = taxRate);
 
   sickLeaveWeekDays &&
     (state.sickLeaveWeekDays = sickLeaveWeekDays);
@@ -66,34 +58,9 @@ export const updateSalary = (
 
   state.weekendDays = weekends;
 
-  workedExtraHours_50 &&
-    (state.extraHours_50 = workedExtraHours_50);
+  extraHours_50 && (state.extraHours_50 = extraHours_50);
 
-  workedExtraHours_100 &&
-    (state.extraHours_100 = workedExtraHours_100);
+  extraHours_100 && (state.extraHours_100 = extraHours_100);
 
-  state.nettoPerHours =
-    state.salaryRate * state.premiumRate * state.taxRate;
-
-  state.standardWorkHours = state.weekDays * 8;
-
-  state.standardSalary =
-    (state.standardWorkHours + state.usedVacation) *
-      state.nettoPerHours +
-    (state.sickLeaveWeekDays + state.sickLeaveWeekendDays) *
-      state.salaryRate *
-      8 *
-      0.8 +
-    state.bloodDonation * state.salaryRate * 8 * 1;
   // TODO:  рахував  відпустку не як середнє за 3 місяці а як звиклі дні з премією
-
-  state.extraSalary =
-    (state.extraHours_50 * PREMIUM_COEFFICIENT.pr_50 +
-      state.extraHours_100 * PREMIUM_COEFFICIENT.pr_100) *
-    state.nettoPerHours;
-
-  state.totalSalary =
-    state.standardSalary + state.extraSalary;
-
-  saveSalaryInStorage(state);
 };
