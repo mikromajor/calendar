@@ -5,7 +5,7 @@ export { getCurrentDate } from "./getCurrentDate";
 export { seekSavedSalaryInStorage } from "./seekSavedSalaryInStorage";
 export { updateSalary } from "./updateSalary";
 export { getKey } from "./getKey";
-export { checkDate } from "./checkDate";
+export { changeDate } from "./changeDate";
 export { saveSalaryInStorage } from "./saveSalaryInStorage";
 export { checkMonth } from "./checkMonth";
 export { checkYear } from "./checkYear";

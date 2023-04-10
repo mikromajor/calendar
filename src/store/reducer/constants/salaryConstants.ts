@@ -10,6 +10,7 @@ export const SALARY_INIT = {
   //     this.salaryRate * this.premiumRate * this.taxRate
   //   );
   // },
+
   weekDays: 0,
   weekendDays: 0,
   standardWorkHours: 0,

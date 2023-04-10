@@ -15,6 +15,9 @@ export const seekSavedSalaryInStorage = (
     const item = window.localStorage.getItem(dateKey);
     if (item) {
       const storage = JSON.parse(item) as any as SalaryInit;
+
+      // state = storage
+
       const keys = Object.keys(
         state
       ) as any as KeysSalaryInit[];

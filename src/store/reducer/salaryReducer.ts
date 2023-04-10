@@ -6,7 +6,7 @@ import {
 import { SALARY_INIT } from "./constants/salaryConstants";
 import { PayloadType } from "./types/salaryTypes";
 import {
-  checkDate,
+  changeDate,
   seekSavedSalaryInStorage,
   updateSalary,
   getKey,
@@ -21,11 +21,12 @@ export const salaryReducer = createSlice({
       action: PayloadAction<PayloadType>
     ) => {
       let dateKey = "";
-      if (checkDate(state, action.payload)) {
-        dateKey = getKey(state);
-        seekSavedSalaryInStorage(state, dateKey);
-      }
+      changeDate(state, action.payload);
+      dateKey = getKey(state);
+      seekSavedSalaryInStorage(state, dateKey);
+
       updateSalary(state, action.payload, dateKey);
+      dateKey = "";
     },
   },
 });

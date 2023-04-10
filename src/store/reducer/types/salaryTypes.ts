@@ -4,6 +4,8 @@ export type SalaryInit = typeof SALARY_INIT;
 
 export type KeysSalaryInit = keyof SalaryInit;
 
+// type PT = {[KeysSalaryInit:number]}
+
 export type PayloadType = {
   workedExtraHours_50?: number;
   workedExtraHours_100?: number;
