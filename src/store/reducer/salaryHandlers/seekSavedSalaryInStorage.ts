@@ -16,8 +16,6 @@ export const seekSavedSalaryInStorage = (
     if (item) {
       const storage = JSON.parse(item) as any as SalaryInit;
 
-      // state = storage
-
       const keys = Object.keys(
         state
       ) as any as KeysSalaryInit[];
