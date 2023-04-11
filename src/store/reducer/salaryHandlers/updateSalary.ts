@@ -63,18 +63,21 @@ export const updateSalary = (
   state.nettoPerHours =
     state.salaryRate * state.premiumRate * state.taxRate;
   state.standardWorkHours = state.weekDays * 8;
-  state.standardSalary =
+  state.standardSalary = Math.round(
     (state.standardWorkHours + state.usedVacation) *
       state.nettoPerHours +
-    (state.sickLeaveWeekDays + state.sickLeaveWeekendDays) *
-      state.salaryRate *
-      8 *
-      0.8 +
-    state.bloodDonation * state.salaryRate * 8 * 1;
-  state.extraSalary =
+      (state.sickLeaveWeekDays +
+        state.sickLeaveWeekendDays) *
+        state.salaryRate *
+        8 *
+        0.8 +
+      state.bloodDonation * state.salaryRate * 8 * 1
+  );
+  state.extraSalary = Math.round(
     (state.extraHours_50 * PREMIUM_COEFFICIENT.pr_50 +
       state.extraHours_100 * PREMIUM_COEFFICIENT.pr_100) *
-    state.nettoPerHours;
+      state.nettoPerHours
+  );
 
   state.totalSalary =
     state.standardSalary + state.extraSalary;

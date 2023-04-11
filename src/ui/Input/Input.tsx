@@ -21,6 +21,7 @@ export const Input = ({ payloadsKey }: InputProps) => {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const val = Number(e.currentTarget.value);
+
     if (
       payloadsKey === PayloadsKeys.month ||
       payloadsKey === PayloadsKeys.year

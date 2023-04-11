@@ -60,7 +60,7 @@ export const Salary = () => {
             <td>
               <Input payloadsKey={PayloadsKeys.holidays} />
             </td>
-            <td> {salaryReducer.standardWorkHours()}</td>
+            <td> {salaryReducer.standardWorkHours}</td>
             <td>
               <Input
                 payloadsKey={PayloadsKeys.extraHours_50}
@@ -93,9 +93,9 @@ export const Salary = () => {
                 payloadsKey={PayloadsKeys.bloodDonation}
               />
             </td>
-            <td>{salaryReducer.standardSalary()}</td>
-            <td>{salaryReducer.extraSalary()}</td>
-            <td>{salaryReducer.totalSalary()}</td>
+            <td>{salaryReducer.standardSalary}</td>
+            <td>{salaryReducer.extraSalary}</td>
+            <td>{salaryReducer.totalSalary}</td>
           </tr>
         </tbody>
       </table>
