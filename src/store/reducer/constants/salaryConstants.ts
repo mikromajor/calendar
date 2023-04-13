@@ -1,5 +1,7 @@
 //TODO: реакт ругается на несериализированые э-ты в стейте
 // нельзя помещать ф-и в стайт
+import { KeysSalaryInit } from "../types/salaryTypes";
+
 export const SALARY_INIT = {
   year: 2023,
   month: 1,
@@ -60,3 +62,7 @@ export const PREMIUM_COEFFICIENT = {
   pr_100: 2,
   pr_120: 2.2,
 };
+
+export const SALARY_KEYS = Object.keys(
+  SALARY_INIT
+) as any as KeysSalaryInit[];

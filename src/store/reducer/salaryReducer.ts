@@ -11,7 +11,6 @@ import {
   updateSalary,
   getKey,
   saveSalaryInStorage,
-  getSalaryInit,
 } from "./salaryHandlers";
 
 export const salaryReducer = createSlice({
@@ -30,10 +29,11 @@ export const salaryReducer = createSlice({
       state,
       action: PayloadAction<PayloadType>
     ) => {
-      const dateKey = getKey(state.year, state.month);
       changeDate(state, action.payload);
-      // getSalaryInit(state);
-      seekSavedSalaryInStorage(state, dateKey); // need middleware
+
+      const dateKey = getKey(state.year, state.month);
+
+      seekSavedSalaryInStorage(state, dateKey);
     },
   },
 });

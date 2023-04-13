@@ -1,8 +1,8 @@
+import { SalaryInit } from "../types/salaryTypes";
 import {
-  SalaryInit,
-  KeysSalaryInit,
-} from "../types/salaryTypes";
-import { getSalaryInit } from "./";
+  SALARY_KEYS,
+  SALARY_INIT,
+} from "../constants/salaryConstants";
 
 export const seekSavedSalaryInStorage = (
   state: SalaryInit,
@@ -14,20 +14,16 @@ export const seekSavedSalaryInStorage = (
 
   try {
     const item = window.localStorage.getItem(dateKey);
-    if (item) {
-      const storage = JSON.parse(item) as any as SalaryInit;
 
-      const keys = Object.keys(
-        state
-      ) as any as KeysSalaryInit[];
-      keys.forEach((key) => {
-        if (key !== "month" && key !== "year") {
-          state[key] = storage[key];
-        }
-      });
-    } else {
-      getSalaryInit(state);
-    }
+    const update = !!item
+      ? (JSON.parse(item) as any as SalaryInit)
+      : SALARY_INIT;
+
+    SALARY_KEYS.forEach((key) => {
+      if (key !== "month" && key !== "year") {
+        state[key] = update[key];
+      }
+    });
   } catch (e) {
     console.log(
       "Error caught in seekSavedSalaryInStorage ->",
