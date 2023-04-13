@@ -7,7 +7,7 @@ export const SALARY_INIT = {
   month: 1,
   salaryRate: 38,
   premiumRate: 1.3,
-  taxRate: 0.73,
+  taxRate: 0.7,
   nettoPerHours: 0,
   // nettoPerHours() {
   //   return (
