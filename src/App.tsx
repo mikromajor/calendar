@@ -3,9 +3,9 @@ import { AlcoCalendar, Salary } from "./components";
 function App() {
   return (
     <>
-      <AlcoCalendar />
+      {/* <AlcoCalendar /> */}
       <Salary />
     </>
   );
-};
+}
 export default App;
