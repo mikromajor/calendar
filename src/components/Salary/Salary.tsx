@@ -1,6 +1,7 @@
 import { PayloadsKeys } from "../../store/reducer/types/salaryTypes";
 import { useAppSelector } from "../../store/hooks/redux";
-import { Input } from "../../ui";
+import { Input, TableHeading } from "../../ui";
+import { TABLE_HEADINGS } from "../../store/reducer/constants/salaryConstants";
 
 export const Salary = () => {
   const { salaryReducer } = useAppSelector(
@@ -14,7 +15,10 @@ export const Salary = () => {
       <table>
         <thead>
           <tr>
-            <th>Рік</th>
+            {TABLE_HEADINGS.map((heading, i) => (
+              <th key={heading + String(i)}>{heading}</th>
+            ))}
+            {/* <th>Рік</th>
             <th>Місяць</th>
             <th>Ставка</th>
             <th>Податок</th>
@@ -31,7 +35,7 @@ export const Salary = () => {
             <th>Кроводавство</th>
             <th>ЗП нормова</th>
             <th>ЗП понаднормова</th>
-            <th>ЗП вся</th>
+            <th>ЗП вся</th> */}
           </tr>
         </thead>
         <tbody>
