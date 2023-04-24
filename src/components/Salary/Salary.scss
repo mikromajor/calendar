@@ -1,0 +1,51 @@
+.salary {
+  display: flex;
+  width: 100vw;
+  height: 100hv;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
+  table {
+    // width: 100vw;
+    background-color: rgb(180, 211, 136);
+    border: 3px solid grey;
+    border-radius: 5px;
+    box-shadow: 5px 10px 8px 10px #888;
+  }
+
+  caption {
+    text-align: center;
+    color: rgb(26, 100, 219);
+    font-size: 40px;
+    font-weight: 600;
+    text-shadow: 3px 3px 3px #b2b2b2;
+  }
+  tr {
+    padding: 10px;
+    border: 2px solid grey;
+    border-radius: 5px;
+  }
+  th {
+    writing-mode: vertical-lr;
+    background-color: rgb(153, 183, 236);
+    min-height: 200px;
+    border-radius: 5px;
+  }
+
+  input {
+    background-color: rgb(255, 209, 117);
+    width: 50px;
+    margin: 0;
+    padding: 0;
+  }
+  td {
+    text-align: center;
+    border: 2px solid grey;
+    min-width: 50px;
+    border-radius: 5px;
+  }
+  &-all {
+    background-color: rgb(126, 204, 126);
+  }
+}
