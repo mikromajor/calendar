@@ -28,12 +28,7 @@ export const Salary = () => {
           <td>
             <Input payloadsKey={PayloadsKeys.premiumRate} />
           </td>
-          <td> {salaryReducer.weekDays} </td>
-          <td>{salaryReducer.weekendDays}</td>
-          <td>
-            <Input payloadsKey={PayloadsKeys.holidays} />
-          </td>
-          <td> {salaryReducer.standardWorkHours}</td>
+
           <td>
             <Input
               payloadsKey={PayloadsKeys.extraHours_50}
@@ -44,6 +39,7 @@ export const Salary = () => {
               payloadsKey={PayloadsKeys.extraHours_100}
             />
           </td>
+
           <td>
             <Input
               payloadsKey={PayloadsKeys.sickLeaveWeekDays}
@@ -66,6 +62,13 @@ export const Salary = () => {
               payloadsKey={PayloadsKeys.bloodDonation}
             />
           </td>
+          <td>
+            <Input payloadsKey={PayloadsKeys.holidays} />
+          </td>
+          <td> {salaryReducer.weekDays} </td>
+
+          <td>{salaryReducer.weekendDays}</td>
+          <td> {salaryReducer.standardWorkHours}</td>
           <td>{salaryReducer.standardSalary}</td>
           <td>{salaryReducer.extraSalary}</td>
           <td className='salary-all'>
