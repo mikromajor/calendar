@@ -31,15 +31,18 @@ export const updateSalary = (
     state.month
   );
 
-  salaryRate && (state.salaryRate = salaryRate);
+  numbersLetsGo(salaryRate) &&
+    (state.salaryRate = salaryRate);
 
-  premiumRate && (state.premiumRate = premiumRate);
+  premiumRate &&
+    premiumRate >= 1 &&
+    (state.premiumRate = premiumRate);
 
-  taxRate && (state.taxRate = taxRate);
+  numbersLetsGo(taxRate) && (state.taxRate = taxRate);
 
-  sickLeaveWeekDays &&
+  numbersLetsGo(sickLeaveWeekDays) &&
     (state.sickLeaveWeekDays = sickLeaveWeekDays);
-  sickLeaveWeekendDays &&
+  numbersLetsGo(sickLeaveWeekendDays) &&
     (state.sickLeaveWeekendDays = sickLeaveWeekendDays);
 
   numbersLetsGo(usedVacation) &&
@@ -61,10 +64,12 @@ export const updateSalary = (
 
   extraHours_100 && (state.extraHours_100 = extraHours_100);
   state.nettoPerHours =
-    state.salaryRate * state.premiumRate * state.taxRate;
+    state.salaryRate * state.taxRate * state.premiumRate;
+
   state.standardWorkHours = state.weekDays * 8;
+
   state.standardSalary = Math.round(
-    (state.standardWorkHours + state.usedVacation) *
+    (state.standardWorkHours + state.usedVacation * 8 * 1) *
       state.nettoPerHours +
       (state.sickLeaveWeekDays +
         state.sickLeaveWeekendDays) *
