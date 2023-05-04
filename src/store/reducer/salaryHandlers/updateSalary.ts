@@ -19,6 +19,7 @@ export const updateSalary = (
     taxRate,
     extraHours_50,
     extraHours_100,
+    extraHours_120,
     holidays,
     sickLeaveWeekDays,
     sickLeaveWeekendDays,
@@ -63,6 +64,9 @@ export const updateSalary = (
   extraHours_50 && (state.extraHours_50 = extraHours_50);
 
   extraHours_100 && (state.extraHours_100 = extraHours_100);
+
+  extraHours_120 && (state.extraHours_120 = extraHours_120);
+
   state.nettoPerHours =
     state.salaryRate * state.taxRate * state.premiumRate;
 
@@ -80,12 +84,13 @@ export const updateSalary = (
   );
   state.extraSalary = Math.round(
     (state.extraHours_50 * PREMIUM_COEFFICIENT.pr_50 +
-      state.extraHours_100 * PREMIUM_COEFFICIENT.pr_100) *
+      state.extraHours_100 * PREMIUM_COEFFICIENT.pr_100 +
+      state.extraHours_120 * PREMIUM_COEFFICIENT.pr_120) *
       state.nettoPerHours
   );
 
   state.totalSalary =
     state.standardSalary + state.extraSalary;
 
-  // TODO:  рахував  відпустку не як середнє за 3 місяці а як звиклі дні з премією
+  // TODO:  рахував  відпустку не як середнє за 3 місяці а як звиклі дні з премієюnpm rebuild node-sass
 };

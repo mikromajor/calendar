@@ -14,6 +14,7 @@ export type PayloadType = {
 
   extraHours_50?: number;
   extraHours_100?: number;
+  extraHours_120?: number;
 
   sickLeaveWeekDays?: number;
   sickLeaveWeekendDays?: number;
@@ -26,6 +27,7 @@ export type PayloadType = {
 export enum PayloadsKeys {
   extraHours_50 = "extraHours_50",
   extraHours_100 = "extraHours_100",
+  extraHours_120 = "extraHours_120",
 
   salaryRate = "salaryRate",
   premiumRate = "premiumRate",

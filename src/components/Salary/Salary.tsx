@@ -10,71 +10,82 @@ export const Salary = () => {
   return (
     <div className='salary'>
       <table>
-        <caption>Salary</caption>
+        <caption>Shaper's Salary</caption>
         <TableHeadings />
-        <tr>
-          <td>
-            <Input payloadsKey={PayloadsKeys.year} />
-          </td>
-          <td>
-            <Input payloadsKey={PayloadsKeys.month} />
-          </td>
-          <td>
-            <Input payloadsKey={PayloadsKeys.salaryRate} />
-          </td>
-          <td>
-            <Input payloadsKey={PayloadsKeys.taxRate} />
-          </td>
-          <td>
-            <Input payloadsKey={PayloadsKeys.premiumRate} />
-          </td>
+        <tbody>
+          <tr>
+            <td>
+              <Input payloadsKey={PayloadsKeys.year} />
+            </td>
+            <td>
+              <Input payloadsKey={PayloadsKeys.month} />
+            </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.salaryRate}
+              />
+            </td>
+            <td>
+              <Input payloadsKey={PayloadsKeys.taxRate} />
+            </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.premiumRate}
+              />
+            </td>
 
-          <td>
-            <Input
-              payloadsKey={PayloadsKeys.extraHours_50}
-            />
-          </td>
-          <td>
-            <Input
-              payloadsKey={PayloadsKeys.extraHours_100}
-            />
-          </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.extraHours_50}
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.extraHours_100}
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.extraHours_120}
+              />
+            </td>
 
-          <td>
-            <Input
-              payloadsKey={PayloadsKeys.sickLeaveWeekDays}
-            />
-          </td>
-          <td>
-            <Input
-              payloadsKey={
-                PayloadsKeys.sickLeaveWeekendDays
-              }
-            />
-          </td>
-          <td>
-            <Input
-              payloadsKey={PayloadsKeys.usedVacation}
-            />
-          </td>
-          <td>
-            <Input
-              payloadsKey={PayloadsKeys.bloodDonation}
-            />
-          </td>
-          <td>
-            <Input payloadsKey={PayloadsKeys.holidays} />
-          </td>
-          <td> {salaryReducer.weekDays} </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.sickLeaveWeekDays}
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={
+                  PayloadsKeys.sickLeaveWeekendDays
+                }
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.usedVacation}
+              />
+            </td>
+            <td>
+              <Input
+                payloadsKey={PayloadsKeys.bloodDonation}
+              />
+            </td>
+            <td>
+              <Input payloadsKey={PayloadsKeys.holidays} />
+            </td>
+            <td> {salaryReducer.weekDays} </td>
 
-          <td>{salaryReducer.weekendDays}</td>
-          <td> {salaryReducer.standardWorkHours}</td>
-          <td>{salaryReducer.standardSalary}</td>
-          <td>{salaryReducer.extraSalary}</td>
-          <td className='salary-all'>
-            {salaryReducer.totalSalary}
-          </td>
-        </tr>
+            <td>{salaryReducer.weekendDays}</td>
+            <td> {salaryReducer.standardWorkHours}</td>
+            <td>{salaryReducer.standardSalary}</td>
+            <td>{salaryReducer.extraSalary}</td>
+            <td className='salary-all'>
+              {salaryReducer.totalSalary}
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );
