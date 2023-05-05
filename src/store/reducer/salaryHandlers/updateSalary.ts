@@ -61,11 +61,14 @@ export const updateSalary = (
 
   state.weekendDays = weekends;
 
-  extraHours_50 && (state.extraHours_50 = extraHours_50);
+  numbersLetsGo(extraHours_50) &&
+    (state.extraHours_50 = extraHours_50);
 
-  extraHours_100 && (state.extraHours_100 = extraHours_100);
+  numbersLetsGo(extraHours_100) &&
+    (state.extraHours_100 = extraHours_100);
 
-  extraHours_120 && (state.extraHours_120 = extraHours_120);
+  numbersLetsGo(extraHours_120) &&
+    (state.extraHours_120 = extraHours_120);
 
   state.nettoPerHours =
     state.salaryRate * state.taxRate * state.premiumRate;
