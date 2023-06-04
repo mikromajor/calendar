@@ -1,91 +1,63 @@
-import { PayloadsKeys } from "../../store/reducer/types/salaryTypes";
+import {
+  PayloadsKeys,
+  UaKeys,
+  Entries,
+  SalaryInit,
+} from "../../store/reducer/types/salaryTypes";
 import { useAppSelector } from "../../store/hooks/redux";
-import { Input, TableHeadings } from "../../ui";
+import { Input } from "../../ui";
+import { TABLE_HEADINGS } from "../../store/reducer/constants/salaryConstants";
 
 export const Salary = () => {
   const { salaryReducer } = useAppSelector(
     (state) => state
   );
+  const arr = [];
+  for (const salArr of Object.entries(
+    salaryReducer
+  ) as Entries<SalaryInit>) {
+    let key = salArr[0] as string as UaKeys;
+    arr.push(
+      <tr key={key}>
+        <th>{TABLE_HEADINGS.ua[key]}</th>
+        <td>
+          {/* TODO */}
+          <Input payloadsKey={PayloadsKeys.bloodDonation} />
+        </td>
+        <td>
+          <Input payloadsKey={PayloadsKeys.year} />
+        </td>
+      </tr>
+    );
+  }
 
   return (
     <div className='salary'>
       <table>
-        <caption>Shaper's Salary</caption>
-        <TableHeadings />
-        <tbody>
-          <tr>
-            <td>
-              <Input payloadsKey={PayloadsKeys.year} />
-            </td>
-            <td>
-              <Input payloadsKey={PayloadsKeys.month} />
-            </td>
-            <td>
-              <Input
-                payloadsKey={PayloadsKeys.salaryRate}
-              />
-            </td>
-            <td>
-              <Input payloadsKey={PayloadsKeys.taxRate} />
-            </td>
-            <td>
-              <Input
-                payloadsKey={PayloadsKeys.premiumRate}
-              />
-            </td>
-
-            <td>
-              <Input
-                payloadsKey={PayloadsKeys.extraHours_50}
-              />
-            </td>
-            <td>
-              <Input
-                payloadsKey={PayloadsKeys.extraHours_100}
-              />
-            </td>
-            <td>
-              <Input
-                payloadsKey={PayloadsKeys.extraHours_120}
-              />
-            </td>
-
-            <td>
-              <Input
-                payloadsKey={PayloadsKeys.sickLeaveWeekDays}
-              />
-            </td>
-            <td>
-              <Input
-                payloadsKey={
-                  PayloadsKeys.sickLeaveWeekendDays
-                }
-              />
-            </td>
-            <td>
-              <Input
-                payloadsKey={PayloadsKeys.usedVacation}
-              />
-            </td>
+        <caption>Salary</caption>
+        {/* {TABLE_HEADINGS.map((heading, i) => (
+          <tr key={heading + String(i)}>
+            <th>{heading}</th>
             <td>
               <Input
                 payloadsKey={PayloadsKeys.bloodDonation}
               />
             </td>
             <td>
-              <Input payloadsKey={PayloadsKeys.holidays} />
-            </td>
-            <td> {salaryReducer.weekDays} </td>
-
-            <td>{salaryReducer.weekendDays}</td>
-            <td> {salaryReducer.standardWorkHours}</td>
-            <td>{salaryReducer.standardSalary}</td>
-            <td>{salaryReducer.extraSalary}</td>
-            <td className='salary-all'>
-              {salaryReducer.totalSalary}
+              <Input payloadsKey={PayloadsKeys.year} />
             </td>
           </tr>
-        </tbody>
+        ))} */}
+
+        <td> {salaryReducer.weekDays} </td>
+
+        <td>{salaryReducer.weekendDays}</td>
+        <td> {salaryReducer.standardWorkHours}</td>
+        <td>{salaryReducer.standardSalary}</td>
+        <td>{salaryReducer.extraSalary}</td>
+        <td className='salary-all'>
+          {salaryReducer.totalSalary}
+        </td>
       </table>
     </div>
   );
