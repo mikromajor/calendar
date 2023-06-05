@@ -4,10 +4,10 @@ import {
 } from "../../store/hooks/redux";
 
 import { salaryActions } from "../../store/reducer/salaryReducer";
-import { PayloadsKeys } from "../../store/reducer/types/salaryTypes";
+import { KeysSalaryInit } from "../../store/reducer/types/salaryTypes";
 
 type InputProps = {
-  payloadsKey: PayloadsKeys;
+  payloadsKey: KeysSalaryInit;
 };
 
 export const Input = ({ payloadsKey }: InputProps) => {
@@ -22,10 +22,7 @@ export const Input = ({ payloadsKey }: InputProps) => {
   ) => {
     const val = Number(e.currentTarget.value);
 
-    if (
-      payloadsKey === PayloadsKeys.month ||
-      payloadsKey === PayloadsKeys.year
-    ) {
+    if (payloadsKey === "month" || payloadsKey === "year") {
       dispatch(changeSalaryDate({ [payloadsKey]: val }));
     } else {
       dispatch(getSalary({ [payloadsKey]: val }));

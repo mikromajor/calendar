@@ -1,8 +1,16 @@
-import { SALARY_INIT } from "../constants/salaryConstants";
+import {
+  SALARY_INIT,
+  TABLE_HEADINGS,
+  INPUT_KEYS,
+} from "../constants/salaryConstants";
 
 export type SalaryInit = typeof SALARY_INIT;
 
 export type KeysSalaryInit = keyof SalaryInit;
+
+export type Entries<T> = {
+  [K in keyof T]: [K, T[K]];
+}[keyof T][]; // how does it work?
 
 export type PayloadType = {
   month?: number;
@@ -23,26 +31,15 @@ export type PayloadType = {
   usedVacation?: number;
   bloodDonation?: number;
 };
+export type PayloadsKeys = keyof PayloadType;
 
-export enum PayloadsKeys {
-  extraHours_50 = "extraHours_50",
-  extraHours_100 = "extraHours_100",
-  extraHours_120 = "extraHours_120",
+type TableHeadings = typeof TABLE_HEADINGS;
+type TableHeadingsKeys = keyof TableHeadings;
 
-  salaryRate = "salaryRate",
-  premiumRate = "premiumRate",
-  taxRate = "taxRate",
-
-  month = "month",
-  year = "year",
-
-  sickLeaveWeekendDays = "sickLeaveWeekendDays",
-  sickLeaveWeekDays = "sickLeaveWeekDays",
-
-  holidays = "holidays",
-  usedVacation = "usedVacation",
-  bloodDonation = "bloodDonation",
-}
+type Ua = typeof TABLE_HEADINGS.ua;
+type En = typeof TABLE_HEADINGS.en;
+export type UaKeys = keyof Ua;
+export type EnKeys = keyof En;
 
 // TS PICK & OMIT EXAMPLE:
 

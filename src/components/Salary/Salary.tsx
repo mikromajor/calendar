@@ -1,63 +1,51 @@
 import {
-  PayloadsKeys,
   UaKeys,
-  Entries,
-  SalaryInit,
+  KeysSalaryInit,
 } from "../../store/reducer/types/salaryTypes";
 import { useAppSelector } from "../../store/hooks/redux";
 import { Input } from "../../ui";
-import { TABLE_HEADINGS } from "../../store/reducer/constants/salaryConstants";
+import {
+  TABLE_HEADINGS,
+  INPUT_KEYS,
+} from "../../store/reducer/constants/salaryConstants";
 
 export const Salary = () => {
   const { salaryReducer } = useAppSelector(
     (state) => state
   );
-  const arr = [];
-  for (const salArr of Object.entries(
-    salaryReducer
-  ) as Entries<SalaryInit>) {
-    let key = salArr[0] as string as UaKeys;
-    arr.push(
-      <tr key={key}>
-        <th>{TABLE_HEADINGS.ua[key]}</th>
+  const tableRows = [];
+  let td,
+    i = 0;
+
+  for (const salArr of Object.entries(salaryReducer)) {
+    i++;
+    let key = salArr[0] as string as KeysSalaryInit;
+    let val = salArr[1];
+    if (INPUT_KEYS.includes(key)) {
+      td = (
         <td>
-          {/* TODO */}
-          <Input payloadsKey={PayloadsKeys.bloodDonation} />
+          <Input payloadsKey={key} />
         </td>
-        <td>
-          <Input payloadsKey={PayloadsKeys.year} />
-        </td>
-      </tr>
-    );
+      );
+    } else {
+      td = <td> {val} </td>;
+    }
+    if (Object.hasOwn(TABLE_HEADINGS.ua, key)) {
+      key = key as unknown as UaKeys;
+      tableRows.push(
+        <tr key={String(i) + key}>
+          <th>{TABLE_HEADINGS.ua[key]}</th>
+          {td}
+        </tr>
+      );
+    }
   }
 
   return (
     <div className='salary'>
       <table>
         <caption>Salary</caption>
-        {/* {TABLE_HEADINGS.map((heading, i) => (
-          <tr key={heading + String(i)}>
-            <th>{heading}</th>
-            <td>
-              <Input
-                payloadsKey={PayloadsKeys.bloodDonation}
-              />
-            </td>
-            <td>
-              <Input payloadsKey={PayloadsKeys.year} />
-            </td>
-          </tr>
-        ))} */}
-
-        <td> {salaryReducer.weekDays} </td>
-
-        <td>{salaryReducer.weekendDays}</td>
-        <td> {salaryReducer.standardWorkHours}</td>
-        <td>{salaryReducer.standardSalary}</td>
-        <td>{salaryReducer.extraSalary}</td>
-        <td className='salary-all'>
-          {salaryReducer.totalSalary}
-        </td>
+        {tableRows}
       </table>
     </div>
   );
