@@ -95,5 +95,5 @@ export const updateSalary = (
   state.totalSalary =
     state.standardSalary + state.extraSalary;
 
-  // TODO:  рахував  відпустку не як середнє за 3 місяці а як звиклі дні з премієюnpm rebuild node-sass
+  // TODO:  рахував  відпустку не як середнє за 3 місяці а як звиклі дні з премією npm rebuild node-sass
 };

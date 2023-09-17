@@ -18,7 +18,7 @@ export const seekSavedSalaryInStorage = (
     const update = !!item
       ? (JSON.parse(item) as any as SalaryInit)
       : SALARY_INIT;
-    // TODO:  fix update must change not SALARY_INIT but updateSalary()
+    // TODO:  при зміні дати не відбувається розрахунку робочих та вихідних днів
 
     SALARY_KEYS.forEach((key) => {
       if (key !== "month" && key !== "year") {
