@@ -3,6 +3,7 @@ import {
   SALARY_KEYS,
   SALARY_INIT,
 } from "../constants/salaryConstants";
+import { amountWeekendsAndWeekdays } from "./amountWeekendsAndWeekdays";
 
 export const seekSavedSalaryInStorage = (
   state: SalaryInit,
@@ -12,13 +13,21 @@ export const seekSavedSalaryInStorage = (
     return undefined;
   }
 
+  const { weekends, weekdays } = amountWeekendsAndWeekdays(
+    state.year,
+    state.month
+  );
+
   try {
     const item = window.localStorage.getItem(dateKey);
 
     const update = !!item
       ? (JSON.parse(item) as any as SalaryInit)
-      : SALARY_INIT;
-    // TODO:  при зміні дати не відбувається розрахунку робочих та вихідних днів
+      : {
+          ...SALARY_INIT,
+          weekDays: weekdays,
+          weekendDays: weekends,
+        };
 
     SALARY_KEYS.forEach((key) => {
       if (key !== "month" && key !== "year") {
