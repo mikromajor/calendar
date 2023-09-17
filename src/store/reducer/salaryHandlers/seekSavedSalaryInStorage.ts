@@ -18,6 +18,7 @@ export const seekSavedSalaryInStorage = (
     const update = !!item
       ? (JSON.parse(item) as any as SalaryInit)
       : SALARY_INIT;
+    // TODO:  fix update must change not SALARY_INIT but updateSalary()
 
     SALARY_KEYS.forEach((key) => {
       if (key !== "month" && key !== "year") {

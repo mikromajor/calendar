@@ -60,7 +60,7 @@ export const TABLE_HEADINGS = {
     month: "Місяць",
     salaryRate: "Ставка",
     taxRate: "Податок",
-    premiumRate: "Премія",
+    premiumRate: "Премія % до ставки",
     extraHours_50: "Понаднормові 50%",
     extraHours_100: "Понаднормові 100%",
     extraHours_120: "Понаднормові 120%",
