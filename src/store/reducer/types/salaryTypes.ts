@@ -18,6 +18,7 @@ export type PayloadType = {
 
   salaryRate?: number;
   premiumRate?: number;
+  premiumUzn?: number;
   taxRate?: number;
 
   extraHours_50?: number;
@@ -49,6 +50,6 @@ export type EnKeys = keyof En;
 //   Year: number;
 // };
 
-// type removeField = Omit<Payload, 'userMonth'|'userYear'>
+// type removeField = Omit<Payload, 'Month'|'Year'>
 
 // type addField = Pick<Payload, 'extraHours'>&{salary:number} // left extraHours and add salary

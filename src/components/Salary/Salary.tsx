@@ -45,7 +45,7 @@ export const Salary = () => {
     <div className='salary'>
       <table>
         <caption>Salary</caption>
-        {tableRows}
+        <tbody>{tableRows}</tbody>
       </table>
     </div>
   );

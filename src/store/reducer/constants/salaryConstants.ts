@@ -1,12 +1,13 @@
-// нельзя помещать ф-и в стайт
+// нельзя помещать ф-и в стeйт
 import { KeysSalaryInit } from "../types/salaryTypes";
 
 export const SALARY_INIT = {
   year: 2023,
   month: 1,
-  salaryRate: 34,
+  salaryRate: 0,
   premiumRate: 1,
-  taxRate: 0.73,
+  premiumUzn: 0,
+  taxRate: 0.733,
   nettoPerHours: 0,
   weekDays: 0,
   weekendDays: 0,
@@ -39,6 +40,7 @@ export const INPUT_KEYS = [
   "year",
 
   "salaryRate",
+  "premiumUzn",
   "premiumRate",
   "taxRate",
 
@@ -61,6 +63,7 @@ export const TABLE_HEADINGS = {
     salaryRate: "Ставка",
     taxRate: "Податок",
     premiumRate: "Премія % до ставки",
+    premiumUzn: "Премія стала",
     extraHours_50: "Понаднормові 50%",
     extraHours_100: "Понаднормові 100%",
     extraHours_120: "Понаднормові 120%",
@@ -82,6 +85,7 @@ export const TABLE_HEADINGS = {
     salaryRate: "salary rate",
     taxRate: " tax rate",
     premiumRate: " premium rate",
+    premiumUzn: "premium const",
     extraHours_50: " extra hours +50%",
     extraHours_100: " extra hours +100%",
     extraHours_120: " extra hours +120%",

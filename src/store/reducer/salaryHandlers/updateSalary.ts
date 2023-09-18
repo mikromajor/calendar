@@ -15,6 +15,7 @@ export const updateSalary = (
 ) => {
   const {
     salaryRate,
+    premiumUzn,
     premiumRate,
     taxRate,
     extraHours_50,
@@ -38,6 +39,9 @@ export const updateSalary = (
   premiumRate &&
     premiumRate >= 1 &&
     (state.premiumRate = premiumRate);
+
+  numbersLetsGo(premiumUzn) &&
+    (state.premiumUzn = premiumUzn);
 
   numbersLetsGo(taxRate) && (state.taxRate = taxRate);
 
@@ -83,7 +87,8 @@ export const updateSalary = (
         state.salaryRate *
         8 *
         0.8 +
-      state.bloodDonation * state.salaryRate * 8 * 1
+      state.bloodDonation * state.salaryRate * 8 * 1 +
+      state.premiumUzn
   );
   state.extraSalary = Math.round(
     (state.extraHours_50 * PREMIUM_COEFFICIENT.pr_50 +
