@@ -10,3 +10,4 @@ export { saveSalaryInStorage } from "./saveSalaryInStorage";
 export { checkMonth } from "./checkMonth";
 export { checkYear } from "./checkYear";
 export { numbersLetsGo } from "./numbersLetsGo";
+export { determineVacationPay } from "./determineVacationPay";

@@ -1,6 +1,8 @@
 import {
   amountWeekendsAndWeekdays,
   numbersLetsGo,
+  getKey,
+  seekSavedSalaryInStorage,
 } from ".";
 import {
   PayloadType,
