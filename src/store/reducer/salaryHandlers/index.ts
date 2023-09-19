@@ -11,3 +11,5 @@ export { checkMonth } from "./checkMonth";
 export { checkYear } from "./checkYear";
 export { numbersLetsGo } from "./numbersLetsGo";
 export { determineVacationPayCoefficient } from "./determineVacationPayCoefficient";
+export { determExtraSalary } from "./determExtraSalary";
+export { determStandardSalary } from "./determStandardSalary";

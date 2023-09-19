@@ -1,20 +1,19 @@
 import {
   amountWeekendsAndWeekdays,
   numbersLetsGo,
-  determineVacationPayCoefficient,
+  determExtraSalary,
+  determStandardSalary,
 } from ".";
 import {
   PayloadType,
   SalaryInit,
 } from "../types/salaryTypes";
-import { PREMIUM_COEFFICIENT } from "../constants/salaryConstants";
 
 export const updateSalary = (
   state: SalaryInit,
   payload: PayloadType,
   dateKey: string
 ) => {
-  let averageVacationPayPerDay = 1;
   const {
     salaryRate,
     premiumUzn,
@@ -81,30 +80,12 @@ export const updateSalary = (
 
   state.standardWorkHours = state.weekDays * 8;
 
-  state.usedVacation > 0 &&
-    (averageVacationPayPerDay =
-      determineVacationPayCoefficient(state));
+  state.standardSalary = determStandardSalary(state);
 
-  state.standardSalary = Math.round(
-    state.standardWorkHours * state.nettoPerHours +
-      state.usedVacation * averageVacationPayPerDay +
-      (state.sickLeaveWeekDays +
-        state.sickLeaveWeekendDays) *
-        state.salaryRate *
-        8 *
-        0.8 +
-      state.bloodDonation * state.salaryRate * 8 * 1 +
-      state.premiumUzn
-  );
-  state.extraSalary = Math.round(
-    (state.extraHours_50 * PREMIUM_COEFFICIENT.pr_50 +
-      state.extraHours_100 * PREMIUM_COEFFICIENT.pr_100 +
-      state.extraHours_120 * PREMIUM_COEFFICIENT.pr_120) *
-      state.nettoPerHours
-  );
+  state.extraSalary = determExtraSalary(state);
 
   state.totalSalary =
     state.standardSalary + state.extraSalary;
 
-  // TODO:  рахував  відпустку не як середнє за 3 місяці а як звиклі дні з премією npm rebuild node-sass
+  //  npm rebuild node-sass
 };
