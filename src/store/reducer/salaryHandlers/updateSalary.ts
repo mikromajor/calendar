@@ -1,8 +1,7 @@
 import {
   amountWeekendsAndWeekdays,
   numbersLetsGo,
-  getKey,
-  seekSavedSalaryInStorage,
+  determineVacationPayCoefficient,
 } from ".";
 import {
   PayloadType,
@@ -15,6 +14,7 @@ export const updateSalary = (
   payload: PayloadType,
   dateKey: string
 ) => {
+  let averageVacationPayPerDay = 1;
   const {
     salaryRate,
     premiumUzn,
@@ -81,9 +81,13 @@ export const updateSalary = (
 
   state.standardWorkHours = state.weekDays * 8;
 
+  state.usedVacation > 0 &&
+    (averageVacationPayPerDay =
+      determineVacationPayCoefficient(state));
+
   state.standardSalary = Math.round(
-    (state.standardWorkHours + state.usedVacation * 8 * 1) *
-      state.nettoPerHours +
+    state.standardWorkHours * state.nettoPerHours +
+      state.usedVacation * averageVacationPayPerDay +
       (state.sickLeaveWeekDays +
         state.sickLeaveWeekendDays) *
         state.salaryRate *
