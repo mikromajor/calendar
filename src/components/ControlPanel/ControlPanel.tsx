@@ -4,34 +4,40 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 
-type ControlPanelProps = {
-  indicatorName: string;
-  indicatorValue: number;
-  addCallback: ActionCreatorWithoutPayload<string>;
-  subtractCallback: ActionCreatorWithoutPayload<string>;
-};
-
-export const ControlPanel = ({
-  indicatorName,
-  indicatorValue,
-  addCallback,
-  subtractCallback,
-}: ControlPanelProps) => {
+export const ControlPanel = () => {
   const dispatch = useAppDispatch();
   const { alcoReducer } = useAppSelector((state) => state);
-  const multiplier = alcoReducer.multiplier;
   return (
     <div className='calendar-controlPanel'>
-      <button onClick={() => dispatch(addCallback())}>
-        Add {multiplier}
+      <label>
+        Wybież miesiąc:{" "}
+        <input
+          name='dataForMonth'
+          //  value={userMonth}
+          //  onChange={e => dispatch(changeMonth(e.target.value))}
+        />
+      </label>
+      <label>
+        Dodavana ilość spożytego alkoholu `(względnie +,-)`:{" "}
+        <input
+          name='changeVolumeDrunk'
+          //  value={volumeAddingDrunk}
+          //  onChange={e => dispatch(changeVolumeAddingDrunk(e.target.value))}
+        />
+      </label>
+      <label>
+        Jego procent :{" "}
+        <input
+          name='changePercentDrunk'
+          //  value={percentAddingDrunk}
+          //  onChange={e => dispatch(changePercentAddingDrunk(e.target.value))}
+        />
+      </label>
+      <button
+      // onClick={e=>dispatch(calculating())}
+      >
+        Oblić
       </button>
-      <div>
-        {indicatorName} : {indicatorValue}
-      </div>
-      <button onClick={() => dispatch(subtractCallback())}>
-        Subtract {multiplier}
-      </button>
-      <br />
     </div>
   );
 };
