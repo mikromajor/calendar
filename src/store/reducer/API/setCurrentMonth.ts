@@ -1,6 +1,6 @@
 import { AppDispatch } from "../..";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { getCurrentMonth } from "../handler/getCurrentMonth";
+import { getCurrentMonth } from "../alcoHandlers/getCurrentMonth";
 
 export const setCurrentMonth =
   (callback: ActionCreatorWithPayload<string, string>) =>

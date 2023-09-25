@@ -3,24 +3,43 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { INIT_ALCO_STATE } from "./constants";
-import { InitialAlcoState, PayloadType } from "./alcoTypes";
-import { setDecimal } from "./handler";
+import { INIT_ALCO_STATE } from "./constants/alcoConstants";
+import {
+  InitialAlcoState,
+  Payload,
+} from "./types/alcoTypes";
+import { seekInStorage, setDecimal } from "./alcoHandlers";
 
 export const alcoReducer = createSlice({
   name: "alcoState",
   initialState: INIT_ALCO_STATE,
   reducers: {
-    changeVolumeDrunk: () => {},
-    changePercentDrunk: () => {},
+    changeVolumeDrunk: (
+      state,
+      action: PayloadAction<Payload>
+    ) => {
+      state.volumeDrunks = action.payload.volume;
+    },
+    changePercentDrunk: (
+      state,
+      action: PayloadAction<Payload>
+    ) => {
+      state.percentDrunk = action.payload.percent;
+    },
+    changeDate: (state, action: PayloadAction<Payload>) => {
+      const { month, year } = action.payload;
+      !!month && (state.month = month);
+      !!year && (state.year = year);
+      seekInStorage(state, action);
+    },
 
     calculating: (state) => {
-      const { volumeDrunks, percentDrunks } = state;
+      const { volumeDrunks, percentDrunk } = state;
       // додати перевірку і пропуск 0
 
-      if (volumeDrunks && percentDrunks) {
+      if (volumeDrunks && percentDrunk) {
         state.totalClearAlcoholPerMonth += setDecimal(
-          (volumeDrunks * percentDrunks) / 100,
+          (volumeDrunks * percentDrunk) / 100,
           2
         );
         state.totalVodkaPerMonth +=
@@ -31,7 +50,7 @@ export const alcoReducer = createSlice({
           state.totalClearAlcoholPerMonth;
 
         state.totalClearAlcoholPerMonth += setDecimal(
-          (volumeDrunks * percentDrunks) / 100,
+          (volumeDrunks * percentDrunk) / 100,
           2
         );
         state.totalVodkaPerMonth +=
@@ -97,36 +116,6 @@ export const alcoReducer = createSlice({
     // clearAllStor: () => {
     //   window.localStorage.clear();
     // },
-    showStorageForMonth: (
-      state,
-      action: PayloadAction<string>
-    ) => {
-      const getDataForMonth = action.payload;
-      const isStoreData =
-        window.localStorage.getItem(getDataForMonth);
-      if (isStoreData) {
-        const {
-          totalVodkaPerMonth,
-          totalClearAlcoholPerMonth,
-          totalVodkaPerYear,
-          totalClearAlcoholPerYear,
-          month,
-        } = JSON.parse(
-          isStoreData
-        ) as unknown as InitialAlcoState;
-        state.totalVodkaPerMonth = totalVodkaPerMonth;
-        state.totalClearAlcoholPerMonth =
-          totalClearAlcoholPerMonth;
-        state.totalVodkaPerYear = totalVodkaPerYear;
-        state.totalClearAlcoholPerYear =
-          totalClearAlcoholPerYear;
-        state.month = month;
-      } else {
-        state.totalVodkaPerMonth = 0;
-        state.totalClearAlcoholPerMonth = 0;
-        state.month = getDataForMonth;
-      }
-    },
   },
 });
 
