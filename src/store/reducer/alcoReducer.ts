@@ -18,13 +18,15 @@ export const alcoReducer = createSlice({
       state,
       action: PayloadAction<Payload>
     ) => {
-      state.volumeDrunks = action.payload.volume;
+      const { volume } = action.payload;
+      !!volume && (state.volumeDrunks = volume);
     },
     changePercentDrunk: (
       state,
       action: PayloadAction<Payload>
     ) => {
-      state.percentDrunk = action.payload.percent;
+      const { percent } = action.payload;
+      !!percent && (state.percentDrunk = percent);
     },
     changeDate: (state, action: PayloadAction<Payload>) => {
       const { month, year } = action.payload;
@@ -35,7 +37,7 @@ export const alcoReducer = createSlice({
 
     calculating: (state) => {
       const { volumeDrunks, percentDrunk } = state;
-      // додати перевірку і пропуск 0
+      // TODO додати  запис в стореж
 
       if (volumeDrunks && percentDrunk) {
         state.totalClearAlcoholPerMonth += setDecimal(
@@ -59,8 +61,6 @@ export const alcoReducer = createSlice({
         state.totalVodkaPerYear += state.totalVodkaPerMonth;
         state.totalClearAlcoholPerYear +=
           state.totalClearAlcoholPerMonth;
-
-        // додати чи змінити запис в стореж
       }
     },
 
