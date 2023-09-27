@@ -1,6 +1,7 @@
 import {
   // createAsyncThunk,
   createSlice,
+  current,
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { INIT_ALCO_STATE } from "./constants/alcoConstants";
@@ -11,6 +12,7 @@ import {
   createKey,
   saveDataInStorage,
 } from "./alcoHandlers";
+import { create } from "domain";
 
 export const alcoReducer = createSlice({
   name: "alcoState",
@@ -46,18 +48,7 @@ export const alcoReducer = createSlice({
           2
         );
         state.totalVodkaPerMonth +=
-          (state.totalClearAlcoholPerMonth * 2) / 3;
-
-        state.totalVodkaPerYear += state.totalVodkaPerMonth;
-        state.totalClearAlcoholPerYear +=
-          state.totalClearAlcoholPerMonth;
-
-        state.totalClearAlcoholPerMonth += setDecimal(
-          (volumeDrunks * percentDrunk) / 100,
-          2
-        );
-        state.totalVodkaPerMonth +=
-          (state.totalClearAlcoholPerMonth * 2) / 3;
+          state.totalClearAlcoholPerMonth * 2.4;
 
         state.totalVodkaPerYear += state.totalVodkaPerMonth;
         state.totalClearAlcoholPerYear +=
@@ -65,56 +56,17 @@ export const alcoReducer = createSlice({
       }
       saveDataInStorage(state);
     },
+    clearStorageForMonth: (
+      state,
+      action: PayloadAction<Payload>
+    ) => {
+      const currentDataKey = createKey(
+        state.month,
+        state.year
+      );
 
-    //   additionVd: (state, action: PayloadAction<string>) => {
-    //   const currentMonth = action.payload;
-    //   const item =
-    //     window.localStorage.getItem(currentMonth);
-
-    //   const { totalVodka } = (item
-    //     ? JSON.parse(item)
-    //     : state) as unknown as StateType;
-
-    //   const { liters, percent } = state;
-    //   state.month = currentMonth;
-    //   state.totalVodka = setDecimal(
-    //     liters * percent * 0.024 + totalVodka,
-    //     2
-    //   );
-    //   window.localStorage.setItem(
-    //     currentMonth,
-    //     JSON.stringify(state)
-    //   );
-    // },
-    // subtractionVd: (
-    //   state,
-    //   action: PayloadAction<string>
-    // ) => {
-    //   const currentMonth = action.payload;
-    //   const item =
-    //     window.localStorage.getItem(currentMonth);
-
-    //   const { totalVodka } = (item
-    //     ? JSON.parse(item)
-    //     : state) as unknown as StateType;
-
-    //   const { liters, percent } = state;
-    //   state.month = currentMonth;
-    //   state.totalVodka = setDecimal(
-    //     totalVodka - liters * percent * 0.024,
-    //     2
-    //   );
-    //   window.localStorage.setItem(
-    //     currentMonth,
-    //     JSON.stringify(state)
-    //   );
-    // },
-    // clearStorageForMonth: (
-    //   state,
-    //   action: PayloadAction<string>
-    // ) => {
-    //   window.localStorage.removeItem(action.payload);
-    // },
+      window.localStorage.removeItem(currentDataKey);
+    },
     // clearAllStor: () => {
     //   window.localStorage.clear();
     // },
