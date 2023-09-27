@@ -1,12 +1,9 @@
-import {
-  InitialAlcoState,
-  Payload,
-} from "../types/alcoTypes";
+import { StateType, Payload } from "../types/alcoTypes";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { createKey } from "./.";
 
 export const seekInStorage = (
-  state: InitialAlcoState,
+  state: StateType,
   action: PayloadAction<Payload>
 ) => {
   const key = createKey(state.month, state.year);
@@ -18,9 +15,7 @@ export const seekInStorage = (
         totalClearAlcoholPerMonth,
         totalVodkaPerYear,
         totalClearAlcoholPerYear,
-      } = JSON.parse(
-        isStoreData
-      ) as unknown as InitialAlcoState;
+      } = JSON.parse(isStoreData) as unknown as StateType;
       state.totalVodkaPerMonth = totalVodkaPerMonth;
       state.totalClearAlcoholPerMonth =
         totalClearAlcoholPerMonth;

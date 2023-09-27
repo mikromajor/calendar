@@ -4,11 +4,13 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { INIT_ALCO_STATE } from "./constants/alcoConstants";
+import { StateType, Payload } from "./types/alcoTypes";
 import {
-  InitialAlcoState,
-  Payload,
-} from "./types/alcoTypes";
-import { seekInStorage, setDecimal } from "./alcoHandlers";
+  seekInStorage,
+  setDecimal,
+  createKey,
+  saveDataInStorage,
+} from "./alcoHandlers";
 
 export const alcoReducer = createSlice({
   name: "alcoState",
@@ -37,7 +39,6 @@ export const alcoReducer = createSlice({
 
     calculating: (state) => {
       const { volumeDrunks, percentDrunk } = state;
-      // TODO додати  запис в стореж
 
       if (volumeDrunks && percentDrunk) {
         state.totalClearAlcoholPerMonth += setDecimal(
@@ -62,6 +63,7 @@ export const alcoReducer = createSlice({
         state.totalClearAlcoholPerYear +=
           state.totalClearAlcoholPerMonth;
       }
+      saveDataInStorage(state);
     },
 
     //   additionVd: (state, action: PayloadAction<string>) => {
@@ -71,7 +73,7 @@ export const alcoReducer = createSlice({
 
     //   const { totalVodka } = (item
     //     ? JSON.parse(item)
-    //     : state) as unknown as InitialAlcoState;
+    //     : state) as unknown as StateType;
 
     //   const { liters, percent } = state;
     //   state.month = currentMonth;
@@ -94,7 +96,7 @@ export const alcoReducer = createSlice({
 
     //   const { totalVodka } = (item
     //     ? JSON.parse(item)
-    //     : state) as unknown as InitialAlcoState;
+    //     : state) as unknown as StateType;
 
     //   const { liters, percent } = state;
     //   state.month = currentMonth;
