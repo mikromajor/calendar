@@ -5,8 +5,15 @@ export const INIT_ALCO_STATE = {
   year: "2023",
 
   totalVodkaPerMonth: 0,
-  totalClearAlcoholPerMonth: 0,
+  totalEthanolPerMonth: 0,
 
   totalVodkaPerYear: 0,
-  totalClearAlcoholPerYear: 0,
+  totalEthanolPerYear: 0,
 };
+
+// const alcoStore = [
+//   {
+//     year: "2023",
+//     months: [{ month: "1", ethanol: 0 }],
+//   },
+// ];

@@ -8,16 +8,8 @@ import { alcoActions } from "../../store/reducer/alcoReducer";
 export const ControlPanel = () => {
   const dispatch = useAppDispatch();
   const { alcoReducer } = useAppSelector((state) => state);
-  const {
-    month,
-    year,
-    percentDrunk,
-    volumeDrunks,
-    totalClearAlcoholPerMonth,
-    totalClearAlcoholPerYear,
-    totalVodkaPerMonth,
-    totalVodkaPerYear,
-  } = alcoReducer;
+  const { month, year, percentDrunk, volumeDrunks } =
+    alcoReducer;
 
   const {
     changeVolumeDrunk,

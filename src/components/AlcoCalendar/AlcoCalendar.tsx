@@ -1,6 +1,14 @@
-import { useAppSelector } from "../../store/hooks/redux";
-import { alcoActions } from "../../store/reducer/alcoReducer";
-import { ControlPanel, MainPanel, Cleaner } from "./..";
+import { ControlPanel, Display, Cleaner } from "./..";
+
+export const AlcoCalendar = () => {
+  return (
+    <div className='calendar'>
+      <ControlPanel />
+      <Display />
+      <Cleaner />
+    </div>
+  );
+};
 
 //  TODO:
 // write a simple calculator with the next fields that you can change
@@ -8,20 +16,20 @@ import { ControlPanel, MainPanel, Cleaner } from "./..";
 // quantity percent alcohol
 // Button enter
 // Calculator must adds quantity clear alcohol per month and show:
-// volume of drunk clear alcohol
-// equivalent volume this alcohol in 40% (vodka)
-// equivalent volume this alcohol in 5% (beer)
+// volume of drunk clear alcohol per current month
+// equivalent volume this alcohol in 40% (vodka) per current month
 
-//issue:
-// I can see and change only current month data
-// fix=> add input for changing months
+//extra TODO:
+// add info about volume of drunk clear alcohol per current year
+// add info about volume of drunk vodka per current year
 
-export const AlcoCalendar = () => {
-  return (
-    <div className='calendar'>
-      <ControlPanel />
-      <MainPanel />
-      <Cleaner />
-    </div>
-  );
-};
+// how to do:
+// one object for one year:
+// const alcoStore = {
+//   year_2023: {
+//     months: [
+//       { month: 1, ethanol: 10 },
+//       { month: 2, ethanol: 20 },
+//     ],
+//   },
+// };
