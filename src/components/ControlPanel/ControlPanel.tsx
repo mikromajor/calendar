@@ -5,6 +5,7 @@ import {
 } from "../../store/hooks/redux";
 import { alcoActions } from "../../store/reducer/alcoReducer";
 import { Payload } from "../../store/reducer/types/alcoTypes";
+import { PAYLOAD } from "../../store/reducer/constants/alcoConstants";
 
 export const ControlPanel = () => {
   const dispatch = useAppDispatch();
@@ -30,12 +31,26 @@ export const ControlPanel = () => {
   return (
     <div className='calendar-controlPanel'>
       <label>
-        Wybież miesiąc:{" "}
+        Wybierz miesiąc:{" "}
         <input
           name='dataForMonth'
           value={month}
           // TODO : changeDate принмает обьект а не переменную
-          //   onChange={e => dispatch(changeDate(e.target.value as unknown as Payload))}
+          onChange={(e) => {
+            PAYLOAD.month = e.target.value;
+            dispatch(changeDate(PAYLOAD));
+          }}
+        />
+      </label>
+      <label>
+        Wybierz rok:{" "}
+        <input
+          name='dataForYear'
+          value={year}
+          onChange={(e) => {
+            PAYLOAD.year = e.target.value;
+            dispatch(changeDate(PAYLOAD));
+          }}
         />
       </label>
       <label>

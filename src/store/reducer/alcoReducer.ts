@@ -1,18 +1,18 @@
 import {
-  // createAsyncThunk,
   createSlice,
-  current,
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { INIT_ALCO_STATE } from "./constants/alcoConstants";
-import { StateType, Payload } from "./types/alcoTypes";
+import { Payload } from "./types/alcoTypes";
 import {
-  seekInStorage,
+  giveStorageData,
   setDecimal,
   createKey,
   saveDataInStorage,
+  writeStorageDataInState,
+  fillStateWithZeros,
+  checkUsersDate,
 } from "./alcoHandlers";
-import { create } from "domain";
 
 export const alcoReducer = createSlice({
   name: "alcoState",
@@ -33,10 +33,17 @@ export const alcoReducer = createSlice({
       !!percent && (state.percentDrunk = percent);
     },
     changeDate: (state, action: PayloadAction<Payload>) => {
-      const { month, year } = action.payload;
-      !!month && (state.month = month);
-      !!year && (state.year = year);
-      seekInStorage(state, action);
+      const { month, year } = checkUsersDate(
+        action.payload
+      );
+      state.month = month;
+      state.year = year;
+
+      const storageData = giveStorageData(state);
+
+      storageData
+        ? writeStorageDataInState(storageData, state)
+        : fillStateWithZeros(state);
     },
 
     calculating: (state) => {
@@ -56,16 +63,10 @@ export const alcoReducer = createSlice({
       }
       saveDataInStorage(state);
     },
-    clearStorageForMonth: (
-      state,
-      action: PayloadAction<Payload>
-    ) => {
-      const currentDataKey = createKey(
-        state.month,
-        state.year
-      );
+    clearStorageForMonth: (state) => {
+      const key = createKey(state.month, state.year);
 
-      window.localStorage.removeItem(currentDataKey);
+      window.localStorage.removeItem(key);
     },
     // clearAllStor: () => {
     //   window.localStorage.clear();
