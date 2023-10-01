@@ -10,7 +10,7 @@ export const Display = () => {
     totalVodkaPerMonth,
     totalVodkaPerYear,
     totalPureAlcoholPerMonth,
-    totalClearAlcoholPerYear,
+    totalEthanolPerYear,
   } = useAppSelector((state) => state.alcoReducer);
 
   return (
@@ -30,7 +30,7 @@ export const Display = () => {
       </li>
       <li>
         Iloćś sporzytego spirytusu za rok ={" "}
-        {totalClearAlcoholPerYear}
+        {totalEthanolPerYear}
       </li>
     </ul>
   );

@@ -8,5 +8,5 @@ export const INIT_ALCO_STATE = {
   totalPureAlcoholPerMonth: 0,
 
   totalVodkaPerYear: 0,
-  totalClearAlcoholPerYear: 0,
+  totalEthanolPerYear: 0,
 };

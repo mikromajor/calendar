@@ -5,4 +5,5 @@ export { giveStorageData } from "./giveStorageData";
 export { saveDataInStorage } from "./saveDataInStorage";
 export { writeStorageDataInState } from "./writeStorageDataInState";
 export { fillStateWithZeros } from "./fillStateWithZeros";
+export { fillMonthDataWithZeros } from "./fillMonthDataWithZero";
 export { changeStateUsingStor } from "./changeStateUsingStore";
