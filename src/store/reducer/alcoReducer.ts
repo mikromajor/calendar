@@ -51,16 +51,16 @@ export const alcoReducer = createSlice({
       const { volumeDrunks, percentDrunk } = state;
 
       if (volumeDrunks && percentDrunk) {
-        state.totalClearAlcoholPerMonth += setDecimal(
+        state.totalPureAlcoholPerMonth += setDecimal(
           (volumeDrunks * percentDrunk) / 100,
           2
         );
         state.totalVodkaPerMonth +=
-          state.totalClearAlcoholPerMonth * 2.4;
+          state.totalPureAlcoholPerMonth * 2.4;
 
         state.totalVodkaPerYear += state.totalVodkaPerMonth;
         state.totalClearAlcoholPerYear +=
-          state.totalClearAlcoholPerMonth;
+          state.totalPureAlcoholPerMonth;
       }
       saveDataInStorage(state);
     },

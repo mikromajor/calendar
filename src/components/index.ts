@@ -1,5 +1,5 @@
 export { ControlPanel } from "./ControlPanel/ControlPanel";
-export { MainPanel } from "./MainPanel/MainPanel";
+export { Display } from "./Display/Display";
 export { Cleaner } from "./Cleaner/Cleaner";
 export { ChosenMonthInfo } from "./ChosenMonthInfo/ChosenMonthInfo";
 export { AlcoCalendar } from "./AlcoCalendar/AlcoCalendar";

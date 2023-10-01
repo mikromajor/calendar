@@ -1,6 +1,6 @@
 import { useAppSelector } from "../../store/hooks/redux";
 import { alcoActions } from "../../store/reducer/alcoReducer";
-import { ControlPanel, MainPanel, Cleaner } from "./..";
+import { ControlPanel, Display, Cleaner } from "./..";
 
 //  TODO:
 // write a simple calculator with the next fields that you can change
@@ -20,7 +20,7 @@ export const AlcoCalendar = () => {
   return (
     <div className='calendar'>
       <ControlPanel />
-      <MainPanel />
+      <Display />
       <Cleaner />
     </div>
   );
