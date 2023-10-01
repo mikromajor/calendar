@@ -8,6 +8,8 @@ import {
   createKey,
   saveDataInStorage,
   changeStateUsingStor,
+  fillMonthDataWithZeros,
+  fillStateWithZeros,
 } from "./alcoHandlers";
 
 export const alcoReducer = createSlice({
@@ -35,7 +37,7 @@ export const alcoReducer = createSlice({
         Number(month) < 13 &&
         (state.month = month);
 
-      changeStateUsingStor(state);
+      changeStateUsingStor(state, fillMonthDataWithZeros);
     },
     changeYear: (state, action: PayloadAction<string>) => {
       const year = action.payload;
@@ -44,23 +46,28 @@ export const alcoReducer = createSlice({
         Number(year) < 2050 &&
         (state.year = year);
 
-      changeStateUsingStor(state);
+      changeStateUsingStor(state, fillStateWithZeros);
     },
 
     calculating: (state) => {
       const { volumeDrunks, percentDrunk } = state;
+      let vodka = 0,
+        ethanol = 0;
 
       if (volumeDrunks && percentDrunk) {
-        state.totalPureAlcoholPerMonth += setDecimal(
-          (volumeDrunks * percentDrunk) / 100,
-          2
-        );
-        state.totalVodkaPerMonth +=
-          state.totalPureAlcoholPerMonth * 2.4;
+        ethanol =
+          setDecimal(
+            ((volumeDrunks * percentDrunk) / 100) * 100,
+            2
+          ) / 100;
 
-        state.totalVodkaPerYear += state.totalVodkaPerMonth;
-        state.totalClearAlcoholPerYear +=
-          state.totalPureAlcoholPerMonth;
+        vodka = setDecimal(ethanol * 240, 2) / 100;
+
+        state.totalPureAlcoholPerMonth += ethanol;
+        state.totalVodkaPerMonth += vodka;
+
+        state.totalVodkaPerYear += vodka;
+        state.totalEthanolPerYear += ethanol;
       }
       saveDataInStorage(state);
     },
