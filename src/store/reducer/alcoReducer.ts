@@ -3,15 +3,11 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { INIT_ALCO_STATE } from "./constants/alcoConstants";
-import { Payload } from "./types/alcoTypes";
 import {
-  giveStorageData,
   setDecimal,
   createKey,
   saveDataInStorage,
-  writeStorageDataInState,
-  fillStateWithZeros,
-  checkUsersDate,
+  changeStateUsingStor,
 } from "./alcoHandlers";
 
 export const alcoReducer = createSlice({
@@ -20,30 +16,35 @@ export const alcoReducer = createSlice({
   reducers: {
     changeVolumeDrunk: (
       state,
-      action: PayloadAction<Payload>
+      action: PayloadAction<string>
     ) => {
-      const { volume } = action.payload;
-      !!volume && (state.volumeDrunks = volume);
+      const volume = action.payload;
+      !!volume && (state.volumeDrunks = Number(volume));
     },
     changePercentDrunk: (
       state,
-      action: PayloadAction<Payload>
+      action: PayloadAction<string>
     ) => {
-      const { percent } = action.payload;
-      !!percent && (state.percentDrunk = percent);
+      const percent = action.payload;
+      !!percent && (state.percentDrunk = Number(percent));
     },
-    changeDate: (state, action: PayloadAction<Payload>) => {
-      const { month, year } = checkUsersDate(
-        action.payload
-      );
-      state.month = month;
-      state.year = year;
+    changeMonth: (state, action: PayloadAction<string>) => {
+      const month = action.payload;
+      !!month &&
+        Number(month) > 0 &&
+        Number(month) < 13 &&
+        (state.month = month);
 
-      const storageData = giveStorageData(state);
+      changeStateUsingStor(state);
+    },
+    changeYear: (state, action: PayloadAction<string>) => {
+      const year = action.payload;
+      !!year &&
+        Number(year) > 2020 &&
+        Number(year) < 2050 &&
+        (state.year = year);
 
-      storageData
-        ? writeStorageDataInState(storageData, state)
-        : fillStateWithZeros(state);
+      changeStateUsingStor(state);
     },
 
     calculating: (state) => {
