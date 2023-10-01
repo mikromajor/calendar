@@ -22,3 +22,14 @@ export const AlcoCalendar = () => {
 //extra TODO:
 // add info about volume of drunk clear alcohol per current year
 // add info about volume of drunk vodka per current year
+
+// how to do:
+// one object for one year:
+// const alcoStore = {
+//   year_2023: {
+//     months: [
+//       { month: 1, ethanol: 10 },
+//       { month: 2, ethanol: 20 },
+//     ],
+//   },
+// };
