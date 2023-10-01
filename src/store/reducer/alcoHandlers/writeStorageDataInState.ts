@@ -4,10 +4,10 @@ export const writeStorageDataInState = (
   storageData: StateType,
   state: StateType
 ) => {
-  const { totalVodkaPerMonth, totalPureAlcoholPerMonth } =
+  const { totalVodkaPerMonth, totalEthanolPerMonth } =
     storageData;
 
   state.totalVodkaPerMonth = totalVodkaPerMonth;
 
-  state.totalPureAlcoholPerMonth = totalPureAlcoholPerMonth;
+  state.totalEthanolPerMonth = totalEthanolPerMonth;
 };

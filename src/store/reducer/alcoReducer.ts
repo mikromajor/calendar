@@ -55,19 +55,30 @@ export const alcoReducer = createSlice({
         ethanol = 0;
 
       if (volumeDrunks && percentDrunk) {
-        ethanol =
-          setDecimal(
-            ((volumeDrunks * percentDrunk) / 100) * 100,
-            2
-          ) / 100;
+        ethanol = setDecimal(
+          (volumeDrunks * percentDrunk) / 100,
+          2
+        );
 
-        vodka = setDecimal(ethanol * 240, 2) / 100;
+        vodka = setDecimal(ethanol * 2.4, 2);
 
-        state.totalPureAlcoholPerMonth += ethanol;
-        state.totalVodkaPerMonth += vodka;
+        state.totalEthanolPerMonth = setDecimal(
+          state.totalEthanolPerMonth + ethanol,
+          2
+        );
+        state.totalVodkaPerMonth = setDecimal(
+          state.totalVodkaPerMonth + vodka,
+          2
+        );
 
-        state.totalVodkaPerYear += vodka;
-        state.totalEthanolPerYear += ethanol;
+        state.totalVodkaPerYear = setDecimal(
+          vodka + state.totalVodkaPerYear,
+          2
+        );
+        state.totalEthanolPerYear = setDecimal(
+          ethanol + state.totalEthanolPerYear,
+          2
+        );
       }
       saveDataInStorage(state);
     },
