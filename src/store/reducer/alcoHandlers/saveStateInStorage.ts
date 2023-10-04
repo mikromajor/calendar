@@ -1,10 +1,8 @@
 import { AlcoState } from "../types/alcoTypes";
 import { createKey } from ".";
 
-export const saveStateInStorage = (state: AlcoState) => {
-  const currentDataKey = createKey(state.currentYear);
+export const saveStateInStorage = (state: AlcoState) =>
   window.localStorage.setItem(
-    currentDataKey,
+    createKey(state.currentYear),
     JSON.stringify(state)
   );
-};
