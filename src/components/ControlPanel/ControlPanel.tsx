@@ -8,8 +8,12 @@ import { alcoActions } from "../../store/reducer/alcoReducer";
 export const ControlPanel = () => {
   const dispatch = useAppDispatch();
   const { alcoReducer } = useAppSelector((state) => state);
-  const { month, year, percentDrunk, volumeDrunks } =
-    alcoReducer;
+  const {
+    currentMonth,
+    currentYear,
+    percentDrunk,
+    volumeDrunks,
+  } = alcoReducer;
 
   const {
     changeVolumeDrunk,
@@ -28,7 +32,7 @@ export const ControlPanel = () => {
           type='number'
           min='1'
           max='12'
-          value={month}
+          value={currentMonth}
           onChange={(e) =>
             dispatch(changeMonth(e.target.value))
           }
@@ -41,19 +45,19 @@ export const ControlPanel = () => {
           type='number'
           min='2022'
           max='2050'
-          value={year}
+          value={currentYear}
           onChange={(e) =>
             dispatch(changeYear(e.target.value))
           }
         />
       </label>
       <label>
-        Dodavana ilość spożytego alkoholu `(+,-)`:{" "}
+        Dodavana ilość spożytego alkoholu w litrach:{" "}
         <input
           name='changeVolumeDrunk'
           type='number'
-          min='-1000'
-          max='1000'
+          min='-100'
+          max='100'
           value={volumeDrunks}
           onChange={(e) =>
             dispatch(changeVolumeDrunk(e.target.value))
@@ -74,7 +78,7 @@ export const ControlPanel = () => {
         />
       </label>
       <button onClick={(e) => dispatch(calculating())}>
-        Oblić
+        Dodaj
       </button>
     </div>
   );
