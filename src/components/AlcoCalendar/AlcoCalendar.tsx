@@ -25,11 +25,12 @@ export const AlcoCalendar = () => {
 
 // how to do:
 // one object for one year:
-// const alcoStore = {
-//   year_2023: {
-//     months: [
-//       { month: 1, ethanol: 10 },
-//       { month: 2, ethanol: 20 },
-//     ],
-//   },
+
+// export const INIT_ALCO_STATE = {
+//   year: "2023",
+//   volumeDrunks: 0,
+//   percentDrunk: 5,
+//   months: [{ month: "1", ethanol: 0 }],
 // };
+
+// export const STORE = [INIT_ALCO_STATE];

@@ -1,2 +1,2 @@
-export const createKey = (month: string, year: string) =>
-  `alcoKey_${month}_m__${year}_y`;
+export const createKey = (year: string) =>
+  `alcoKeyForTheYear__${year}`;

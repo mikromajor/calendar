@@ -4,12 +4,10 @@ import {
 } from "@reduxjs/toolkit";
 import { INIT_ALCO_STATE } from "./constants/alcoConstants";
 import {
+  tryStorageData,
+  saveStateInStorage,
   setDecimal,
   createKey,
-  saveDataInStorage,
-  changeStateUsingStor,
-  fillMonthDataWithZeros,
-  fillStateWithZeros,
 } from "./alcoHandlers";
 
 export const alcoReducer = createSlice({
@@ -22,36 +20,43 @@ export const alcoReducer = createSlice({
     ) => {
       const volume = action.payload;
 
-      !!volume && (state.volumeDrunks = Number(volume));
+      state.volumeDrunks = Number(volume);
     },
     changePercentDrunk: (
       state,
       action: PayloadAction<string>
     ) => {
       const percent = action.payload;
-      !!percent && (state.percentDrunk = Number(percent));
+      state.percentDrunk = Number(percent);
     },
     changeMonth: (state, action: PayloadAction<string>) => {
       const month = action.payload;
-      const index = state.months.findIndex(
+      const index = state.monthsData.findIndex(
         (obj) => obj.month === month
       );
       if (index > -1) {
         state.currentIndex = index;
+        state.sumEthanolPerMonth =
+          state.monthsData[index].sumEthanolPerMonth;
+        state.currentMonth = month;
       } else {
-        state.currentIndex = state.months.length;
-        state.months.push({
+        state.currentIndex = state.monthsData.length;
+        state.monthsData.push({
           month: month,
           sumEthanolPerMonth: 0,
         });
       }
     },
     changeYear: (state, action: PayloadAction<string>) => {
-      const year = action.payload;
+      saveStateInStorage(state);
 
-      // шукаємо чи немає такого року в сторі
-      // якщо є то змінюємо карентРік
-      // якщо немає то зберігаємо в стор стейт за новий рік
+      const year = action.payload;
+      const isStoreData = tryStorageData(year);
+
+      !!isStoreData
+        ? (state = isStoreData)
+        : (state = { ...INIT_ALCO_STATE }) &&
+          (state.currentYear = year);
     },
 
     calculating: (state) => {
@@ -59,37 +64,42 @@ export const alcoReducer = createSlice({
       let vodka = 0,
         ethanol = 0;
 
-      // if (volumeDrunks && percentDrunk) {
-      //   ethanol = setDecimal(
-      //     (volumeDrunks * percentDrunk) / 100,
-      //     2
-      //   );
+      if (volumeDrunks && percentDrunk) {
+        ethanol = setDecimal(
+          (volumeDrunks * percentDrunk) / 100,
+          2
+        );
 
-      //   vodka = setDecimal(ethanol * 2.4, 2);
+        state.sumEthanolPerMonth = setDecimal(
+          state.sumEthanolPerMonth + ethanol,
+          2
+        );
 
-      //   state.totalEthanolPerMonth = setDecimal(
-      //     state.totalEthanolPerMonth + ethanol,
-      //     2
-      //   );
-      //   state.totalVodkaPerMonth = setDecimal(
-      //     state.totalVodkaPerMonth + vodka,
-      //     2
-      //   );
+        state.sumEthanolPerYear = setDecimal(
+          ethanol + state.sumEthanolPerYear,
+          2
+        );
+        // vodka = setDecimal(ethanol * 2.4, 2);
+        // state.totalVodkaPerMonth = setDecimal(
+        //   state.totalVodkaPerMonth + vodka,
+        //   2
+        // );
 
-      //   state.totalVodkaPerYear = setDecimal(
-      //     vodka + state.totalVodkaPerYear,
-      //     2
-      //   );
-      //   state.totalEthanolPerYear = setDecimal(
-      //     ethanol + state.totalEthanolPerYear,
-      //     2
-      //   );
-      // }
-      // saveDataInStorage(state);
+        //   state.totalVodkaPerYear = setDecimal(
+        //     vodka + state.totalVodkaPerYear,
+        //     2
+        //   );
+
+        state.monthsData[state.currentIndex] = {
+          month: state.currentMonth,
+          sumEthanolPerMonth: state.sumEthanolPerMonth,
+        };
+      }
+      saveStateInStorage(state);
     },
-    clearStorageForMonth: (state) => {
-      // const key = createKey(state.month, state.year);
-      // window.localStorage.removeItem(key);
+    clearStorageForYear: (state) => {
+      const key = createKey(state.currentYear);
+      window.localStorage.removeItem(key);
     },
     // clearAllStor: () => {
     //   window.localStorage.clear();
