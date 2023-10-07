@@ -3,16 +3,16 @@ import { alcoActions } from "../../store/reducer/alcoReducer";
 
 export const Cleaner = () => {
   const dispatch = useAppDispatch();
-  const { clearStorageForMonth } = alcoActions;
+  const { clearStorageForYear } = alcoActions;
 
   return (
     <div className='calendar-cleaner'>
       <button
         style={{ color: "red" }}
-        onClick={() => dispatch(clearStorageForMonth())}
+        onClick={() => dispatch(clearStorageForYear())}
       >
         {" "}
-        Clear storage for current month
+        Clear storage for current year
       </button>
     </div>
   );

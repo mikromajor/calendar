@@ -1,36 +1,33 @@
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../store/hooks/redux";
+import { useAppSelector } from "../../store/hooks/redux";
 
 export const Display = () => {
   const {
-    month,
-    year,
-    totalVodkaPerMonth,
-    totalVodkaPerYear,
-    totalEthanolPerMonth,
-    totalEthanolPerYear,
+    currentMonth,
+    currentYear,
+    sumEthanolPerMonth,
+    sumEthanolPerYear,
   } = useAppSelector((state) => state.alcoReducer);
+
+  const sumVodkaPerMonth = sumEthanolPerMonth * 2.4;
+  const sumVodkaPerYear = sumEthanolPerYear * 2.4;
 
   return (
     <ul className='display'>
-      <li>Potoczny miesiąc = {month}</li>
-      <li>Potoczny rok = {year} </li>
+      <li>Potoczny miesiąc = {currentMonth}</li>
+      <li>Potoczny rok = {currentYear} </li>
       <li>
-        Iloćś sporzytej wódki za mieśąc ={" "}
-        {totalVodkaPerMonth}
+        Iloćś sporzytej wódki za mieśąc = {sumVodkaPerMonth}
       </li>
       <li>
         Iloćś sporzytego spirytusu za mieśąc ={" "}
-        {totalEthanolPerMonth}
+        {sumEthanolPerMonth}
       </li>
       <li>
-        Iloćś sporzytej wódki za rok = {totalVodkaPerYear}
+        Iloćś sporzytej wódki za rok = {sumVodkaPerYear}
       </li>
       <li>
         Iloćś sporzytego spirytusu za rok ={" "}
-        {totalEthanolPerYear}
+        {sumEthanolPerYear}
       </li>
     </ul>
   );
