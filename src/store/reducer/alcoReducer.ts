@@ -49,7 +49,7 @@ export const alcoReducer = createSlice({
     },
     changeYear: (state, action: PayloadAction<string>) => {
       const year = action.payload;
-      saveStateInStorage(state);
+
       const isStoreData = tryStorageData(year);
 
       Object.assign(
