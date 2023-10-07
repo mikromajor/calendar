@@ -1,7 +1,4 @@
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../store/hooks/redux";
+import { useAppSelector } from "../../store/hooks/redux";
 
 export const Display = () => {
   const {

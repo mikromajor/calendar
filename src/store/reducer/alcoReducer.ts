@@ -48,15 +48,15 @@ export const alcoReducer = createSlice({
       }
     },
     changeYear: (state, action: PayloadAction<string>) => {
-      saveStateInStorage(state);
-
       const year = action.payload;
+      saveStateInStorage(state);
       const isStoreData = tryStorageData(year);
 
-      !!isStoreData
-        ? (state = isStoreData)
-        : (state = { ...INIT_ALCO_STATE }) &&
-          (state.currentYear = year);
+      Object.assign(
+        state,
+        !!isStoreData ? isStoreData : INIT_ALCO_STATE
+      );
+      state.currentYear = year;
     },
 
     calculating: (state) => {

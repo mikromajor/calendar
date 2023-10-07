@@ -11,5 +11,3 @@ export const INIT_ALCO_STATE = {
   currentIndex: 1,
   monthsData: [{ month: "1", sumEthanolPerMonth: 0 }],
 };
-
-// export const STORE = [INIT_ALCO_STATE];
