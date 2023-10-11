@@ -10,6 +10,6 @@ test("renders learn react link", () => {
       <App />
     </Provider>
   );
-  const linkElement = screen.getByText(/Volume VD-40/i);
+  const linkElement = screen.getByText(/Potoczny miesiąc/i);
   expect(linkElement).toBeInTheDocument();
 });

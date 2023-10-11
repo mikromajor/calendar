@@ -4,6 +4,7 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { alcoActions } from "../../store/reducer/alcoReducer";
+import { asyncAdder } from "../../store/api/asyncAdder";
 
 export const ControlPanel = () => {
   const dispatch = useAppDispatch();
@@ -79,6 +80,10 @@ export const ControlPanel = () => {
       </label>
       <button onClick={(e) => dispatch(calculating())}>
         Dodaj
+      </button>
+
+      <button onClick={(e) => dispatch(asyncAdder())}>
+        +50 L in 1 sec
       </button>
     </div>
   );
