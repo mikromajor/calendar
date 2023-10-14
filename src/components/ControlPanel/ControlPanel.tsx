@@ -82,9 +82,9 @@ export const ControlPanel = () => {
         Dodaj
       </button>
 
-      <button onClick={(e) => dispatch(asyncAdder())}>
+      {/* <button onClick={(e) => dispatch(asyncAdder())}>
         +50 L in 1 sec
-      </button>
+      </button> */}
     </div>
   );
 };
