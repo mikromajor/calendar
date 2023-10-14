@@ -6,7 +6,7 @@ export const Cleaner = () => {
   const { clearStorageForYear } = alcoActions;
 
   return (
-    <div className='calendar-cleaner'>
+    <div className='calendar-cleaner' data-testid='cleaner'>
       <button
         style={{ color: "red" }}
         onClick={() => dispatch(clearStorageForYear())}

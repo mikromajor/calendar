@@ -19,4 +19,12 @@ test("renders learn react link", () => {
   expect(
     screen.getByTestId(/cleaner/i)
   ).toBeInTheDocument();
+
+  const input = screen.getByLabelText("Wybierz miesiąc:");
+  expect(input).toHaveDisplayValue("1");
+
+  const dodajButton = screen.getByRole("button", {
+    name: "Dodaj",
+  });
+  expect(dodajButton).toBeTruthy();
 });

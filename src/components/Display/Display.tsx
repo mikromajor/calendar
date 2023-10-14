@@ -12,7 +12,7 @@ export const Display = () => {
   const sumVodkaPerYear = sumEthanolPerYear * 2.4;
 
   return (
-    <ul className='display'>
+    <ul className='display' data-testid='display'>
       <li>Potoczny miesiąc = {currentMonth}</li>
       <li>Potoczny rok = {currentYear} </li>
       <li>
