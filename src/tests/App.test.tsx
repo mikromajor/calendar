@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
-import App from "./App";
-import store from "./store";
+import App from "../App";
+import store from "../store";
 import "./index.scss";
 import { render, screen } from "@testing-library/react";
 
