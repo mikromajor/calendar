@@ -1,7 +1,6 @@
 import { Provider } from "react-redux";
 import App from "../App";
 import store from "../store";
-import "./index.scss";
 import { render, screen } from "@testing-library/react";
 
 test("renders learn react link", () => {
@@ -10,6 +9,14 @@ test("renders learn react link", () => {
       <App />
     </Provider>
   );
-  const linkElement = screen.getByText(/Potoczny miesiąc/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(
+    screen.getByTestId(/display/i)
+  ).toBeInTheDocument();
+  expect(
+    screen.getByTestId(/controlPanel/i)
+  ).toBeInTheDocument();
+  expect(
+    screen.getByTestId(/cleaner/i)
+  ).toBeInTheDocument();
 });
