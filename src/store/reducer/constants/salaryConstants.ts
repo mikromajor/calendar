@@ -32,7 +32,7 @@ export const PREMIUM_COEFFICIENT = {
 };
 
 export const SOCIAL_COEFFICIENTS = {
-  sickCoefficient: 0.8,
+  sickCoefficient: 0.64,
   bloodDonationCoefficient: 1,
 };
 

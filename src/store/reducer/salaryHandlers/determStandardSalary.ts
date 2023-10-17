@@ -17,7 +17,7 @@ export const determStandardSalary = (state: SalaryInit) => {
       (state.sickLeaveWeekDays +
         state.sickLeaveWeekendDays) *
         sickCoefficient *
-        state.salaryRate *
+        state.nettoPerHours *
         8 +
       state.bloodDonation *
         state.salaryRate *
