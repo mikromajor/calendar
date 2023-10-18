@@ -10,9 +10,11 @@ import {
   createKey,
 } from "./alcoHandlers";
 
+const store = tryStorageData("2023");
+
 export const alcoReducer = createSlice({
   name: "alcoState",
-  initialState: INIT_ALCO_STATE,
+  initialState: !!store ? store : INIT_ALCO_STATE,
   reducers: {
     changeVolumeDrunk: (
       state,
@@ -31,6 +33,7 @@ export const alcoReducer = createSlice({
     },
     changeMonth: (state, action: PayloadAction<string>) => {
       const month = action.payload;
+
       const index = state.monthsData.findIndex(
         (obj) => obj.month === month
       );

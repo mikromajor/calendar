@@ -26,3 +26,4 @@ export const determStandardSalary = (state: SalaryInit) => {
       state.premiumUzn
   );
 };
+// TODO: зробити хворобові як середнє за останні 12 місяців
