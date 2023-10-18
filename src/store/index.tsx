@@ -2,7 +2,6 @@ import {
   configureStore,
   ThunkAction,
   Action,
-  // PreloadedState,
   combineReducers,
 } from "@reduxjs/toolkit";
 import alcoReducer from "./reducer/alcoReducer";
@@ -12,14 +11,7 @@ const rootReducer = combineReducers({
   alcoReducer,
   salaryReducer,
 });
-// export function store(
-//   preloadedState?: PreloadedState<RootState>
-// ) {
-//   return configureStore({
-//     reducer: rootReducer,
-//     preloadedState,
-//   });
-// }
+
 export const store = configureStore({
   reducer: rootReducer,
 });
