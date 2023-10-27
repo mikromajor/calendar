@@ -10,7 +10,7 @@ import {
   createKey,
 } from "./alcoHandlers";
 
-const store = tryStorageData("2023");
+const store =tryStorageData(INIT_ALCO_STATE.currentYear);
 
 export const alcoReducer = createSlice({
   name: "alcoState",
