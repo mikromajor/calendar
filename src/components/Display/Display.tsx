@@ -6,10 +6,9 @@ export const Display = () => {
     currentYear,
     sumEthanolPerMonth,
     sumEthanolPerYear,
+    sumVodkaPerMonth,
+    sumVodkaPerYear,
   } = useAppSelector((state) => state.alcoReducer);
-
-  const sumVodkaPerMonth = sumEthanolPerMonth * 2.4;
-  const sumVodkaPerYear = sumEthanolPerYear * 2.4;
 
   return (
     <ul className='display' data-testid='display'>

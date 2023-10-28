@@ -1,3 +1,9 @@
+export const INIT_MONTH_DATA = {
+  month: "1",
+  sumEthanolPerMonth: 0,
+  sumVodkaPerMonth: 0,
+};
+
 export const INIT_ALCO_STATE = {
   currentYear: "0",
   currentMonth: "1",
@@ -5,9 +11,12 @@ export const INIT_ALCO_STATE = {
   sumEthanolPerYear: 0,
   sumEthanolPerMonth: 0,
 
+  sumVodkaPerMonth: 0,
+  sumVodkaPerYear: 0,
+
   volumeDrunks: 0,
   percentDrunk: 5,
 
   currentIndex: 1,
-  monthsData: [{ month: "1", sumEthanolPerMonth: 0 }],
+  monthsData: [INIT_MONTH_DATA],
 };
