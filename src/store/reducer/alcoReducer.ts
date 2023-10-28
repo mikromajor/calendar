@@ -44,6 +44,8 @@ export const alcoReducer = createSlice({
         state.currentIndex = index;
         state.sumEthanolPerMonth =
           state.monthsData[index].sumEthanolPerMonth;
+        state.sumVodkaPerMonth =
+          state.monthsData[index].sumVodkaPerMonth;
         state.currentMonth = month;
       } else {
         state.currentIndex = state.monthsData.length;
