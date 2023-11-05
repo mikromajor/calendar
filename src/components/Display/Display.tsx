@@ -1,33 +1,25 @@
 import { useAppSelector } from "../../store/hooks/redux";
+import {
+  DISPLAY_LINE,
+  LANGS,
+} from "../../store/reducer/constants/alcoConstants";
 
 export const Display = () => {
-  const {
-    currentMonth,
-    currentYear,
-    sumEthanolPerMonth,
-    sumEthanolPerYear,
-    sumVodkaPerMonth,
-    sumVodkaPerYear,
-  } = useAppSelector((state) => state.alcoReducer);
+  const alcoState = useAppSelector(
+    (state) => state.alcoReducer
+  );
+
+  const trs = DISPLAY_LINE.map((key) => (
+    <tr>
+      <th>{LANGS[alcoState.currentLang][key]}</th>
+      <td>{alcoState[key]}</td>
+    </tr>
+  ));
 
   return (
-    <ul className='display' data-testid='display'>
-      <li>Potoczny miesiąc = {currentMonth}</li>
-      <li>Potoczny rok = {currentYear} </li>
-      <li>
-        Iloćś sporzytej wódki za mieśąc = {sumVodkaPerMonth}
-      </li>
-      <li>
-        Iloćś sporzytego spirytusu za mieśąc ={" "}
-        {sumEthanolPerMonth}
-      </li>
-      <li>
-        Iloćś sporzytej wódki za rok = {sumVodkaPerYear}
-      </li>
-      <li>
-        Iloćś sporzytego spirytusu za rok ={" "}
-        {sumEthanolPerYear}
-      </li>
-    </ul>
+    <table className='display' data-testid='display'>
+      <caption>Total drunk</caption>
+      <tbody>{trs}</tbody>
+    </table>
   );
 };
