@@ -51,6 +51,9 @@
     border-radius: 5px;
     padding: 0;
     background-color: rgb(205, 255, 226);
+    :hover {
+      background-color: rgb(224, 232, 0);
+    }
   }
   &-all {
     background-color: rgb(126, 204, 126);

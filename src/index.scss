@@ -31,6 +31,9 @@ code {
     border-radius: 5px;
     border: 1px solid grey;
     box-shadow: 3px 7px 5px 7px #a7a7a7;
+    label:hover {
+      color: blue;
+    }
   }
   &-display {
     display: flex;
@@ -77,11 +80,18 @@ code {
     align-items: center;
     justify-content: space-around;
 
-    margin: 3px;
+    margin: 15px;
     border-radius: 5px;
     border: 1px solid grey;
+    box-shadow: 3px 7px 5px 7px #a7a7a7;
   }
   button {
     margin: 5px;
+    border-radius: 5px;
+  }
+  button:hover {
+    margin: 5px;
+    border-radius: 5px;
+    background-color: green;
   }
 }
