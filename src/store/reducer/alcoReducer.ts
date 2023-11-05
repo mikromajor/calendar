@@ -12,6 +12,7 @@ import {
   setDecimal,
   createKey,
 } from "./alcoHandlers";
+import { LgsName } from "./types/alcoTypes";
 
 const store = tryStorageData("2023");
 
@@ -19,6 +20,12 @@ export const alcoReducer = createSlice({
   name: "alcoState",
   initialState: !!store ? store : INIT_ALCO_STATE,
   reducers: {
+    changeLanguage: (
+      state,
+      action: PayloadAction<LgsName>
+    ) => {
+      state.currentLang = action.payload;
+    },
     changeVolumeDrunk: (
       state,
       action: PayloadAction<string>

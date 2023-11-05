@@ -1,4 +1,8 @@
-import { AlcoState, KeysLang } from "../types/alcoTypes";
+import {
+  AlcoState,
+  KeysLang,
+  LgsName,
+} from "../types/alcoTypes";
 
 export const INIT_MONTH_DATA = {
   month: "1",
@@ -36,6 +40,13 @@ export const DISPLAY_LINE: KeysLang[] = [
 
 export const LANGS = {
   pln: {
+    lblLang: "Zmień jęnzyk",
+    lblMonth: "Wybierz miesiąc",
+    lblYear: "Wybierz rok",
+    lblVolume: "Ilość wypitego",
+    lblPercent: "Procent wypitego",
+    btnAdd: " Dodaj",
+    caption: "Przeliczeie wypitego",
     currentYear: "Potoczny rok",
     currentMonth: "Potoczny miesiąc",
     sumVodkaPerMonth: "Iloćś sporzytej wódki za mieśąc",
@@ -45,6 +56,13 @@ export const LANGS = {
     sumEthanolPerYear: " Iloćś sporzytego spirytusu za rok",
   },
   en: {
+    lblLang: "Change language:",
+    lblMonth: "Select month",
+    lblYear: "Select year",
+    lblVolume: "Volume drunks",
+    lblPercent: "Percent",
+    btnAdd: "Add",
+    caption: "Total drunk",
     currentYear: "Current year",
     currentMonth: "Current month",
     sumVodkaPerMonth: "Summary drunk vodka per month",
@@ -53,6 +71,13 @@ export const LANGS = {
     sumEthanolPerYear: "Summary drunk ethanol per year",
   },
   ua: {
+    lblLang: "Оберіть мову",
+    lblMonth: "Виберіть місяць",
+    lblYear: "Виберіть рік",
+    lblVolume: "Об'єм випитого",
+    lblPercent: "Процент випитого",
+    btnAdd: "Додати",
+    caption: "Випито в перерахунку",
     currentYear: "Поточний рік",
     currentMonth: "Поточний місяць",
     sumVodkaPerMonth: "Кількість випитої горілки за місяць",
@@ -62,3 +87,9 @@ export const LANGS = {
     sumEthanolPerYear: "Кількість випитого спирту за рік",
   },
 };
+
+const ALL_LANGS: LgsName[] = [];
+for (let objLg of Object.keys(LANGS)) {
+  ALL_LANGS.push(objLg as LgsName);
+}
+export { ALL_LANGS };

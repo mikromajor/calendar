@@ -4,6 +4,11 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { alcoActions } from "../../store/reducer/alcoReducer";
+import {
+  ALL_LANGS,
+  LANGS,
+} from "../../store/reducer/constants/alcoConstants";
+import { LgsName } from "../../store/reducer/types/alcoTypes";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 
 export const ControlPanel = () => {
@@ -14,6 +19,7 @@ export const ControlPanel = () => {
     currentYear,
     percentDrunk,
     volumeDrunks,
+    currentLang,
   } = alcoReducer;
 
   const {
@@ -22,15 +28,38 @@ export const ControlPanel = () => {
     calculating,
     changeMonth,
     changeYear,
+    changeLanguage,
   } = alcoActions;
+
+  const Options = ALL_LANGS.map((langName, i) => (
+    <option key={langName + i} value={langName}>
+      {langName}
+    </option>
+  ));
 
   return (
     <div
       className='calendar-controlPanel'
       data-testid='controlPanel'
     >
-      <label>
-        Wybierz miesiąc:{" "}
+      <label id='lblLang'>
+        {LANGS[currentLang].lblLang}
+        <select
+          id='languages'
+          defaultValue={currentLang}
+          onChange={(e) => {
+            dispatch(
+              changeLanguage(
+                e.currentTarget.value as LgsName
+              )
+            );
+          }}
+        >
+          {Options}
+        </select>
+      </label>
+      <label id='lblMonth'>
+        {LANGS[currentLang].lblMonth}
         <input
           name='dataForMonth'
           type='number'
@@ -42,8 +71,8 @@ export const ControlPanel = () => {
           }
         />
       </label>
-      <label>
-        Wybierz rok:{" "}
+      <label id='lblYear'>
+        {LANGS[currentLang].lblYear}
         <input
           name='dataForYear'
           type='number'
@@ -55,8 +84,8 @@ export const ControlPanel = () => {
           }
         />
       </label>
-      <label>
-        Dodavana ilość spożytego alkoholu w litrach:{" "}
+      <label id='lblVolume'>
+        {LANGS[currentLang].lblVolume}
         <input
           name='changeVolumeDrunk'
           type='number'
@@ -68,8 +97,8 @@ export const ControlPanel = () => {
           }
         />
       </label>
-      <label>
-        Jego procent :{" "}
+      <label id='lblPercent'>
+        {LANGS[currentLang].lblPercent}
         <input
           name='changePercentDrunk'
           type='number'
@@ -81,8 +110,11 @@ export const ControlPanel = () => {
           }
         />
       </label>
-      <button onClick={(e) => dispatch(calculating())}>
-        Dodaj
+      <button
+        id='btnAdd'
+        onClick={(e) => dispatch(calculating())}
+      >
+        {LANGS[currentLang].btnAdd}
       </button>
 
       {/* <button onClick={(e) => dispatch(asyncAdder())}>
