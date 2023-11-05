@@ -7,7 +7,7 @@ export const INIT_MONTH_DATA = {
 };
 
 export const INIT_ALCO_STATE: AlcoState = {
-  currentYear: "0",
+  currentYear: "2023",
   currentMonth: "1",
 
   sumEthanolPerYear: 0,

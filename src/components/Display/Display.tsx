@@ -8,7 +8,10 @@ export const Display = () => {
   const alcoState = useAppSelector(
     (state) => state.alcoReducer
   );
-
+  console.log(
+    "alcoState.currentLang =>",
+    alcoState.currentLang
+  );
   const trs = DISPLAY_LINE.map((key) => (
     <tr>
       <th>{LANGS[alcoState.currentLang][key]}</th>
