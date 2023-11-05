@@ -46,7 +46,7 @@ export const LANGS = {
     lblVolume: "Ilość wypitego",
     lblPercent: "Procent wypitego",
     btnAdd: " Dodaj",
-    caption: "Przeliczeie wypitego",
+    caption: "Wypito w przeliczeniu",
     currentYear: "Potoczny rok",
     currentMonth: "Potoczny miesiąc",
     sumVodkaPerMonth: "Iloćś sporzytej wódki za mieśąc",

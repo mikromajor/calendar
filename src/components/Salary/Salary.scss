@@ -34,13 +34,14 @@
   }
 
   input {
-    background-color: rgb(180, 211, 136);
+    background-color: rgb(251, 255, 133);
     width: 50px;
     height: 25px;
     margin: 0;
     padding: 0 5px;
     border: none;
     border-radius: 5px;
+    text-align: center;
   }
   td {
     text-align: center;
@@ -49,6 +50,7 @@
     height: 25px;
     border-radius: 5px;
     padding: 0;
+    background-color: rgb(205, 255, 226);
   }
   &-all {
     background-color: rgb(126, 204, 126);

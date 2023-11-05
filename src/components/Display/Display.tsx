@@ -16,7 +16,10 @@ export const Display = () => {
   ));
 
   return (
-    <table className='display' data-testid='display'>
+    <table
+      className='calendar-display'
+      data-testid='display'
+    >
       <caption id='caption'>
         {LANGS[alcoState.currentLang].caption}
       </caption>
