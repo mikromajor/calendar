@@ -3,7 +3,7 @@ import {
   KeysSalaryInit,
 } from "../../store/reducer/types/salaryTypes";
 import { useAppSelector } from "../../store/hooks/redux";
-import { Input } from "../../ui";
+import { Input } from "./ui";
 import {
   TABLE_HEADINGS,
   INPUT_KEYS,

@@ -1,10 +1,10 @@
 import {
   useAppSelector,
   useAppDispatch,
-} from "../../store/hooks/redux";
+} from "../../../../store/hooks/redux";
 
-import { salaryActions } from "../../store/reducer/salaryReducer";
-import { KeysSalaryInit } from "../../store/reducer/types/salaryTypes";
+import { salaryActions } from "../../../../store/reducer/salaryReducer";
+import { KeysSalaryInit } from "../../../../store/reducer/types/salaryTypes";
 
 type InputProps = {
   payloadsKey: KeysSalaryInit;

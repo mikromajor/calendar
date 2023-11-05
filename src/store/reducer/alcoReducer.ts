@@ -2,13 +2,17 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { INIT_ALCO_STATE } from "./constants/alcoConstants";
+import {
+  INIT_ALCO_STATE,
+  INIT_MONTH_DATA,
+} from "./constants/alcoConstants";
 import {
   tryStorageData,
   saveStateInStorage,
   setDecimal,
   createKey,
 } from "./alcoHandlers";
+import { LgsName } from "./types/alcoTypes";
 
 const store =tryStorageData(INIT_ALCO_STATE.currentYear);
 
@@ -16,6 +20,12 @@ export const alcoReducer = createSlice({
   name: "alcoState",
   initialState: !!store ? store : INIT_ALCO_STATE,
   reducers: {
+    changeLanguage: (
+      state,
+      action: PayloadAction<LgsName>
+    ) => {
+      state.currentLang = action.payload;
+    },
     changeVolumeDrunk: (
       state,
       action: PayloadAction<string>
@@ -41,12 +51,14 @@ export const alcoReducer = createSlice({
         state.currentIndex = index;
         state.sumEthanolPerMonth =
           state.monthsData[index].sumEthanolPerMonth;
+        state.sumVodkaPerMonth =
+          state.monthsData[index].sumVodkaPerMonth;
         state.currentMonth = month;
       } else {
         state.currentIndex = state.monthsData.length;
         state.monthsData.push({
+          ...INIT_MONTH_DATA,
           month: month,
-          sumEthanolPerMonth: 0,
         });
       }
     },
@@ -64,8 +76,7 @@ export const alcoReducer = createSlice({
 
     calculating: (state) => {
       const { volumeDrunks, percentDrunk } = state;
-      let vodka = 0,
-        ethanol = 0;
+      let ethanol = 0;
 
       if (volumeDrunks && percentDrunk) {
         ethanol = setDecimal(
@@ -82,20 +93,20 @@ export const alcoReducer = createSlice({
           ethanol + state.sumEthanolPerYear,
           2
         );
-        // vodka = setDecimal(ethanol * 2.4, 2);
-        // state.totalVodkaPerMonth = setDecimal(
-        //   state.totalVodkaPerMonth + vodka,
-        //   2
-        // );
+        state.sumVodkaPerMonth = setDecimal(
+          state.sumEthanolPerMonth * 2.4,
+          2
+        );
 
-        //   state.totalVodkaPerYear = setDecimal(
-        //     vodka + state.totalVodkaPerYear,
-        //     2
-        //   );
+        state.sumVodkaPerYear = setDecimal(
+          state.sumEthanolPerYear * 2.4,
+          2
+        );
 
         state.monthsData[state.currentIndex] = {
           month: state.currentMonth,
           sumEthanolPerMonth: state.sumEthanolPerMonth,
+          sumVodkaPerMonth: state.sumVodkaPerMonth,
         };
       }
       saveStateInStorage(state);
