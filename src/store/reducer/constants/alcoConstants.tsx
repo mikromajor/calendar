@@ -26,7 +26,7 @@ export const INIT_ALCO_STATE: AlcoState = {
   currentIndex: 1,
   monthsData: [INIT_MONTH_DATA],
 
-  currentLang: "en",
+  currentLang: "EN",
 };
 
 export const DISPLAY_LINE: KeysLang[] = [
@@ -39,7 +39,7 @@ export const DISPLAY_LINE: KeysLang[] = [
 ];
 
 export const LANGS = {
-  pln: {
+  PL: {
     lblLang: "Zmień jęnzyk",
     lblMonth: "Wybierz miesiąc",
     lblYear: "Wybierz rok",
@@ -55,7 +55,7 @@ export const LANGS = {
     sumVodkaPerYear: " Iloćś sporzytej wódki za rok",
     sumEthanolPerYear: " Iloćś sporzytego spirytusu za rok",
   },
-  en: {
+  EN: {
     lblLang: "Change language:",
     lblMonth: "Select month",
     lblYear: "Select year",
@@ -70,7 +70,7 @@ export const LANGS = {
     sumVodkaPerYear: "Summary drunk vodka per year",
     sumEthanolPerYear: "Summary drunk ethanol per year",
   },
-  ua: {
+  UA: {
     lblLang: "Оберіть мову",
     lblMonth: "Виберіть місяць",
     lblYear: "Виберіть рік",

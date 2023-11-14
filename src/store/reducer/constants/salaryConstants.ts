@@ -1,7 +1,12 @@
 // нельзя помещать ф-и в стeйт
-import { KeysSalaryInit } from "../types/salaryTypes";
+import {
+  KeysSalaryInit,
+  KeysLang,
+  SalaryInit,
+} from "../types/salaryTypes";
 
 export const SALARY_INIT = {
+  currentLanguage: "UA",
   year: 2023,
   month: 1,
   salaryRate: 0,
@@ -38,72 +43,100 @@ export const SOCIAL_COEFFICIENTS = {
 
 export const SALARY_KEYS = Object.keys(
   SALARY_INIT
-) as any as KeysSalaryInit[];
+) as KeysSalaryInit[];
 
-export const INPUT_KEYS = [
-  "month",
-  "year",
-
-  "salaryRate",
-  "premiumUzn",
-  "premiumRate",
-  "taxRate",
-
-  "extraHours_50",
-  "extraHours_100",
-  "extraHours_120",
-
-  "sickLeaveWeekDays",
-  "sickLeaveWeekendDays",
-
-  "holidays",
-  "usedVacation",
-  "bloodDonation",
+export const NO_INPUTS = [
+  "currentLanguage",
+  "nettoPerHours",
+  "weekDays",
+  "weekendDays",
+  "standardWorkHours",
+  "standardSalary",
+  "extraSalary",
+  "totalSalary",
 ];
 
+type RemoveKindField<SalaryInit> = {
+  [Property in keyof SalaryInit as Exclude<
+    Property,
+    "currentLanguage"
+  >]: string;
+};
+
 export const TABLE_HEADINGS = {
-  ua: {
+  UA: {
     year: "Рік",
     month: "Місяць",
-    salaryRate: "Ставка",
-    taxRate: "Податок",
-    premiumRate: "Премія % до ставки",
-    premiumUzn: "Премія стала",
-    extraHours_50: "Понаднормові 50%",
-    extraHours_100: "Понаднормові 100%",
-    extraHours_120: "Понаднормові 120%",
-    sickLeaveWeekDays: "Хворобові в будні",
-    sickLeaveWeekendDays: "Хворобові в вихідні",
-    usedVacation: "Відпустка",
-    bloodDonation: "Кроводавство",
-    holidays: "Святкові",
-    weekDays: "Будні",
-    weekendDays: "Вихідні",
+    salaryRate: "Ставка, zł/g",
+    nettoPerHours: "Ставка нетто, zł/g",
+    taxRate: "Коефіц. податокий",
+    premiumRate: "Коеф. премії до ставки, %",
+    premiumUzn: "Премія стала, zł нетто",
+    extraHours_50: "К-ть понаднорм. з оплатою +50%",
+    extraHours_100: "К-ть понаднорм. з оплатою +100%",
+    extraHours_120: "К-ть понаднорм. з оплатою +120%",
+    sickLeaveWeekDays: "К-ть хворобових в будні",
+    sickLeaveWeekendDays: "К-ть хворобових в вихідні",
+    usedVacation: "Відпустка, дн",
+    bloodDonation: "Кроводавство в будні, дн",
+    holidays: "К-ть святкових днів",
+    weekDays: "К-ть робочих днів",
+    weekendDays: "К-ть вихідних днів",
     standardWorkHours: "К-ть робочих годин",
     standardSalary: "ЗП нормова",
     extraSalary: "ЗП понаднормова",
     totalSalary: "ЗП вся",
   },
-  en: {
-    year: " year",
-    month: " month",
-    salaryRate: "salary rate",
-    taxRate: " tax rate",
-    premiumRate: " premium rate",
-    premiumUzn: "premium const",
-    extraHours_50: " extra hours +50%",
-    extraHours_100: " extra hours +100%",
-    extraHours_120: " extra hours +120%",
-    sickLeaveWeekDays: " sick leave week days",
-    sickLeaveWeekendDays: " sick leave weekend days",
-    usedVacation: " used vacation",
-    bloodDonation: " blood donation",
-    holidays: " holidays",
-    weekDays: " week days",
-    weekendDays: " weekends",
-    standardWorkHours: " standard work hours",
-    standardSalary: "  standard salary",
-    extraSalary: "  extra salary",
-    totalSalary: " total salary",
+  EN: {
+    year: "Year",
+    month: "Month",
+    salaryRate: "Salary rate",
+    nettoPerHours: "Netto per hours",
+    taxRate: "Tax rate",
+    premiumRate: "Premium rate",
+    premiumUzn: "Premium const",
+    extraHours_50: "Extra hours +50%",
+    extraHours_100: "Extra hours +100%",
+    extraHours_120: "Extra hours +120%",
+    sickLeaveWeekDays: "Sick leave week days",
+    sickLeaveWeekendDays: "Sick leave weekend days",
+    usedVacation: "Used vacation",
+    bloodDonation: "Blood donation",
+    holidays: "Holidays",
+    weekDays: "Week days",
+    weekendDays: "Weekends",
+    standardWorkHours: "Standard work hours",
+    standardSalary: "Standard salary",
+    extraSalary: "Extra salary",
+    totalSalary: "Total salary",
+  },
+  PL: {
+    year: "Rok",
+    month: "Miesiąc",
+    salaryRate: "Stawka, zł/g",
+    nettoPerHours: "Stawka netto, zł/g",
+    taxRate: "Współczynnik podatku",
+    premiumRate: "Premia % do stawki",
+    premiumUzn: "Premia uznaniowa, zł netto",
+    extraHours_50: "Ilość nadgodzin z opłatą +50%",
+    extraHours_100: "Ilość nadgodzin z opłatą +100%",
+    extraHours_120: "Ilość nadgodzin z opłatą +120%",
+    sickLeaveWeekDays: "Chorobowe w dni powszechne, dni",
+    sickLeaveWeekendDays: "Chorobowe w wikend, dni",
+    usedVacation: "Urlop, dni",
+    bloodDonation: "Krwiodawstwo, dni powsz.",
+    holidays: "Swięta",
+    weekDays: "Dni robocze",
+    weekendDays: "Dni wolne",
+    standardWorkHours: "Ilość rob. godzin w mieśąncu",
+    standardSalary: "Wypłata podstawowa, zł",
+    extraSalary: "Wypłata extra",
+    totalSalary: "Wypłata pełna",
   },
 };
+
+const ALL_LANGS: KeysLang[] = [];
+for (let objLg of Object.keys(TABLE_HEADINGS)) {
+  ALL_LANGS.push(objLg as KeysLang);
+}
+export { ALL_LANGS };

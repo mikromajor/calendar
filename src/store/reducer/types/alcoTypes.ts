@@ -21,7 +21,7 @@ export type AlcoState = {
   currentIndex: number;
   monthsData: MonthData[];
 
-  currentLang: "en" | "pln" | "ua";
+  currentLang: "EN" | "PL" | "UA";
 };
 
 export type StateKeys = keyof AlcoState;

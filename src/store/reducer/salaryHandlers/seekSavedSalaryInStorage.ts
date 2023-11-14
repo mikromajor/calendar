@@ -1,13 +1,9 @@
 import { SalaryInit } from "../types/salaryTypes";
-import {
-  SALARY_KEYS,
-  SALARY_INIT,
-} from "../constants/salaryConstants";
-import { amountWeekendsAndWeekdays } from "./amountWeekendsAndWeekdays";
+import { SALARY_INIT } from "../constants/salaryConstants";
+import { amountWeekendsAndWeekdays, getKey } from "./";
 
 export const seekSavedSalaryInStorage = (
-  state: SalaryInit,
-  dateKey: string
+  state: SalaryInit
 ) => {
   if (typeof window === "undefined") {
     return undefined;
@@ -18,22 +14,22 @@ export const seekSavedSalaryInStorage = (
     state.month
   );
 
+  const dateKey = getKey(state.year, state.month);
+
   try {
     const item = window.localStorage.getItem(dateKey);
 
     const update = !!item
-      ? (JSON.parse(item) as any as SalaryInit)
+      ? (JSON.parse(item) as SalaryInit)
       : {
           ...SALARY_INIT,
           weekDays: weekdays,
           weekendDays: weekends,
+          year: state.year,
+          month: state.month,
         };
 
-    SALARY_KEYS.forEach((key) => {
-      if (key !== "month" && key !== "year") {
-        state[key] = update[key];
-      }
-    });
+    Object.assign(state, update);
   } catch (e) {
     console.log(
       "Error caught in seekSavedSalaryInStorage ->",

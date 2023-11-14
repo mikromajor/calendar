@@ -1,7 +1,6 @@
 import {
   SALARY_INIT,
   TABLE_HEADINGS,
-  INPUT_KEYS,
 } from "../constants/salaryConstants";
 
 export type SalaryInit = typeof SALARY_INIT;
@@ -35,12 +34,8 @@ export type PayloadType = {
 export type PayloadsKeys = keyof PayloadType;
 
 type TableHeadings = typeof TABLE_HEADINGS;
-type TableHeadingsKeys = keyof TableHeadings;
 
-type Ua = typeof TABLE_HEADINGS.ua;
-type En = typeof TABLE_HEADINGS.en;
-export type UaKeys = keyof Ua;
-export type EnKeys = keyof En;
+export type KeysLang = keyof TableHeadings;
 
 // TS PICK & OMIT EXAMPLE:
 

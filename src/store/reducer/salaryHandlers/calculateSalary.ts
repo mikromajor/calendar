@@ -9,10 +9,9 @@ import {
   SalaryInit,
 } from "../types/salaryTypes";
 
-export const updateSalary = (
+export const calculateSalary = (
   state: SalaryInit,
-  payload: PayloadType,
-  dateKey: string
+  payload: PayloadType
 ) => {
   const {
     salaryRate,

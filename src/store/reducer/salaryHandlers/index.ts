@@ -3,7 +3,7 @@ export { dayOfWeek } from "./dayOfWeek";
 export { daysInMonth } from "./daysInMonth";
 export { getCurrentDate } from "./getCurrentDate";
 export { seekSavedSalaryInStorage } from "./seekSavedSalaryInStorage";
-export { updateSalary } from "./updateSalary";
+export { calculateSalary } from "./calculateSalary";
 export { getKey } from "./getKey";
 export { changeDate } from "./changeDate";
 export { saveSalaryInStorage } from "./saveSalaryInStorage";

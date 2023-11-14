@@ -8,7 +8,7 @@ import { PayloadType } from "./types/salaryTypes";
 import {
   changeDate,
   seekSavedSalaryInStorage,
-  updateSalary,
+  calculateSalary,
   getKey,
   saveSalaryInStorage,
 } from "./salaryHandlers";
@@ -21,8 +21,7 @@ export const salaryReducer = createSlice({
       state,
       action: PayloadAction<PayloadType>
     ) => {
-      const dateKey = getKey(state.year, state.month);
-      updateSalary(state, action.payload, dateKey);
+      calculateSalary(state, action.payload);
       saveSalaryInStorage(state);
     },
     changeSalaryDate: (
@@ -30,10 +29,7 @@ export const salaryReducer = createSlice({
       action: PayloadAction<PayloadType>
     ) => {
       changeDate(state, action.payload);
-
-      const dateKey = getKey(state.year, state.month);
-
-      seekSavedSalaryInStorage(state, dateKey);
+      seekSavedSalaryInStorage(state);
     },
   },
 });

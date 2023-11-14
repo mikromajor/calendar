@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://mikromajor.github.io/useful_calculators/",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.17",
     "@mui/styled-engine-sc": "^6.0.0-alpha.5",
     "@reduxjs/toolkit": "^1.8.5",

@@ -1,4 +1,5 @@
 // import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
+import { Button } from "@mui/material";
 import {
   useAppSelector,
   useAppDispatch,
@@ -110,12 +111,13 @@ export const ControlPanel = () => {
           }
         />
       </label>
-      <button
+      <Button
         id='btnAdd'
+        variant='contained'
         onClick={(e) => dispatch(calculating())}
       >
         {LANGS[currentLang].btnAdd}
-      </button>
+      </Button>
 
       {/* <button onClick={(e) => dispatch(asyncAdder())}>
         +50 L in 1 sec
