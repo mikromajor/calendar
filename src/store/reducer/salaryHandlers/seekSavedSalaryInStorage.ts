@@ -21,7 +21,7 @@ export const seekSavedSalaryInStorage = (
 
   try {
     const item = window.localStorage.getItem(dateKey);
-    ////TODO state =
+
     const update = !!item
       ? (JSON.parse(item) as SalaryInit)
       : {
@@ -31,8 +31,8 @@ export const seekSavedSalaryInStorage = (
           year: state.year,
           month: state.month,
         };
-    //TODO check that is correct
-    // Object.assign(state, update);
+
+    Object.assign(state, update);
   } catch (e) {
     console.log(
       "Error caught in seekSavedSalaryInStorage ->",

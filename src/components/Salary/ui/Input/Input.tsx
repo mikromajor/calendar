@@ -12,8 +12,8 @@ type InputProps = {
 
 export const Input = ({ payloadsKey }: InputProps) => {
   const dispatch = useAppDispatch();
-  const { salaryReducer } = useAppSelector(
-    (state) => state
+  const salaryReducer = useAppSelector(
+    (state) => state.salaryReducer
   );
   const { getSalary, changeSalaryDate } = salaryActions;
 

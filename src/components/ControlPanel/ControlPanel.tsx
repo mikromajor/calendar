@@ -14,14 +14,14 @@ import { LgsName } from "../../store/reducer/types/alcoTypes";
 
 export const ControlPanel = () => {
   const dispatch = useAppDispatch();
-  const { alcoReducer } = useAppSelector((state) => state);
+
   const {
     currentMonth,
     currentYear,
     percentDrunk,
     volumeDrunks,
     currentLang,
-  } = alcoReducer;
+  } = useAppSelector((state) => state.alcoReducer);
 
   const {
     changeVolumeDrunk,

@@ -8,8 +8,8 @@ import {
 } from "../../store/reducer/constants/salaryConstants";
 
 export const Salary = () => {
-  const { salaryReducer } = useAppSelector(
-    (state) => state
+  const salaryReducer = useAppSelector(
+    (state) => state.salaryReducer
   );
   const tableRows: JSX.Element[] = [];
   let td: JSX.Element;
