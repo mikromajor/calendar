@@ -10,7 +10,7 @@ export const Display = () => {
   );
   const trs = DISPLAY_LINE.map((key, i) => (
     <tr key={key + i}>
-      <th>{LANGS[alcoState.currentLang][key]}</th>
+      <th>{LANGS.UA[key]}</th>
       <td>{alcoState[key]}</td>
     </tr>
   ));
@@ -20,9 +20,7 @@ export const Display = () => {
       className='calendar-display'
       data-testid='display'
     >
-      <caption id='caption'>
-        {LANGS[alcoState.currentLang].caption}
-      </caption>
+      <caption id='caption'>{LANGS.UA.caption}</caption>
       <tbody>{trs}</tbody>
     </table>
   );

@@ -44,7 +44,7 @@ export const ControlPanel = () => {
       data-testid='controlPanel'
     >
       <label id='lblLang'>
-        {LANGS[currentLang].lblLang}
+        {LANGS.UA.lblLang}
         <select
           id='languages'
           defaultValue={currentLang}
@@ -60,7 +60,7 @@ export const ControlPanel = () => {
         </select>
       </label>
       <label id='lblMonth'>
-        {LANGS[currentLang].lblMonth}
+        {LANGS.UA.lblMonth}
         <input
           name='dataForMonth'
           type='number'
@@ -73,7 +73,7 @@ export const ControlPanel = () => {
         />
       </label>
       <label id='lblYear'>
-        {LANGS[currentLang].lblYear}
+        {LANGS.UA.lblYear}
         <input
           name='dataForYear'
           type='number'
@@ -86,7 +86,7 @@ export const ControlPanel = () => {
         />
       </label>
       <label id='lblVolume'>
-        {LANGS[currentLang].lblVolume}
+        {LANGS.UA.lblVolume}
         <input
           name='changeVolumeDrunk'
           type='number'
@@ -99,7 +99,7 @@ export const ControlPanel = () => {
         />
       </label>
       <label id='lblPercent'>
-        {LANGS[currentLang].lblPercent}
+        {LANGS.UA.lblPercent}
         <input
           name='changePercentDrunk'
           type='number'
@@ -116,7 +116,7 @@ export const ControlPanel = () => {
         variant='contained'
         onClick={(e) => dispatch(calculating())}
       >
-        {LANGS[currentLang].btnAdd}
+        {LANGS.UA.btnAdd}
       </Button>
 
       {/* <button onClick={(e) => dispatch(asyncAdder())}>

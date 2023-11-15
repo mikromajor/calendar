@@ -1,6 +1,6 @@
 import {
   amountWeekendsAndWeekdays,
-  numbersLetsGo,
+  isNumberMoreZero,
   determExtraSalary,
   determStandardSalary,
 } from ".";
@@ -33,28 +33,28 @@ export const calculateSalary = (
     state.month
   );
 
-  numbersLetsGo(salaryRate) &&
+  isNumberMoreZero(salaryRate) &&
     (state.salaryRate = salaryRate);
 
   premiumRate &&
     premiumRate >= 1 &&
     (state.premiumRate = premiumRate);
 
-  numbersLetsGo(premiumUzn) &&
+  isNumberMoreZero(premiumUzn) &&
     (state.premiumUzn = premiumUzn);
 
-  numbersLetsGo(taxRate) && (state.taxRate = taxRate);
+  isNumberMoreZero(taxRate) && (state.taxRate = taxRate);
 
-  numbersLetsGo(sickLeaveWeekDays) &&
+  isNumberMoreZero(sickLeaveWeekDays) &&
     (state.sickLeaveWeekDays = sickLeaveWeekDays);
-  numbersLetsGo(sickLeaveWeekendDays) &&
+  isNumberMoreZero(sickLeaveWeekendDays) &&
     (state.sickLeaveWeekendDays = sickLeaveWeekendDays);
 
-  numbersLetsGo(usedVacation) &&
+  isNumberMoreZero(usedVacation) &&
     (state.usedVacation = usedVacation);
-  numbersLetsGo(bloodDonation) &&
+  isNumberMoreZero(bloodDonation) &&
     (state.bloodDonation = bloodDonation);
-  numbersLetsGo(holidays) && (state.holidays = holidays);
+  isNumberMoreZero(holidays) && (state.holidays = holidays);
 
   state.weekDays =
     weekdays -
@@ -65,13 +65,13 @@ export const calculateSalary = (
 
   state.weekendDays = weekends;
 
-  numbersLetsGo(extraHours_50) &&
+  isNumberMoreZero(extraHours_50) &&
     (state.extraHours_50 = extraHours_50);
 
-  numbersLetsGo(extraHours_100) &&
+  isNumberMoreZero(extraHours_100) &&
     (state.extraHours_100 = extraHours_100);
 
-  numbersLetsGo(extraHours_120) &&
+  isNumberMoreZero(extraHours_120) &&
     (state.extraHours_120 = extraHours_120);
 
   state.nettoPerHours =

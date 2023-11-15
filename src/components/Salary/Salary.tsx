@@ -1,13 +1,9 @@
-import {
-  KeysSalaryInit,
-  KeysLang,
-} from "../../store/reducer/types/salaryTypes";
+import { KeysLang } from "../../store/reducer/types/salaryTypes";
 import { useAppSelector } from "../../store/hooks/redux";
 import { Input } from "./ui";
 import {
   TABLE_HEADINGS,
   NO_INPUTS,
-  ALL_LANGS,
   SALARY_KEYS,
 } from "../../store/reducer/constants/salaryConstants";
 
@@ -31,6 +27,8 @@ export const Salary = () => {
     );
     if (key !== "currentLanguage") {
       th = <th>{TABLE_HEADINGS?.[language]?.[key]}</th>;
+    } else {
+      th = <th>Language</th>;
     }
 
     tableRows.push(
