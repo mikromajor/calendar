@@ -4,7 +4,7 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { SALARY_INIT } from "./constants/salaryConstants";
-import { PayloadType } from "./types/salaryTypes";
+import { PayloadType, KeysLang } from "./types/salaryTypes";
 import {
   changeDate,
   seekSavedSalaryInStorage,
@@ -30,6 +30,12 @@ export const salaryReducer = createSlice({
     ) => {
       changeDate(state, action.payload);
       seekSavedSalaryInStorage(state);
+    },
+    changeLanguage: (
+      state,
+      action: PayloadAction<KeysLang>
+    ) => {
+      state.currentLanguage = action.payload;
     },
   },
 });

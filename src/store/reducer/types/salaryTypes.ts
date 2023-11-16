@@ -1,6 +1,6 @@
 import {
   SALARY_INIT,
-  TABLE_HEADINGS,
+  SALARY_CONTENT,
 } from "../constants/salaryConstants";
 
 export type SalaryInit = typeof SALARY_INIT;
@@ -29,21 +29,36 @@ export type PayloadType = {
 };
 export type PayloadsKeys = keyof PayloadType;
 
-type TableHeadings = typeof TABLE_HEADINGS;
+type TableHeadings = typeof SALARY_CONTENT;
 
 export type KeysLang = keyof TableHeadings;
 
+// type SalaryWithoutCurrentLng = Omit<SalaryInit, "currentLanguage">
+// type SalaryWithCorrectLng  =SalaryWithoutCurrentLng|{currentLanguage:KeysLang}
+
 // TS PICK & OMIT EXAMPLE:
 
-//  type Payload = {
+// type Payload = {
 //   extraHours: number;
 //   Month: number;
 //   Year: number;
 // };
+// // remove written keys
+// type removeField = Omit<Payload, "Month" | "Year">;
+// const rem: removeField = {extraHours:0};
 
-// type removeField = Omit<Payload, 'Month'|'Year'>
+// // save only written keys
+// type addField = Pick<Payload, "extraHours"> & {
+//   salary: number;
+// };
+// const pk: addField = { extraHours: 0, salary: 5 };
 
-// type addField = Pick<Payload, 'extraHours'>&{salary:number} // left extraHours and add salary
+// type RemoveKindField<SalaryInit> = {
+//   [Property in keyof SalaryInit as Exclude<
+//     Property,
+//     "currentLanguage"
+//   >]: string;
+// };
 
 // export type Entries<T> = {
 //   [K in keyof T]: [K, T[K]];

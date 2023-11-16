@@ -46,7 +46,6 @@ export const SALARY_KEYS = Object.keys(
 ) as KeysSalaryInit[];
 
 export const NO_INPUTS = [
-  "currentLanguage",
   "nettoPerHours",
   "weekDays",
   "weekendDays",
@@ -56,15 +55,10 @@ export const NO_INPUTS = [
   "totalSalary",
 ];
 
-type RemoveKindField<SalaryInit> = {
-  [Property in keyof SalaryInit as Exclude<
-    Property,
-    "currentLanguage"
-  >]: string;
-};
-
-export const TABLE_HEADINGS = {
+export const SALARY_CONTENT = {
   UA: {
+    header: "Зарплата",
+    changeLanguage: "Мова",
     year: "Рік",
     month: "Місяць",
     salaryRate: "Ставка, zł/g",
@@ -88,6 +82,8 @@ export const TABLE_HEADINGS = {
     totalSalary: "ЗП вся",
   },
   EN: {
+    header: "Salary",
+    changeLanguage: "Language",
     year: "Year",
     month: "Month",
     salaryRate: "Salary rate",
@@ -111,6 +107,8 @@ export const TABLE_HEADINGS = {
     totalSalary: "Total salary",
   },
   PL: {
+    header: "Wyplata",
+    changeLanguage: "Język",
     year: "Rok",
     month: "Miesiąc",
     salaryRate: "Stawka, zł/g",
@@ -135,6 +133,6 @@ export const TABLE_HEADINGS = {
   },
 };
 
-export const ALL_ALCO_CONTENT = Object.keys(
-  TABLE_HEADINGS
+export const ALL_LNGS = Object.keys(
+  SALARY_CONTENT
 ) as KeysLang[];

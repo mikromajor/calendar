@@ -3,7 +3,6 @@ import {
   DISPLAY_LINE,
   ALCO_CONTENT,
 } from "../../store/reducer/constants/alcoConstants";
-import { LgsName } from "../../store/reducer/types/alcoTypes";
 
 export const Display = () => {
   const alcoState = useAppSelector(
