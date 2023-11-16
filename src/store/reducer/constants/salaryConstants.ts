@@ -135,8 +135,6 @@ export const TABLE_HEADINGS = {
   },
 };
 
-const ALL_LANGS: KeysLang[] = [];
-for (let objLg of Object.keys(TABLE_HEADINGS)) {
-  ALL_LANGS.push(objLg as KeysLang);
-}
-export { ALL_LANGS };
+export const ALL_ALCO_CONTENT = Object.keys(
+  TABLE_HEADINGS
+) as KeysLang[];

@@ -7,10 +7,6 @@ export type SalaryInit = typeof SALARY_INIT;
 
 export type KeysSalaryInit = keyof SalaryInit;
 
-export type Entries<T> = {
-  [K in keyof T]: [K, T[K]];
-}[keyof T][]; // how does it work?
-
 export type PayloadType = {
   month?: number;
   year?: number;
@@ -48,3 +44,7 @@ export type KeysLang = keyof TableHeadings;
 // type removeField = Omit<Payload, 'Month'|'Year'>
 
 // type addField = Pick<Payload, 'extraHours'>&{salary:number} // left extraHours and add salary
+
+// export type Entries<T> = {
+//   [K in keyof T]: [K, T[K]];
+// }[keyof T][]; // how does it work?

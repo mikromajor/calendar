@@ -1,10 +1,12 @@
 import {
   INIT_ALCO_STATE,
-  LANGS,
+  ALCO_CONTENT,
   INIT_MONTH_DATA,
 } from "../constants/alcoConstants";
 
 type MonthData = typeof INIT_MONTH_DATA;
+export type LgsName = keyof typeof ALCO_CONTENT;
+
 export type AlcoState = {
   currentYear: string;
   currentMonth: string;
@@ -21,7 +23,7 @@ export type AlcoState = {
   currentIndex: number;
   monthsData: MonthData[];
 
-  currentLang: "EN" | "PL" | "UA";
+  currentLang: LgsName;
 };
 
 export type StateKeys = keyof AlcoState;
@@ -36,5 +38,3 @@ export type Language = {
 };
 
 export type KeysLang = keyof Language;
-
-export type LgsName = keyof typeof LANGS;

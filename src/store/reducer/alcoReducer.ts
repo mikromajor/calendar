@@ -14,7 +14,7 @@ import {
 } from "./alcoHandlers";
 import { LgsName } from "./types/alcoTypes";
 
-const store =tryStorageData(INIT_ALCO_STATE.currentYear);
+const store = tryStorageData(INIT_ALCO_STATE.currentYear);
 
 export const alcoReducer = createSlice({
   name: "alcoState",

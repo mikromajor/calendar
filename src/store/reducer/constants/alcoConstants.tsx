@@ -38,7 +38,7 @@ export const DISPLAY_LINE: KeysLang[] = [
   "sumEthanolPerYear",
 ];
 
-export const LANGS = {
+export const ALCO_CONTENT = {
   PL: {
     lblLang: "Zmień jęnzyk",
     lblMonth: "Wybierz miesiąc",
@@ -88,8 +88,6 @@ export const LANGS = {
   },
 };
 
-const ALL_LANGS: LgsName[] = [];
-for (let objLg of Object.keys(LANGS)) {
-  ALL_LANGS.push(objLg as LgsName);
-}
-export { ALL_LANGS };
+export const ALL_ALCO_CONTENT = Object.keys(
+  ALCO_CONTENT
+) as LgsName[];
