@@ -1,4 +1,4 @@
-import { KeysLang } from "../../store/reducer/types/salaryTypes";
+import { Langs } from "../../store/reducer/types/salaryTypes";
 import {
   useAppSelector,
   useAppDispatch,
@@ -8,7 +8,7 @@ import {
   SALARY_CONTENT,
   NO_INPUTS,
   SALARY_KEYS,
-  ALL_LNGS,
+  LANGS,
 } from "../../store/reducer/constants/salaryConstants";
 import { salaryActions } from "../../store/reducer/salaryReducer";
 
@@ -21,8 +21,7 @@ export const Salary = () => {
   const tableRows: JSX.Element[] = [];
   let td: JSX.Element;
   let th: JSX.Element;
-  const language =
-    salaryReducer.currentLanguage as KeysLang;
+  const language = salaryReducer.currentLanguage;
 
   SALARY_KEYS.forEach((key, i) => {
     if (key !== "currentLanguage") {
@@ -44,13 +43,13 @@ export const Salary = () => {
     );
   });
 
-  const Options = ALL_LNGS.map((lng, i) => (
+  const Options = LANGS.map((lng, i) => (
     <option key={lng + i} value={lng}>
       {lng}
     </option>
   ));
 
-  const langsRow = (
+  const LangsRow = (
     <tr>
       <th>{SALARY_CONTENT[language].changeLanguage}</th>
       <td>
@@ -59,9 +58,7 @@ export const Salary = () => {
           defaultValue={language}
           onChange={(e) => {
             dispatch(
-              changeLanguage(
-                e.currentTarget.value as KeysLang
-              )
+              changeLanguage(e.currentTarget.value as Langs)
             );
           }}
         >
@@ -76,7 +73,7 @@ export const Salary = () => {
       <table>
         <caption>{SALARY_CONTENT[language].header}</caption>
         <tbody>
-          {langsRow}
+          {LangsRow}
           {tableRows}
         </tbody>
       </table>
