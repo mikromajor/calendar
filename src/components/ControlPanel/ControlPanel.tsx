@@ -20,9 +20,13 @@ export const ControlPanel = () => {
     currentYear,
     percentDrunk,
     volumeDrunks,
-    currentLang,
   } = useAppSelector((state) => state.alcoReducer);
-
+  //crutches for previous version
+  let currentLang = useAppSelector((state) =>
+    !!state.alcoReducer?.currentLang
+      ? state.alcoReducer.currentLang
+      : "EN"
+  );
   const {
     changeVolumeDrunk,
     changePercentDrunk,
