@@ -8,7 +8,11 @@ export const Display = () => {
   const alcoState = useAppSelector(
     (state) => state.alcoReducer
   );
-  const lang = alcoState.currentLang;
+
+  //crutches for previous version
+  const lang = !!alcoState.currentLang
+    ? alcoState.currentLang
+    : "EN";
 
   const trs = DISPLAY_LINE.map((key, i) => (
     <tr key={key + i}>
