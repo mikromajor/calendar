@@ -10,6 +10,9 @@ export const AlcoCalendar = () => {
   );
 };
 
+// did language crutches for AlcoCalendar
+// hope it's do compatibility with  previous version
+
 //  TODO:
 // write a simple calculator with the next fields that you can change
 // volume of liquid drunk
