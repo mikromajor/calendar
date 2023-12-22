@@ -12,7 +12,7 @@ export const Cleaner = () => {
         onClick={() => dispatch(clearStorageForYear())}
       >
         {" "}
-        Clean alco storage for current year
+        Delete alcohol history for the current year
       </button>
     </div>
   );
