@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/useful_calculators/static/css/main.f2421afc.css",
+    "main.js": "/useful_calculators/static/js/main.3d39823f.js",
+    "index.html": "/useful_calculators/index.html",
+    "main.f2421afc.css.map": "/useful_calculators/static/css/main.f2421afc.css.map",
+    "main.3d39823f.js.map": "/useful_calculators/static/js/main.3d39823f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f2421afc.css",
+    "static/js/main.3d39823f.js"
+  ]
+}
