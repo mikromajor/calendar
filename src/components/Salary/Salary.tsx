@@ -11,7 +11,7 @@ export const Salary = () => {
     (state) => state.salaryReducer
   );
 
-  const TableRows: JSX.Element[] = [];
+  const tableRows: JSX.Element[] = [];
   let td: JSX.Element;
   let th: JSX.Element;
   const language = salaryReducer.currentLanguage;
@@ -28,7 +28,7 @@ export const Salary = () => {
       th = <th>{SALARY_CONTENT?.[language]?.[key]}</th>;
     }
 
-    TableRows.push(
+    tableRows.push(
       <tr key={String(i) + key}>
         {th}
         {td}
@@ -42,7 +42,7 @@ export const Salary = () => {
         <caption>{SALARY_CONTENT[language].header}</caption>
         <tbody>
           <LangsRow />
-          {TableRows}
+          {tableRows}
         </tbody>
       </table>
     </div>

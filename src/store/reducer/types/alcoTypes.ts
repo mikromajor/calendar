@@ -37,4 +37,4 @@ export type Language = {
   sumEthanolPerYear: string;
 };
 
-export type KeysLang = keyof Language;
+export type Langs = keyof Language;

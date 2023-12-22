@@ -47,7 +47,7 @@ export const ControlPanel = () => {
         <label id='lblLang'>
           {ALCO_CONTENT[currentLang].lblLang}
           <select
-            id='languages'
+            id='LANGS'
             defaultValue={currentLang}
             onChange={(e) => {
               dispatch(

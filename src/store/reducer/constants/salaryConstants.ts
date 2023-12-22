@@ -1,11 +1,11 @@
 // нельзя помещать ф-и в стeйт
 import {
   KeysSalaryInit,
-  KeysLang,
+  Langs,
   SalaryInit,
 } from "../types/salaryTypes";
 
-export const SALARY_INIT = {
+export const SALARY_INIT: SalaryInit = {
   currentLanguage: "UA",
   year: 2023,
   month: 1,
@@ -63,20 +63,20 @@ export const SALARY_CONTENT = {
     month: "Місяць",
     salaryRate: "Ставка, zł/g",
     nettoPerHours: "Ставка нетто, zł/g",
-    taxRate: "Коефіц. податокий",
-    premiumRate: "Коеф. премії до ставки, %",
-    premiumUzn: "Премія стала, zł нетто",
-    extraHours_50: "К-ть понаднорм. з оплатою +50%",
-    extraHours_100: "К-ть понаднорм. з оплатою +100%",
-    extraHours_120: "К-ть понаднорм. з оплатою +120%",
-    sickLeaveWeekDays: "К-ть хворобових в будні",
-    sickLeaveWeekendDays: "К-ть хворобових в вихідні",
-    usedVacation: "Відпустка, дн",
-    bloodDonation: "Кроводавство в будні, дн",
-    holidays: "К-ть святкових днів",
-    weekDays: "К-ть робочих днів",
-    weekendDays: "К-ть вихідних днів",
-    standardWorkHours: "К-ть робочих годин",
+    taxRate: "Коефіц. податокий,[0-1]",
+    premiumRate: "Коеф. премії до ставки, 30%=[1.3]",
+    premiumUzn: "Премія стала, zł nt",
+    extraHours_50: "К-ть годин понаднорм. з оплатою +50%",
+    extraHours_100: "К-ть годин понаднорм. з оплатою +100%",
+    extraHours_120: "К-ть годин понаднорм. з оплатою +120%",
+    sickLeaveWeekDays: "К-ть днів хворобових в будні",
+    sickLeaveWeekendDays: "К-ть днів хворобових в вихідні",
+    usedVacation: "Використано днів відпустки",
+    bloodDonation: "Кроводавство, днів в будні",
+    holidays: "К-ть святкових днів в місяці",
+    weekDays: "К-ть робочих днів в місяці",
+    weekendDays: "К-ть вихідних днів в місяці",
+    standardWorkHours: "К-ть робочих годин в місяці",
     standardSalary: "ЗП нормова",
     extraSalary: "ЗП понаднормова",
     totalSalary: "ЗП вся",
@@ -133,6 +133,4 @@ export const SALARY_CONTENT = {
   },
 };
 
-export const ALL_LNGS = Object.keys(
-  SALARY_CONTENT
-) as KeysLang[];
+export const LANGS = Object.keys(SALARY_CONTENT) as Langs[];

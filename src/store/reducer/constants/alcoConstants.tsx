@@ -1,6 +1,6 @@
 import {
   AlcoState,
-  KeysLang,
+  Langs,
   LgsName,
 } from "../types/alcoTypes";
 
@@ -29,7 +29,7 @@ export const INIT_ALCO_STATE: AlcoState = {
   currentLang: "EN",
 };
 
-export const DISPLAY_LINE: KeysLang[] = [
+export const DISPLAY_LINE: Langs[] = [
   "currentYear",
   "currentMonth",
   "sumVodkaPerMonth",
