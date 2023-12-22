@@ -14,7 +14,9 @@ export const Salary = () => {
   const tableRows: JSX.Element[] = [];
   let td: JSX.Element;
   let th: JSX.Element;
-  const language = salaryReducer.currentLanguage;
+  const language = !!salaryReducer?.currentLanguage
+    ? salaryReducer.currentLanguage
+    : "EN"; //crutches for the previous version
 
   SALARY_KEYS.forEach((key, i) => {
     if (key !== "currentLanguage") {
