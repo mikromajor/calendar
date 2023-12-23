@@ -9,7 +9,7 @@ export const Display = () => {
     (state) => state.alcoReducer
   );
 
-  //crutches for previous version
+  // add compatibility V1 & V2
   const lang = !!alcoState.currentLang
     ? alcoState.currentLang
     : "EN";

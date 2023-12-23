@@ -21,7 +21,7 @@ export const ControlPanel = () => {
     percentDrunk,
     volumeDrunks,
   } = useAppSelector((state) => state.alcoReducer);
-  //crutches for previous version
+  // add compatibility V1 & V2
   let currentLang = useAppSelector((state) =>
     !!state.alcoReducer?.currentLang
       ? state.alcoReducer.currentLang

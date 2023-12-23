@@ -10,7 +10,7 @@ import { Langs } from "../../../../store/reducer/types/salaryTypes";
 import { salaryActions } from "../../../../store/reducer/salaryReducer";
 
 export const LangsRow = () => {
-  // compatibility V1 & V2
+  // add compatibility V1 & V2
   const language = useAppSelector((state) =>
     !!state.salaryReducer?.currentLanguage
       ? state.salaryReducer?.currentLanguage

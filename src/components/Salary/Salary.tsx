@@ -14,7 +14,7 @@ export const Salary = () => {
   const tableRows: JSX.Element[] = [];
   let td: JSX.Element;
   let th: JSX.Element;
-  // compatibility V1 & V2
+  // add compatibility V1 & V2
   const language = !!salaryReducer?.currentLanguage
     ? salaryReducer.currentLanguage
     : "EN";
