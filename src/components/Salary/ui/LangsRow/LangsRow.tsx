@@ -11,41 +11,37 @@ import { salaryActions } from "../../../../store/reducer/salaryReducer";
 
 export const LangsRow = () => {
   // compatibility V1 & V2
-  const language = useAppSelector(
-    (state) => state.salaryReducer?.currentLanguage
+  const language = useAppSelector((state) =>
+    !!state.salaryReducer?.currentLanguage
+      ? state.salaryReducer?.currentLanguage
+      : "EN"
   );
   const dispatch = useAppDispatch();
-  const isNewVersion = !!language;
-  if (isNewVersion) {
-    const { changeLanguage } = salaryActions;
 
-    const Options = LANGS.map((lng, i) => (
-      <option key={lng + i} value={lng}>
-        {lng}
-      </option>
-    ));
+  const { changeLanguage } = salaryActions;
 
-    return (
-      <tr>
-        <th>{SALARY_CONTENT[language].changeLanguage}</th>
-        <td>
-          {" "}
-          <select
-            defaultValue={language}
-            onChange={(e) => {
-              dispatch(
-                changeLanguage(
-                  e.currentTarget.value as Langs
-                )
-              );
-            }}
-          >
-            {Options}
-          </select>
-        </td>
-      </tr>
-    );
-  } else {
-    return <></>;
-  }
+  const Options = LANGS.map((lng, i) => (
+    <option key={lng + i} value={lng}>
+      {lng}
+    </option>
+  ));
+
+  return (
+    <tr>
+      <th>{SALARY_CONTENT[language].changeLanguage}</th>
+      <td>
+        {" "}
+        <select
+          defaultValue={language}
+          onChange={(e) => {
+            dispatch(
+              changeLanguage(e.currentTarget.value as Langs)
+            );
+          }}
+        >
+          {Options}
+        </select>
+      </td>
+    </tr>
+  );
 };
