@@ -10,7 +10,7 @@ export const Display = () => {
   );
 
   // add compatibility V1 & V2
-  const lang = !!alcoState.currentLang
+  const lang = !!alcoState?.currentLang
     ? alcoState.currentLang
     : "EN";
 
