@@ -22,10 +22,9 @@ export const ControlPanel = () => {
     volumeDrunks,
   } = useAppSelector((state) => state.alcoReducer);
   // add compatibility V1 & V2
-  let currentLang = useAppSelector((state) =>
-    !!state.alcoReducer?.currentLang
-      ? state.alcoReducer.currentLang
-      : "EN"
+  let currentLang = useAppSelector(
+    (state) =>
+      state.alcoReducer.currentLang.toUpperCase() as LgsName
   );
   const {
     changeVolumeDrunk,
