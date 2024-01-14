@@ -8,10 +8,11 @@ export const changeDate = (
   state: SalaryInit,
   { year, month }: PayloadType
 ) => {
-  if (checkMonth(month)) {
-    state.month = month;
-  }
-  if (checkYear(year)) {
-    state.year = year;
-  }
+  state.month = checkMonth(month)
+    ? month
+    : new Date().getUTCMonth() + 1;
+
+  state.year = checkYear(year)
+    ? year
+    : new Date().getFullYear();
 };
