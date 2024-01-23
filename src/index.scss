@@ -52,8 +52,9 @@ code {
 
   &-inlineButtons {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-around;
+
     margin: 3px;
   }
 
