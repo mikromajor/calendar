@@ -7,7 +7,7 @@ import { SALARY_INIT } from "./constants/salaryConstants";
 import { PayloadType, Langs } from "./types/salaryTypes";
 import {
   changeDate,
-  seekSavedSalaryInStorage,
+  updateStateUsingStore,
   calculateSalary,
   getKey,
   saveSalaryInStorage,
@@ -29,7 +29,7 @@ export const salaryReducer = createSlice({
       action: PayloadAction<PayloadType>
     ) => {
       changeDate(state, action.payload);
-      seekSavedSalaryInStorage(state);
+      updateStateUsingStore(state);
     },
     changeLanguage: (
       state,
