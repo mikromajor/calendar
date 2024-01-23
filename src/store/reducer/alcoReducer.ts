@@ -11,6 +11,7 @@ import {
   saveStateInStorage,
   setDecimal,
   createKey,
+  trimFirstZero,
 } from "./alcoHandlers";
 import { LgsName } from "./types/alcoTypes";
 
@@ -30,7 +31,7 @@ export const alcoReducer = createSlice({
       state,
       action: PayloadAction<string>
     ) => {
-      const volume = action.payload;
+      const volume = trimFirstZero(action.payload);
 
       state.volumeDrunks = Number(volume);
     },
@@ -83,26 +84,26 @@ export const alcoReducer = createSlice({
       if (volumeDrunks && percentDrunk) {
         ethanol = setDecimal(
           (volumeDrunks * percentDrunk) / 100,
-          2
+          3
         );
 
         state.sumEthanolPerMonth = setDecimal(
           state.sumEthanolPerMonth + ethanol,
-          2
+          3
         );
 
         state.sumEthanolPerYear = setDecimal(
           ethanol + state.sumEthanolPerYear,
-          2
+          3
         );
         state.sumVodkaPerMonth = setDecimal(
           state.sumEthanolPerMonth * 2.4,
-          2
+          3
         );
 
         state.sumVodkaPerYear = setDecimal(
           state.sumEthanolPerYear * 2.4,
-          2
+          3
         );
 
         state.monthsData[state.currentIndex] = {
