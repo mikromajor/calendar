@@ -10,8 +10,10 @@ export const INIT_MONTH_DATA = {
   sumVodkaPerMonth: 0,
 };
 
+const currentYear = new Date().getFullYear().toString();
+
 export const INIT_ALCO_STATE: AlcoState = {
-  currentYear: "2023",
+  currentYear: currentYear,
   currentMonth: "1",
 
   sumEthanolPerYear: 0,

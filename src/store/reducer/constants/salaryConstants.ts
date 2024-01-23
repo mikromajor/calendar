@@ -1,5 +1,4 @@
 // нельзя помещать ф-и в стeйт
-import { log } from "console";
 import {
   KeysSalaryInit,
   Langs,
