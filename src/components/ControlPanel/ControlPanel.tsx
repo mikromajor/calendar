@@ -92,8 +92,6 @@ export const ControlPanel = () => {
           <input
             name='changeVolumeDrunk'
             type='number'
-            min='-100'
-            max='100'
             value={volumeDrunks}
             onChange={(e) =>
               dispatch(changeVolumeDrunk(e.target.value))
