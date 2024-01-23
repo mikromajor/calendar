@@ -68,7 +68,7 @@ export const ControlPanel = () => {
           <input
             name='dataForMonth'
             type='number'
-            min='1'
+            min='0'
             max='12'
             value={currentMonth}
             onChange={(e) =>
@@ -81,8 +81,6 @@ export const ControlPanel = () => {
           <input
             name='dataForYear'
             type='number'
-            min='2022'
-            max='2050'
             value={currentYear}
             onChange={(e) =>
               dispatch(changeYear(e.target.value))
