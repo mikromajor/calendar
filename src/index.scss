@@ -37,16 +37,21 @@ code {
 
     label {
       margin: 5px;
+      max-width: 80px;
     }
-    input {
-      // margin: 5px;
+    input,
+    select {
+      display: flex;
+      // line-height: 1rem;
+      max-width: 50px;
       border-radius: 3px;
+    }
+    select {
+      display: flex;
+      height: 22px;
     }
     label:hover {
       color: blue;
-    }
-    select {
-      margin: 5px;
     }
   }
 
