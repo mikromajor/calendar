@@ -1,13 +1,16 @@
 // нельзя помещать ф-и в стeйт
+import { log } from "console";
 import {
   KeysSalaryInit,
   Langs,
   SalaryInit,
 } from "../types/salaryTypes";
 
+const currentYear = new Date().getFullYear();
+
 export const SALARY_INIT: SalaryInit = {
   currentLanguage: "UA",
-  year: 2023,
+  year: currentYear,
   month: 1,
   salaryRate: 0,
   premiumRate: 1,
