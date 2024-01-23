@@ -32,16 +32,22 @@
     // min-height: 200px;
     border-radius: 5px;
   }
-
+  select {
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+    background-color: rgb(251, 255, 133);
+  }
   input {
     background-color: rgb(251, 255, 133);
-    width: 50px;
+    width: 60px;
     height: 25px;
     margin: 0;
-    padding: 0 5px;
+    // padding: 0 0 0 10px;
     border: none;
     border-radius: 5px;
     text-align: center;
+    font-size: 1em;
   }
   td {
     text-align: center;

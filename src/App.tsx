@@ -5,6 +5,7 @@ import { AlcoCalendar, Salary } from "./components";
 //2-добавить значения величин в контекст
 //3-исправить перевод контекста
 //4-изменить коэффициенты на боле понятные пользователю
+//5-relocate to vite or ...
 
 function App() {
   return (
