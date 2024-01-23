@@ -11,24 +11,25 @@ import {
 } from "../../store/reducer/constants/alcoConstants";
 import { LgsName } from "../../store/reducer/types/alcoTypes";
 // import { asyncAdder } from "../../store/api/asyncAdder";
+import { useState } from "react";
 
 export const ControlPanel = () => {
+  const [volumeDrank, setVolumeDrank] = useState("500");
+  const [percent, setPercent] = useState("5");
+
   const dispatch = useAppDispatch();
 
-  const {
-    currentMonth,
-    currentYear,
-    percentDrunk,
-    volumeDrunks,
-  } = useAppSelector((state) => state.alcoReducer);
+  const { currentMonth, currentYear } = useAppSelector(
+    (state) => state.alcoReducer
+  );
   // add compatibility V1 & V2
   let currentLang = useAppSelector(
     (state) =>
       state.alcoReducer.currentLang.toUpperCase() as LgsName
   );
   const {
-    changeVolumeDrunk,
-    changePercentDrunk,
+    // changeVolumeDrunk,
+    // changepercent,
     calculating,
     changeMonth,
     changeYear,
@@ -92,23 +93,19 @@ export const ControlPanel = () => {
           <input
             name='changeVolumeDrunk'
             type='number'
-            value={volumeDrunks}
-            onChange={(e) =>
-              dispatch(changeVolumeDrunk(e.target.value))
-            }
+            value={volumeDrank}
+            onChange={(e) => setVolumeDrank(e.target.value)}
           />
         </label>
         <label id='lblPercent'>
           {ALCO_CONTENT[currentLang].lblPercent}
           <input
-            name='changePercentDrunk'
+            name='changepercent'
             type='number'
             min='0'
             max='100'
-            value={percentDrunk}
-            onChange={(e) =>
-              dispatch(changePercentDrunk(e.target.value))
-            }
+            value={percent}
+            onChange={(e) => setPercent(e.target.value)}
           />
         </label>
       </div>
@@ -116,7 +113,9 @@ export const ControlPanel = () => {
         <Button
           id='btnAdd'
           variant='contained'
-          onClick={(e) => dispatch(calculating())}
+          onClick={(e) =>
+            dispatch(calculating([volumeDrank, percent]))
+          }
         >
           {ALCO_CONTENT[currentLang].btnAdd}
         </Button>

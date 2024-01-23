@@ -17,8 +17,8 @@ export type AlcoState = {
   sumVodkaPerMonth: number;
   sumVodkaPerYear: number;
 
-  volumeDrunks: number;
-  percentDrunk: number;
+  volumeDrank: number;
+  percent: number;
 
   currentIndex: number;
   monthsData: MonthData[];

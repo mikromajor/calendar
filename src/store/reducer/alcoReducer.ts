@@ -84,39 +84,38 @@ export const alcoReducer = createSlice({
       action: PayloadAction<string[]>
     ) => {
       const [volumeDrank, percent] = action.payload;
+      const vol = Number(volumeDrank);
+      const per = Number(percent);
       let ethanol = 0;
 
-      // if (volumeDrank && percent) {
-      //   ethanol = setDecimal(
-      //     (volumeDrank * percent) / 100,
-      //     3
-      //   );
+      if (vol && per) {
+        ethanol = setDecimal((vol * per) / 100, 3);
 
-      //   state.sumEthanolPerMonth = setDecimal(
-      //     state.sumEthanolPerMonth + ethanol,
-      //     3
-      //   );
+        state.sumEthanolPerMonth = setDecimal(
+          state.sumEthanolPerMonth + ethanol,
+          3
+        );
 
-      //   state.sumEthanolPerYear = setDecimal(
-      //     ethanol + state.sumEthanolPerYear,
-      //     3
-      //   );
-      //   state.sumVodkaPerMonth = setDecimal(
-      //     state.sumEthanolPerMonth * 2.4,
-      //     3
-      //   );
+        state.sumEthanolPerYear = setDecimal(
+          ethanol + state.sumEthanolPerYear,
+          3
+        );
+        state.sumVodkaPerMonth = setDecimal(
+          state.sumEthanolPerMonth * 2.4,
+          3
+        );
 
-      //   state.sumVodkaPerYear = setDecimal(
-      //     state.sumEthanolPerYear * 2.4,
-      //     3
-      //   );
+        state.sumVodkaPerYear = setDecimal(
+          state.sumEthanolPerYear * 2.4,
+          3
+        );
 
-      //   state.monthsData[state.currentIndex] = {
-      //     month: state.currentMonth,
-      //     sumEthanolPerMonth: state.sumEthanolPerMonth,
-      //     sumVodkaPerMonth: state.sumVodkaPerMonth,
-      //   };
-      // }
+        state.monthsData[state.currentIndex] = {
+          month: state.currentMonth,
+          sumEthanolPerMonth: state.sumEthanolPerMonth,
+          sumVodkaPerMonth: state.sumVodkaPerMonth,
+        };
+      }
       saveStateInStorage(state);
     },
     clearStorageForYear: (state) => {

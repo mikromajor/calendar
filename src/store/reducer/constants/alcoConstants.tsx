@@ -22,8 +22,8 @@ export const INIT_ALCO_STATE: AlcoState = {
   sumVodkaPerMonth: 0,
   sumVodkaPerYear: 0,
 
-  volumeDrunks: 0,
-  percentDrunk: 5,
+  volumeDrank: 0,
+  percent: 5,
 
   currentIndex: 1,
   monthsData: [INIT_MONTH_DATA],

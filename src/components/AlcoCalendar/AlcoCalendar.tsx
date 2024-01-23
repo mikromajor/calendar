@@ -31,8 +31,8 @@ export const AlcoCalendar = () => {
 
 // export const INIT_ALCO_STATE = {
 //   year: "2023",
-//   volumeDrunks: 0,
-//   percentDrunk: 5,
+//   volumeDrank: 0,
+//   percent: 5,
 //   months: [{ month: "1", ethanol: 0 }],
 // };
 
