@@ -56,7 +56,7 @@ export const ALCO_CONTENT = {
       "Ilość spożytego spirytusu za miesiąc, ml",
     sumVodkaPerYear: "Ilość spożytej wódki za ten rok, ml ",
     sumEthanolPerYear:
-      " Iloćś sporzytego spirytusu za ten rok, ml",
+      " Ilość sporzytego spirytusu za ten rok, ml",
   },
   EN: {
     lblLang: "Change language:",
