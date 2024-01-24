@@ -1,3 +1,12 @@
+%headerStyle {
+  text-align: center;
+  color: rgb(26, 100, 219);
+  font-size: 40px;
+  font-weight: 600;
+  text-shadow: 3px 3px 3px #b2b2b2;
+  //
+}
+
 .salary {
   display: flex;
   align-items: center;
@@ -12,11 +21,7 @@
   }
 
   caption {
-    text-align: center;
-    color: rgb(26, 100, 219);
-    font-size: 40px;
-    font-weight: 600;
-    text-shadow: 3px 3px 3px #b2b2b2;
+    @extend %headerStyle;
     margin-bottom: 10px;
   }
   tr {

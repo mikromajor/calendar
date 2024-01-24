@@ -1,15 +1,6 @@
 @import "./components/Salary/Salary.scss";
 @import "./components/Loader/Loader.scss";
 
-%headerStyle {
-  text-align: center;
-  color: rgb(26, 100, 219);
-  font-size: 40px;
-  font-weight: 600;
-  text-shadow: 3px 3px 3px #b2b2b2;
-  margin-bottom: 10px;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -32,6 +23,7 @@ code {
   //background-color: rgb(242, 242, 190);
   &-header {
     @extend %headerStyle;
+    margin: 0;
   }
   &-controlPanel {
     display: flex;
