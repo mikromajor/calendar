@@ -42,6 +42,7 @@ export const DISPLAY_LINE: Langs[] = [
 
 export const ALCO_CONTENT = {
   PL: {
+    displayHeader: "Wprowadź dane",
     lblLang: "Zmień jęnzyk",
     lblMonth: "Wybierz miesiąc",
     lblYear: "Wybierz rok",
@@ -49,8 +50,8 @@ export const ALCO_CONTENT = {
     lblPercent: "Procent wypitego, %",
     btnAdd: " Dodaj",
     caption: "Wypito w przeliczeniu",
-    currentYear: "Rok aktualny",
-    currentMonth: "Miesiąc aktualny",
+    currentYear: "Rok",
+    currentMonth: "Miesiąc",
     sumVodkaPerMonth: "Ilość spożytej wódki za miesiąc, ml",
     sumEthanolPerMonth:
       "Ilość spożytego spirytusu za miesiąc, ml",
@@ -59,6 +60,7 @@ export const ALCO_CONTENT = {
       " Ilość sporzytego spirytusu za ten rok, ml",
   },
   EN: {
+    displayHeader: "Enter the data",
     lblLang: "Change language:",
     lblMonth: "Select month",
     lblYear: "Select year",
@@ -75,6 +77,7 @@ export const ALCO_CONTENT = {
     sumEthanolPerYear: "Summary drunk ethanol per year, ml",
   },
   UA: {
+    displayHeader: "Введіть дані",
     lblLang: "Оберіть мову",
     lblMonth: "Виберіть місяць",
     lblYear: "Виберіть рік",
