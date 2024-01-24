@@ -42,7 +42,7 @@ export const DISPLAY_LINE: Langs[] = [
 
 export const ALCO_CONTENT = {
   PL: {
-    displayHeader: "Wprowadź dane",
+    controlPanelHeader: "Wprowadź dane",
     lblLang: "Zmień jęnzyk",
     lblMonth: "Wybierz miesiąc",
     lblYear: "Wybierz rok",
@@ -60,7 +60,7 @@ export const ALCO_CONTENT = {
       " Ilość sporzytego spirytusu za ten rok, ml",
   },
   EN: {
-    displayHeader: "Enter the data",
+    controlPanelHeader: "Enter the data",
     lblLang: "Change language:",
     lblMonth: "Select month",
     lblYear: "Select year",
@@ -77,7 +77,7 @@ export const ALCO_CONTENT = {
     sumEthanolPerYear: "Summary drunk ethanol per year, ml",
   },
   UA: {
-    displayHeader: "Введіть дані",
+    controlPanelHeader: "Введіть дані",
     lblLang: "Оберіть мову",
     lblMonth: "Виберіть місяць",
     lblYear: "Виберіть рік",
