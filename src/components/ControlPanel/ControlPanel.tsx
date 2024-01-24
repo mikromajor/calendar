@@ -47,8 +47,7 @@ export const ControlPanel = () => {
       className='calendar-controlPanel'
       data-testid='controlPanel'
     >
-      <h2>
-        {" "}
+      <h2 className='calendar-header'>
         {ALCO_CONTENT[currentLang].controlPanelHeader}
       </h2>
       <div className='calendar-inlineButtons'>
