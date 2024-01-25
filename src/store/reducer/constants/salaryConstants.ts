@@ -115,7 +115,7 @@ export const SALARY_CONTENT = {
     month: "Miesiąc",
     salaryRate: "Stawka brutto zł/g",
     nettoPerHours: "Stawka netto zł/g",
-    taxRate: "Odliczenia podatkowe i socjalne, %",
+    taxRate: "Potrąncenia składkowe i podatkowe, %",
     premiumRate: "Premia w procentach do stawki, %",
     premiumUzn: "Premia uznaniowa, brutto zł",
     extraHours_50: "Ilość nadgodzin z opłatą +50%, g",
