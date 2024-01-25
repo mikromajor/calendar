@@ -89,7 +89,7 @@ export const SALARY_CONTENT = {
     year: "Year",
     month: "Month",
     salaryRate: "Salary rate, gross zl/h",
-    nettoPerHours: "Net per hours, zl/h",
+    nettoPerHours: "Salary rate, net zl/h",
     taxRate: "Tax rate, %",
     premiumRate: "Premium rate, %",
     premiumUzn: "Premium const, gross zl",
