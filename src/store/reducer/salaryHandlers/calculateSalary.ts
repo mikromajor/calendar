@@ -75,7 +75,9 @@ export const calculateSalary = (
     (state.extraHours_120 = extraHours_120);
 
   state.nettoPerHours =
-    state.salaryRate * state.taxRate * state.premiumRate;
+    state.salaryRate *
+    (1 - state.taxRate / 100) *
+    (1 + state.premiumRate / 100);
 
   state.standardWorkHours = state.weekDays * 8;
 
