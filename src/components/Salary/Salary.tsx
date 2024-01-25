@@ -4,6 +4,7 @@ import {
   SALARY_CONTENT,
   NO_INPUTS,
   SALARY_KEYS,
+  SALARY_INIT,
 } from "../../store/reducer/constants/salaryConstants";
 
 export const Salary = () => {
@@ -17,7 +18,7 @@ export const Salary = () => {
   // add compatibility V1 & V2
   const language = !!salaryReducer?.currentLanguage
     ? salaryReducer.currentLanguage
-    : "EN";
+    : SALARY_INIT.currentLanguage;
 
   SALARY_KEYS.forEach((key, i) => {
     if (key !== "currentLanguage") {
