@@ -98,7 +98,7 @@ export const alcoReducer = createSlice({
 
         state.sumEthanolPerYear = setDecimal(
           ethanol + state.sumEthanolPerYear,
-          3
+          0
         );
         state.sumVodkaPerMonth = setDecimal(
           state.sumEthanolPerMonth * 2.5,
