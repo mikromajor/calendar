@@ -20,6 +20,7 @@ code {
   align-items: center;
   justify-content: center;
   font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
   //background-color: rgb(242, 242, 190);
   &-header {
     @extend %headerStyle;
@@ -47,7 +48,8 @@ code {
       display: flex;
       // line-height: 1rem;
       max-width: 50px;
-      border-radius: 3px;
+      border-radius: 5px;
+      font-size: 1rem;
     }
     select {
       display: flex;

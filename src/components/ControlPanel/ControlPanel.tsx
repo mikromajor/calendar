@@ -12,6 +12,7 @@ import {
 import { LgsName } from "../../store/reducer/types/alcoTypes";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
+import { trimFirstZero } from "../../store/reducer/alcoHandlers";
 
 export const ControlPanel = () => {
   const [volumeDrank, setVolumeDrank] = useState("500");
@@ -97,18 +98,22 @@ export const ControlPanel = () => {
             name='changeVolumeDrunk'
             type='number'
             value={volumeDrank}
-            onChange={(e) => setVolumeDrank(e.target.value)}
+            onChange={(e) =>
+              setVolumeDrank(trimFirstZero(e.target.value))
+            }
           />
         </label>
         <label id='lblPercent'>
           {ALCO_CONTENT[currentLang].lblPercent}
           <input
-            name='changepercent'
+            name='changePercent'
             type='number'
             min='0'
             max='100'
             value={percent}
-            onChange={(e) => setPercent(e.target.value)}
+            onChange={(e) =>
+              setPercent(trimFirstZero(e.target.value))
+            }
           />
         </label>
       </div>
