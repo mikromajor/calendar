@@ -11,7 +11,7 @@ import {
   saveStateInStorage,
   setDecimal,
   createKey,
-  trimFirstZero,
+  
 } from "./alcoHandlers";
 import { LgsName } from "./types/alcoTypes";
 
@@ -27,22 +27,6 @@ export const alcoReducer = createSlice({
     ) => {
       state.currentLang = action.payload;
     },
-
-    // changeVolumeDrunk: (
-    //   state,
-    //   action: PayloadAction<string>
-    // ) => {
-    //   const volume = trimFirstZero(action.payload);
-    //   console.log("volume", volume);
-    //   state.volumeDrank = Number(volume);
-    // },
-    // changepercent: (
-    //   state,
-    //   action: PayloadAction<string>
-    // ) => {
-    //   const percent = action.payload;
-    //   state.percent = Number(percent);
-    // },
 
     changeMonth: (state, action: PayloadAction<string>) => {
       const month = action.payload;

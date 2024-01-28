@@ -9,7 +9,7 @@ export { changeDate } from "./changeDate";
 export { saveSalaryInStorage } from "./saveSalaryInStorage";
 export { checkMonth } from "./checkMonth";
 export { checkYear } from "./checkYear";
-export { isNumberMoreZero } from "./isNumberMoreZero";
+export { isNum } from "./isNum";
 export { determineVacationPayCoefficient } from "./determineVacationPayCoefficient";
 export { determExtraSalary } from "./determExtraSalary";
 export { determStandardSalary } from "./determStandardSalary";

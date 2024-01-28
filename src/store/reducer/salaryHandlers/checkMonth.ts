@@ -1,3 +1,5 @@
+import { isNum } from ".";
 export const checkMonth = (
   month?: number
-): month is number => !!month && month > 0 && month < 13;
+): month is number =>
+  isNum(month) && month > -1 && month < 13;
