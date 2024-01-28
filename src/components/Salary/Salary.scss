@@ -28,6 +28,9 @@
     padding: 10px;
     border: 2px solid grey;
     border-radius: 5px;
+    &:hover {
+      outline: 2px solid rgb(7, 95, 7);
+    }
   }
   th {
     // writing-mode: vertical-lr;
@@ -39,7 +42,6 @@
   td {
     text-align: center;
     border: 2px solid grey;
-
     border-radius: 5px;
     padding: 0;
     min-height: 24px; //необхідно для того щоб нащадок "input"
@@ -51,8 +53,12 @@
   select {
     height: 100%;
     width: 100%;
-    border-radius: 3px;
+    border-radius: 5px;
+    border: none;
     background-color: rgb(251, 255, 133);
+    &:hover {
+      background-color: rgb(224, 232, 0);
+    }
   }
   input {
     background-color: rgb(251, 255, 133);
@@ -63,7 +69,7 @@
     border-radius: 5px;
     text-align: center;
     font-size: 1rem;
-    :hover {
+    &:hover {
       background-color: rgb(224, 232, 0);
     }
   }
