@@ -33,6 +33,7 @@ export const Input = ({ payloadsKey }: InputProps) => {
     <input
       id={payloadsKey}
       type='number'
+      autoComplete='off'
       onChange={handlerInputChange}
       value={String(salaryReducer[payloadsKey])}
     />

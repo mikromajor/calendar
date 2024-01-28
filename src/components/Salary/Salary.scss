@@ -6,6 +6,7 @@
   text-shadow: 3px 3px 3px #b2b2b2;
   //
 }
+$tdSize: 1rem;
 
 .salary {
   display: flex;
@@ -64,6 +65,7 @@
     border-radius: 5px;
     padding: 0.5rem 0;
     border: none;
+    font-size: $tdSize;
     background-color: rgb(251, 255, 133);
     &:hover {
       background-color: rgb(224, 232, 0);
@@ -77,14 +79,10 @@
     border: none;
     border-radius: 5px;
     text-align: center;
-    font-size: 1rem;
+    font-size: $tdSize;
     &:hover {
       background-color: rgb(224, 232, 0);
     }
-    &:is(:-webkit-autofill, :-webkit-autofill:focus) {
-      transition: background-color 600000s 0s,
-        color 600000s 0s;
-    } //fix adding needless autofill color
   }
   // &-all {
   //   background-color: rgb(126, 204, 126);
