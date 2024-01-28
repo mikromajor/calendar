@@ -28,10 +28,15 @@ export const LangsRow = () => {
 
   return (
     <tr>
-      <th>{SALARY_CONTENT[language].changeLanguage}</th>
+      <th>
+        <label htmlFor='lang'>
+          {SALARY_CONTENT[language].changeLanguage}
+        </label>
+      </th>
       <td>
         {" "}
         <select
+          id={"lang"}
           defaultValue={language}
           onChange={(e) => {
             dispatch(

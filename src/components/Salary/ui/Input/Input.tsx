@@ -32,7 +32,6 @@ export const Input = ({ payloadsKey }: InputProps) => {
   return (
     <input
       id={payloadsKey}
-      placeholder={payloadsKey}
       type='number'
       onChange={handlerInputChange}
       value={String(salaryReducer[payloadsKey])}

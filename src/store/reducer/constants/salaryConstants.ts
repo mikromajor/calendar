@@ -6,11 +6,12 @@ import {
 } from "../types/salaryTypes";
 
 const currentYear = new Date().getFullYear();
+const currentMonth = new Date().getMonth() + 1;
 
 export const SALARY_INIT: SalaryInit = {
   currentLanguage: "UA",
   year: currentYear,
-  month: 1,
+  month: currentMonth,
   salaryRate: 0,
   premiumRate: 0,
   premiumUzn: 0,
