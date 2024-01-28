@@ -44,11 +44,10 @@
     background-color: rgb(251, 255, 133);
   }
   input {
+    box-sizing: border-box;
     background-color: rgb(251, 255, 133);
     width: 60px;
-    height: 25px;
     margin: 0;
-    // padding: 0 0 0 10px;
     border: none;
     border-radius: 5px;
     text-align: center;
@@ -57,14 +56,17 @@
   td {
     text-align: center;
     border: 2px solid grey;
-    min-width: 50px;
-    height: 25px;
+
     border-radius: 5px;
     padding: 0;
-    background-color: rgb(205, 255, 226);
+    background-color: rgb(251, 255, 133);
+
     :hover {
       background-color: rgb(224, 232, 0);
     }
+  }
+  td[data-no-input] {
+    background-color: rgb(205, 255, 226);
   }
   &-all {
     background-color: rgb(126, 204, 126);

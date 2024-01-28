@@ -23,7 +23,7 @@ export const Salary = () => {
   SALARY_KEYS.forEach((key, i) => {
     if (key !== "currentLanguage") {
       td = NO_INPUTS.includes(key) ? (
-        <td> {salaryReducer[key]} </td>
+        <td data-no-input> {salaryReducer[key]} </td>
       ) : (
         <td>
           <Input payloadsKey={key} />
