@@ -1,6 +1,6 @@
 import {
   amountWeekendsAndWeekdays,
-  isNumberMoreZero,
+  isNum,
   determExtraSalary,
   determStandardSalary,
 } from ".";
@@ -33,28 +33,24 @@ export const calculateSalary = (
     state.month
   );
 
-  isNumberMoreZero(salaryRate) &&
-    (state.salaryRate = salaryRate);
+  isNum(salaryRate) && (state.salaryRate = salaryRate);
 
-  premiumRate &&
-    premiumRate >= 1 &&
-    (state.premiumRate = premiumRate);
+  isNum(premiumRate) && (state.premiumRate = premiumRate);
 
-  isNumberMoreZero(premiumUzn) &&
-    (state.premiumUzn = premiumUzn);
+  isNum(premiumUzn) && (state.premiumUzn = premiumUzn);
 
-  isNumberMoreZero(taxRate) && (state.taxRate = taxRate);
+  isNum(taxRate) && (state.taxRate = taxRate);
 
-  isNumberMoreZero(sickLeaveWeekDays) &&
+  isNum(sickLeaveWeekDays) &&
     (state.sickLeaveWeekDays = sickLeaveWeekDays);
-  isNumberMoreZero(sickLeaveWeekendDays) &&
+  isNum(sickLeaveWeekendDays) &&
     (state.sickLeaveWeekendDays = sickLeaveWeekendDays);
 
-  isNumberMoreZero(usedVacation) &&
+  isNum(usedVacation) &&
     (state.usedVacation = usedVacation);
-  isNumberMoreZero(bloodDonation) &&
+  isNum(bloodDonation) &&
     (state.bloodDonation = bloodDonation);
-  isNumberMoreZero(holidays) && (state.holidays = holidays);
+  isNum(holidays) && (state.holidays = holidays);
 
   state.weekDays =
     weekdays -
@@ -65,13 +61,13 @@ export const calculateSalary = (
 
   state.weekendDays = weekends;
 
-  isNumberMoreZero(extraHours_50) &&
+  isNum(extraHours_50) &&
     (state.extraHours_50 = extraHours_50);
 
-  isNumberMoreZero(extraHours_100) &&
+  isNum(extraHours_100) &&
     (state.extraHours_100 = extraHours_100);
 
-  isNumberMoreZero(extraHours_120) &&
+  isNum(extraHours_120) &&
     (state.extraHours_120 = extraHours_120);
 
   state.nettoPerHours =
@@ -90,6 +86,4 @@ export const calculateSalary = (
 
   state.totalSalary =
     state.standardSalary + state.extraSalary;
-
-  //  npm rebuild node-sass
 };
