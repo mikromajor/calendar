@@ -2,7 +2,7 @@ import {
   PayloadType,
   SalaryInit,
 } from "../types/salaryTypes";
-import { checkMonth, checkYear, isNum } from ".";
+import { checkMonth, isNum } from ".";
 
 export const changeDate = (
   state: SalaryInit,

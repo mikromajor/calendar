@@ -8,7 +8,6 @@ export { getKey } from "./getKey";
 export { changeDate } from "./changeDate";
 export { saveSalaryInStorage } from "./saveSalaryInStorage";
 export { checkMonth } from "./checkMonth";
-export { checkYear } from "./checkYear";
 export { isNum } from "./isNum";
 export { determineVacationPayCoefficient } from "./determineVacationPayCoefficient";
 export { determExtraSalary } from "./determExtraSalary";
