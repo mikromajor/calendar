@@ -29,7 +29,13 @@ export const Salary = () => {
           <Input payloadsKey={key} />
         </td>
       );
-      th = <th>{SALARY_CONTENT?.[language]?.[key]}</th>;
+      th = (
+        <th>
+          <label htmlFor={key}>
+            {SALARY_CONTENT?.[language]?.[key]}
+          </label>
+        </th>
+      );
     }
 
     tableRows.push(
