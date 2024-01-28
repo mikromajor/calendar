@@ -36,8 +36,16 @@
     // writing-mode: vertical-lr;
     // writing-mode: vertical-rl;
     // transform: rotate(-90deg);
-    background-color: rgb(153, 183, 236);
+    // background-color: rgb(153, 183, 236);
     border-radius: 5px;
+    label {
+      display: block;
+      background-color: rgb(153, 183, 236);
+      border-radius: 5px;
+      padding: 0.5rem 0;
+      width: 100%;
+      height: 100%;
+    }
   }
   td {
     text-align: center;
