@@ -62,6 +62,7 @@
     height: 100%;
     width: 100%;
     border-radius: 5px;
+    padding: 0.5rem 0;
     border: none;
     background-color: rgb(251, 255, 133);
     &:hover {
@@ -80,6 +81,10 @@
     &:hover {
       background-color: rgb(224, 232, 0);
     }
+    &:is(:-webkit-autofill, :-webkit-autofill:focus) {
+      transition: background-color 600000s 0s,
+        color 600000s 0s;
+    } //fix adding needless autofill color
   }
   // &-all {
   //   background-color: rgb(126, 204, 126);
