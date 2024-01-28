@@ -34,8 +34,19 @@
     // writing-mode: vertical-rl;
     // transform: rotate(-90deg);
     background-color: rgb(153, 183, 236);
-    // min-height: 200px;
     border-radius: 5px;
+  }
+  td {
+    text-align: center;
+    border: 2px solid grey;
+
+    border-radius: 5px;
+    padding: 0;
+    min-height: 24px; //необхідно для того щоб нащадок "input"
+    height: 1px; // зміг прийняти height:100%;
+  }
+  td[data-no-input] {
+    background-color: rgb(205, 255, 226);
   }
   select {
     height: 100%;
@@ -44,31 +55,19 @@
     background-color: rgb(251, 255, 133);
   }
   input {
-    box-sizing: border-box;
     background-color: rgb(251, 255, 133);
+    height: 100%;
     width: 60px;
     margin: 0;
     border: none;
     border-radius: 5px;
     text-align: center;
-    font-size: 1em;
-  }
-  td {
-    text-align: center;
-    border: 2px solid grey;
-
-    border-radius: 5px;
-    padding: 0;
-    background-color: rgb(251, 255, 133);
-
+    font-size: 1rem;
     :hover {
       background-color: rgb(224, 232, 0);
     }
   }
-  td[data-no-input] {
-    background-color: rgb(205, 255, 226);
-  }
-  &-all {
-    background-color: rgb(126, 204, 126);
-  }
+  // &-all {
+  //   background-color: rgb(126, 204, 126);
+  // }
 }
