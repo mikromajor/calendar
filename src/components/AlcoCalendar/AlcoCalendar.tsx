@@ -43,3 +43,7 @@ export const AlcoCalendar = () => {
 // };
 
 // export const STORE = [INIT_ALCO_STATE];
+
+//trouble:
+// after updating node 16->20 I have a problem:
+//Node Sass does not yet support your current environment: Windows 64-bit with Unsupported runtime
