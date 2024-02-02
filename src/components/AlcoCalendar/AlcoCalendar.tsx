@@ -1,8 +1,14 @@
-import { ControlPanel, Display, Cleaner } from "./..";
+import {
+  ControlPanel,
+  Display,
+  Cleaner,
+  AlcoHeader,
+} from "./..";
 
 export const AlcoCalendar = () => {
   return (
     <div className='calendar'>
+      <AlcoHeader />
       <ControlPanel />
       <Display />
       <Cleaner />
