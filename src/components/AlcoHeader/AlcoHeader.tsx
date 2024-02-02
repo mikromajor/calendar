@@ -6,7 +6,7 @@ export const AlcoHeader = () => {
     (state) => state.alcoReducer
   );
   return (
-    <h1 className='calendar alcoHeader'>
+    <h1 className='alcoCounter alcoHeader'>
       {ALCO_CONTENT[currentLang].alcoHeader}
     </h1>
   );

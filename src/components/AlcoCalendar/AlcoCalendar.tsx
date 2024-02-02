@@ -7,7 +7,7 @@ import {
 
 export const AlcoCalendar = () => {
   return (
-    <div className='calendar'>
+    <div className='alcoCounter'>
       <AlcoHeader />
       <ControlPanel />
       <Display />

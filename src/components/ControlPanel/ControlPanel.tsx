@@ -45,13 +45,13 @@ export const ControlPanel = () => {
 
   return (
     <div
-      className='calendar-controlPanel'
+      className='alcoCounter-controlPanel'
       data-testid='controlPanel'
     >
-      <h2 className='calendar-header'>
+      <h2 className='alcoCounter-header'>
         {ALCO_CONTENT[currentLang].controlPanelHeader}
       </h2>
-      <div className='calendar-inlineButtons'>
+      <div className='alcoCounter-inlineButtons'>
         <label id='lblLang'>
           {ALCO_CONTENT[currentLang].lblLang}
           <select
@@ -117,7 +117,7 @@ export const ControlPanel = () => {
           />
         </label>
       </div>
-      <div className='calendar-inlineButtons'>
+      <div className='alcoCounter-inlineButtons'>
         {/* todo  */}
         <Button
           id='btnAdd'

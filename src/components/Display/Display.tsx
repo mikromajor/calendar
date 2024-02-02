@@ -23,7 +23,7 @@ export const Display = () => {
 
   return (
     <table
-      className='calendar-display'
+      className='alcoCounter-display'
       data-testid='display'
     >
       <caption id='caption'>
