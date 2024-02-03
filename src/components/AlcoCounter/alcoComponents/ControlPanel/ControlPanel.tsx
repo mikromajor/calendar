@@ -48,7 +48,7 @@ export const ControlPanel = () => {
       className='alcoCounter-controlPanel'
       data-testid='controlPanel'
     >
-      <h2 className='alcoCounter-header'>
+      <h2>
         {ALCO_CONTENT[currentLang].controlPanelHeader}
       </h2>
       <div className='alcoCounter-inlineButtons'>

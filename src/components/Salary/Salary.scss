@@ -1,18 +1,20 @@
 %headerStyle {
   text-align: center;
   color: rgb(26, 100, 219);
+  text-shadow: 3px 3px 3px #b2b2b2;
+}
+
+%h1_size {
   font-size: 40px;
   font-weight: 600;
-  text-shadow: 3px 3px 3px #b2b2b2;
-  //
 }
-$tdSize: 1rem;
+$cellTextSize: 1rem;
 
 .salary {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Open Sans", sans-serif;
+
   table {
     // width: 100vw;
     background-color: rgb(244, 244, 244);
@@ -23,6 +25,7 @@ $tdSize: 1rem;
 
   caption {
     @extend %headerStyle;
+    @extend %h1_size;
     margin-bottom: 10px;
   }
   tr {
@@ -65,7 +68,7 @@ $tdSize: 1rem;
     border-radius: 5px;
     padding: 0.5rem 0;
     border: none;
-    font-size: $tdSize;
+    font-size: $cellTextSize;
     background-color: rgb(251, 255, 133);
     &:hover {
       background-color: rgb(224, 232, 0);
@@ -79,7 +82,7 @@ $tdSize: 1rem;
     border: none;
     border-radius: 5px;
     text-align: center;
-    font-size: $tdSize;
+    font-size: $cellTextSize;
     &:hover {
       background-color: rgb(224, 232, 0);
     }

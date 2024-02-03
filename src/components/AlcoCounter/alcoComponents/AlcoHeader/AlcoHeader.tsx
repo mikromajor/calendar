@@ -5,9 +5,5 @@ export const AlcoHeader = () => {
   const { currentLang } = useAppSelector(
     (state) => state.alcoReducer
   );
-  return (
-    <h1 className='alcoCounter alcoHeader'>
-      {ALCO_CONTENT[currentLang].alcoHeader}
-    </h1>
-  );
+  return <h1>{ALCO_CONTENT[currentLang].alcoHeader}</h1>;
 };
