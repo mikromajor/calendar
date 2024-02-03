@@ -1,5 +1,5 @@
-import { useAppDispatch } from "../../store/hooks/redux";
-import { alcoActions } from "../../store/reducer/alcoReducer";
+import { useAppDispatch } from "../../../../store/hooks/redux";
+import { alcoActions } from "../../../../store/reducer/alcoReducer";
 
 export const Cleaner = () => {
   const dispatch = useAppDispatch();

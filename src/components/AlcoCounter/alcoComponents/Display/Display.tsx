@@ -1,9 +1,9 @@
-import { useAppSelector } from "../../store/hooks/redux";
-import { LgsName } from "../../store/reducer/types/alcoTypes";
+import { useAppSelector } from "../../../../store/hooks/redux";
+import { LgsName } from "../../../../store/reducer/types/alcoTypes";
 import {
   DISPLAY_LINE,
   ALCO_CONTENT,
-} from "../../store/reducer/constants/alcoConstants";
+} from "../../../../store/reducer/constants/alcoConstants";
 
 export const Display = () => {
   const alcoState = useAppSelector(

@@ -3,7 +3,7 @@ import {
   Display,
   Cleaner,
   AlcoHeader,
-} from "..";
+} from "./alcoComponents";
 
 export const AlcoCounter = () => {
   return (

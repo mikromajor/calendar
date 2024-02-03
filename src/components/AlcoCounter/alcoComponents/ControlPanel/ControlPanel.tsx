@@ -3,16 +3,16 @@ import { Button } from "@mui/material";
 import {
   useAppSelector,
   useAppDispatch,
-} from "../../store/hooks/redux";
-import { alcoActions } from "../../store/reducer/alcoReducer";
+} from "../../../../store/hooks/redux";
+import { alcoActions } from "../../../../store/reducer/alcoReducer";
 import {
   ALL_ALCO_CONTENT,
   ALCO_CONTENT,
-} from "../../store/reducer/constants/alcoConstants";
-import { LgsName } from "../../store/reducer/types/alcoTypes";
+} from "../../../../store/reducer/constants/alcoConstants";
+import { LgsName } from "../../../../store/reducer/types/alcoTypes";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
-import { trimFirstZero } from "../../store/reducer/alcoHandlers";
+import { trimFirstZero } from "../../../../store/reducer/alcoHandlers";
 
 export const ControlPanel = () => {
   const [volumeDrank, setVolumeDrank] = useState("500");
