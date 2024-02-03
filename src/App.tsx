@@ -1,4 +1,4 @@
-import { AlcoCalendar, Salary } from "./components";
+import { AlcoCounter, Salary } from "./components";
 
 //TODO: first users feedback
 //ok 1-исправить баг переключения языка при смене года
@@ -10,7 +10,7 @@ import { AlcoCalendar, Salary } from "./components";
 function App() {
   return (
     <>
-      <AlcoCalendar />
+      <AlcoCounter />
       <Salary />
     </>
   );
