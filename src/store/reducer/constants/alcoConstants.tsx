@@ -43,35 +43,37 @@ export const DISPLAY_LINE: Langs[] = [
 export const ALCO_CONTENT = {
   PL: {
     alcoHeader: "Licznik spożycia alkoholu",
-    controlPanelHeader: "Wprowadź dane",
+    controlPanelHeader: "Wprowadź dane wypitego napoju",
     lblLang: "Zmień jęnzyk",
     lblMonth: "Wybierz miesiąc",
     lblYear: "Wybierz rok",
-    lblVolume: "Ilość wypitego płynu, ml",
+    lblVolume: "Objętość wypitego płynu, ml",
     lblPercent: "Procent wypitego, %",
-    btnAdd: " Dodaj",
-    caption: "Wypito w przeliczeniu",
+    btnAdd: "Dodaj",
+    caption: "Suma spożytego alkoholu",
     currentYear: "Rok",
     currentMonth: "Miesiąc",
-    sumVodkaPerMonth: "Ilość spożytej wódki za miesiąc, ml",
+    sumVodkaPerMonth:
+      "Objętość spożytej wódki za miesiąc, ml",
     sumEthanolPerMonth:
-      "Ilość spożytego spirytusu za miesiąc, ml",
-    sumVodkaPerYear: "Ilość spożytej wódki za ten rok, ml ",
+      "Objętość spożytego spirytusu za miesiąc, ml",
+    sumVodkaPerYear:
+      "Objętość spożytej wódki za ten rok, ml ",
     sumEthanolPerYear:
-      " Ilość sporzytego spirytusu za ten rok, ml",
+      " Objętość sporzytego spirytusu za ten rok, ml",
   },
   EN: {
     alcoHeader: "Alcohol consumption counter ",
-    controlPanelHeader: "Enter the data",
+    controlPanelHeader: "Enter the drink consumed",
     lblLang: "Change language:",
     lblMonth: "Select month",
     lblYear: "Select year",
     lblVolume: "Volume drunks, ml",
     lblPercent: "Percent, %",
     btnAdd: "Add",
-    caption: "Total drunk",
-    currentYear: "Current year",
-    currentMonth: "Current month",
+    caption: "Total vodka drunk",
+    currentYear: "Year",
+    currentMonth: "Month",
     sumVodkaPerMonth: "Summary drunk vodka per month, ml",
     sumEthanolPerMonth:
       "Summary drunk ethanol per month, ml",
@@ -80,23 +82,21 @@ export const ALCO_CONTENT = {
   },
   UA: {
     alcoHeader: "Лічильник споживання алкоголю",
-    controlPanelHeader: "Введіть дані",
+    controlPanelHeader: "Введіть спожитий напій",
     lblLang: "Оберіть мову",
     lblMonth: "Виберіть місяць",
     lblYear: "Виберіть рік",
     lblVolume: "Об'єм випитого, мл",
     lblPercent: "Процент випитого, %",
     btnAdd: "Додати",
-    caption: "Випито в перерахунку",
-    currentYear: "Поточний рік",
-    currentMonth: "Поточний місяць",
-    sumVodkaPerMonth:
-      "Кількість випитої горілки за місяць, мл",
+    caption: "Сумарно випито алкоголю",
+    currentYear: "Рік",
+    currentMonth: "Місяць",
+    sumVodkaPerMonth: "Об'єм випитої горілки за місяць, мл",
     sumEthanolPerMonth:
-      "Кількість випитого спирту за місяць, мл",
-    sumVodkaPerYear: "Кількість випитої горілки за рік, мл",
-    sumEthanolPerYear:
-      "Кількість випитого спирту за рік, мл",
+      "Об'єм випитого спирту за місяць, мл",
+    sumVodkaPerYear: "Об'єм випитої горілки за рік, мл",
+    sumEthanolPerYear: "Об'єм випитого спирту за рік, мл",
   },
 };
 
