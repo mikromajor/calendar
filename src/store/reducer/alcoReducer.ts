@@ -11,7 +11,6 @@ import {
   saveStateInStorage,
   setDecimal,
   createKey,
-  
 } from "./alcoHandlers";
 import { LgsName } from "./types/alcoTypes";
 
@@ -105,6 +104,7 @@ export const alcoReducer = createSlice({
     clearStorageForYear: (state) => {
       const key = createKey(state.currentYear);
       window.localStorage.removeItem(key);
+      Object.assign(state, INIT_ALCO_STATE);
     },
     // clearAllStor: () => {
     //   window.localStorage.clear();
