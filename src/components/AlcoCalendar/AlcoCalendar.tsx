@@ -47,3 +47,11 @@ export const AlcoCalendar = () => {
 //trouble:
 // after updating node 16->20 I have a problem:
 //Node Sass does not yet support your current environment: Windows 64-bit with Unsupported runtime
+
+//troubleshoot:
+//uninstall node
+//delete the existing npm install location (such as C:\Users\<user>\AppData\Roaming\npm)
+//download and install  nvm-setup.exe  from https://github.com/coreybutler/nvm-windows/releases
+
+//nvm install 16.20.0
+//nvm use 16.20.0
