@@ -105,6 +105,6 @@ export const ALCO_CONTENT = {
   },
 };
 
-export const ALL_ALCO_CONTENT = Object.keys(
+export const NAMES_OF_LANGS = Object.keys(
   ALCO_CONTENT
 ) as LgsName[];

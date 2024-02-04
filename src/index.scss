@@ -29,6 +29,7 @@ body {
   caption {
     @extend %headerStyle;
     font-size: $h2_size;
+    font-weight: 500;
   }
   &-blockHeader {
     margin: 0;
@@ -67,11 +68,10 @@ body {
     }
   }
 
-  &-inlineButtons {
+  &-inputs {
     display: flex;
     align-items: flex-end;
     justify-content: space-around;
-
     margin: 3px;
   }
 
@@ -116,9 +116,12 @@ body {
     justify-content: space-around;
 
     margin: 15px;
-    border-radius: 5px;
-    border: 1px solid grey;
-    box-shadow: 3px 7px 5px 7px #a7a7a7;
+    // border-radius: 5px;
+    // border: 1px solid grey;
+
+    button {
+      box-shadow: 3px 7px 5px 7px #a7a7a7;
+    }
   }
   button {
     margin: 5px;

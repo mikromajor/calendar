@@ -1,18 +1,19 @@
 // import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
-import { Button } from "@mui/material";
+import { Button } from "@mui/material"; //   TODO: check weight;
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../../../store/hooks/redux";
 import { alcoActions } from "../../../../store/reducer/alcoReducer";
 import {
-  ALL_ALCO_CONTENT,
+  NAMES_OF_LANGS,
   ALCO_CONTENT,
 } from "../../../../store/reducer/constants/alcoConstants";
 import { LgsName } from "../../../../store/reducer/types/alcoTypes";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
 import { trimFirstZero } from "../../../../store/reducer/alcoHandlers";
+import { SelectLang } from "../ui";
 
 export const ControlPanel = () => {
   const [volumeDrank, setVolumeDrank] = useState("500");
@@ -20,24 +21,17 @@ export const ControlPanel = () => {
 
   const dispatch = useAppDispatch();
 
-  const { currentMonth, currentYear } = useAppSelector(
-    (state) => state.alcoReducer
-  );
-  // add compatibility V1 & V2
-  let currentLang = useAppSelector(
-    (state) =>
-      state.alcoReducer.currentLang.toUpperCase() as LgsName
-  );
+  const { currentMonth, currentYear, currentLang } =
+    useAppSelector((state) => state.alcoReducer);
+
   const {
-    // changeVolumeDrunk,
-    // changepercent,
     calculating,
     changeMonth,
     changeYear,
     changeLanguage,
   } = alcoActions;
 
-  const Options = ALL_ALCO_CONTENT.map((langName, i) => (
+  const Options = NAMES_OF_LANGS.map((langName, i) => (
     <option key={langName + i} value={langName}>
       {langName}
     </option>
@@ -51,23 +45,8 @@ export const ControlPanel = () => {
       <h2>
         {ALCO_CONTENT[currentLang].controlPanelHeader}
       </h2>
-      <div className='alcoCounter-inlineButtons'>
-        <label id='lblLang'>
-          {ALCO_CONTENT[currentLang].lblLang}
-          <select
-            id='LANGS'
-            defaultValue={currentLang}
-            onChange={(e) => {
-              dispatch(
-                changeLanguage(
-                  e.currentTarget.value as LgsName
-                )
-              );
-            }}
-          >
-            {Options}
-          </select>
-        </label>
+      <div className='alcoCounter-inputs'>
+        <SelectLang />
         <label id='lblMonth'>
           {ALCO_CONTENT[currentLang].lblMonth}
           <input
@@ -117,8 +96,9 @@ export const ControlPanel = () => {
           />
         </label>
       </div>
-      <div className='alcoCounter-inlineButtons'>
-        {/* todo  */}
+      <div className='alcoCounter-addButton'>
+        {/*around the button add different smiles for 5 sec after clicked "calc button" */}
+        <div></div>
         <Button
           id='btnAdd'
           variant='contained'
@@ -128,6 +108,7 @@ export const ControlPanel = () => {
         >
           {ALCO_CONTENT[currentLang].btnAdd}
         </Button>
+        <div></div>
       </div>
 
       {/* <button onClick={(e) => dispatch(asyncAdder())}>

@@ -16,9 +16,6 @@ export const AlcoCounter = () => {
   );
 };
 
-// did language crutches for AlcoCounter
-// hope it's do compatibility with  previous version
-
 //  TODO:
 // write a simple calculator with the next fields that you can change
 // volume of liquid drunk
@@ -31,18 +28,7 @@ export const AlcoCounter = () => {
 //extra TODO:
 // add info about volume of drunk clear alcohol per current year
 // add info about volume of drunk vodka per current year
-
-// how to do:
-// one object for one year:
-
-// export const INIT_ALCO_STATE = {
-//   year: "2023",
-//   volumeDrank: 0,
-//   percent: 5,
-//   months: [{ month: "1", ethanol: 0 }],
-// };
-
-// export const STORE = [INIT_ALCO_STATE];
+// add different smiles for 5 sec after clicked "calc button"
 
 //trouble:
 // after updating node 16->20 I have a problem:
