@@ -104,7 +104,11 @@ export const alcoReducer = createSlice({
     clearStorageForYear: (state) => {
       const key = createKey(state.currentYear);
       window.localStorage.removeItem(key);
-      Object.assign(state, INIT_ALCO_STATE);
+      Object.assign(state, INIT_ALCO_STATE, {
+        currentYear: state.currentYear,
+        currentMonth: state.currentMonth,
+        currentLang: state.currentLang,
+      });
     },
     // clearAllStor: () => {
     //   window.localStorage.clear();
