@@ -7,7 +7,8 @@ import { ALCO_CONTENT } from "../../../../store/reducer/constants/alcoConstants"
 
 export const Cleaner = () => {
   const dispatch = useAppDispatch();
-  const { clearStorageForYear } = alcoActions;
+  const { clearStorageForYear, clearMonthData } =
+    alcoActions;
   const { currentLang } = useAppSelector(
     (state) => state.alcoReducer
   );
@@ -19,7 +20,7 @@ export const Cleaner = () => {
     >
       <button
         style={{ color: "red" }}
-        onClick={() => dispatch(clearStorageForYear())}
+        onClick={() => dispatch(clearMonthData())}
       >
         {ALCO_CONTENT[currentLang].deleteMonth}
       </button>

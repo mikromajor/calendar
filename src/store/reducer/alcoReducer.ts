@@ -109,6 +109,14 @@ export const alcoReducer = createSlice({
         currentLang: state.currentLang,
       });
     },
+    clearMonthData: (state) => {
+      const monthData =
+        state.monthsData[Number(state.currentMonth)];
+      monthData.sumEthanolPerMonth = 0;
+      monthData.sumVodkaPerMonth = 0;
+      state.sumEthanolPerYear = 0;
+      state.sumVodkaPerMonth = 0;
+    },
     // clearAllStor: () => {
     //   window.localStorage.clear();
     // },
