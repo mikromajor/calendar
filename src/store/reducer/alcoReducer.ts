@@ -114,7 +114,10 @@ export const alcoReducer = createSlice({
         state.monthsData[Number(state.currentMonth)];
       monthData.sumEthanolPerMonth = 0;
       monthData.sumVodkaPerMonth = 0;
-      state.sumEthanolPerYear = 0;
+
+      state.sumVodkaPerYear -= state.sumVodkaPerMonth;
+      state.sumEthanolPerYear -= state.sumEthanolPerMonth;
+      state.sumEthanolPerMonth = 0;
       state.sumVodkaPerMonth = 0;
     },
     // clearAllStor: () => {
