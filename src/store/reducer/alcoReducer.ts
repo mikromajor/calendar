@@ -28,38 +28,29 @@ export const alcoReducer = createSlice({
     },
 
     changeMonth: (state, action: PayloadAction<string>) => {
-      const month = action.payload;
+      const month = Number(action.payload);
 
-      const index = state.monthsData.findIndex(
-        (obj) => obj.month === month
-      );
-      if (index > -1) {
-        state.currentIndex = index;
+      if (state.monthsData[month]) {
         state.sumEthanolPerMonth =
-          state.monthsData[index].sumEthanolPerMonth;
+          state.monthsData[month].sumEthanolPerMonth;
         state.sumVodkaPerMonth =
-          state.monthsData[index].sumVodkaPerMonth;
-        state.currentMonth = month;
-      } else {
-        state.currentIndex = state.monthsData.length;
-        state.monthsData.push({
-          ...INIT_MONTH_DATA,
-          month: month,
-        });
+          state.monthsData[month].sumVodkaPerMonth;
+        state.currentMonth = month + "";
       }
     },
     changeYear: (state, action: PayloadAction<string>) => {
       const year = action.payload;
-      const currentLanguage = state.currentLang;
 
       const isStoreData = tryStorageData(year);
 
       Object.assign(
         state,
-        !!isStoreData ? isStoreData : INIT_ALCO_STATE
+        !!isStoreData ? isStoreData : INIT_ALCO_STATE,
+        {
+          currentYear: year,
+          currentLang: state.currentLang,
+        }
       );
-      state.currentYear = year;
-      state.currentLang = currentLanguage;
     },
 
     calculating: (
@@ -93,20 +84,19 @@ export const alcoReducer = createSlice({
           0
         );
 
-        state.monthsData[state.currentIndex] = {
+        state.monthsData[Number(state.currentMonth)] = {
           month: state.currentMonth,
           sumEthanolPerMonth: state.sumEthanolPerMonth,
           sumVodkaPerMonth: state.sumVodkaPerMonth,
         };
+        saveStateInStorage(state);
       }
-      saveStateInStorage(state);
     },
     clearStorageForYear: (state) => {
       const key = createKey(state.currentYear);
       window.localStorage.removeItem(key);
       Object.assign(state, INIT_ALCO_STATE, {
         currentYear: state.currentYear,
-        currentMonth: state.currentMonth,
         currentLang: state.currentLang,
       });
     },

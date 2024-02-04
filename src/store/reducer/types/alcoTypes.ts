@@ -10,6 +10,7 @@ export type LgsName = keyof typeof ALCO_CONTENT;
 export type AlcoState = {
   currentYear: string;
   currentMonth: string;
+  currentLang: LgsName;
 
   sumEthanolPerYear: number;
   sumEthanolPerMonth: number;
@@ -20,10 +21,7 @@ export type AlcoState = {
   volumeDrank: number;
   percent: number;
 
-  currentIndex: number;
   monthsData: MonthData[];
-
-  currentLang: LgsName;
 };
 
 export type StateKeys = keyof AlcoState;

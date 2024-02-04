@@ -27,7 +27,6 @@ export const INIT_ALCO_STATE: AlcoState = {
   volumeDrank: 0,
   percent: 5,
 
-  currentIndex: 1,
   monthsData: [],
 };
 
