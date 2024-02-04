@@ -11,10 +11,12 @@ export const INIT_MONTH_DATA = {
 };
 
 const currentYear = new Date().getFullYear().toString();
+const currentMonth = new Date().getMonth().toString();
 
 export const INIT_ALCO_STATE: AlcoState = {
   currentYear: currentYear,
-  currentMonth: "1",
+  currentMonth: currentMonth,
+  currentLang: "UA",
 
   sumEthanolPerYear: 0,
   sumEthanolPerMonth: 0,
@@ -26,9 +28,7 @@ export const INIT_ALCO_STATE: AlcoState = {
   percent: 5,
 
   currentIndex: 1,
-  monthsData: [INIT_MONTH_DATA],
-
-  currentLang: "EN",
+  monthsData: [],
 };
 
 export const DISPLAY_LINE: Langs[] = [
