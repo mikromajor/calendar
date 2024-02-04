@@ -34,8 +34,8 @@ export const DISPLAY_LINE: Langs[] = [
   "currentYear",
   "currentMonth",
   "sumVodkaPerMonth",
-  "sumEthanolPerMonth",
   "sumVodkaPerYear",
+  "sumEthanolPerMonth",
   "sumEthanolPerYear",
 ];
 
