@@ -9,8 +9,8 @@ export const AlcoCounter = () => {
   return (
     <div className='alcoCounter'>
       <AlcoHeader />
-      <ControlPanel />
       <Display />
+      <ControlPanel />
       <Cleaner />
     </div>
   );

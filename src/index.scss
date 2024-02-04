@@ -24,6 +24,7 @@ body {
   h1 {
     @extend %headerStyle;
     @extend %h1_size;
+    margin: 0;
   }
   h2,
   caption {
@@ -33,46 +34,6 @@ body {
   }
   &-blockHeader {
     margin: 0;
-  }
-  &-controlPanel {
-    display: flex;
-    align-items: center;
-    flex-flow: column;
-    background-color: aquamarine;
-
-    margin: 3px;
-    border-radius: 5px;
-    border: 1px solid grey;
-    box-shadow: 3px 7px 5px 7px #a7a7a7;
-    // font-weight: 530;
-    padding: 5px;
-
-    label {
-      margin: 5px;
-      max-width: 75px;
-    }
-    input,
-    select {
-      display: flex;
-      // line-height: 1rem;
-      max-width: 50px;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-    select {
-      display: flex;
-      height: 22px;
-    }
-    label:hover {
-      color: blue;
-    }
-  }
-
-  &-inputs {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    margin: 3px;
   }
 
   &-display {
@@ -103,33 +64,77 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-around;
-
+      min-width: 40px;
       border-radius: 5px;
       border: 1px solid black;
       background-color: rgb(205, 255, 226);
       padding: 0.5rem 1rem;
     }
   }
+  &-controlPanel {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    background-color: aquamarine;
+    max-width: 400px;
+    margin: 3px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    box-shadow: 3px 7px 5px 7px #a7a7a7;
+    // font-weight: 530;
+    padding-bottom: 10px;
+
+    label {
+      margin: 5px;
+      max-width: 75px;
+    }
+    input,
+    select {
+      display: flex;
+      // line-height: 1rem;
+      max-width: 55px;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    select {
+      display: flex;
+      height: 22px;
+    }
+    label:hover {
+      color: blue;
+    }
+  }
+  .inputBlock {
+    min-width: 75px;
+    border-radius: 5px;
+    &:hover {
+      outline: 1px solid green;
+    }
+  }
+
+  &-inputs {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    margin: 3px;
+  }
   &-cleaner {
     display: flex;
     align-items: center;
     justify-content: space-around;
-
     margin: 15px;
     // border-radius: 5px;
     // border: 1px solid grey;
 
     button {
       box-shadow: 3px 7px 5px 7px #a7a7a7;
+      border: 5px;
+      margin: 5px;
+      border-radius: 5px;
+      color: rgb(200, 0, 0);
     }
-  }
-  button {
-    margin: 5px;
-    border-radius: 5px;
-  }
-  button:hover {
-    margin: 5px;
-    border-radius: 5px;
-    background-color: rgb(217, 217, 217);
+    button:hover {
+      background-color: rgb(217, 217, 217);
+    }
   }
 }

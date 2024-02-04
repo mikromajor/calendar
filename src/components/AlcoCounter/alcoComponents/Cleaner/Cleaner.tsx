@@ -18,14 +18,10 @@ export const Cleaner = () => {
       className='alcoCounter-cleaner'
       data-testid='cleaner'
     >
-      <button
-        style={{ color: "red" }}
-        onClick={() => dispatch(clearMonthData())}
-      >
+      <button onClick={() => dispatch(clearMonthData())}>
         {ALCO_CONTENT[currentLang].deleteMonth}
       </button>
       <button
-        style={{ color: "red" }}
         onClick={() => dispatch(clearStorageForYear())}
       >
         {ALCO_CONTENT[currentLang].deleteYear}

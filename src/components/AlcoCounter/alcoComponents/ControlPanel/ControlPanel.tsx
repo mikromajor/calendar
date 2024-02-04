@@ -32,55 +32,68 @@ export const ControlPanel = () => {
         {ALCO_CONTENT[currentLang].controlPanelHeader}
       </h2>
       <div className='alcoCounter-inputs'>
-        <SelectLang />
-        <label id='lblMonth'>
-          {ALCO_CONTENT[currentLang].lblMonth}
-          <input
-            name='dataForMonth'
-            type='number'
-            min='0'
-            max='12'
-            value={currentMonth}
-            onChange={(e) =>
-              dispatch(changeMonth(e.target.value))
-            }
-          />
-        </label>
-        <label id='lblYear'>
-          {ALCO_CONTENT[currentLang].lblYear}
-          <input
-            name='dataForYear'
-            type='number'
-            value={currentYear}
-            onChange={(e) =>
-              dispatch(changeYear(e.target.value))
-            }
-          />
-        </label>
-        <label id='lblVolume'>
-          {ALCO_CONTENT[currentLang].lblVolume}
-          <input
-            name='changeVolumeDrunk'
-            type='number'
-            value={volumeDrank}
-            onChange={(e) =>
-              setVolumeDrank(trimFirstZero(e.target.value))
-            }
-          />
-        </label>
-        <label id='lblPercent'>
-          {ALCO_CONTENT[currentLang].lblPercent}
-          <input
-            name='changePercent'
-            type='number'
-            min='0'
-            max='100'
-            value={percent}
-            onChange={(e) =>
-              setPercent(trimFirstZero(e.target.value))
-            }
-          />
-        </label>
+        <div className='alcoCounter inputBlock'>
+          <SelectLang />
+        </div>
+
+        <div className='alcoCounter inputBlock'>
+          <label id='lblMonth'>
+            {ALCO_CONTENT[currentLang].lblMonth}
+            <input
+              name='dataForMonth'
+              type='number'
+              min='0'
+              max='12'
+              value={currentMonth}
+              onChange={(e) =>
+                dispatch(changeMonth(e.target.value))
+              }
+            />
+          </label>
+        </div>
+        <div className='alcoCounter inputBlock'>
+          <label id='lblYear'>
+            {ALCO_CONTENT[currentLang].lblYear}
+            <input
+              name='dataForYear'
+              type='number'
+              value={currentYear}
+              onChange={(e) =>
+                dispatch(changeYear(e.target.value))
+              }
+            />
+          </label>
+        </div>
+        <div className='alcoCounter inputBlock'>
+          <label id='lblVolume'>
+            {ALCO_CONTENT[currentLang].lblVolume}
+            <input
+              name='changeVolumeDrunk'
+              type='number'
+              value={volumeDrank}
+              onChange={(e) =>
+                setVolumeDrank(
+                  trimFirstZero(e.target.value)
+                )
+              }
+            />
+          </label>
+        </div>
+        <div className='alcoCounter inputBlock'>
+          <label id='lblPercent'>
+            {ALCO_CONTENT[currentLang].lblPercent}
+            <input
+              name='changePercent'
+              type='number'
+              min='0'
+              max='100'
+              value={percent}
+              onChange={(e) =>
+                setPercent(trimFirstZero(e.target.value))
+              }
+            />
+          </label>
+        </div>
       </div>
       <div className='alcoCounter-addButton'>
         {/*around the button add different smiles for 5 sec after clicked "calc button" */}
