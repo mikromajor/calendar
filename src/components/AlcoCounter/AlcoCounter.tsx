@@ -29,6 +29,7 @@ export const AlcoCounter = () => {
 // add info about volume of drunk clear alcohol per current year
 // add info about volume of drunk vodka per current year
 // add different smiles for 5 sec after clicked "calc button"
+// add "+" "-" buttons beneath inputs
 
 //trouble:
 // after updating node 16->20 I have a problem:

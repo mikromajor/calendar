@@ -96,8 +96,8 @@ export const ControlPanel = () => {
         </div>
       </div>
       <div className='alcoCounter-addButton'>
-        {/*around the button add different smiles for 5 sec after clicked "calc button" */}
-        <div></div>
+        {/*TODO: around the button add different smiles for 5 sec after clicked "calc button" */}
+        {/* <div></div>  */}
         <Button
           id='btnAdd'
           variant='contained'
@@ -107,7 +107,7 @@ export const ControlPanel = () => {
         >
           {ALCO_CONTENT[currentLang].btnAdd}
         </Button>
-        <div></div>
+        {/* <div></div> */}
       </div>
 
       {/* <button onClick={(e) => dispatch(asyncAdder())}>
