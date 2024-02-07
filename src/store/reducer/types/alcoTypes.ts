@@ -6,6 +6,8 @@ import {
 
 type MonthData = typeof INIT_MONTH_DATA;
 export type LgsName = keyof typeof ALCO_CONTENT;
+export type AlcoContentLangData =
+  keyof typeof ALCO_CONTENT.EN;
 
 export type AlcoState = {
   currentYear: string;

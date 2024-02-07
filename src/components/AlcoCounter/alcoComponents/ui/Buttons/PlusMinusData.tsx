@@ -15,7 +15,7 @@ export const PlusMinusData = ({
   const dispatch = useAppDispatch();
 
   return (
-    <div className='blok_plus_minus'>
+    <div className='alcoCounter-block_plus_minus'>
       <button
         className='plus'
         onClick={() => {

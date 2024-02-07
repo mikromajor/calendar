@@ -13,6 +13,7 @@ import {
   SelectLang,
   PlusMinusData,
   PlusMinusVal,
+  BlockHeader,
 } from "../ui";
 
 export const ControlPanel = () => {
@@ -32,9 +33,8 @@ export const ControlPanel = () => {
       className='alcoCounter-controlPanel'
       data-testid='controlPanel'
     >
-      <h2>
-        {ALCO_CONTENT[currentLang].controlPanelHeader}
-      </h2>
+      <BlockHeader title='controlPanelHeader' />
+
       <div className='alcoCounter-inputs'>
         <div className='alcoCounter inputBlock'>
           <SelectLang />
