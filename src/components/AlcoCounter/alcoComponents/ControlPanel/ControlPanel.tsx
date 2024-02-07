@@ -9,7 +9,11 @@ import { ALCO_CONTENT } from "../../../../store/reducer/constants/alcoConstants"
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
 import { trimFirstZero } from "../../../../store/reducer/alcoHandlers";
-import { SelectLang } from "../ui";
+import {
+  SelectLang,
+  PlusMinusData,
+  PlusMinusVal,
+} from "../ui";
 
 export const ControlPanel = () => {
   const [volumeDrank, setVolumeDrank] = useState("500");
@@ -50,6 +54,7 @@ export const ControlPanel = () => {
               }
             />
           </label>
+          <PlusMinusData callBack={changeMonth} arg={"1"} />
         </div>
         <div className='alcoCounter inputBlock'>
           <label id='lblYear'>
@@ -63,6 +68,7 @@ export const ControlPanel = () => {
               }
             />
           </label>
+          <PlusMinusData callBack={changeYear} arg={"1"} />
         </div>
         <div className='alcoCounter inputBlock'>
           <label id='lblVolume'>
@@ -78,6 +84,10 @@ export const ControlPanel = () => {
               }
             />
           </label>
+          <PlusMinusVal
+            step={100}
+            setVal={setVolumeDrank}
+          />
         </div>
         <div className='alcoCounter inputBlock'>
           <label id='lblPercent'>
@@ -93,6 +103,7 @@ export const ControlPanel = () => {
               }
             />
           </label>
+          <PlusMinusVal step={1} setVal={setVolumeDrank} />
         </div>
       </div>
       <div className='alcoCounter-addButton'>
