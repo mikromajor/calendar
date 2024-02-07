@@ -137,4 +137,10 @@ body {
       background-color: rgb(217, 217, 217);
     }
   }
+  .block_plus_minus {
+    button {
+      border: 2px solid grey;
+      border-radius: 5px;
+    }
+  }
 }

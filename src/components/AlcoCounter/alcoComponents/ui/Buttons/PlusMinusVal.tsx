@@ -8,7 +8,7 @@ export const PlusMinusVal = ({
   setVal,
 }: PlusMinusValProps) => {
   return (
-    <div className='buttons_plus_minus'>
+    <div className='blok_plus_minus'>
       <button
         className='plus'
         onClick={() => {
