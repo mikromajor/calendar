@@ -14,6 +14,7 @@ import {
   PlusMinusData,
   PlusMinusVal,
   BlockHeader,
+  InputData,
 } from "../ui";
 
 export const ControlPanel = () => {
@@ -36,11 +37,9 @@ export const ControlPanel = () => {
       <BlockHeader title='controlPanelHeader' />
 
       <div className='alcoCounter-inputs'>
-        <div className='alcoCounter inputBlock'>
-          <SelectLang />
-        </div>
+        <SelectLang />
 
-        <div className='alcoCounter inputBlock'>
+        {/* <div className='alcoCounter inputBlock'>
           <label id='lblMonth'>
             {ALCO_CONTENT[currentLang].lblMonth}
             <input
@@ -55,8 +54,18 @@ export const ControlPanel = () => {
             />
           </label>
           <PlusMinusData callBack={changeMonth} arg={"1"} />
-        </div>
-        <div className='alcoCounter inputBlock'>
+        </div> */}
+        <InputData
+          data={currentMonth}
+          changeData={changeMonth}
+          label='lblMonth'
+        />
+        <InputData
+          data={currentYear}
+          changeData={changeYear}
+          label='lblYear'
+        />
+        {/* <div className='alcoCounter inputBlock'>
           <label id='lblYear'>
             {ALCO_CONTENT[currentLang].lblYear}
             <input
@@ -69,7 +78,7 @@ export const ControlPanel = () => {
             />
           </label>
           <PlusMinusData callBack={changeYear} arg={"1"} />
-        </div>
+        </div> */}
         <div className='alcoCounter inputBlock'>
           <label id='lblVolume'>
             {ALCO_CONTENT[currentLang].lblVolume}
@@ -103,7 +112,7 @@ export const ControlPanel = () => {
               }
             />
           </label>
-          <PlusMinusVal step={1} setVal={setVolumeDrank} />
+          <PlusMinusVal step={1} setVal={setPercent} />
         </div>
       </div>
       <div className='alcoCounter-addButton'>

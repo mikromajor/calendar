@@ -1,16 +1,16 @@
 import { useAppDispatch } from "../../../../../store/hooks/redux";
-import { alcoActions } from "../../../../../store/reducer/alcoReducer";
+import { ActionsChangeData } from "../../../../../store/reducer/types/alcoTypes";
 
-const { changeYear } = alcoActions;
-type AlcoAction = typeof changeYear;
 type PlusMinusProps = {
-  callBack: AlcoAction;
-  arg: string;
+  callBack: ActionsChangeData;
+  step: number;
+  value: number;
 };
 
 export const PlusMinusData = ({
   callBack,
-  arg,
+  step,
+  value,
 }: PlusMinusProps) => {
   const dispatch = useAppDispatch();
 
@@ -19,7 +19,7 @@ export const PlusMinusData = ({
       <button
         className='plus'
         onClick={() => {
-          dispatch(callBack(arg));
+          dispatch(callBack((value + step).toString()));
         }}
       >
         +
@@ -27,7 +27,7 @@ export const PlusMinusData = ({
       <button
         className='minus'
         onClick={() => {
-          dispatch(callBack("-" + arg));
+          dispatch(callBack((value - step).toString()));
         }}
       >
         -

@@ -3,6 +3,7 @@ import {
   ALCO_CONTENT,
   INIT_MONTH_DATA,
 } from "../constants/alcoConstants";
+import { alcoActions } from "../alcoReducer";
 
 type MonthData = typeof INIT_MONTH_DATA;
 export type LgsName = keyof typeof ALCO_CONTENT;
@@ -38,3 +39,11 @@ export type Language = {
 };
 
 export type Langs = keyof Language;
+
+export type AlcoActionsType = typeof alcoActions;
+export type AlcoActionsKeys = keyof AlcoActionsType;
+
+const { changeYear, clearMonthData } = alcoActions;
+export type ActionsChangeData =
+  | typeof changeYear
+  | typeof clearMonthData;
