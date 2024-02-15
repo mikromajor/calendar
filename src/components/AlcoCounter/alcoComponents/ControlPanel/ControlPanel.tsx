@@ -11,10 +11,10 @@ import { useState } from "react";
 import { trimFirstZero } from "../../../../store/reducer/alcoHandlers";
 import {
   SelectLang,
-  PlusMinusData,
+  PlusMinusDate,
   PlusMinusVal,
   BlockHeader,
-  InputData,
+  InputDate,
 } from "../ui";
 
 export const ControlPanel = () => {
@@ -39,46 +39,16 @@ export const ControlPanel = () => {
       <div className='alcoCounter-inputs'>
         <SelectLang />
 
-        {/* <div className='alcoCounter inputBlock'>
-          <label id='lblMonth'>
-            {ALCO_CONTENT[currentLang].lblMonth}
-            <input
-              name='dataForMonth'
-              type='number'
-              min='0'
-              max='12'
-              value={currentMonth}
-              onChange={(e) =>
-                dispatch(changeMonth(e.target.value))
-              }
-            />
-          </label>
-          <PlusMinusData callBack={changeMonth} arg={"1"} />
-        </div> */}
-        <InputData
+        <InputDate
           data={currentMonth}
           changeData={changeMonth}
           label='lblMonth'
         />
-        <InputData
+        <InputDate
           data={currentYear}
           changeData={changeYear}
           label='lblYear'
         />
-        {/* <div className='alcoCounter inputBlock'>
-          <label id='lblYear'>
-            {ALCO_CONTENT[currentLang].lblYear}
-            <input
-              name='dataForYear'
-              type='number'
-              value={currentYear}
-              onChange={(e) =>
-                dispatch(changeYear(e.target.value))
-              }
-            />
-          </label>
-          <PlusMinusData callBack={changeYear} arg={"1"} />
-        </div> */}
         <div className='alcoCounter inputBlock'>
           <label id='lblVolume'>
             {ALCO_CONTENT[currentLang].lblVolume}

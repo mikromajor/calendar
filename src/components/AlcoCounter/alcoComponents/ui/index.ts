@@ -1,4 +1,4 @@
 export { SelectLang } from "./SelectLang/SelectLang";
-export { PlusMinusVal, PlusMinusData } from "./Buttons";
+export { PlusMinusVal, PlusMinusDate } from "./Buttons";
 export { BlockHeader } from "./Headers/BlockHeader";
-export { InputData } from "./Inputs/InputData";
+export { InputDate } from "./Inputs/InputDate";

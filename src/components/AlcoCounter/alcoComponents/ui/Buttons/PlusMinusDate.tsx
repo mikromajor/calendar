@@ -7,7 +7,7 @@ type PlusMinusProps = {
   value: number;
 };
 
-export const PlusMinusData = ({
+export const PlusMinusDate = ({
   callBack,
   step,
   value,

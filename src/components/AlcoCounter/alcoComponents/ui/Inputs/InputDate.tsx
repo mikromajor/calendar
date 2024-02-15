@@ -8,7 +8,7 @@ import {
   ActionsChangeData,
   AlcoContentLangData,
 } from "../../../../../store/reducer/types/alcoTypes";
-import { PlusMinusData } from "../Buttons";
+import { PlusMinusDate } from "../Buttons";
 
 type InputDataProps = {
   data: string;
@@ -16,7 +16,7 @@ type InputDataProps = {
   label: AlcoContentLangData;
 };
 
-export const InputData = ({
+export const InputDate = ({
   data,
   changeData,
   label,
@@ -40,7 +40,7 @@ export const InputData = ({
           }}
         />
       </label>
-      <PlusMinusData
+      <PlusMinusDate
         callBack={changeData}
         step={1}
         value={Number(data)}
