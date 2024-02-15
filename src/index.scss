@@ -114,11 +114,13 @@ body {
   &-block_plus_minus {
     button {
       display: inline-block;
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.7rem;
+      height: 1.7rem;
       border: 2px solid grey;
       border-radius: 5px;
       margin: 0 3px 5px;
+      font-size: 1.5rem;
+      text-align: center;
     }
   }
 
@@ -146,5 +148,9 @@ body {
     button:hover {
       background-color: rgb(217, 217, 217);
     }
+  }
+  &-addButton {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 }
