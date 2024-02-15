@@ -1,2 +1,2 @@
-export { PlusMinusData } from "./PlusMinusData";
+export { PlusMinusDate } from "./PlusMinusDate";
 export { PlusMinusVal } from "./PlusMinusVal";
