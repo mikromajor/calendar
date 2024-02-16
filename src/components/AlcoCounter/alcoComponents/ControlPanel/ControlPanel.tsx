@@ -9,7 +9,12 @@ import { ALCO_CONTENT } from "../../../../store/reducer/constants/alcoConstants"
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
 import { trimFirstZero } from "../../../../store/reducer/alcoHandlers";
-import { SelectLang, BlockHeader, InputDate } from "../ui";
+import {
+  SelectLang,
+  BlockHeader,
+  InputDate,
+  InputLiquidProperty,
+} from "../ui";
 
 export const ControlPanel = () => {
   const [volumeDrank, setVolumeDrank] = useState("500");
@@ -30,7 +35,7 @@ export const ControlPanel = () => {
     >
       <BlockHeader title='controlPanelHeader' />
 
-      <div className='alcoCounter-inputs'>
+      <div className='alcoCounter-inputBlock'>
         <SelectLang />
 
         <InputDate
@@ -43,82 +48,19 @@ export const ControlPanel = () => {
           changeData={changeYear}
           label='lblYear'
         />
+        <InputLiquidProperty
+          val={volumeDrank}
+          step={100}
+          setVal={setVolumeDrank}
+          label='lblVolume'
+        />
 
-        <div className='alcoCounter inputBlock'>
-          <label id='lblVolume' htmlFor='changeVolumeDrunk'>
-            {ALCO_CONTENT[currentLang].lblVolume}
-          </label>
-          <Button
-            variant='outlined'
-            size='small'
-            onClick={() => {
-              setVolumeDrank((prev: string) =>
-                (Number(prev) + 100).toString()
-              );
-            }}
-          >
-            +100
-          </Button>
-          <input
-            id='changeVolumeDrunk'
-            name='changeVolumeDrunk'
-            type='number'
-            value={volumeDrank}
-            onChange={(e) =>
-              setVolumeDrank(trimFirstZero(e.target.value))
-            }
-          />
-          <Button
-            variant='outlined'
-            size='small'
-            onClick={() => {
-              setVolumeDrank((prev: string) =>
-                (Number(prev) - 100).toString()
-              );
-            }}
-          >
-            -100
-          </Button>
-        </div>
-
-        <div className='alcoCounter inputBlock'>
-          <label id='lblPercent' htmlFor='changePercent'>
-            {ALCO_CONTENT[currentLang].lblPercent}
-          </label>
-          <Button
-            variant='outlined'
-            size='small'
-            onClick={() => {
-              setPercent((prev: string) =>
-                (Number(prev) + 100).toString()
-              );
-            }}
-          >
-            +1
-          </Button>
-          <input
-            id='changePercent'
-            name='changePercent'
-            type='number'
-            min='0'
-            max='100'
-            value={percent}
-            onChange={(e) =>
-              setPercent(trimFirstZero(e.target.value))
-            }
-          />
-          <Button
-            variant='outlined'
-            size='small'
-            onClick={() => {
-              setPercent((prev: string) =>
-                (Number(prev) - 100).toString()
-              );
-            }}
-          >
-            -1
-          </Button>
-        </div>
+        <InputLiquidProperty
+          val={percent}
+          step={1}
+          setVal={setPercent}
+          label='lblPercent'
+        />
       </div>
 
       <div className='alcoCounter-addButton'>

@@ -27,7 +27,7 @@ export const InputDate = ({
   const dispatch = useAppDispatch();
 
   return (
-    <div className='alcoCounter inputBlock'>
+    <div className='alcoCounter-inputBlock-input'>
       <label id={label} htmlFor={label + "Input"}>
         {ALCO_CONTENT[currentLang][label]}
       </label>

@@ -24,7 +24,7 @@ export const InputLiquidProperty = ({
 
   return (
     <>
-      <div className='alcoCounter inputBlock'>
+      <div className='alcoCounter-inputBlock-input'>
         <label id={label} htmlFor={label + "Input"}>
           {ALCO_CONTENT[currentLang].lblVolume}
         </label>

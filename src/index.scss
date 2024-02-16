@@ -104,20 +104,21 @@ body {
       color: blue;
     }
   }
-  .inputBlock {
-    min-width: 75px;
-    border-radius: 5px;
-    &:hover {
-      outline: 1px solid green;
+  &-inputBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 3px;
+
+    &-input {
+      min-width: 75px;
+      border-radius: 5px;
+      input {
+        margin: 5px 0;
+      }
     }
   }
 
-  &-inputs {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    margin: 3px;
-  }
   &-cleaner {
     display: flex;
     align-items: center;
