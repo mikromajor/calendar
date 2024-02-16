@@ -43,6 +43,7 @@ export const ControlPanel = () => {
           changeData={changeYear}
           label='lblYear'
         />
+
         <div className='alcoCounter inputBlock'>
           <label id='lblVolume' htmlFor='changeVolumeDrunk'>
             {ALCO_CONTENT[currentLang].lblVolume}
