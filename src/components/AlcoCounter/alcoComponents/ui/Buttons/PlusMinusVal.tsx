@@ -1,3 +1,5 @@
+import { Button } from "@mui/material";
+
 type PlusMinusValProps = {
   step: number;
   setVal: React.Dispatch<React.SetStateAction<string>>;
@@ -9,26 +11,26 @@ export const PlusMinusVal = ({
 }: PlusMinusValProps) => {
   return (
     <div className='alcoCounter-block_plus_minus'>
-      <button
-        className='plus'
+      <Button
+        variant='contained'
         onClick={() => {
           setVal((prev: string) =>
             (Number(prev) + step).toString()
           );
         }}
       >
-        +
-      </button>
-      <button
-        className='minus'
+        +{step}
+      </Button>
+      <Button
+        variant='contained'
         onClick={() => {
           setVal((prev: string) =>
             (Number(prev) - step).toString()
           );
         }}
       >
-        -
-      </button>
+        -{step}
+      </Button>
     </div>
   );
 };

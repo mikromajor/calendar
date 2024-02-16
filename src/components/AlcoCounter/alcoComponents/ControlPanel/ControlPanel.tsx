@@ -50,41 +50,78 @@ export const ControlPanel = () => {
           label='lblYear'
         />
         <div className='alcoCounter inputBlock'>
-          <label id='lblVolume'>
+          <label id='lblVolume' htmlFor='changeVolumeDrunk'>
             {ALCO_CONTENT[currentLang].lblVolume}
-            <input
-              name='changeVolumeDrunk'
-              type='number'
-              value={volumeDrank}
-              onChange={(e) =>
-                setVolumeDrank(
-                  trimFirstZero(e.target.value)
-                )
-              }
-            />
           </label>
-          <PlusMinusVal
-            step={100}
-            setVal={setVolumeDrank}
+          <Button
+            variant='outlined'
+            onClick={() => {
+              setVolumeDrank((prev: string) =>
+                (Number(prev) + 100).toString()
+              );
+            }}
+          >
+            +100
+          </Button>
+          <input
+            id='changeVolumeDrunk'
+            name='changeVolumeDrunk'
+            type='number'
+            value={volumeDrank}
+            onChange={(e) =>
+              setVolumeDrank(trimFirstZero(e.target.value))
+            }
           />
+          <Button
+            variant='outlined'
+            onClick={() => {
+              setVolumeDrank((prev: string) =>
+                (Number(prev) - 100).toString()
+              );
+            }}
+          >
+            -100
+          </Button>
         </div>
+
         <div className='alcoCounter inputBlock'>
-          <label id='lblPercent'>
+          <label id='lblPercent' htmlFor='changePercent'>
             {ALCO_CONTENT[currentLang].lblPercent}
-            <input
-              name='changePercent'
-              type='number'
-              min='0'
-              max='100'
-              value={percent}
-              onChange={(e) =>
-                setPercent(trimFirstZero(e.target.value))
-              }
-            />
           </label>
-          <PlusMinusVal step={1} setVal={setPercent} />
+          <Button
+            variant='outlined'
+            onClick={() => {
+              setPercent((prev: string) =>
+                (Number(prev) + 100).toString()
+              );
+            }}
+          >
+            +1
+          </Button>
+          <input
+            id='changePercent'
+            name='changePercent'
+            type='number'
+            min='0'
+            max='100'
+            value={percent}
+            onChange={(e) =>
+              setPercent(trimFirstZero(e.target.value))
+            }
+          />
+          <Button
+            variant='outlined'
+            onClick={() => {
+              setPercent((prev: string) =>
+                (Number(prev) - 100).toString()
+              );
+            }}
+          >
+            -1
+          </Button>
         </div>
       </div>
+
       <div className='alcoCounter-addButton'>
         {/*TODO: around the button add different smiles for 5 sec after clicked "calc button" */}
         {/* <div></div>  */}
