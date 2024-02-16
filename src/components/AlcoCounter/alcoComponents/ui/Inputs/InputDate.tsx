@@ -4,13 +4,11 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "../../../../../store/hooks/redux";
-import { alcoActions } from "../../../../../store/reducer/alcoReducer";
 import { ALCO_CONTENT } from "../../../../../store/reducer/constants/alcoConstants";
 import {
   ActionsChangeData,
   AlcoContentLangData,
 } from "../../../../../store/reducer/types/alcoTypes";
-import { PlusMinusDate } from "../Buttons";
 
 type InputDataProps = {
   data: string;
@@ -35,6 +33,7 @@ export const InputDate = ({
       </label>
       <Button
         variant='outlined'
+        size='small'
         onClick={() => {
           dispatch(changeData(Number(data) + 1 + ""));
         }}
@@ -53,6 +52,7 @@ export const InputDate = ({
       />
       <Button
         variant='outlined'
+        size='small'
         onClick={() => {
           dispatch(changeData(Number(data) - 1 + ""));
         }}

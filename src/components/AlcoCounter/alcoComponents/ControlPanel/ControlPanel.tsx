@@ -9,13 +9,7 @@ import { ALCO_CONTENT } from "../../../../store/reducer/constants/alcoConstants"
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
 import { trimFirstZero } from "../../../../store/reducer/alcoHandlers";
-import {
-  SelectLang,
-  PlusMinusDate,
-  PlusMinusVal,
-  BlockHeader,
-  InputDate,
-} from "../ui";
+import { SelectLang, BlockHeader, InputDate } from "../ui";
 
 export const ControlPanel = () => {
   const [volumeDrank, setVolumeDrank] = useState("500");
@@ -55,6 +49,7 @@ export const ControlPanel = () => {
           </label>
           <Button
             variant='outlined'
+            size='small'
             onClick={() => {
               setVolumeDrank((prev: string) =>
                 (Number(prev) + 100).toString()
@@ -74,6 +69,7 @@ export const ControlPanel = () => {
           />
           <Button
             variant='outlined'
+            size='small'
             onClick={() => {
               setVolumeDrank((prev: string) =>
                 (Number(prev) - 100).toString()
@@ -90,6 +86,7 @@ export const ControlPanel = () => {
           </label>
           <Button
             variant='outlined'
+            size='small'
             onClick={() => {
               setPercent((prev: string) =>
                 (Number(prev) + 100).toString()
@@ -111,6 +108,7 @@ export const ControlPanel = () => {
           />
           <Button
             variant='outlined'
+            size='small'
             onClick={() => {
               setPercent((prev: string) =>
                 (Number(prev) - 100).toString()
