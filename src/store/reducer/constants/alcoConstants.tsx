@@ -62,7 +62,7 @@ export const ALCO_CONTENT = {
       "Objętość sporzytego spirytusu za ten rok, ml",
     deleteYear: "Usunąć dane za wprowadzony rok",
     deleteMonth: "Usunąć dane za wprowadzony miesiąc",
-    changeCalcBtn: "Change calculator",
+    changeCalcBtn: "Zmień kalculator",
   },
   EN: {
     alcoHeader: "Alcohol consumption counter ",
@@ -83,7 +83,7 @@ export const ALCO_CONTENT = {
     sumEthanolPerYear: "Summary drunk ethanol per year, ml",
     deleteYear: "Delete data for the entered year",
     deleteMonth: "Delete data for the entered month",
-    changeCalcBtn: "Zmień kalculator",
+    changeCalcBtn: "Change calculator",
   },
   UA: {
     alcoHeader: "Лічильник споживання алкоголю",
