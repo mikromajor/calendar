@@ -24,7 +24,7 @@ export const SelectLang = () => {
   ));
 
   return (
-    <div className='alcoCounter inputBlock'>
+    <div className='alcoCounter inputBlock selectLang'>
       <label id='lblLang'>
         {ALCO_CONTENT[currentLang].lblLang}
         <select

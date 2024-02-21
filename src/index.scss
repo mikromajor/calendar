@@ -106,7 +106,7 @@ body {
   }
   &-inputBlock {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-around;
     margin: 3px;
 
@@ -116,6 +116,9 @@ body {
       input {
         margin: 5px 0;
       }
+    }
+    .selectLang {
+      padding-bottom: 2rem;
     }
   }
 
