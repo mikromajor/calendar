@@ -59,9 +59,10 @@ export const ALCO_CONTENT = {
     sumVodkaPerYear:
       "Objętość spożytej wódki za ten rok, ml ",
     sumEthanolPerYear:
-      " Objętość sporzytego spirytusu za ten rok, ml",
+      "Objętość sporzytego spirytusu za ten rok, ml",
     deleteYear: "Usunąć dane za wprowadzony rok",
     deleteMonth: "Usunąć dane za wprowadzony miesiąc",
+    changeCalcBtn: "Change calculator",
   },
   EN: {
     alcoHeader: "Alcohol consumption counter ",
@@ -80,8 +81,9 @@ export const ALCO_CONTENT = {
       "Summary drunk ethanol per month, ml",
     sumVodkaPerYear: "Summary drunk vodka per year, ml",
     sumEthanolPerYear: "Summary drunk ethanol per year, ml",
-    deleteYear: " Delete data for the entered year",
+    deleteYear: "Delete data for the entered year",
     deleteMonth: "Delete data for the entered month",
+    changeCalcBtn: "Zmień kalculator",
   },
   UA: {
     alcoHeader: "Лічильник споживання алкоголю",
@@ -102,6 +104,7 @@ export const ALCO_CONTENT = {
     sumEthanolPerYear: "Об'єм випитого спирту за рік, мл",
     deleteYear: "Видалити дані за введений рік",
     deleteMonth: "Видалити дані за введений місяць",
+    changeCalcBtn: "Зміни калькулятор",
   },
 };
 
