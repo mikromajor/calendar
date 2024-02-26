@@ -5,14 +5,22 @@ import {
   AlcoHeader,
 } from "./alcoComponents";
 import { useState } from "react";
+import Calendar from "react-calendar";
+
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export const AlcoCounter = () => {
   const [showAlcoCalendar, setShowAlcoCalendar] =
     useState(true);
+  const [value, onChange] = useState<Value>(new Date());
+  console.log(value);
   return (
     <>
       {showAlcoCalendar && (
-        <div className='alcoCalendar'></div>
+        <div className='alcoCalendar'>
+          <Calendar onChange={onChange} value={value} />
+        </div>
       )}
       <div className='alcoCounter'>
         <AlcoHeader />
@@ -24,7 +32,7 @@ export const AlcoCounter = () => {
   );
 };
 
-//  TODO:
+//  TODO alcoCalculator v1:
 // write a simple calculator with the next fields that you can change
 // volume of liquid drunk
 // quantity percent alcohol
@@ -50,3 +58,5 @@ export const AlcoCounter = () => {
 
 //nvm install 16.20.0
 //nvm use 16.20.0
+
+// v2 => alcoCalculator + Calendar
