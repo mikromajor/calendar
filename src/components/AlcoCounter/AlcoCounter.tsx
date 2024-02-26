@@ -14,7 +14,7 @@ export const AlcoCounter = () => {
   const [showAlcoCalendar, setShowAlcoCalendar] =
     useState(true);
   const [value, onChange] = useState<Value>(new Date());
-  console.log(value);
+  console.log("value => ", value);
   return (
     <>
       {showAlcoCalendar && (

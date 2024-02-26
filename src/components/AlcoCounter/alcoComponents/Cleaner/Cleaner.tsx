@@ -3,7 +3,7 @@ import {
   useAppSelector,
 } from "../../../../store/hooks/redux";
 import { alcoActions } from "../../../../store/reducer/alcoReducer";
-import { ALCO_CONTENT } from "../../../../store/reducer/constants/alcoConstants";
+import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 
 export const Cleaner = () => {
   const dispatch = useAppDispatch();

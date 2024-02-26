@@ -1,12 +1,12 @@
 import {
   SALARY_CONTENT,
   LANGS,
-} from "../../../../store/reducer/constants/salaryConstants";
+} from "../../../../constants/salaryConstants";
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../../../store/hooks/redux";
-import { Langs } from "../../../../store/reducer/types/salaryTypes";
+import { Langs } from "../../../../types/salaryTypes";
 import { salaryActions } from "../../../../store/reducer/salaryReducer";
 
 export const LangsRow = () => {

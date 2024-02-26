@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 
 import { useAppSelector } from "../../../../../store/hooks/redux";
 
-import { ALCO_CONTENT } from "../../../../../store/reducer/constants/alcoConstants";
+import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
 import { trimFirstZero } from "../../../../../store/reducer/alcoHandlers/";
 
 type InputLiquidPropertyProps = {

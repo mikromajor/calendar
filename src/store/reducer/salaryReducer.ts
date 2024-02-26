@@ -3,8 +3,11 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { SALARY_INIT } from "./constants/salaryConstants";
-import { PayloadType, Langs } from "./types/salaryTypes";
+import { SALARY_INIT } from "../../constants/salaryConstants";
+import {
+  PayloadType,
+  Langs,
+} from "../../types/salaryTypes";
 import {
   changeDate,
   updateStateUsingStore,

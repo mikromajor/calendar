@@ -4,7 +4,7 @@ import {
 } from "../../../../store/hooks/redux";
 
 import { salaryActions } from "../../../../store/reducer/salaryReducer";
-import { KeysSalaryInit } from "../../../../store/reducer/types/salaryTypes";
+import { KeysSalaryInit } from "../../../../types/salaryTypes";
 
 type InputProps = {
   payloadsKey: KeysSalaryInit;

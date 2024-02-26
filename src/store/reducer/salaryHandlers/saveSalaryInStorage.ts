@@ -1,4 +1,4 @@
-import { SalaryInit } from "../types/salaryTypes";
+import { SalaryInit } from "../../../types/salaryTypes";
 import { getKey } from "./getKey";
 
 export const saveSalaryInStorage = (state: SalaryInit) =>

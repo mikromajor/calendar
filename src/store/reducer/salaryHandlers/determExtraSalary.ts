@@ -1,5 +1,5 @@
-import { SalaryInit } from "../types/salaryTypes";
-import { PREMIUM_COEFFICIENT } from "../constants/salaryConstants";
+import { SalaryInit } from "../../../types/salaryTypes";
+import { PREMIUM_COEFFICIENT } from "../../../constants/salaryConstants";
 
 export const determExtraSalary = (state: SalaryInit) =>
   Math.round(

@@ -1,8 +1,8 @@
 import {
   SalaryInit,
   KeysSalaryInit,
-} from "../types/salaryTypes";
-import { SALARY_INIT } from "../constants/salaryConstants";
+} from "../../../types/salaryTypes";
+import { SALARY_INIT } from "../../../constants/salaryConstants";
 import { amountWeekendsAndWeekdays, getKey } from ".";
 
 export const updateStateUsingStore = (

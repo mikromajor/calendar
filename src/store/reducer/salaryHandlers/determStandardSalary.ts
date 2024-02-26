@@ -1,5 +1,5 @@
-import { SalaryInit } from "../types/salaryTypes";
-import { SOCIAL_COEFFICIENTS } from "../constants/salaryConstants";
+import { SalaryInit } from "../../../types/salaryTypes";
+import { SOCIAL_COEFFICIENTS } from "../../../constants/salaryConstants";
 import { determineVacationPayCoefficient } from ".";
 
 export const determStandardSalary = (state: SalaryInit) => {

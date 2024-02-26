@@ -3,7 +3,7 @@ import {
   ALCO_CONTENT,
   INIT_MONTH_DATA,
 } from "../constants/alcoConstants";
-import { alcoActions } from "../alcoReducer";
+import { alcoActions } from "../store/reducer/alcoReducer";
 
 type MonthData = typeof INIT_MONTH_DATA;
 export type LgsName = keyof typeof ALCO_CONTENT;

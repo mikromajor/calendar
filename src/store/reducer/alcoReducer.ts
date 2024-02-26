@@ -5,14 +5,14 @@ import {
 import {
   INIT_ALCO_STATE,
   INIT_MONTH_DATA,
-} from "./constants/alcoConstants";
+} from "../../constants/alcoConstants";
 import {
   tryStorageData,
   saveStateInStorage,
   setDecimal,
   createKey,
 } from "./alcoHandlers";
-import { LgsName } from "./types/alcoTypes";
+import { LgsName } from "../../types/alcoTypes";
 
 const store = tryStorageData(INIT_ALCO_STATE.currentYear);
 

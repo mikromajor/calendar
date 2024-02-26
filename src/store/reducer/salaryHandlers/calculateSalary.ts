@@ -7,7 +7,7 @@ import {
 import {
   PayloadType,
   SalaryInit,
-} from "../types/salaryTypes";
+} from "../../../types/salaryTypes";
 
 export const calculateSalary = (
   state: SalaryInit,

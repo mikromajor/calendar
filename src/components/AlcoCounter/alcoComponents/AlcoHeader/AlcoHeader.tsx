@@ -1,6 +1,5 @@
 import { useAppSelector } from "../../../../store/hooks/redux";
-import { ALCO_CONTENT } from "../../../../store/reducer/constants/alcoConstants";
-import { StateKeys } from "../../../../store/reducer/types/alcoTypes";
+import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 
 export const AlcoHeader = () => {
   const { currentLang } = useAppSelector(

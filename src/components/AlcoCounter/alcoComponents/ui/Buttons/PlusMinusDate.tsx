@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../../../../store/hooks/redux";
-import { ActionsChangeData } from "../../../../../store/reducer/types/alcoTypes";
+import { ActionsChangeData } from "../../../../../types/alcoTypes";
 
 type PlusMinusProps = {
   callBack: ActionsChangeData;

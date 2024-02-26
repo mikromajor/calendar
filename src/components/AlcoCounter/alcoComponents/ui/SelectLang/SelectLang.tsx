@@ -1,13 +1,13 @@
 import {
   NAMES_OF_LANGS,
   ALCO_CONTENT,
-} from "../../../../../store/reducer/constants/alcoConstants";
+} from "../../../../../constants/alcoConstants";
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../../../../store/hooks/redux";
 import { alcoActions } from "../../../../../store/reducer/alcoReducer";
-import { LgsName } from "../../../../../store/reducer/types/alcoTypes";
+import { LgsName } from "../../../../../types/alcoTypes";
 
 export const SelectLang = () => {
   const currentLang = useAppSelector(

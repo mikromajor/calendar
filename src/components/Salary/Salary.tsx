@@ -5,7 +5,7 @@ import {
   NO_INPUTS,
   SALARY_KEYS,
   SALARY_INIT,
-} from "../../store/reducer/constants/salaryConstants";
+} from "../../constants/salaryConstants";
 
 export const Salary = () => {
   const salaryReducer = useAppSelector(

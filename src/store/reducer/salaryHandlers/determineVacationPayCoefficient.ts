@@ -1,5 +1,5 @@
 import { amountWeekendsAndWeekdays, getKey } from ".";
-import { SalaryInit } from "../types/salaryTypes";
+import { SalaryInit } from "../../../types/salaryTypes";
 
 export const determineVacationPayCoefficient = (
   state: SalaryInit

@@ -1,6 +1,6 @@
 import { useAppSelector } from "../../../../../store/hooks/redux";
-import { ALCO_CONTENT } from "../../../../../store/reducer/constants/alcoConstants";
-import { AlcoContentLangData } from "../../../../../store/reducer/types/alcoTypes";
+import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
+import { AlcoContentLangData } from "../../../../../types/alcoTypes";
 
 type BlockHeaderProps = {
   title: AlcoContentLangData;

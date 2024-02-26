@@ -4,11 +4,11 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "../../../../../store/hooks/redux";
-import { ALCO_CONTENT } from "../../../../../store/reducer/constants/alcoConstants";
+import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
 import {
   ActionsChangeData,
   AlcoContentLangData,
-} from "../../../../../store/reducer/types/alcoTypes";
+} from "../../../../../types/alcoTypes";
 
 type InputDataProps = {
   data: string;

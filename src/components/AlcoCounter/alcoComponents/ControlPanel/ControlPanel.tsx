@@ -5,7 +5,7 @@ import {
   useAppDispatch,
 } from "../../../../store/hooks/redux";
 import { alcoActions } from "../../../../store/reducer/alcoReducer";
-import { ALCO_CONTENT } from "../../../../store/reducer/constants/alcoConstants";
+import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
 import { trimFirstZero } from "../../../../store/reducer/alcoHandlers";

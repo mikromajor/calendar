@@ -1,7 +1,7 @@
 import { AlcoCounter, Salary } from "./components";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { ALCO_CONTENT } from "./store/reducer/constants/alcoConstants";
+import { ALCO_CONTENT } from "./constants/alcoConstants";
 import { useAppSelector } from "./store/hooks/redux";
 
 function App() {
@@ -23,4 +23,4 @@ function App() {
   );
 }
 export default App;
-//TODO:  changeCalcButton  language can be change only in AlcoCounter
+//TODO:  changeCalcButton - language can be change only in AlcoCounter
