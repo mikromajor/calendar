@@ -4,15 +4,23 @@ import {
   Cleaner,
   AlcoHeader,
 } from "./alcoComponents";
+import { useState } from "react";
 
 export const AlcoCounter = () => {
+  const [showAlcoCalendar, setShowAlcoCalendar] =
+    useState(true);
   return (
-    <div className='alcoCounter'>
-      <AlcoHeader />
-      <Display />
-      <ControlPanel />
-      <Cleaner />
-    </div>
+    <>
+      {showAlcoCalendar && (
+        <div className='alcoCalendar'></div>
+      )}
+      <div className='alcoCounter'>
+        <AlcoHeader />
+        <Display />
+        <ControlPanel />
+        <Cleaner />
+      </div>
+    </>
   );
 };
 
