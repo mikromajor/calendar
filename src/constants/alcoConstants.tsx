@@ -43,12 +43,13 @@ export const ALCO_CONTENT = {
   PL: {
     alcoHeader: "Licznik spożycia alkoholu",
     controlPanelHeader: "Wprowadź dane wypitego napoju",
-    lblLang: "Zmień jęnzyk",
+    lblLang: "Zmień język",
     lblMonth: "Wybierz miesiąc",
     lblYear: "Wybierz rok",
     lblVolume: "Objętość wypitego płynu, ml",
     lblPercent: "Procent wypitego, %",
     btnAdd: "Dodaj",
+    btnShowAlcoCalendar: "Kalendarz",
     caption: "Suma spożytego alkoholu",
     currentYear: "Rok",
     currentMonth: "Miesiąc",
@@ -59,10 +60,10 @@ export const ALCO_CONTENT = {
     sumVodkaPerYear:
       "Objętość spożytej wódki za ten rok, ml ",
     sumEthanolPerYear:
-      "Objętość sporzytego spirytusu za ten rok, ml",
+      "Objętość spożytego spirytusu za ten rok, ml",
     deleteYear: "Usunąć dane za wprowadzony rok",
     deleteMonth: "Usunąć dane za wprowadzony miesiąc",
-    changeCalcBtn: "Zmień kalculator",
+    changeCalcBtn: "Zmień kalkulator",
   },
   EN: {
     alcoHeader: "Alcohol consumption counter ",
@@ -73,6 +74,7 @@ export const ALCO_CONTENT = {
     lblVolume: "Volume drunks, ml",
     lblPercent: "Percent, %",
     btnAdd: "Add",
+    btnShowAlcoCalendar: "Calendar",
     caption: "Total vodka drunk",
     currentYear: "Year",
     currentMonth: "Month",
@@ -94,6 +96,7 @@ export const ALCO_CONTENT = {
     lblVolume: "Об'єм випитого, мл",
     lblPercent: "Процент випитого, %",
     btnAdd: "Додати",
+    btnShowAlcoCalendar: "Kалендар",
     caption: "Сумарно випито алкоголю",
     currentYear: "Рік",
     currentMonth: "Місяць",
