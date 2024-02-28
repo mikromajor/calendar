@@ -17,15 +17,17 @@ export const AlcoCounter = () => {
   console.log("value => ", value);
   return (
     <>
-      {showAlcoCalendar && (
-        <div className='alcoCalendar'>
-          <Calendar onChange={onChange} value={value} />
-        </div>
-      )}
       <div className='alcoCounter'>
         <AlcoHeader />
         <Display />
-        <ControlPanel />
+        {showAlcoCalendar && (
+          <div className='alcoCalendar'>
+            <Calendar onChange={onChange} value={value} />
+          </div>
+        )}
+        <ControlPanel
+          setShowAlcoCalendar={setShowAlcoCalendar}
+        />
         <Cleaner />
       </div>
     </>

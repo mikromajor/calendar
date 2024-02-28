@@ -16,7 +16,15 @@ import {
   InputLiquidProperty,
 } from "../ui";
 
-export const ControlPanel = () => {
+type ControlPanelProps = {
+  setShowAlcoCalendar: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
+};
+
+export const ControlPanel = ({
+  setShowAlcoCalendar,
+}: ControlPanelProps) => {
   const [volumeDrank, setVolumeDrank] = useState("500");
   const [percent, setPercent] = useState("5");
 
@@ -63,7 +71,7 @@ export const ControlPanel = () => {
         />
       </div>
 
-      <div className='alcoCounter-addButton'>
+      <div className='alcoCounter-navBtn'>
         {/*TODO: around the button add different smiles for 5 sec after clicked "calc button" */}
         {/* <div></div>  */}
         <Button
@@ -74,6 +82,15 @@ export const ControlPanel = () => {
           }
         >
           {ALCO_CONTENT[currentLang].btnAdd}
+        </Button>
+        <Button
+          id='btnShowAlcoCalendar'
+          variant='contained'
+          onClick={() =>
+            setShowAlcoCalendar((show) => !show)
+          }
+        >
+          {ALCO_CONTENT[currentLang].btnShowAlcoCalendar}
         </Button>
         {/* <div></div> */}
       </div>
