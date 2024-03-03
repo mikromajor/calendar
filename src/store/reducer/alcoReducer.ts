@@ -12,7 +12,7 @@ import {
   setDecimal,
   createKey,
 } from "./alcoHandlers";
-import { LgsName } from "../../types/alcoTypes";
+import { Language } from "../../types/alcoTypes";
 
 const store = tryStorageData(INIT_ALCO_STATE.currentYear);
 
@@ -22,7 +22,7 @@ export const alcoReducer = createSlice({
   reducers: {
     changeLanguage: (
       state,
-      action: PayloadAction<LgsName>
+      action: PayloadAction<Language>
     ) => {
       state.currentLang = action.payload;
     },
@@ -64,6 +64,8 @@ export const alcoReducer = createSlice({
       action: PayloadAction<string[]>
     ) => {
       const [volumeDrank, percent] = action.payload;
+      const { currentDay, currentMonth, currentYear } =
+        state;
       const vol = Number(volumeDrank);
       const per = Number(percent);
       let ethanol = 0;
@@ -71,18 +73,20 @@ export const alcoReducer = createSlice({
       if (vol && per) {
         ethanol = (vol * per) / 100;
 
-        state.sumEthanolPerMonth = setDecimal(
-          state.sumEthanolPerMonth + ethanol,
-          0
-        );
+        state.yearData[Number(currentMonth)].days[
+          Number(currentDay)
+        ].sumVodkaPerDay = state.sumEthanolPerMonth =
+          setDecimal(state.sumEthanolPerMonth + ethanol, 0);
         state.sumVodkaPerMonth = setDecimal(
           state.sumEthanolPerMonth * 2.5,
           0
         );
-        state.yearData[Number(state.currentMonth)] = {
-          month: state.currentMonth,
+
+        state.yearData[Number(currentMonth)] = {
+          month: currentMonth,
           sumEthanolPerMonth: state.sumEthanolPerMonth,
           sumVodkaPerMonth: state.sumVodkaPerMonth,
+          days: [], //TODO
         };
 
         state.sumEthanolPerYear = setDecimal(

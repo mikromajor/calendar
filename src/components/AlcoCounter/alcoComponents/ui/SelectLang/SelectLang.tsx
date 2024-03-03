@@ -7,7 +7,7 @@ import {
   useAppDispatch,
 } from "../../../../../store/hooks/redux";
 import { alcoActions } from "../../../../../store/reducer/alcoReducer";
-import { LgsName } from "../../../../../types/alcoTypes";
+import { Language } from "../../../../../types/alcoTypes";
 
 export const SelectLang = () => {
   const currentLang = useAppSelector(
@@ -33,7 +33,7 @@ export const SelectLang = () => {
           onChange={(e) => {
             dispatch(
               changeLanguage(
-                e.currentTarget.value as LgsName
+                e.currentTarget.value as Language
               )
             );
           }}

@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../../store/hooks/redux";
-import { LgsName } from "../../../../types/alcoTypes";
+import { Language } from "../../../../types/alcoTypes";
 import {
   DISPLAY_LINE,
   ALCO_CONTENT,
@@ -12,7 +12,7 @@ export const Display = () => {
 
   // add compatibility V1 & V2
   const lang =
-    alcoState.currentLang.toUpperCase() as LgsName;
+    alcoState.currentLang.toUpperCase() as Language;
 
   const trs = DISPLAY_LINE.map((key, i) => (
     <tr key={key + i}>
