@@ -3,11 +3,15 @@ import { INIT_DAY } from "../../../constants/alcoConstants";
 
 export const createDayData = (
   state: AlcoState,
-  dayData: { totalVodka?: number; totalBill?: number }
+  newDayData: { newVodka?: number; newBill?: number }
 ) => {
-  const { day, month, year } = state.currentDate;
+  const { day, month } = state.currentDate;
+  //TODO  not complete
+  const updateDayData = { ...INIT_DAY };
+
+  // if dayData does not exist
   state.yearData.months[Number(month)].days[Number(day)] = {
     ...INIT_DAY,
-    ...dayData,
   };
+  //if dayData exist
 };
