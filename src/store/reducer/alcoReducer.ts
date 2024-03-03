@@ -2,10 +2,7 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import {
-  INIT_ALCO_STATE,
-  INIT_MONTH_DATA,
-} from "../../constants/alcoConstants";
+import { INIT_ALCO_STATE } from "../../constants/alcoConstants";
 import {
   tryStorageData,
   saveStateInStorage,
@@ -14,7 +11,9 @@ import {
 } from "./alcoHandlers";
 import { Language } from "../../types/alcoTypes";
 
-const store = tryStorageData(INIT_ALCO_STATE.currentYear);
+const store = tryStorageData(
+  INIT_ALCO_STATE.currentDate.year
+);
 
 export const alcoReducer = createSlice({
   name: "alcoState",
@@ -32,8 +31,8 @@ export const alcoReducer = createSlice({
       if (month > 0 && month < 13) {
         state.currentMonth = action.payload;
 
-        if (state.yearData[month]) {
-          state.sumEthanolPerMonth =
+        if (state.yearData.months[month]) {
+          state.yearData =
             state.yearData[month].sumEthanolPerMonth;
           state.sumVodkaPerMonth =
             state.yearData[month].sumVodkaPerMonth;
