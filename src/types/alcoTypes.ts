@@ -11,20 +11,23 @@ export type AlcoContentLangData =
   keyof typeof ALCO_CONTENT.EN;
 
 export type AlcoState = {
-  currentYear: string;
+  currentDay: string;
   currentMonth: string;
+  currentYear: string;
   currentLang: LgsName;
 
-  sumEthanolPerYear: number;
+  sumEthanolPerDay: number;
   sumEthanolPerMonth: number;
+  sumEthanolPerYear: number;
 
+  sumVodkaPerDay: number;
   sumVodkaPerMonth: number;
   sumVodkaPerYear: number;
 
   volumeDrank: number;
   percent: number;
 
-  monthsData: MonthData[];
+  yearData: MonthData[];
 };
 
 export type StateKeys = keyof AlcoState;

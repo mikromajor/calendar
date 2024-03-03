@@ -32,11 +32,11 @@ export const alcoReducer = createSlice({
       if (month > 0 && month < 13) {
         state.currentMonth = action.payload;
 
-        if (state.monthsData[month]) {
+        if (state.yearData[month]) {
           state.sumEthanolPerMonth =
-            state.monthsData[month].sumEthanolPerMonth;
+            state.yearData[month].sumEthanolPerMonth;
           state.sumVodkaPerMonth =
-            state.monthsData[month].sumVodkaPerMonth;
+            state.yearData[month].sumVodkaPerMonth;
           state.currentMonth = month + "";
         } else {
           state.sumEthanolPerMonth = 0;
@@ -79,14 +79,14 @@ export const alcoReducer = createSlice({
           state.sumEthanolPerMonth * 2.5,
           0
         );
-        state.monthsData[Number(state.currentMonth)] = {
+        state.yearData[Number(state.currentMonth)] = {
           month: state.currentMonth,
           sumEthanolPerMonth: state.sumEthanolPerMonth,
           sumVodkaPerMonth: state.sumVodkaPerMonth,
         };
 
         state.sumEthanolPerYear = setDecimal(
-          state.monthsData.reduce(
+          state.yearData.reduce(
             (sum, monthData) =>
               !!monthData
                 ? sum + monthData.sumEthanolPerMonth
@@ -113,7 +113,7 @@ export const alcoReducer = createSlice({
     },
     clearMonthData: (state) => {
       const monthData =
-        state.monthsData[Number(state.currentMonth)];
+        state.yearData[Number(state.currentMonth)];
       monthData.sumEthanolPerMonth = 0;
       monthData.sumVodkaPerMonth = 0;
 

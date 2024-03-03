@@ -4,30 +4,36 @@ import {
   LgsName,
 } from "../types/alcoTypes";
 
+//new Date(year, monthIndex, day)
+const currentDay = new Date().getDate().toString();
+const currentYear = new Date().getFullYear().toString();
+const currentMonth = new Date().getMonth().toString();
+
 export const INIT_MONTH_DATA = {
   month: "1",
+  days: [{ sumVodkaPerDay: 0 }],
   sumEthanolPerMonth: 0,
   sumVodkaPerMonth: 0,
 };
 
-const currentYear = new Date().getFullYear().toString();
-const currentMonth = new Date().getMonth().toString();
-
 export const INIT_ALCO_STATE: AlcoState = {
-  currentYear: currentYear,
+  currentDay: currentDay,
   currentMonth: currentMonth,
+  currentYear: currentYear,
   currentLang: "UA",
 
-  sumEthanolPerYear: 0,
+  sumEthanolPerDay: 0,
   sumEthanolPerMonth: 0,
+  sumEthanolPerYear: 0,
 
+  sumVodkaPerDay: 0,
   sumVodkaPerMonth: 0,
   sumVodkaPerYear: 0,
 
   volumeDrank: 0,
   percent: 5,
 
-  monthsData: [],
+  yearData: [],
 };
 
 export const DISPLAY_LINE: Langs[] = [
