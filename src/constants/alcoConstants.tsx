@@ -11,30 +11,32 @@ const currentDay = new Date().getDate().toString();
 const currentYear = new Date().getFullYear().toString();
 const currentMonth = new Date().getMonth().toString();
 
+const CURRENT_DATE = {
+  day: currentDay,
+  month: currentMonth,
+  year: currentYear,
+};
+
 //created new structure for keeping year data
-const INIT_DAY: Total = {
+export const INIT_DAY: Total = {
   totalVodka: 0,
   totalBill: 0,
 };
-const INIT_MONTH: Month = {
+export const INIT_MONTH: Month = {
   totalVodka: 0,
   totalBill: 0,
-  days: [INIT_DAY],
+  days: [INIT_DAY], // 30 days info
 };
-const INIT_YEAR: Year = {
+export const INIT_YEAR: Year = {
   totalVodka: 0,
   totalBill: 0,
-  months: [INIT_MONTH],
+  months: [INIT_MONTH], // 12 months info
 };
 
 export const INIT_ALCO_STATE: AlcoState = {
-  currentDay,
-  currentMonth,
-  currentYear,
+  currentDate: CURRENT_DATE,
   currentLang: "UA",
-  totalVodka: 0,
-  totalBill: 0,
-  yearData: INIT_YEAR,
+  yearData: INIT_YEAR, //12 months info
 };
 
 export const ALCO_CONTENT = {
@@ -61,7 +63,7 @@ export const ALCO_CONTENT = {
       "Objętość spożytej wódki za ten rok, ml ",
     deleteYear: "Usunąć dane za wprowadzony rok",
     deleteMonth: "Usunąć dane za wprowadzony miesiąc",
-    changeCalcBtn: "Zmień kalkulator",
+    btnChangeCalc: "Zmień kalkulator",
   },
   EN: {
     alcoHeader: "Alcohol consumption counter ",
@@ -83,7 +85,7 @@ export const ALCO_CONTENT = {
     sumVodkaPerYear: "Summary drunk vodka per year, ml",
     deleteYear: "Delete data for the entered year",
     deleteMonth: "Delete data for the entered month",
-    changeCalcBtn: "Change calculator",
+    btnChangeCalc: "Change calculator",
   },
   UA: {
     alcoHeader: "Лічильник споживання алкоголю",
@@ -105,7 +107,7 @@ export const ALCO_CONTENT = {
     sumVodkaPerYear: "Об'єм випитої горілки за рік, мл",
     deleteYear: "Видалити дані за введений рік",
     deleteMonth: "Видалити дані за введений місяць",
-    changeCalcBtn: "Зміни калькулятор",
+    btnChangeCalc: "Зміни калькулятор",
   },
 };
 

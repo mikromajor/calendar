@@ -2,7 +2,12 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { INIT_ALCO_STATE } from "../../constants/alcoConstants";
+import {
+  INIT_ALCO_STATE,
+  INIT_DAY,
+  INIT_MONTH,
+  INIT_YEAR,
+} from "../../constants/alcoConstants";
 import {
   tryStorageData,
   saveStateInStorage,
@@ -29,18 +34,7 @@ export const alcoReducer = createSlice({
     changeMonth: (state, action: PayloadAction<string>) => {
       const month = Number(action.payload);
       if (month > 0 && month < 13) {
-        state.currentMonth = action.payload;
-
-        if (state.yearData.months[month]) {
-          state.yearData =
-            state.yearData[month].sumEthanolPerMonth;
-          state.sumVodkaPerMonth =
-            state.yearData[month].sumVodkaPerMonth;
-          state.currentMonth = month + "";
-        } else {
-          state.sumEthanolPerMonth = 0;
-          state.sumVodkaPerMonth = 0;
-        }
+        state.currentDate.month = action.payload;
       }
     },
     changeYear: (state, action: PayloadAction<string>) => {
@@ -52,8 +46,11 @@ export const alcoReducer = createSlice({
         state,
         !!isStoreData ? isStoreData : INIT_ALCO_STATE,
         {
-          currentYear: year,
           currentLang: state.currentLang,
+          currentDate: {
+            ...state.currentDate,
+            year,
+          },
         }
       );
     },
@@ -62,61 +59,53 @@ export const alcoReducer = createSlice({
       state,
       action: PayloadAction<string[]>
     ) => {
-      const [volumeDrank, percent] = action.payload;
-      const { currentDay, currentMonth, currentYear } =
-        state;
-      const vol = Number(volumeDrank);
-      const per = Number(percent);
-      let ethanol = 0;
+      const [vol, per] = action.payload.map((d) =>
+        Number(d)
+      );
+      const { day, month, year } = state.currentDate;
 
       if (vol && per) {
-        ethanol = (vol * per) / 100;
-
-        state.yearData[Number(currentMonth)].days[
-          Number(currentDay)
-        ].sumVodkaPerDay = state.sumEthanolPerMonth =
-          setDecimal(state.sumEthanolPerMonth + ethanol, 0);
-        state.sumVodkaPerMonth = setDecimal(
-          state.sumEthanolPerMonth * 2.5,
+        const vodka = setDecimal(
+          (vol * per * 2.5) / 100,
           0
         );
+        // setDecimal(state.sumEthanolPerMonth + ethanol, 0);
+        state.yearData.totalVodka += vodka;
+        
+        if(state.yearData.months?.[Number(month)]){
+          state.yearData.months[Number(month)].totalVodka +=
+          vodka;
+          state.yearData.months[Number(month)].days[Number(day)] = 
+        }
 
-        state.yearData[Number(currentMonth)] = {
-          month: currentMonth,
-          sumEthanolPerMonth: state.sumEthanolPerMonth,
-          sumVodkaPerMonth: state.sumVodkaPerMonth,
-          days: [], //TODO
-        };
+        if (!state.yearData.months?.[Number(month)]) {
+          state.yearData.months[Number(month)] = {
+            ...INIT_MONTH,totalVodka: vodka,
+          };
+          state.yearData.months[Number(month)].days[
+            Number(day)
+          ] = { ...INIT_DAY,totalVodka: vodka, };
+        }
+      
 
-        state.sumEthanolPerYear = setDecimal(
-          state.yearData.reduce(
-            (sum, monthData) =>
-              !!monthData
-                ? sum + monthData.sumEthanolPerMonth
-                : 0,
-            0
-          ),
-          0
-        );
 
-        state.sumVodkaPerYear = setDecimal(
-          state.sumEthanolPerYear * 2.5,
-          0
-        );
+        state.yearData.months[Number(month)].days[
+          Number(day)
+        ].totalVodka += vodka;
+
         saveStateInStorage(state);
       }
     },
     clearStorageForYear: (state) => {
-      const key = createKey(state.currentYear);
+      const key = createKey(state.year);
       window.localStorage.removeItem(key);
       Object.assign(state, INIT_ALCO_STATE, {
-        currentYear: state.currentYear,
+        year: state.year,
         currentLang: state.currentLang,
       });
     },
     clearMonthData: (state) => {
-      const monthData =
-        state.yearData[Number(state.currentMonth)];
+      const monthData = state.yearData[Number(state.month)];
       monthData.sumEthanolPerMonth = 0;
       monthData.sumVodkaPerMonth = 0;
 

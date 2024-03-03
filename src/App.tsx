@@ -17,7 +17,7 @@ function App() {
         variant='contained'
         onClick={() => setShowCalc((s) => !s)}
       >
-        {ALCO_CONTENT[currentLang].changeCalcBtn}
+        {ALCO_CONTENT[currentLang].btnChangeCalc}
       </Button>
     </>
   );
