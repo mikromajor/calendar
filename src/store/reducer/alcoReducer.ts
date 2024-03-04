@@ -13,6 +13,7 @@ import {
   saveStateInStorage,
   setDecimal,
   createKey,
+  calcDayData,calcMonthData
 } from "./alcoHandlers";
 import { Language } from "../../types/alcoTypes";
 
@@ -54,7 +55,7 @@ export const alcoReducer = createSlice({
         }
       );
     },
-
+//TODO: fixing
     calculating: (
       state,
       action: PayloadAction<string[]>

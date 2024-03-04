@@ -1,39 +1,26 @@
-import { AlcoState } from "../../../types/alcoTypes";
 import {
-  INIT_DAY,
-  INIT_MONTH,
-} from "../../../constants/alcoConstants";
-import { createDayData } from "./createDayData";
+  AlcoState,
+  AdditiveDayData,
+} from "../../../types/alcoTypes";
+import { INIT_MONTH } from "../../../constants/alcoConstants";
 
 export const calcMonthData = (
   state: AlcoState,
-  dayData: { newVodka?: number; newBill?: number }
+  additiveDayData: AdditiveDayData
 ) => {
-  const { day, month } = state.currentDate;
-  const { newVodka, newBill } = dayData;
-  // if month data exist
-  if (state.yearData.months?.[Number(month)]) {
-    !!newVodka &&
-      (state.yearData.months[Number(month)].totalVodka +=
-        newVodka);
-
-    !!newBill &&
-      (state.yearData.months[Number(month)].totalBill +=
-        newBill);
-  }
-  // if month data does not exist
+  const { month } = state.currentDate;
+  const { additiveVodka, additiveBill } = additiveDayData;
+  // create month data if it does not exist
   if (!state.yearData.months?.[Number(month)]) {
-    !!newVodka &&
-      (state.yearData.months[Number(month)] = {
-        ...INIT_MONTH,
-        totalVodka: newVodka,
-      });
-
-    !!newBill &&
-      (state.yearData.months[Number(month)] = {
-        ...INIT_MONTH,
-        totalBill: newBill,
-      });
+    state.yearData.months[Number(month)] = {
+      ...INIT_MONTH,
+    };
   }
-  createDayData(state, dayData);
+  // update month Data
+  const monthNeedUpdate =
+    state.yearData.months[Number(month)];
+  !!additiveVodka &&
+    (monthNeedUpdate.totalVodka += additiveVodka);
+  !!additiveBill &&
+    (monthNeedUpdate.totalBill += additiveBill);
 };

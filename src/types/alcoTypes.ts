@@ -46,6 +46,11 @@ export type ActionsChangeData =
   | typeof changeYear
   | typeof clearMonthData;
 
+export interface AdditiveDayData {
+  additiveVodka?: number;
+  additiveBill?: number;
+}
+
 // type AC = typeof ALCO_CONTENT;
 // type AlkoContent<AC>={
 //   [K in keyof AC]:AC[K];

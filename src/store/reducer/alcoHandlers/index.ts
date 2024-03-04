@@ -4,4 +4,5 @@ export { createKey } from "./createKey";
 export { tryStorageData } from "./tryStorageData";
 export { saveStateInStorage } from "./saveStateInStorage";
 export { trimFirstZero } from "./trimFirstZero";
-export { createDayData } from "./createDayData";
+export { calcMonthData } from "./calcMothData";
+export { calcDayData } from "./calcDayData";
