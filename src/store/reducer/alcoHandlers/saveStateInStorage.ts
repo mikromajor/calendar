@@ -3,6 +3,6 @@ import { createKey } from ".";
 
 export const saveStateInStorage = (state: AlcoState) =>
   window.localStorage.setItem(
-    createKey(state.currentYear),
+    createKey(state.currentDate.year),
     JSON.stringify(state)
   );

@@ -4,7 +4,6 @@ import {
 } from "@reduxjs/toolkit";
 import {
   INIT_ALCO_STATE,
-  INIT_DAY,
   INIT_MONTH,
   INIT_YEAR,
 } from "../../constants/alcoConstants";
@@ -13,7 +12,8 @@ import {
   saveStateInStorage,
   setDecimal,
   createKey,
-  calcDayData,calcMonthData
+  calcDayData,
+  calcMonthData,
 } from "./alcoHandlers";
 import { Language } from "../../types/alcoTypes";
 
@@ -55,7 +55,7 @@ export const alcoReducer = createSlice({
         }
       );
     },
-//TODO: fixing
+    //TODO: fixing
     calculating: (
       state,
       action: PayloadAction<string[]>
@@ -72,52 +72,29 @@ export const alcoReducer = createSlice({
         );
         // setDecimal(state.sumEthanolPerMonth + ethanol, 0);
         state.yearData.totalVodka += vodka;
-        
-        if(state.yearData.months?.[Number(month)]){
-          state.yearData.months[Number(month)].totalVodka +=
-          vodka;
-          state.yearData.months[Number(month)].days[Number(day)] = 
-        }
-
-        if (!state.yearData.months?.[Number(month)]) {
-          state.yearData.months[Number(month)] = {
-            ...INIT_MONTH,totalVodka: vodka,
-          };
-          state.yearData.months[Number(month)].days[
-            Number(day)
-          ] = { ...INIT_DAY,totalVodka: vodka, };
-        }
-      
-
-
-        state.yearData.months[Number(month)].days[
-          Number(day)
-        ].totalVodka += vodka;
+        calcMonthData(state, { additiveVodka: vodka });
+        calcDayData(state, { additiveVodka: vodka });
 
         saveStateInStorage(state);
       }
     },
-    clearStorageForYear: (state) => {
-      const key = createKey(state.year);
+    clearYearData: (state) => {
+      const key = createKey(state.currentDate.year);
       window.localStorage.removeItem(key);
-      Object.assign(state, INIT_ALCO_STATE, {
-        year: state.year,
-        currentLang: state.currentLang,
-      });
+      state.yearData = { ...INIT_YEAR };
     },
     clearMonthData: (state) => {
-      const monthData = state.yearData[Number(state.month)];
-      monthData.sumEthanolPerMonth = 0;
-      monthData.sumVodkaPerMonth = 0;
-
-      state.sumVodkaPerYear -= state.sumVodkaPerMonth;
-      state.sumEthanolPerYear -= state.sumEthanolPerMonth;
-      state.sumEthanolPerMonth = 0;
-      state.sumVodkaPerMonth = 0;
+      const currentMonth = Number(state.currentDate.month);
+      const monthData = state.yearData.months[currentMonth];
+      state.yearData.totalBill -= monthData.totalBill;
+      state.yearData.totalVodka -= monthData.totalVodka;
+      state.yearData.months[currentMonth] = {
+        ...INIT_MONTH,
+      };
     },
-    // clearAllStor: () => {
-    //   window.localStorage.clear();
-    // },
+    clearAllStor: () => {
+      window.localStorage.clear();
+    },
   },
 });
 
