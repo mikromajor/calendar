@@ -1,15 +1,14 @@
 // нельзя помещать ф-и в стeйт
 import {
   KeysSalaryInit,
-  Langs,
   SalaryInit,
 } from "../types/salaryTypes";
+import { AppLanguages } from "../types/appTypes";
 
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
 
 export const SALARY_INIT: SalaryInit = {
-  currentLanguage: "UA",
   year: currentYear,
   month: currentMonth,
   salaryRate: 0,
@@ -59,9 +58,9 @@ export const NO_INPUTS = [
 ];
 
 export const SALARY_CONTENT = {
-  UA: {
+  [AppLanguages.UA]: {
     header: "Зарплата",
-    changeLanguage: "Мова",
+
     year: "Рік",
     month: "Місяць",
     salaryRate: "Ставка брутто, зл/год",
@@ -84,9 +83,9 @@ export const SALARY_CONTENT = {
     extraSalary: "ЗП понаднормова, зл нетто",
     totalSalary: "ЗП вся, зл нетто",
   },
-  EN: {
+  [AppLanguages.EN]: {
     header: "Salary",
-    changeLanguage: "Language",
+
     year: "Year",
     month: "Month",
     salaryRate: "Salary rate, gross zl/h",
@@ -109,9 +108,9 @@ export const SALARY_CONTENT = {
     extraSalary: "Extra salary, net zl",
     totalSalary: "Total salary, net zl",
   },
-  PL: {
+  [AppLanguages.PL]: {
     header: "Wyplata",
-    changeLanguage: "Język",
+
     year: "Rok",
     month: "Miesiąc",
     salaryRate: "Stawka brutto zł/g",
@@ -135,5 +134,3 @@ export const SALARY_CONTENT = {
     totalSalary: "Wypłata pełna, netto zł",
   },
 };
-
-export const LANGS = Object.keys(SALARY_CONTENT) as Langs[];

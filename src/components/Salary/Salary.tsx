@@ -1,10 +1,9 @@
 import { useAppSelector } from "../../store/hooks/redux";
-import { Input, LangsRow } from "./ui";
+import { Input } from "./ui";
 import {
   SALARY_CONTENT,
   NO_INPUTS,
   SALARY_KEYS,
-  SALARY_INIT,
 } from "../../constants/salaryConstants";
 
 export const Salary = () => {
@@ -16,27 +15,25 @@ export const Salary = () => {
   let td: JSX.Element;
   let th: JSX.Element;
   // add compatibility V1 & V2
-  const language = !!salaryReducer?.currentLanguage
-    ? salaryReducer.currentLanguage
-    : SALARY_INIT.currentLanguage;
+  const language = useAppSelector(
+    (state) => state.appReducer.currentLang
+  );
 
   SALARY_KEYS.forEach((key, i) => {
-    if (key !== "currentLanguage") {
-      td = NO_INPUTS.includes(key) ? (
-        <td data-no-input> {salaryReducer[key]} </td>
-      ) : (
-        <td>
-          <Input payloadsKey={key} />
-        </td>
-      );
-      th = (
-        <th>
-          <label htmlFor={key}>
-            {SALARY_CONTENT?.[language]?.[key]}
-          </label>
-        </th>
-      );
-    }
+    td = NO_INPUTS.includes(key) ? (
+      <td data-no-input> {salaryReducer[key]} </td>
+    ) : (
+      <td>
+        <Input payloadsKey={key} />
+      </td>
+    );
+    th = (
+      <th>
+        <label htmlFor={key}>
+          {SALARY_CONTENT?.[language]?.[key]}
+        </label>
+      </th>
+    );
 
     tableRows.push(
       <tr key={String(i) + key}>
@@ -50,10 +47,7 @@ export const Salary = () => {
     <div className='salary'>
       <table>
         <caption>{SALARY_CONTENT[language].header}</caption>
-        <tbody>
-          <LangsRow />
-          {tableRows}
-        </tbody>
+        <tbody>{tableRows}</tbody>
       </table>
     </div>
   );

@@ -1,30 +1,24 @@
-import { Languages } from "../types/appTypes";
-
-export enum APP_LANGUAGES {
-  UA = "UA",
-  PL = "PL",
-  EN = "EN",
-}
+import { AppLanguages } from "../types/appTypes";
 
 export const INIT_APP_STATE = {
-  currentLang: APP_LANGUAGES.UA,
+  currentLang: AppLanguages.UA,
 };
 
 export const APP_CONTENT = {
-  [APP_LANGUAGES.EN]: {
+  [AppLanguages.EN]: {
     btnChangeCalc: "Change calculator",
     lblLang: "Change language:",
   },
-  [APP_LANGUAGES.PL]: {
+  [AppLanguages.PL]: {
     btnChangeCalc: "Zmień kalkulator",
     lblLang: "Zmień język",
   },
-  [APP_LANGUAGES.UA]: {
+  [AppLanguages.UA]: {
     btnChangeCalc: "Зміни калькулятор",
     lblLang: "Мова",
   },
 };
 
-export const LIST_OF_LANGUAGES = Object.keys(
+export const LANGUAGES_LIST = Object.keys(
   APP_CONTENT
-) as Languages[];
+) as (keyof typeof AppLanguages)[];

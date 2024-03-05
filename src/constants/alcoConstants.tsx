@@ -5,7 +5,7 @@ import {
   Year,
 } from "../types/alcoTypes";
 import { getCurrentMonth } from "../store/reducer/alcoHandlers/getCurrentMonth";
-import { APP_LANGUAGES } from "../constants/appConstants";
+import { AppLanguages } from "../types/appTypes";
 
 //for calendar: new Date(year, monthIndex(0-11), day)
 const currentDay = new Date().getDate().toString();
@@ -41,7 +41,7 @@ export const INIT_ALCO_STATE: AlcoState = {
 };
 
 export const ALCO_CONTENT = {
-  [APP_LANGUAGES.PL]: {
+  [AppLanguages.PL]: {
     alcoHeader: "Licznik spożycia alkoholu",
     controlPanelHeader: "Wprowadź dane wypitego napoju",
     lblLang: "Zmień język",
@@ -66,7 +66,7 @@ export const ALCO_CONTENT = {
     deleteMonth: "Usunąć dane za wprowadzony miesiąc",
     btnChangeCalc: "Zmień kalkulator",
   },
-  [APP_LANGUAGES.EN]: {
+  [AppLanguages.EN]: {
     alcoHeader: "Alcohol consumption counter ",
     controlPanelHeader: "Enter the drink consumed",
     lblLang: "Change language:",
@@ -88,7 +88,7 @@ export const ALCO_CONTENT = {
     deleteMonth: "Delete data for the entered month",
     btnChangeCalc: "Change calculator",
   },
-  [APP_LANGUAGES.UA]: {
+  [AppLanguages.UA]: {
     alcoHeader: "Лічильник споживання алкоголю",
     controlPanelHeader: "Введіть спожитий напій",
     lblLang: "Мова",

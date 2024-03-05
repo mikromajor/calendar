@@ -4,7 +4,7 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { INIT_APP_STATE } from "../../constants/appConstants";
-import { Language } from "../../types/alcoTypes";
+import { AppLanguages } from "../../types/appTypes";
 
 export const appReducer = createSlice({
   name: "appState",
@@ -12,7 +12,7 @@ export const appReducer = createSlice({
   reducers: {
     changeLanguage: (
       state,
-      action: PayloadAction<Language>
+      action: PayloadAction<AppLanguages>
     ) => {
       state.currentLang = action.payload;
     },

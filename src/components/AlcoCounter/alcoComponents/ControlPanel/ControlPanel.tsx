@@ -10,7 +10,6 @@ import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 import { useState } from "react";
 import { trimFirstZero } from "../../../../store/reducer/alcoHandlers";
 import {
-  SelectLang,
   BlockHeader,
   InputDate,
   InputLiquidProperty,
@@ -31,7 +30,7 @@ export const ControlPanel = ({
   const dispatch = useAppDispatch();
 
   const { currentMonth, currentYear, currentLang } =
-    useAppSelector((state) => state.alcoReducer);
+    useAppSelector((state) => state.appReducer.currentLang);
 
   const { calculating, changeMonth, changeYear } =
     alcoActions;
@@ -44,7 +43,12 @@ export const ControlPanel = ({
       <BlockHeader title='controlPanelHeader' />
 
       <div className='alcoCounter-inputBlock'>
-        <SelectLang />
+        {/* TODO     
+        <InputDate
+          data={currentDay}
+          changeData={changeDay}
+          label='lblDay'
+        />*/}
 
         <InputDate
           data={currentMonth}

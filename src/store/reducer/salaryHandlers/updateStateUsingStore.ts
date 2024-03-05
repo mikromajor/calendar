@@ -1,7 +1,4 @@
-import {
-  SalaryInit,
-  KeysSalaryInit,
-} from "../../../types/salaryTypes";
+import { SalaryInit } from "../../../types/salaryTypes";
 import { SALARY_INIT } from "../../../constants/salaryConstants";
 import { amountWeekendsAndWeekdays, getKey } from ".";
 
@@ -30,7 +27,6 @@ export const updateStateUsingStore = (
           year: state.year,
           month: state.month,
         };
-    update.currentLanguage = state.currentLanguage;
     Object.assign(state, update);
   } catch (e) {
     console.log(

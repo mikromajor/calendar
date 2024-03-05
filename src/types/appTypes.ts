@@ -1,3 +1,7 @@
-import { APP_LANGUAGES } from "../constants/appConstants";
+export enum AppLanguages {
+  UA = "UA",
+  PL = "PL",
+  EN = "EN",
+}
 
-export type Languages = keyof typeof APP_LANGUAGES;
+//  export type LanguagesList = keyof typeof AppLanguages;

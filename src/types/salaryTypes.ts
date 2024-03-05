@@ -1,10 +1,6 @@
 import { SALARY_CONTENT } from "../constants/salaryConstants";
 
-type TableHeadings = typeof SALARY_CONTENT;
-export type Langs = keyof TableHeadings;
-
 export type SalaryInit = {
-  currentLanguage: Langs;
   year: number;
   month: number;
   salaryRate: number;
