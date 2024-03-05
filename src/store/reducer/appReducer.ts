@@ -10,7 +10,7 @@ export const appReducer = createSlice({
   name: "appState",
   initialState: INIT_APP_STATE,
   reducers: {
-    changeAppLanguage: (
+    changeLanguage: (
       state,
       action: PayloadAction<Language>
     ) => {
