@@ -1,6 +1,5 @@
 import {
   AlcoState,
-  Language,
   Total,
   Month,
   Year,
@@ -38,7 +37,6 @@ export const INIT_YEAR: Year = {
 
 export const INIT_ALCO_STATE: AlcoState = {
   currentDate: CURRENT_DATE,
-  currentLang: APP_LANGUAGES.UA,
   yearData: INIT_YEAR, //12 months info
 };
 
@@ -113,7 +111,3 @@ export const ALCO_CONTENT = {
     btnChangeCalc: "Зміни калькулятор",
   },
 };
-
-export const NAMES_OF_LANGS = Object.keys(
-  ALCO_CONTENT
-) as Language[];

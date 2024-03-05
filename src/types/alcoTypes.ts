@@ -14,7 +14,6 @@ export interface Year extends Total {
   months: Month[];
 }
 
-export type Language = keyof typeof ALCO_CONTENT;
 interface CurrentDate {
   day: string;
   month: string;
@@ -31,7 +30,6 @@ interface CurrentDate {
 // }
 export interface AlcoState {
   currentDate: CurrentDate;
-  currentLang: Language;
   yearData: Year;
 }
 
