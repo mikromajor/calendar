@@ -1,14 +1,14 @@
 import { AlcoCounter, Salary } from "./components";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { ALCO_CONTENT } from "./constants/alcoConstants";
+import { APP_CONTENT } from "./constants/appConstants";
 import { useAppSelector } from "./store/hooks/redux";
 
 function App() {
   const [showCalc, setShowCalc] = useState(true);
 
   const { currentLang } = useAppSelector(
-    (state) => state.alcoReducer
+    (state) => state.appReducer
   );
   return (
     <>
@@ -18,7 +18,7 @@ function App() {
         variant='contained'
         onClick={() => setShowCalc((s) => !s)}
       >
-        {ALCO_CONTENT[currentLang].btnChangeCalc}
+        {APP_CONTENT[currentLang].btnChangeCalc}
       </Button>
     </>
   );
