@@ -1,5 +1,6 @@
 import { alcoActions } from "../reducer/alcoReducer";
 
+//Old part
 // const { changeVolumeDrunk } = alcoActions;
 
 export const asyncAdder = () => {

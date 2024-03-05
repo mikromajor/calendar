@@ -6,6 +6,7 @@ import { useAppSelector } from "./store/hooks/redux";
 
 function App() {
   const [showCalc, setShowCalc] = useState(true);
+
   const { currentLang } = useAppSelector(
     (state) => state.alcoReducer
   );
