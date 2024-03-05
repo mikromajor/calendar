@@ -1,3 +1,5 @@
+import { Languages } from "../types/appTypes";
+
 export enum APP_LANGUAGES {
   UA = "UA",
   PL = "PL",
@@ -22,3 +24,7 @@ export const APP_CONTENT = {
     lblLang: "Мова",
   },
 };
+
+export const LIST_OF_LANGUAGES = Object.keys(
+  APP_CONTENT
+) as Languages[];

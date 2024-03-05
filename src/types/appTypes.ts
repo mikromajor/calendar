@@ -1,3 +1,3 @@
 import { APP_LANGUAGES } from "../constants/appConstants";
 
-export type Language = keyof typeof APP_LANGUAGES;
+export type Languages = keyof typeof APP_LANGUAGES;
