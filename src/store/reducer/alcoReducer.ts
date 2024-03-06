@@ -15,7 +15,7 @@ import {
   calcDayData,
   calcMonthData,
 } from "./alcoHandlers";
-import { Language } from "../../types/alcoTypes";
+import { AppLanguages } from "../../types/appTypes";
 
 const store = tryStorageData(
   INIT_ALCO_STATE.currentDate.year
@@ -25,11 +25,11 @@ export const alcoReducer = createSlice({
   name: "alcoState",
   initialState: !!store ? store : INIT_ALCO_STATE,
   reducers: {
-    changeLanguage: (
-      state,
-      action: PayloadAction<Language>
-    ) => {
-      state.currentLang = action.payload;
+    changeDay: (state, action: PayloadAction<string>) => {
+      const day = Number(action.payload);
+      if (day > 0 && day < 31) {
+        state.currentDate.day = action.payload;
+      }
     },
 
     changeMonth: (state, action: PayloadAction<string>) => {
@@ -47,7 +47,6 @@ export const alcoReducer = createSlice({
         state,
         !!isStoreData ? isStoreData : INIT_ALCO_STATE,
         {
-          currentLang: state.currentLang,
           currentDate: {
             ...state.currentDate,
             year,
@@ -55,7 +54,7 @@ export const alcoReducer = createSlice({
         }
       );
     },
-    //TODO: fixing
+
     calculating: (
       state,
       action: PayloadAction<string[]>

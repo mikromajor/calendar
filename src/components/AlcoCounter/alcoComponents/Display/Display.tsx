@@ -11,7 +11,6 @@ export const Display = () => {
   const { totalForDay, totalForMonth, totalForYear } =
     getTotalDrankData();
 
-  // add compatibility V1 & V2
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );

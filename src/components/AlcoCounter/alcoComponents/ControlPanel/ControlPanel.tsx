@@ -29,7 +29,7 @@ export const ControlPanel = ({
 
   const dispatch = useAppDispatch();
 
-  const { month, year } = useAppSelector(
+  const { day, month, year } = useAppSelector(
     (state) => state.alcoReducer.currentDate
   );
 
@@ -37,8 +37,12 @@ export const ControlPanel = ({
     (state) => state.appReducer
   );
 
-  const { calculating, changeMonth, changeYear } =
-    alcoActions;
+  const {
+    calculating,
+    changeDay,
+    changeMonth,
+    changeYear,
+  } = alcoActions;
 
   return (
     <div
@@ -48,12 +52,11 @@ export const ControlPanel = ({
       <BlockHeader title='controlPanelHeader' />
 
       <div className='alcoCounter-inputBlock'>
-        {/* TODO     
         <InputDate
-          data={currentDay}
+          data={day}
           changeData={changeDay}
           label='lblDay'
-        />*/}
+        />
 
         <InputDate
           data={month}
@@ -101,7 +104,6 @@ export const ControlPanel = ({
         >
           {ALCO_CONTENT[currentLang].btnShowAlcoCalendar}
         </Button>
-        {/* <div></div> */}
       </div>
 
       {/* <button onClick={(e) => dispatch(asyncAdder())}>

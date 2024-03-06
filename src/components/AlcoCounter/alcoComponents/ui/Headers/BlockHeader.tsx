@@ -1,15 +1,13 @@
 import { useAppSelector } from "../../../../../store/hooks/redux";
 import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
-import { AlcoContentLangData } from "../../../../../types/alcoTypes";
+import { LangContentKeys } from "../../../../../types/alcoTypes";
 
-type BlockHeaderProps = {
-  title: AlcoContentLangData;
+type Props = {
+  title: LangContentKeys;
 };
-export const BlockHeader = ({
-  title,
-}: BlockHeaderProps) => {
+export const BlockHeader = ({ title }: Props) => {
   const { currentLang } = useAppSelector(
-    (state) => state.alcoReducer
+    (state) => state.appReducer
   );
   return <h2>{ALCO_CONTENT[currentLang][title]}</h2>;
 };

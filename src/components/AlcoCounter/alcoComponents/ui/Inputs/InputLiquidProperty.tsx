@@ -19,7 +19,7 @@ export const InputLiquidProperty = ({
   label,
 }: InputLiquidPropertyProps) => {
   const { currentLang } = useAppSelector(
-    (state) => state.alcoReducer
+    (state) => state.appReducer
   );
 
   return (

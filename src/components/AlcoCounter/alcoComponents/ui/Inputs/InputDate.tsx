@@ -7,13 +7,13 @@ import {
 import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
 import {
   ActionsChangeData,
-  AlcoContentLangData,
+  LangContentKeys,
 } from "../../../../../types/alcoTypes";
 
 type InputDataProps = {
   data: string;
   changeData: ActionsChangeData;
-  label: AlcoContentLangData;
+  label: LangContentKeys;
 };
 
 export const InputDate = ({
@@ -22,7 +22,7 @@ export const InputDate = ({
   label,
 }: InputDataProps) => {
   const { currentLang } = useAppSelector(
-    (state) => state.alcoReducer
+    (state) => state.appReducer
   );
   const dispatch = useAppDispatch();
 

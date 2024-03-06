@@ -46,7 +46,7 @@ export type Dates = isDate | [isDate, isDate];
 
 //info
 
-// type AC = typeof ALCO_CONTENT;
-// type AlkoContent<AC>={
+export type LangContentKeys = keyof typeof ALCO_CONTENT.UA;
+// type LangContentKeys<AC>={
 //   [K in keyof AC]:AC[K];
 // }
