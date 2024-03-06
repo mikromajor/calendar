@@ -1,25 +1,20 @@
 import { useAppSelector } from "../../../../store/hooks/redux";
-import { Language } from "../../../../types/alcoTypes";
-import {
-  DISPLAY_LINE,
-  ALCO_CONTENT,
-} from "../../../../constants/alcoConstants";
+// import { AppLanguages } from "../../../../types/appTypes";
+import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
+import { getTotalDrankData } from "../../../../store/reducer/alcoHandlers";
 
 export const Display = () => {
-  const alcoState = useAppSelector(
-    (state) => state.alcoReducer
+  const { day, month, year } = useAppSelector(
+    (state) => state.alcoReducer.currentDate
   );
 
-  // add compatibility V1 & V2
-  const lang =
-    alcoState.currentLang.toUpperCase() as Language;
+  const { totalForDay, totalForMonth, totalForYear } =
+    getTotalDrankData();
 
-  const trs = DISPLAY_LINE.map((key, i) => (
-    <tr key={key + i}>
-      <th>{ALCO_CONTENT[lang][key]}</th>
-      <td>{alcoState[key]}</td>
-    </tr>
-  ));
+  // add compatibility V1 & V2
+  const { currentLang } = useAppSelector(
+    (state) => state.appReducer
+  );
 
   return (
     <table
@@ -27,9 +22,30 @@ export const Display = () => {
       data-testid='display'
     >
       <caption id='caption'>
-        {ALCO_CONTENT[lang].caption}
+        {ALCO_CONTENT[currentLang].caption}
       </caption>
-      <tbody>{trs}</tbody>
+      <tbody>
+        <tr>
+          <th>Display</th>
+          <th>{ALCO_CONTENT[currentLang].lblDay}</th>
+          <th>{ALCO_CONTENT[currentLang].lblMonth}</th>
+          <th>{ALCO_CONTENT[currentLang].lblYear}</th>
+        </tr>
+        <tr>
+          <th>{ALCO_CONTENT[currentLang].lblDate}</th>
+          <td>{day}</td>
+          <td>{month}</td>
+          <td>{year}</td>
+        </tr>
+        <tr>
+          <th>
+            {ALCO_CONTENT[currentLang].totalDrankVodka}
+          </th>
+          <td>{totalForDay}</td>
+          <td>{totalForMonth}</td>
+          <td>{totalForYear}</td>
+        </tr>
+      </tbody>
     </table>
   );
 };

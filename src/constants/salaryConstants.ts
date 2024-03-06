@@ -1,4 +1,3 @@
-// нельзя помещать ф-и в стeйт
 import {
   KeysSalaryInit,
   SalaryInit,

@@ -6,15 +6,13 @@ import {
 } from "./alcoComponents";
 import { useState } from "react";
 import Calendar from "react-calendar";
-
-type ValuePiece = Date | null;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+import { Dates } from "../../types/alcoTypes";
 
 export const AlcoCounter = () => {
   const [showAlcoCalendar, setShowAlcoCalendar] =
     useState(true);
-  const [value, onChange] = useState<Value>(new Date());
-  console.log("value => ", value);
+  const [value, onChange] = useState<Dates>(new Date());
+
   return (
     <>
       <div className='alcoCounter'>

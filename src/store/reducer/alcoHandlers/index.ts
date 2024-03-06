@@ -6,3 +6,4 @@ export { saveStateInStorage } from "./saveStateInStorage";
 export { trimFirstZero } from "./trimFirstZero";
 export { calcMonthData } from "./calcMothData";
 export { calcDayData } from "./calcDayData";
+export { getTotalDrankData } from "./getTotalDrankData";

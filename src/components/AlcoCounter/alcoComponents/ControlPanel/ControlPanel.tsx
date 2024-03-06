@@ -8,7 +8,7 @@ import { alcoActions } from "../../../../store/reducer/alcoReducer";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
-import { trimFirstZero } from "../../../../store/reducer/alcoHandlers";
+
 import {
   BlockHeader,
   InputDate,
@@ -29,8 +29,13 @@ export const ControlPanel = ({
 
   const dispatch = useAppDispatch();
 
-  const { currentMonth, currentYear, currentLang } =
-    useAppSelector((state) => state.appReducer.currentLang);
+  const { month, year } = useAppSelector(
+    (state) => state.alcoReducer.currentDate
+  );
+
+  const { currentLang } = useAppSelector(
+    (state) => state.appReducer
+  );
 
   const { calculating, changeMonth, changeYear } =
     alcoActions;
@@ -51,12 +56,12 @@ export const ControlPanel = ({
         />*/}
 
         <InputDate
-          data={currentMonth}
+          data={month}
           changeData={changeMonth}
           label='lblMonth'
         />
         <InputDate
-          data={currentYear}
+          data={year}
           changeData={changeYear}
           label='lblYear'
         />

@@ -19,15 +19,7 @@ interface CurrentDate {
   month: string;
   year: string;
 }
-// interface CurrentTotal{
-//   totalVodkaPerDay: number;
-//   totalVodkaPerMonth: number;
-//   totalVodkaPerYear: number;
 
-//   totalBillPerDay: number;
-//   totalBillPerMonth: number;
-//   totalBillPerYear: number;
-// }
 export interface AlcoState {
   currentDate: CurrentDate;
   yearData: Year;
@@ -49,32 +41,12 @@ export interface AdditiveDayData {
   additiveBill?: number;
 }
 
+type isDate = Date | null;
+export type Dates = isDate | [isDate, isDate];
+
+//info
+
 // type AC = typeof ALCO_CONTENT;
 // type AlkoContent<AC>={
 //   [K in keyof AC]:AC[K];
 // }
-// export  interface LanguageLabels{
-//     alcoHeader: string;
-//     controlPanelHeader:  string;
-//     lblLang:  string;
-//     lblDay:  string;
-//     lblMonth:  string;
-//     lblYear:  string;
-//     lblVolume:  string;
-//     lblPercent: string;
-//     btnAdd:  string;
-//     btnShowAlcoCalendar: string;
-//     caption:  string;
-//     currentYear:  string;
-//     currentMonth: string;
-//     currentDay: string;
-//     sumVodkaPerDay:
-//        string;
-//     sumVodkaPerMonth:
-//        string;
-//     sumVodkaPerYear:
-//        string;
-//     deleteYear:  string;
-//     deleteMonth:  string;
-//     btnChangeCalc:  string;
-//   };

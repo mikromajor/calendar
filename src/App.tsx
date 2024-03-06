@@ -13,8 +13,8 @@ function App() {
   );
   return (
     <>
-      {showCalc ? <AlcoCounter /> : <Salary />}
-
+      {/* {showCalc ? <AlcoCounter /> : <Salary />} */}
+      <Salary />
       <Button
         variant='contained'
         onClick={() => setShowCalc((s) => !s)}
