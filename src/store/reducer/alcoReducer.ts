@@ -13,7 +13,6 @@ import {
   setDecimal,
   createKey,
   calcDayData,
-  calcMonthData,
 } from "./alcoHandlers";
 import { AppLanguages } from "../../types/appTypes";
 
@@ -62,17 +61,14 @@ export const alcoReducer = createSlice({
       const [vol, per] = action.payload.map((d) =>
         Number(d)
       );
-      const { day, month, year } = state.currentDate;
 
       if (vol && per) {
         const vodka = setDecimal(
           (vol * per * 2.5) / 100,
           0
         );
-        // setDecimal(state.sumEthanolPerMonth + ethanol, 0);
         state.yearData.totalVodka += vodka;
-        calcMonthData(state, { additiveVodka: vodka });
-        calcDayData(state, { additiveVodka: vodka });
+        calcDayData(state, vodka);
 
         saveStateInStorage(state);
       }

@@ -27,12 +27,12 @@ export const INIT_DAY: Total = {
 export const INIT_MONTH: Month = {
   totalVodka: 0,
   totalBill: 0,
-  days: [INIT_DAY], // 30 days info
+  days: [], // 30 days info
 };
 export const INIT_YEAR: Year = {
   totalVodka: 0,
   totalBill: 0,
-  months: [INIT_MONTH], // 12 months info
+  months: [], // 12 months info
 };
 
 export const INIT_ALCO_STATE: AlcoState = {

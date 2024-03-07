@@ -46,7 +46,7 @@ export const InputDate = ({
         value={data}
         onChange={(e) => {
           const newData = e.target.value;
-          Number(newData) > -1 &&
+          Number(newData) > 0 &&
             dispatch(changeData(newData));
         }}
       />

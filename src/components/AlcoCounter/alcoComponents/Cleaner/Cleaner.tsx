@@ -9,7 +9,7 @@ export const Cleaner = () => {
   const dispatch = useAppDispatch();
   const { clearYearData, clearMonthData } = alcoActions;
   const { currentLang } = useAppSelector(
-    (state) => state.alcoReducer
+    (state) => state.appReducer
   );
 
   return (

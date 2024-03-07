@@ -1,11 +1,10 @@
 import { useAppSelector } from "../../hooks/redux";
+import { AlcoState } from "../../../types/alcoTypes";
 
-export const getTotalDrankData = () => {
+export const getTotalDrankData = (alcoState: AlcoState) => {
   let totalForDay = 0,
     totalForMonth = 0;
-  const { yearData, currentDate } = useAppSelector(
-    (state) => state.alcoReducer
-  );
+  const { yearData, currentDate } = alcoState;
   const { day, month } = currentDate;
   const { months } = yearData;
   if (months?.[Number(month)]) {

@@ -89,9 +89,9 @@ export const ControlPanel = ({
         <Button
           id='btnAdd'
           variant='contained'
-          onClick={(e) =>
-            dispatch(calculating([volumeDrank, percent]))
-          }
+          onClick={() => {
+            dispatch(calculating([volumeDrank, percent]));
+          }}
         >
           {ALCO_CONTENT[currentLang].btnAdd}
         </Button>

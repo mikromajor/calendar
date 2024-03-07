@@ -4,12 +4,13 @@ import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 import { getTotalDrankData } from "../../../../store/reducer/alcoHandlers";
 
 export const Display = () => {
-  const { day, month, year } = useAppSelector(
-    (state) => state.alcoReducer.currentDate
+  const alcoState = useAppSelector(
+    (state) => state.alcoReducer
   );
+  const { day, month, year } = alcoState.currentDate;
 
   const { totalForDay, totalForMonth, totalForYear } =
-    getTotalDrankData();
+    getTotalDrankData(alcoState);
 
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
@@ -25,7 +26,7 @@ export const Display = () => {
       </caption>
       <tbody>
         <tr>
-          <th>Display</th>
+          <th></th>
           <th>{ALCO_CONTENT[currentLang].lblDay}</th>
           <th>{ALCO_CONTENT[currentLang].lblMonth}</th>
           <th>{ALCO_CONTENT[currentLang].lblYear}</th>
