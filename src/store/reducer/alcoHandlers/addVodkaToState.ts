@@ -7,7 +7,7 @@ import {
   INIT_DAY,
 } from "../../../constants/alcoConstants";
 
-export const calcDayData = (
+export const addVodkaToState = (
   state: AlcoState,
   additiveVodka: number
 ) => {
@@ -15,6 +15,8 @@ export const calcDayData = (
   let d = Number(day);
   let m = Number(month);
   const months = state.yearData.months;
+
+  state.yearData.totalVodka += additiveVodka;
 
   // create monthData
   if (!months[m]) {

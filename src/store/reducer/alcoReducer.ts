@@ -12,7 +12,7 @@ import {
   saveStateInStorage,
   setDecimal,
   createKey,
-  calcDayData,
+  addVodkaToState,
 } from "./alcoHandlers";
 import { AppLanguages } from "../../types/appTypes";
 
@@ -67,8 +67,8 @@ export const alcoReducer = createSlice({
           (vol * per * 2.5) / 100,
           0
         );
-        state.yearData.totalVodka += vodka;
-        calcDayData(state, vodka);
+
+        addVodkaToState(state, vodka);
 
         saveStateInStorage(state);
       }
