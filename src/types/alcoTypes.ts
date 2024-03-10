@@ -1,6 +1,6 @@
 import {
   ALCO_CONTENT,
-  LANGUAGE_CONTENT_KEYS,
+  ALCO_CONTENT_LABELS,
 } from "../constants/alcoConstants";
 import { alcoActions } from "../store/reducer/alcoReducer";
 import { AppLanguages } from "../types/appTypes";
@@ -48,9 +48,7 @@ export interface AdditiveDayData {
 type isDate = Date | null;
 export type Dates = isDate | [isDate, isDate];
 
-export type LangContentKeys = keyof typeof ALCO_CONTENT.UA;
-
-type LanguageContentKeys = typeof LANGUAGE_CONTENT_KEYS;
+type AlcoContentLabels = typeof ALCO_CONTENT_LABELS;
 
 type AutoType<K extends string, O> = {
   [keys in K]: O;
@@ -58,5 +56,5 @@ type AutoType<K extends string, O> = {
 
 export type AlcoContentType = AutoType<
   AppLanguages,
-  LanguageContentKeys
+  AlcoContentLabels
 >;

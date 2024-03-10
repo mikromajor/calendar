@@ -3,7 +3,6 @@ import {
   Total,
   Month,
   Year,
-  LangContentKeys,
   AlcoContentType,
 } from "../types/alcoTypes";
 import { getCurrentMonth } from "../store/reducer/alcoHandlers/getCurrentMonth";
@@ -42,7 +41,7 @@ export const INIT_ALCO_STATE: AlcoState = {
   yearData: INIT_YEAR, //12 months info
 };
 
-export const LANGUAGE_CONTENT_KEYS = {
+export const ALCO_CONTENT_LABELS = {
   alcoHeader: "alcoHeader",
   controlPanelHeader: "controlPanelHeader",
   AlcoHeader: "AlcoHeader",

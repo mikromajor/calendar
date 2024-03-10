@@ -1,14 +1,7 @@
 import { Button } from "@mui/material";
 
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../../../../store/hooks/redux";
-import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
-import {
-  ActionsChangeData,
-  LangContentKeys,
-} from "../../../../../types/alcoTypes";
+import { useAppDispatch } from "../../../../../store/hooks/redux";
+import { ActionsChangeData } from "../../../../../types/alcoTypes";
 
 type InputDataProps = {
   data: string;

@@ -9,11 +9,7 @@ import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
 
-import {
-  BlockHeader,
-  InputDate,
-  InputLiquidProperty,
-} from "../ui";
+import { InputDate, InputLiquidProperty } from "../ui";
 
 type ControlPanelProps = {
   setShowAlcoCalendar: React.Dispatch<
@@ -49,8 +45,9 @@ export const ControlPanel = ({
       className='alcoCounter-controlPanel'
       data-testid='controlPanel'
     >
-      <BlockHeader title='controlPanelHeader' />
-
+      <h2>
+        {ALCO_CONTENT[currentLang].controlPanelHeader}
+      </h2>
       <div className='alcoCounter-inputBlock'>
         <InputDate
           data={day}
