@@ -13,7 +13,7 @@ import {
 type InputDataProps = {
   data: string;
   changeData: ActionsChangeData;
-  label: LangContentKeys;
+  label: string;
 };
 
 export const InputDate = ({
@@ -21,15 +21,12 @@ export const InputDate = ({
   changeData,
   label,
 }: InputDataProps) => {
-  const { currentLang } = useAppSelector(
-    (state) => state.appReducer
-  );
   const dispatch = useAppDispatch();
 
   return (
     <div className='alcoCounter-inputBlock-input'>
       <label id={label} htmlFor={label + "Input"}>
-        {ALCO_CONTENT[currentLang][label]}
+        {label}
       </label>
       <Button
         variant='outlined'

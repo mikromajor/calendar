@@ -3,6 +3,8 @@ import {
   Total,
   Month,
   Year,
+  LangContentKeys,
+  AlcoContentType,
 } from "../types/alcoTypes";
 import { getCurrentMonth } from "../store/reducer/alcoHandlers/getCurrentMonth";
 import { AppLanguages } from "../types/appTypes";
@@ -38,6 +40,24 @@ export const INIT_YEAR: Year = {
 export const INIT_ALCO_STATE: AlcoState = {
   currentDate: CURRENT_DATE,
   yearData: INIT_YEAR, //12 months info
+};
+
+export const LANGUAGE_CONTENT_KEYS = {
+  alcoHeader: "alcoHeader",
+  controlPanelHeader: "controlPanelHeader",
+  AlcoHeader: "AlcoHeader",
+  lblDay: "lblDay",
+  lblMonth: "lblMonth",
+  lblYear: "lblYear",
+  lblVolume: "lblVolume",
+  lblPercent: "lblPercent",
+  btnAdd: "btnAdd",
+  btnShowAlcoCalendar: "btnShowAlcoCalendar",
+  caption: "caption",
+  lblDate: "lblDate",
+  totalDrankVodka: "totalDrankVodka",
+  deleteYear: "deleteYear",
+  deleteMonth: "deleteMonth",
 };
 
 export const ALCO_CONTENT = {
@@ -89,4 +109,4 @@ export const ALCO_CONTENT = {
     deleteYear: "Видалити дані за введений рік",
     deleteMonth: "Видалити дані за введений місяць",
   },
-};
+} as AlcoContentType;

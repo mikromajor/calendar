@@ -55,31 +55,31 @@ export const ControlPanel = ({
         <InputDate
           data={day}
           changeData={changeDay}
-          label='lblDay'
+          label={ALCO_CONTENT[currentLang].lblDay}
         />
 
         <InputDate
           data={month}
           changeData={changeMonth}
-          label='lblMonth'
+          label={ALCO_CONTENT[currentLang].lblMonth}
         />
         <InputDate
           data={year}
           changeData={changeYear}
-          label='lblYear'
+          label={ALCO_CONTENT[currentLang].lblYear}
         />
         <InputLiquidProperty
           val={volumeDrank}
           step={100}
           setVal={setVolumeDrank}
-          label='lblVolume'
+          label={ALCO_CONTENT[currentLang].lblVolume}
         />
 
         <InputLiquidProperty
           val={percent}
           step={1}
           setVal={setPercent}
-          label='lblPercent'
+          label={ALCO_CONTENT[currentLang].lblPercent}
         />
       </div>
 

@@ -1,5 +1,9 @@
-import { ALCO_CONTENT } from "../constants/alcoConstants";
+import {
+  ALCO_CONTENT,
+  LANGUAGE_CONTENT_KEYS,
+} from "../constants/alcoConstants";
 import { alcoActions } from "../store/reducer/alcoReducer";
+import { AppLanguages } from "../types/appTypes";
 
 export interface Total {
   totalVodka: number;
@@ -44,9 +48,15 @@ export interface AdditiveDayData {
 type isDate = Date | null;
 export type Dates = isDate | [isDate, isDate];
 
-//info
-
 export type LangContentKeys = keyof typeof ALCO_CONTENT.UA;
-// type LangContentKeys<AC>={
-//   [K in keyof AC]:AC[K];
-// }
+
+type LanguageContentKeys = typeof LANGUAGE_CONTENT_KEYS;
+
+type AutoType<K extends string, O> = {
+  [keys in K]: O;
+};
+
+export type AlcoContentType = AutoType<
+  AppLanguages,
+  LanguageContentKeys
+>;

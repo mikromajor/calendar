@@ -55,10 +55,6 @@ type Entries<T> = {
 
 export type EntriesSalaryInit = Entries<SalaryInit>;
 
-// for (const arr of Object.entries(SALARY_INIT)) {
-//   const [[k, v]] = arr as unknown as SalInitEntries;
-// }
-
 // TS PICK & OMIT EXAMPLE:
 
 // type Payload = {
