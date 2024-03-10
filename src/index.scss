@@ -19,6 +19,7 @@ body {
   justify-content: center;
   margin-bottom: 2rem;
 }
+//TODO: use BlockElementModification
 
 .alcoCounter {
   display: flex;
@@ -80,7 +81,7 @@ body {
       background-color: rgb(205, 255, 226);
     }
   }
-  &-controlPanel {
+  .controlPanel {
     display: flex;
     align-items: center;
     flex-flow: column;
@@ -157,7 +158,10 @@ body {
     }
   }
 }
-//**************************calendar******//
+//****************************************************//
+//****************************************************//
+//**************************calendar******************//
+
 .react-calendar {
   width: 350px;
   max-width: 100%;

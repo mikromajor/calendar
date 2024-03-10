@@ -26,24 +26,26 @@ export const Display = () => {
       </caption>
       <tbody>
         <tr>
-          <th></th>
-          <th>{ALCO_CONTENT[currentLang].lblDay}</th>
-          <th>{ALCO_CONTENT[currentLang].lblMonth}</th>
-          <th>{ALCO_CONTENT[currentLang].lblYear}</th>
-        </tr>
-        <tr>
-          <th>{ALCO_CONTENT[currentLang].lblDate}</th>
-          <td>{day}</td>
-          <td>{month}</td>
-          <td>{year}</td>
-        </tr>
-        <tr>
           <th>
-            {ALCO_CONTENT[currentLang].totalDrankVodka}
+            {ALCO_CONTENT[currentLang].lblDay}
+            <br />
+            {day}
           </th>
-          <td>{totalForDay}</td>
-          <td>{totalForMonth}</td>
-          <td>{totalForYear}</td>
+          <th>
+            {ALCO_CONTENT[currentLang].lblMonth}
+            <br />
+            {month}
+          </th>
+          <th>
+            {ALCO_CONTENT[currentLang].lblYear}
+            <br />
+            {year}
+          </th>
+        </tr>
+        <tr>
+          <td>{totalForDay + " ml"}</td>
+          <td>{totalForMonth + " ml"}</td>
+          <td>{totalForYear + " ml"}</td>
         </tr>
       </tbody>
     </table>

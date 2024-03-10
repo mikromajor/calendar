@@ -1,7 +1,4 @@
-import {
-  ALCO_CONTENT,
-  ALCO_CONTENT_LABELS,
-} from "../constants/alcoConstants";
+import { ALCO_CONTENT_LABELS } from "../constants/alcoConstants";
 import { alcoActions } from "../store/reducer/alcoReducer";
 import { AppLanguages } from "../types/appTypes";
 

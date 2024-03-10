@@ -42,7 +42,7 @@ export const ControlPanel = ({
 
   return (
     <div
-      className='alcoCounter-controlPanel'
+      className='controlPanel'
       data-testid='controlPanel'
     >
       <h2>
