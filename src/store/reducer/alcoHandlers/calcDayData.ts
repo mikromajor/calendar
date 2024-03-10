@@ -12,22 +12,19 @@ export const calcDayData = (
   additiveVodka: number
 ) => {
   const { day, month } = state.currentDate;
-  const d = Number(day);
-  const m = Number(month);
+  let d = Number(day);
+  let m = Number(month);
   const months = state.yearData.months;
 
   // create monthData
-  if (typeof months[m] !== "object") {
-    months[m] = { ...INIT_MONTH };
+  if (!months[m]) {
+    months[m] = { ...INIT_MONTH, days: [] };
   }
   // create dayData
-  if (typeof months[m].days[d] !== "object") {
+  if (!months[m].days[d]) {
     months[m].days[d] = { ...INIT_DAY };
   }
-  if (
-    typeof months[m] === "object" &&
-    typeof months[m].days[d] === "object"
-  ) {
+  if (!!months[m] && !!months[m].days[d]) {
     months[m].totalVodka += additiveVodka;
     months[m].days[d].totalVodka += additiveVodka;
   }
