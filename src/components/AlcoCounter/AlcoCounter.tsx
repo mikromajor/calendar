@@ -4,14 +4,50 @@ import {
   Cleaner,
   AlcoHeader,
 } from "./alcoComponents";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import { Dates } from "../../types/alcoTypes";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../store/hooks/redux";
+import { alcoActions } from "../../store/reducer/alcoReducer";
+import { getDateMonthYear } from "../../store/reducer/alcoHandlers";
 
 export const AlcoCounter = () => {
   const [showAlcoCalendar, setShowAlcoCalendar] =
     useState(true);
-  const [value, onChange] = useState<Dates>(new Date());
+
+  const dispatch = useAppDispatch();
+  const { changeDay, changeMonth, changeYear } =
+    alcoActions;
+
+  const { currentDate, yearData } = useAppSelector(
+    (state) => state.alcoReducer
+  );
+  const { day, month, year } = currentDate;
+  const [d, m, y] = [day, month, year].map((date) =>
+    Number(date)
+  );
+  // const monthData = yearData.months[m].days;
+
+  const [value, onChange] = useState<Dates>(
+    new Date(y, m, d)
+  );
+  useEffect(() => {
+    if (value && value !== null && !Array.isArray(value)) {
+      const [newDay, newMonth, newYear] =
+        getDateMonthYear(value);
+
+      newYear !== year &&
+        dispatch(changeYear(newYear + ""));
+      newMonth !== month &&
+        dispatch(changeMonth(newMonth + ""));
+      newDay !== day && dispatch(changeDay(newDay + ""));
+    }
+  }, [value, onChange]);
+
+  const handleTileContent = () => <p>It's Sunday!</p>;
 
   return (
     <>
@@ -20,7 +56,11 @@ export const AlcoCounter = () => {
         <Display />
         {showAlcoCalendar && (
           <div className='alcoCalendar'>
-            <Calendar onChange={onChange} value={value} />
+            <Calendar
+              onChange={onChange}
+              value={value}
+              // tileContent={handleTileContent}
+            />
           </div>
         )}
         <ControlPanel
