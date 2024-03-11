@@ -12,7 +12,7 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { alcoActions } from "../../store/reducer/alcoReducer";
-import { getDateMonthYear } from "../../store/reducer/alcoHandlers";
+import { getDateMonthYear } from "../../componentsHandlers";
 
 export const AlcoCounter = () => {
   const [showAlcoCalendar, setShowAlcoCalendar] =

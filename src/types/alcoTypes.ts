@@ -41,7 +41,6 @@ export interface AdditiveDayData {
   additiveVodka?: number;
   additiveBill?: number;
 }
-
 type isDate = Date | null;
 export type Dates = isDate | [isDate, isDate];
 

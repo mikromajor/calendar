@@ -5,14 +5,12 @@ import {
   Year,
   AlcoContentType,
 } from "../types/alcoTypes";
-import { getCurrentMonth } from "../store/reducer/alcoHandlers/getCurrentMonth";
+import { getDateMonthYear } from "../componentsHandlers";
 import { AppLanguages } from "../types/appTypes";
 
 //for calendar: new Date(year, monthIndex(0-11), day)
-const currentDay = new Date().getDate().toString();
-const currentYear = new Date().getFullYear().toString();
-const currentMonth = getCurrentMonth().toString();
-// console.log(currentDay,currentMonth,currentYear)
+const [currentDay, currentMonth, currentYear] =
+  getDateMonthYear(new Date());
 
 const CURRENT_DATE = {
   day: currentDay,
