@@ -45,42 +45,47 @@ export const ControlPanel = ({
       className='controlPanel'
       data-testid='controlPanel'
     >
-      <h2>
+      <h2 className='controlPanel-header'>
         {ALCO_CONTENT[currentLang].controlPanelHeader}
       </h2>
-      <div className='alcoCounter-inputBlock'>
-        <InputDate
-          data={day}
-          changeData={changeDay}
-          label={ALCO_CONTENT[currentLang].lblDay}
-        />
 
-        <InputDate
-          data={month}
-          changeData={changeMonth}
-          label={ALCO_CONTENT[currentLang].lblMonth}
-        />
-        <InputDate
-          data={year}
-          changeData={changeYear}
-          label={ALCO_CONTENT[currentLang].lblYear}
-        />
-        <InputLiquidProperty
-          val={volumeDrank}
-          step={100}
-          setVal={setVolumeDrank}
-          label={ALCO_CONTENT[currentLang].lblVolume}
-        />
+      <div className='inputBlock'>
+        <div className='inputBlock-inputDate'>
+          <InputDate
+            data={day}
+            changeData={changeDay}
+            label={ALCO_CONTENT[currentLang].lblDay}
+          />
 
-        <InputLiquidProperty
-          val={percent}
-          step={1}
-          setVal={setPercent}
-          label={ALCO_CONTENT[currentLang].lblPercent}
-        />
+          <InputDate
+            data={month}
+            changeData={changeMonth}
+            label={ALCO_CONTENT[currentLang].lblMonth}
+          />
+          <InputDate
+            data={year}
+            changeData={changeYear}
+            label={ALCO_CONTENT[currentLang].lblYear}
+          />
+        </div>
+        <div className='inputBlock-inputDrinkInfo'>
+          <InputLiquidProperty
+            val={volumeDrank}
+            step={100}
+            setVal={setVolumeDrank}
+            label={ALCO_CONTENT[currentLang].lblVolume}
+          />
+
+          <InputLiquidProperty
+            val={percent}
+            step={1}
+            setVal={setPercent}
+            label={ALCO_CONTENT[currentLang].lblPercent}
+          />
+        </div>
       </div>
 
-      <div className='alcoCounter-navBtn'>
+      <div className='controlPanel-navBtn'>
         {/*TODO: around the button add different smiles for 5 sec after clicked "calc button" */}
         {/* <div></div>  */}
         <Button

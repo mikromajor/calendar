@@ -106,6 +106,9 @@ body {
       border-radius: 5px;
       font-size: 1rem;
     }
+    input {
+      margin: 5px 0;
+    }
     select {
       display: flex;
       height: 22px;
@@ -114,18 +117,13 @@ body {
       color: blue;
     }
   }
-  &-inputBlock {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
+  .inputBlock {
     margin: 3px;
 
-    &-input {
-      min-width: 75px;
-      border-radius: 5px;
-      input {
-        margin: 5px 0;
-      }
+    &-inputDate,
+    &-inputDrinkInfo {
+      display: flex;
+      align-items: center;
     }
     .selectLang {
       padding-bottom: 2rem;
