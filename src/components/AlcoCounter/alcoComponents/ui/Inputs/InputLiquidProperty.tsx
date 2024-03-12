@@ -1,8 +1,4 @@
 import { Button } from "@mui/material";
-
-import { useAppSelector } from "../../../../../store/hooks/redux";
-
-import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
 import { trimFirstZero } from "../../../../../store/reducer/alcoHandlers/";
 
 type InputLiquidPropertyProps = {
@@ -18,10 +14,6 @@ export const InputLiquidProperty = ({
   setVal,
   label,
 }: InputLiquidPropertyProps) => {
-  const { currentLang } = useAppSelector(
-    (state) => state.appReducer
-  );
-
   return (
     <>
       <div className='alcoCounter-inputBlock-input'>

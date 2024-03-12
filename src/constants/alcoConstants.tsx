@@ -36,7 +36,7 @@ export const INIT_YEAR: Year = {
 
 export const INIT_ALCO_STATE: AlcoState = {
   currentDate: CURRENT_DATE,
-  yearData: INIT_YEAR, //12 months info
+  yearData: INIT_YEAR,
 };
 
 export const ALCO_CONTENT_LABELS = {
@@ -51,7 +51,7 @@ export const ALCO_CONTENT_LABELS = {
   btnAdd: "btnAdd",
   btnShowAlcoCalendar: "btnShowAlcoCalendar",
   caption: "caption",
-  lblDate: "lblDate",
+
   deleteYear: "deleteYear",
   deleteMonth: "deleteMonth",
 };
@@ -68,7 +68,6 @@ export const ALCO_CONTENT = {
     btnAdd: "Dodaj",
     btnShowAlcoCalendar: "Kalendarz",
     caption: "Sumarycznie spożyto wódki, ml",
-    lblDate: "Data",
     deleteYear: "Usunąć dane za wprowadzony rok",
     deleteMonth: "Usunąć dane za wprowadzony miesiąc",
   },
@@ -83,7 +82,7 @@ export const ALCO_CONTENT = {
     btnAdd: "Add",
     btnShowAlcoCalendar: "Calendar",
     caption: "Summary drunk vodka",
-    lblDate: "Date",
+
     deleteYear: "Delete data for the entered year",
     deleteMonth: "Delete data for the entered month",
   },
@@ -98,7 +97,7 @@ export const ALCO_CONTENT = {
     btnAdd: "Додати",
     btnShowAlcoCalendar: "Календар",
     caption: "Сумарно випито горілки",
-    lblDate: "Дата",
+
     deleteYear: "Видалити дані за введений рік",
     deleteMonth: "Видалити дані за введений місяць",
   },
