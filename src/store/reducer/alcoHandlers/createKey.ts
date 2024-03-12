@@ -1,2 +1,2 @@
 export const createKey = (year: string) =>
-  `alcoKeyForTheYear__${year}`;
+  `alcoCalc_V3.x__${year}`;
