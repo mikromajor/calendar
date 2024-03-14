@@ -50,9 +50,9 @@ export const ControlPanel = ({
         {ALCO_CONTENT[currentLang].controlPanelHeader}
       </h2>
 
-      <div className='inputBlock'>
+      <div className='blockOfInputs'>
         {!showPanelInputDate && (
-          <div className='inputBlock-inputDate'>
+          <div className='inputDatePanel'>
             <InputDate
               data={day}
               changeData={changeDay}
@@ -71,7 +71,7 @@ export const ControlPanel = ({
             />
           </div>
         )}
-        <div className='inputBlock-inputDrinkInfo'>
+        <div className='inputLiquidPanel'>
           <InputLiquidProperty
             val={volumeDrank}
             step={100}
@@ -88,7 +88,7 @@ export const ControlPanel = ({
         </div>
       </div>
 
-      <div className='controlPanel-navBtn'>
+      <div className='bottomButtonsPanel'>
         {/*TODO: around the button add different smiles for 5 sec after clicked "calc button" */}
         {/* <div></div>  */}
         <Button
