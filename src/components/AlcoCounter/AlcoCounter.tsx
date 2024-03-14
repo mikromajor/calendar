@@ -29,7 +29,6 @@ export const AlcoCounter = () => {
   const [d, m, y] = [day, month, year].map((date) =>
     Number(date)
   );
-  // const monthData = yearData.months[m].days;
 
   const [value, onChange] = useState<Dates>(
     new Date(y, m, d)
@@ -65,6 +64,7 @@ export const AlcoCounter = () => {
         )}
         <ControlPanel
           setShowAlcoCalendar={setShowAlcoCalendar}
+          showDateInputPanel={showAlcoCalendar}
         />
         <Cleaner />
       </div>

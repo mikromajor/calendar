@@ -15,10 +15,12 @@ type ControlPanelProps = {
   setShowAlcoCalendar: React.Dispatch<
     React.SetStateAction<boolean>
   >;
+  showDateInputPanel: boolean;
 };
 
 export const ControlPanel = ({
   setShowAlcoCalendar,
+  showDateInputPanel,
 }: ControlPanelProps) => {
   const [volumeDrank, setVolumeDrank] = useState("500");
   const [percent, setPercent] = useState("5");
@@ -50,24 +52,26 @@ export const ControlPanel = ({
       </h2>
 
       <div className='inputBlock'>
-        <div className='inputBlock-inputDate'>
-          <InputDate
-            data={day}
-            changeData={changeDay}
-            label={ALCO_CONTENT[currentLang].lblDay}
-          />
+        {!showDateInputPanel && (
+          <div className='inputBlock-inputDate'>
+            <InputDate
+              data={day}
+              changeData={changeDay}
+              label={ALCO_CONTENT[currentLang].lblDay}
+            />
 
-          <InputDate
-            data={month}
-            changeData={changeMonth}
-            label={ALCO_CONTENT[currentLang].lblMonth}
-          />
-          <InputDate
-            data={year}
-            changeData={changeYear}
-            label={ALCO_CONTENT[currentLang].lblYear}
-          />
-        </div>
+            <InputDate
+              data={month}
+              changeData={changeMonth}
+              label={ALCO_CONTENT[currentLang].lblMonth}
+            />
+            <InputDate
+              data={year}
+              changeData={changeYear}
+              label={ALCO_CONTENT[currentLang].lblYear}
+            />
+          </div>
+        )}
         <div className='inputBlock-inputDrinkInfo'>
           <InputLiquidProperty
             val={volumeDrank}
