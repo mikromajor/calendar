@@ -64,7 +64,7 @@ export const AlcoCounter = () => {
         )}
         <ControlPanel
           setShowAlcoCalendar={setShowAlcoCalendar}
-          showDateInputPanel={showAlcoCalendar}
+          showPanelInputDate={showAlcoCalendar}
         />
         <Cleaner />
       </div>

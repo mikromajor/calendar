@@ -1,4 +1,3 @@
-// import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 import { Button } from "@mui/material"; //   TODO: check weight;
 import {
   useAppSelector,
@@ -15,12 +14,12 @@ type ControlPanelProps = {
   setShowAlcoCalendar: React.Dispatch<
     React.SetStateAction<boolean>
   >;
-  showDateInputPanel: boolean;
+  showPanelInputDate: boolean;
 };
 
 export const ControlPanel = ({
   setShowAlcoCalendar,
-  showDateInputPanel,
+  showPanelInputDate,
 }: ControlPanelProps) => {
   const [volumeDrank, setVolumeDrank] = useState("500");
   const [percent, setPercent] = useState("5");
@@ -52,7 +51,7 @@ export const ControlPanel = ({
       </h2>
 
       <div className='inputBlock'>
-        {!showDateInputPanel && (
+        {!showPanelInputDate && (
           <div className='inputBlock-inputDate'>
             <InputDate
               data={day}
