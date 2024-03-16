@@ -29,7 +29,7 @@ export const ControlPanel = ({
   const { day, month, year } = useAppSelector(
     (state) => state.alcoReducer.currentDate
   );
-
+  let theme = "white-theme";
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
@@ -40,17 +40,19 @@ export const ControlPanel = ({
     changeMonth,
     changeYear,
   } = alcoActions;
-
+  //TODO: get your styles in order!!!
   return (
     <div
-      className='controlPanel'
-      data-testid='controlPanel'
+      className='control-panel'
+      data-testid='control-panel'
     >
-      <h2 className='controlPanel-header'>
+      <h2
+        className={`control-panel__header control-panel__header--${theme}`}
+      >
         {ALCO_CONTENT[currentLang].controlPanelHeader}
       </h2>
 
-      <div className='blockOfInputs'>
+      <div className='control-panel__block-of-inputs'>
         {!showPanelInputDate && (
           <div className='inputDatePanel'>
             <InputDate

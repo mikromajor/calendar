@@ -27,4 +27,4 @@ function App() {
 }
 export default App;
 
-//TODO:  menu with "select lang" and "choose theme";
+//TODO: add menu with "select lang" and "choose theme";

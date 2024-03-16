@@ -33,3 +33,10 @@ $shadow-blur--md: 10px;
 %box-border--white-theme {
   border: 1px solid $box-border-color--dark-theme;
 }
+
+%header__h2 {
+  font-weight: $font-weight--h2;
+  font-size: $font-size--h2;
+  text-align: center;
+  color: rgb(26, 100, 219);
+}

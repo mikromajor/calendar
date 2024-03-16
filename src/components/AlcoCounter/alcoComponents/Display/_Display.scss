@@ -1,3 +1,5 @@
+// @import'../../../../less/variables';
+
 .display {
   display: flex;
   flex-flow: column wrap;
@@ -8,19 +10,16 @@
   border-radius: $box--brd-radius;
 
   &__header {
-    margin-bottom: 10px;
-    font-weight: $font-weight--h2;
-    font-size: $font-size--h2;
-    text-align: center;
-    color: rgb(26, 100, 219);
+    @extend %header__h2;
 
     &--white-theme {
-      text-shadow: 3px 3px 3px #b2b2b2;
+      @extend %header-shadow--white-theme;
     }
     &--dark-theme {
-      text-shadow: none;
+      box-shadow: none;
     }
   }
+
   &__tr {
     border-radius: $cell--brd-radius;
 

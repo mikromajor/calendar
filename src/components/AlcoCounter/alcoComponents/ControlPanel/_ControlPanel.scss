@@ -1,0 +1,33 @@
+// @import "../../../../less/variables";
+
+.control-panel {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+
+  max-width: 400px;
+  margin: 3px;
+  padding-bottom: 10px;
+  border: 1px solid grey;
+  border-radius: $box--brd-radius;
+
+  &__header {
+    @extend %header__h2;
+
+    &--white-theme {
+      @extend %header-shadow--white-theme;
+    }
+    &--dark-theme {
+      box-shadow: none;
+    }
+  }
+
+  &--white-theme {
+    @extend %box-shadow--white-theme;
+    background-color: $display-bg-color--white-theme;
+  }
+  // &--dark-theme{
+
+  // }
+  border: 1px solid grey;
+}
