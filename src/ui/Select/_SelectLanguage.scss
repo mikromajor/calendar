@@ -1,9 +1,11 @@
-@import "../../less/variables";
+// @import "../../less/variables";
 
 .language-selector-block {
+  border-radius: $button--radius;
 }
 
 .language-label {
+  font-size: $font-size--p;
 }
 
 .language-select {

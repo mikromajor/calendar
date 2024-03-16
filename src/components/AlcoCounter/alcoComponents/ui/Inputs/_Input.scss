@@ -1,0 +1,24 @@
+// @import '../../../../../less/variables';
+
+.input-block {
+  display: block;
+
+  &__label {
+    margin: 5px;
+    width: 75px;
+    &:hover {
+      color: blue;
+    }
+  }
+
+  // &__plus-minus-btn {
+
+  // }
+
+  &__input {
+    width: 55px;
+    border-radius: $button--brd-radius;
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+}

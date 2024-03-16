@@ -17,8 +17,12 @@ export const InputDate = ({
   const dispatch = useAppDispatch();
 
   return (
-    <div className=''>
-      <label id={label} htmlFor={label + "Input"}>
+    <div className='input-block'>
+      <label
+        id={label}
+        htmlFor={label + "Input"}
+        className='input-block__label'
+      >
         {label}
       </label>
       <Button
@@ -31,6 +35,7 @@ export const InputDate = ({
         +1
       </Button>
       <input
+        className='input-block__input'
         id={label + "Input"}
         type='number'
         value={data}

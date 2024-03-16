@@ -16,10 +16,10 @@ export const InputLiquidProperty = ({
 }: InputLiquidPropertyProps) => {
   return (
     <>
-      <div className='inputBlock'>
+      <div className='input-block'>
         <label
           id={label}
-          className='inputBlock__label'
+          className='input-block__label'
           htmlFor={label + "Input"}
         >
           {label}
@@ -37,7 +37,7 @@ export const InputLiquidProperty = ({
         </Button>
         <input
           id={label + "Input"}
-          className='inputBlock__input'
+          className='input-block__input'
           type='number'
           value={val}
           onChange={(e) =>

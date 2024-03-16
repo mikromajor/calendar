@@ -81,22 +81,22 @@ $h2_size: 1.5rem;
   .inputLiquidPanel {
     display: flex;
     align-items: center;
-    .inputBlock {
-      display: block;
-      &__label {
-        margin: 5px;
-        width: 75px;
-        &:hover {
-          color: blue;
-        }
-      }
-      &__input {
-        width: 55px;
-        border-radius: 5px;
-        font-size: 1rem;
-        margin: 5px 0;
-      }
-    }
+    // .inputBlock {
+    //   display: block;
+    //   &__label {
+    //     margin: 5px;
+    //     width: 75px;
+    //     &:hover {
+    //       color: blue;
+    //     }
+    //   }
+    //   &__input {
+    //     width: 55px;
+    //     border-radius: 5px;
+    //     font-size: 1rem;
+    //     margin: 5px 0;
+    //   }
+    // }
   }
   .bottomButtonsPanel {
     margin: 1rem 0;
