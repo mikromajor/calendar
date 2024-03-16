@@ -1,0 +1,28 @@
+$button--brd-radius: 5px;
+$box--brd-radius: 5px;
+
+$font-size--h1: 1.75rem;
+$font-size--h2: 1.5rem;
+$font-size--p: 1rem;
+
+$font-weight--h1: 600;
+$font-weight--h2: 500;
+
+$header-color--blue: rgb(26, 100, 219);
+$shadow-color--grey: #a7a7a7;
+$tabel-bg-color--main: rgb(244, 244, 244);
+
+$shadow-size--sm: 3px 3px 3px;
+$shadow-size--md: 5px 10px 8px;
+
+$shadow-blur--sm: 3px;
+$shadow-blur--md: 10px;
+
+%header-shadow {
+  box-shadow: $shadow-size--sm $shadow-color--grey;
+}
+
+%box-shadow {
+  box-shadow: $shadow-size--md $shadow-blur--md
+    $shadow-color--grey;
+}

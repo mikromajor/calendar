@@ -1,0 +1,15 @@
+@import "../../less/variables";
+
+.language-selector-block {
+}
+
+.language-label {
+}
+
+.language-select {
+  border-radius: $button--radius;
+
+  &__option {
+    border-radius: $button--radius;
+  }
+}
