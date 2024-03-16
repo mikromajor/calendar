@@ -9,6 +9,9 @@ export const Display = () => {
   );
   const { day, month, year } = alcoState.currentDate;
 
+  //TODO: add enum theme to appConstants
+  let theme = "white-theme";
+
   const { totalForDay, totalForMonth, totalForYear } =
     getTotalDrankData(alcoState);
 
@@ -17,35 +20,53 @@ export const Display = () => {
   );
 
   return (
-    <table
-      className='alcoCounter-display'
-      data-testid='display'
-    >
-      <caption id='caption'>
+    <table className='display' data-testid='display'>
+      <caption
+        id='caption'
+        className={`display__header display__header--${theme}`}
+      >
         {ALCO_CONTENT[currentLang].caption}
       </caption>
       <tbody>
-        <tr>
-          <th>
+        <tr className={`display__tr display__tr--${theme}`}>
+          <th
+            className={`display__th display__th--${theme}`}
+          >
             {ALCO_CONTENT[currentLang].lblDay}
             <br />
             {day}
           </th>
-          <th>
+          <th
+            className={`display__th display__th--${theme}`}
+          >
             {ALCO_CONTENT[currentLang].lblMonth}
             <br />
             {month}
           </th>
-          <th>
+          <th
+            className={`display__th display__th--${theme}`}
+          >
             {ALCO_CONTENT[currentLang].lblYear}
             <br />
             {year}
           </th>
         </tr>
-        <tr>
-          <td>{totalForDay + " ml"}</td>
-          <td>{totalForMonth + " ml"}</td>
-          <td>{totalForYear + " ml"}</td>
+        <tr className={`display__tr display__tr--${theme}`}>
+          <td
+            className={`display__td display__td--${theme}`}
+          >
+            {totalForDay + " ml"}
+          </td>
+          <td
+            className={`display__td display__td--${theme}`}
+          >
+            {totalForMonth + " ml"}
+          </td>
+          <td
+            className={`display__td display__td--${theme}`}
+          >
+            {totalForYear + " ml"}
+          </td>
         </tr>
       </tbody>
     </table>

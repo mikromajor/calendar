@@ -1,4 +1,5 @@
 $button--brd-radius: 5px;
+$cell--brd-radius: 5px;
 $box--brd-radius: 5px;
 
 $font-size--h1: 1.75rem;
@@ -8,9 +9,12 @@ $font-size--p: 1rem;
 $font-weight--h1: 600;
 $font-weight--h2: 500;
 
-$header-color--blue: rgb(26, 100, 219);
-$shadow-color--grey: #a7a7a7;
-$tabel-bg-color--main: rgb(244, 244, 244);
+$header-color--white-theme: rgb(26, 100, 219);
+$shadow-color--white-theme: #a7a7a7;
+$tabel-bg-color--white-theme: rgb(244, 244, 244);
+$display-bg-color--white-theme: aquamarine;
+$box-border-color--white-theme: grey;
+$box-border-color--dark-theme: rgb(213, 213, 213);
 
 $shadow-size--sm: 3px 3px 3px;
 $shadow-size--md: 5px 10px 8px;
@@ -18,11 +22,14 @@ $shadow-size--md: 5px 10px 8px;
 $shadow-blur--sm: 3px;
 $shadow-blur--md: 10px;
 
-%header-shadow {
-  box-shadow: $shadow-size--sm $shadow-color--grey;
+%header-shadow--white-theme {
+  box-shadow: $shadow-size--sm $shadow-color--white-theme;
 }
 
-%box-shadow {
+%box-shadow--white-theme {
   box-shadow: $shadow-size--md $shadow-blur--md
-    $shadow-color--grey;
+    $shadow-color--white-theme;
+}
+%box-border--white-theme {
+  border: 1px solid $box-border-color--dark-theme;
 }

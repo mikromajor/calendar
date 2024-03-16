@@ -26,4 +26,5 @@ function App() {
   );
 }
 export default App;
-//TODO:  changeCalcButton - language can be change only in AlcoCounter
+
+//TODO:  menu with "select lang" and "choose theme";
