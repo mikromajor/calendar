@@ -40,7 +40,7 @@ export const ControlPanel = ({
     changeMonth,
     changeYear,
   } = alcoActions;
-  //TODO: get your styles in order!!!
+
   return (
     <div
       className='control-panel'
