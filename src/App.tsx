@@ -1,9 +1,12 @@
-import { AlcoCounter, Salary } from "./components";
+import {
+  AlcoCounter,
+  Salary,
+  SelectLanguage,
+} from "./components";
 import { useState } from "react";
 import { Button } from "@mui/material";
 import { APP_CONTENT } from "./constants/appConstants";
 import { useAppSelector } from "./store/hooks/redux";
-import { SelectLanguage } from "./components/general/Select/SelectLanguage";
 
 function App() {
   const [showCalc, setShowCalc] = useState(true);
@@ -11,18 +14,20 @@ function App() {
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
+  let theme = "white-theme";
   return (
-    <>
+    <div className={`app app--${theme}`}>
       {showCalc ? <AlcoCounter /> : <Salary />}
-
-      <Button
-        variant='contained'
-        onClick={() => setShowCalc((s) => !s)}
-      >
-        {APP_CONTENT[currentLang].btnChangeCalc}
-      </Button>
-      <SelectLanguage />
-    </>
+      <div className={`app__menu app__menu--${theme}`}>
+        <Button
+          variant='contained'
+          onClick={() => setShowCalc((s) => !s)}
+        >
+          {APP_CONTENT[currentLang].btnChangeCalc}
+        </Button>
+        <SelectLanguage />
+      </div>
+    </div>
   );
 }
 export default App;

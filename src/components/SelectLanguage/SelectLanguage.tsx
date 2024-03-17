@@ -1,11 +1,11 @@
-import { LANGUAGES_LIST } from "../../../constants/appConstants";
-import { AppLanguages } from "../../../types/appTypes";
-import { APP_CONTENT } from "../../../constants/appConstants";
+import { LANGUAGES_LIST } from "../../constants/appConstants";
+import { AppLanguages } from "../../types/appTypes";
+import { APP_CONTENT } from "../../constants/appConstants";
 import {
   useAppSelector,
   useAppDispatch,
-} from "../../../store/hooks/redux";
-import { appActions } from "../../../store/reducer/appReducer";
+} from "../../store/hooks/redux";
+import { appActions } from "../../store/reducer/appReducer";
 
 export const SelectLanguage = () => {
   const currentLang = useAppSelector(

@@ -1,13 +1,13 @@
 @import "./App";
+@import "./components/Salary/Salary.scss";
+@import "./components/SelectLanguage/SelectLanguage";
 @import "./less/variables";
-@import "./ui/Select/SelectLanguage";
+@import "./components/AlcoCounter/AlcoCounter.scss";
+@import "./components/AlcoCounter/Calendar.scss";
+
 @import "./components/AlcoCounter/alcoComponents/Display/Display";
 @import "./components//AlcoCounter/alcoComponents/ControlPanel/ControlPanel";
 @import "./components//AlcoCounter/alcoComponents/ControlPanel/InputsPanel";
 @import "./components/AlcoCounter/alcoComponents/ControlPanel/Inputs/Input";
-@import "./components/AlcoCounter/alcoComponents/Cleaner/Cleaner";
 
-@import "./components/Salary/Salary.scss";
-
-// @import "./components/AlcoCounter/AlcoCounter.scss";
-@import "./components/AlcoCounter/Calendar.scss";
+//TODO: check and correct all separated files

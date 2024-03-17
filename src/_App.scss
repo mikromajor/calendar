@@ -10,10 +10,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-#app {
+.app {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
+
+  &__menu {
+    display: inline-block;
+
+    // &--white-theme {
+    //   box-shadow: none;
+    // }
+    // &--dark-theme {
+    //   box-shadow: none;
+    // }
+  }
+  // &--white-theme {
+  //   box-shadow: none;
+  // }
+  // &--dark-theme {
+  //   box-shadow: none;
+  // }
 }
