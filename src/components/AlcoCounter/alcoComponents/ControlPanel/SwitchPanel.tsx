@@ -10,7 +10,7 @@ type SwitchPanelProps = {
   setShowAlcoCalendar: React.Dispatch<
     React.SetStateAction<boolean>
   >;
-  showPanelInputDate: boolean;
+
   volumeDrank: string;
   percent: string;
 };

@@ -1,15 +1,10 @@
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../../../store/hooks/redux";
+import { useAppSelector } from "../../../../store/hooks/redux";
 import { alcoActions } from "../../../../store/reducer/alcoReducer";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 
 import { InputDate } from "./Inputs";
 
 export const InputDatePanel = () => {
-  const dispatch = useAppDispatch();
-
   const { day, month, year } = useAppSelector(
     (state) => state.alcoReducer.currentDate
   );

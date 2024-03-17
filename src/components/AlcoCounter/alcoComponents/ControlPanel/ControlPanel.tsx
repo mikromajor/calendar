@@ -1,4 +1,3 @@
-import { Button } from "@mui/material"; //   TODO: check weight;
 import {
   useAppSelector,
   useAppDispatch,
@@ -7,7 +6,6 @@ import { alcoActions } from "../../../../store/reducer/alcoReducer";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
-import { InputDate, InputLiquid } from "./Inputs";
 import { InputDatePanel } from "./InputDatePanel";
 import { InputLiquidPanel } from "./InputLiquidPanel";
 import { SwitchPanel } from "./SwitchPanel";
@@ -55,65 +53,20 @@ export const ControlPanel = ({
       </h2>
 
       <div className='control-panel__block-of-inputs'>
-        {!showPanelInputDate && (
-          <div className='inputDatePanel'>
-            <InputDate
-              data={day}
-              changeData={changeDay}
-              label={ALCO_CONTENT[currentLang].lblDay}
-            />
-
-            <InputDate
-              data={month}
-              changeData={changeMonth}
-              label={ALCO_CONTENT[currentLang].lblMonth}
-            />
-            <InputDate
-              data={year}
-              changeData={changeYear}
-              label={ALCO_CONTENT[currentLang].lblYear}
-            />
-          </div>
-        )}
-        <div className='inputLiquidPanel'>
-          <InputLiquid
-            val={volumeDrank}
-            step={100}
-            setVal={setVolumeDrank}
-            label={ALCO_CONTENT[currentLang].lblVolume}
-          />
-
-          <InputLiquid
-            val={percent}
-            step={1}
-            setVal={setPercent}
-            label={ALCO_CONTENT[currentLang].lblPercent}
-          />
-        </div>
+        {!showPanelInputDate && <InputDatePanel />}
+        <InputLiquidPanel
+          volumeDrank={volumeDrank}
+          setVolumeDrank={setVolumeDrank}
+          percent={percent}
+          setPercent={setPercent}
+        />
       </div>
 
-      <div className='switchPanel'>
-        {/*TODO: around the button add different smiles for 5 sec after clicked "calc button" */}
-        {/* <div></div>  */}
-        <Button
-          id='btnAdd'
-          variant='contained'
-          onClick={() => {
-            dispatch(calculating([volumeDrank, percent]));
-          }}
-        >
-          {ALCO_CONTENT[currentLang].btnAdd}
-        </Button>
-        <Button
-          id='btnShowAlcoCalendar'
-          variant='contained'
-          onClick={() =>
-            setShowAlcoCalendar((show) => !show)
-          }
-        >
-          {ALCO_CONTENT[currentLang].btnShowAlcoCalendar}
-        </Button>
-      </div>
+      <SwitchPanel
+        setShowAlcoCalendar={setShowAlcoCalendar}
+        volumeDrank={volumeDrank}
+        percent={percent}
+      />
 
       {/* <button onClick={(e) => dispatch(asyncAdder())}>
         +50 L in 1 sec
