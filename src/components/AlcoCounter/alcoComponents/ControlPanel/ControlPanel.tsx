@@ -7,7 +7,7 @@ import { alcoActions } from "../../../../store/reducer/alcoReducer";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
-import { InputDate, InputLiquidProperty } from "./Inputs";
+import { InputDate, InputLiquid } from "./Inputs";
 
 type ControlPanelProps = {
   setShowAlcoCalendar: React.Dispatch<
@@ -73,14 +73,14 @@ export const ControlPanel = ({
           </div>
         )}
         <div className='inputLiquidPanel'>
-          <InputLiquidProperty
+          <InputLiquid
             val={volumeDrank}
             step={100}
             setVal={setVolumeDrank}
             label={ALCO_CONTENT[currentLang].lblVolume}
           />
 
-          <InputLiquidProperty
+          <InputLiquid
             val={percent}
             step={1}
             setVal={setPercent}

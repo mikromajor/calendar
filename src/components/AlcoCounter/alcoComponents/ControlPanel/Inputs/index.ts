@@ -1,2 +1,2 @@
 export { InputDate } from "./InputDate";
-export { InputLiquidProperty } from "./InputLiquidProperty";
+export { InputLiquid } from "./InputLiquid";

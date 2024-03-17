@@ -1,7 +1,7 @@
 import { useAppSelector } from "../../../../store/hooks/redux";
 
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
-import { InputLiquidProperty } from "./Inputs";
+import { InputLiquid } from "./Inputs";
 
 type InputLiquidPanelProps = {
   volumeDrank: string;
@@ -25,14 +25,14 @@ export const InputLiquidPanel = ({
 
   return (
     <div className='inputLiquidPanel'>
-      <InputLiquidProperty
+      <InputLiquid
         val={volumeDrank}
         step={100}
         setVal={setVolumeDrank}
         label={ALCO_CONTENT[currentLang].lblVolume}
       />
 
-      <InputLiquidProperty
+      <InputLiquid
         val={percent}
         step={1}
         setVal={setPercent}

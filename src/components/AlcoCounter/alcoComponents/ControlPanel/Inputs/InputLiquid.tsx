@@ -8,7 +8,7 @@ type InputLiquidPropertyProps = {
   label: string;
 };
 
-export const InputLiquidProperty = ({
+export const InputLiquid = ({
   val,
   step,
   setVal,
