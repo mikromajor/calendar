@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 import { APP_CONTENT } from "./constants/appConstants";
 import { useAppSelector } from "./store/hooks/redux";
-import { SelectLanguage } from "./ui/Select/SelectLanguage";
+import { SelectLanguage } from "./components/general/Select/SelectLanguage";
 
 function App() {
   const [showCalc, setShowCalc] = useState(true);

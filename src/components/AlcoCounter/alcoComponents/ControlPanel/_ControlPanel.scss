@@ -22,6 +22,28 @@
     }
   }
 
+  &__block-of-inputs {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin: 3px;
+
+    &--white-theme {
+      box-shadow: none;
+    }
+    &--dark-theme {
+      box-shadow: none;
+    }
+  }
+
+  &__switch-panel {
+    margin: 1rem 0;
+
+    button {
+      margin: 5px;
+    }
+  }
+
   &--white-theme {
     @extend %box-shadow--white-theme;
     background-color: $display-bg-color--white-theme;

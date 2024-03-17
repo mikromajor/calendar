@@ -5,5 +5,12 @@ export const AlcoHeader = () => {
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
-  return <h1>{ALCO_CONTENT[currentLang].alcoHeader}</h1>;
+  let theme = "white-theme";
+  return (
+    <h1
+      className={`alco-counter__header alco-counter__header--${theme}`}
+    >
+      {ALCO_CONTENT[currentLang].alcoHeader}
+    </h1>
+  );
 };

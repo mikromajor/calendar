@@ -1,8 +1,4 @@
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../../../store/hooks/redux";
-import { alcoActions } from "../../../../store/reducer/alcoReducer";
+import { useAppSelector } from "../../../../store/hooks/redux";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
@@ -24,26 +20,14 @@ export const ControlPanel = ({
   const [volumeDrank, setVolumeDrank] = useState("500");
   const [percent, setPercent] = useState("5");
 
-  const dispatch = useAppDispatch();
-
-  const { day, month, year } = useAppSelector(
-    (state) => state.alcoReducer.currentDate
-  );
   let theme = "white-theme";
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
 
-  const {
-    calculating,
-    changeDay,
-    changeMonth,
-    changeYear,
-  } = alcoActions;
-
   return (
     <div
-      className='control-panel'
+      className={`control-panel control-panel--${theme}`}
       data-testid='control-panel'
     >
       <h2
@@ -52,7 +36,9 @@ export const ControlPanel = ({
         {ALCO_CONTENT[currentLang].controlPanelHeader}
       </h2>
 
-      <div className='control-panel__block-of-inputs'>
+      <div
+        className={`control-panel__block-of-inputs control-panel__block-of-inputs--${theme}`}
+      >
         {!showPanelInputDate && <InputDatePanel />}
         <InputLiquidPanel
           volumeDrank={volumeDrank}

@@ -1,0 +1,40 @@
+// @import "../../less/variables";
+
+.select-lang {
+  border-radius: $button--radius;
+
+  &__label {
+    font-size: $font-size--p;
+    // &--white-theme {
+    //   box-shadow: none;
+    // }
+    // &--dark-theme {
+    //   box-shadow: none;
+    // }
+  }
+  &__selector {
+    border-radius: $button--radius;
+    // &--white-theme {
+    //   box-shadow: none;
+    // }
+    // &--dark-theme {
+    //   box-shadow: none;
+    // }
+  }
+
+  &__option {
+    border-radius: $button--radius;
+    // &--white-theme {
+    //   box-shadow: none;
+    // }
+    // &--dark-theme {
+    //   box-shadow: none;
+    // }
+  }
+  // &--white-theme {
+  //   box-shadow: none;
+  // }
+  // &--dark-theme {
+  //   box-shadow: none;
+  // }
+}

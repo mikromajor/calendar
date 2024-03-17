@@ -10,15 +10,17 @@
       color: blue;
     }
   }
-
-  // &__plus-minus-btn {
-
-  // }
-
   &__input {
     width: 55px;
     border-radius: $button--brd-radius;
     font-size: 1rem;
     margin: 5px 0;
   }
+
+  // &--white-theme {
+  //   box-shadow: none;
+  // }
+  // &--dark-theme {
+  //   box-shadow: none;
+  // }
 }

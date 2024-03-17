@@ -1,0 +1,13 @@
+.inputs-panel {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin: 3px;
+
+  // &--white-theme {
+  //   box-shadow: none;
+  // }
+  // &--dark-theme {
+  //   box-shadow: none;
+  // }
+}

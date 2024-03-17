@@ -12,7 +12,7 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { alcoActions } from "../../store/reducer/alcoReducer";
-import { getDateMonthYear } from "../../componentsHandlers";
+import { getDateMonthYear } from "../handlers";
 
 export const AlcoCounter = () => {
   const [showAlcoCalendar, setShowAlcoCalendar] =
@@ -50,7 +50,7 @@ export const AlcoCounter = () => {
 
   return (
     <>
-      <div className='alcoCounter'>
+      <div className='alco-counter '>
         <AlcoHeader />
         <Display />
         {showAlcoCalendar && (
