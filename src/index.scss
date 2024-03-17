@@ -10,4 +10,8 @@
 @import "./components//AlcoCounter/alcoComponents/ControlPanel/InputsPanel";
 @import "./components/AlcoCounter/alcoComponents/ControlPanel/Inputs/Input";
 
-//TODO: check and correct all separated files
+//TODO:
+//1. check and correct all separated files
+//2. use https://habr.com/ru/companies/ruvds/articles/460793/
+// to shrink imports "../../../../store/"  => "store/"
+// tool https://github.com/tleunen/babel-plugin-module-resolver
