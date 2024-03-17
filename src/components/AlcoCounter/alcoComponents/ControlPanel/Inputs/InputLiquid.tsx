@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { trimFirstZero } from "../../../../../store/reducer/alcoHandlers";
 
-type InputLiquidPropertyProps = {
+type InputLiquidProps = {
   val: string;
   step: number;
   setVal: React.Dispatch<React.SetStateAction<string>>;
@@ -13,17 +13,13 @@ export const InputLiquid = ({
   step,
   setVal,
   label,
-}: InputLiquidPropertyProps) => {
+}: InputLiquidProps) => {
   return (
     <>
       <div className='input-block'>
-        <label
-          id={label}
-          className='input-block__label'
-          htmlFor={label + "Input"}
-        >
+        <p id={label} className='input-block__label'>
           {label}
-        </label>
+        </p>
         <Button
           variant='outlined'
           size='small'

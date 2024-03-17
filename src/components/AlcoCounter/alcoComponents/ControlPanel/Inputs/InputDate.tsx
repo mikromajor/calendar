@@ -18,13 +18,9 @@ export const InputDate = ({
 
   return (
     <div className='input-block'>
-      <label
-        id={label}
-        htmlFor={label + "Input"}
-        className='input-block__label'
-      >
+      <p id={label} className='input-block__label'>
         {label}
-      </label>
+      </p>
       <Button
         variant='outlined'
         size='small'

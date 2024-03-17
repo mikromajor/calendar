@@ -8,6 +8,9 @@ import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
 import { InputDate, InputLiquid } from "./Inputs";
+import { InputDatePanel } from "./InputDatePanel";
+import { InputLiquidPanel } from "./InputLiquidPanel";
+import { SwitchPanel } from "./SwitchPanel";
 
 type ControlPanelProps = {
   setShowAlcoCalendar: React.Dispatch<
