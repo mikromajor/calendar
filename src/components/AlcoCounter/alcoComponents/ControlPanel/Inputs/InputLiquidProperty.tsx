@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { trimFirstZero } from "../../../../../store/reducer/alcoHandlers/";
+import { trimFirstZero } from "../../../../../store/reducer/alcoHandlers";
 
 type InputLiquidPropertyProps = {
   val: string;

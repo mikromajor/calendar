@@ -5,7 +5,7 @@ import {
 import { alcoActions } from "../../../../store/reducer/alcoReducer";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 
-import { InputDate } from "../ui";
+import { InputDate } from "./Inputs";
 
 export const InputDatePanel = () => {
   const dispatch = useAppDispatch();

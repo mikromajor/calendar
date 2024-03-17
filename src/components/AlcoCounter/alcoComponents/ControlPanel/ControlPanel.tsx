@@ -7,8 +7,7 @@ import { alcoActions } from "../../../../store/reducer/alcoReducer";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
-
-import { InputDate, InputLiquidProperty } from "../ui";
+import { InputDate, InputLiquidProperty } from "./Inputs";
 
 type ControlPanelProps = {
   setShowAlcoCalendar: React.Dispatch<
@@ -90,7 +89,7 @@ export const ControlPanel = ({
         </div>
       </div>
 
-      <div className='bottomButtonsPanel'>
+      <div className='switchPanel'>
         {/*TODO: around the button add different smiles for 5 sec after clicked "calc button" */}
         {/* <div></div>  */}
         <Button

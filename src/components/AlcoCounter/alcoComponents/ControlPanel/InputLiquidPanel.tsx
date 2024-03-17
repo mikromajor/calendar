@@ -1,13 +1,23 @@
 import { useAppSelector } from "../../../../store/hooks/redux";
 
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
-import { useState } from "react";
-import { InputLiquidProperty } from "../ui";
+import { InputLiquidProperty } from "./Inputs";
 
-export const InputLiquidPanel = () => {
-  const [volumeDrank, setVolumeDrank] = useState("500");
-  const [percent, setPercent] = useState("5");
+type InputLiquidPanelProps = {
+  volumeDrank: string;
+  setVolumeDrank: React.Dispatch<
+    React.SetStateAction<string>
+  >;
+  percent: string;
+  setPercent: React.Dispatch<React.SetStateAction<string>>;
+};
 
+export const InputLiquidPanel = ({
+  volumeDrank,
+  setVolumeDrank,
+  percent,
+  setPercent,
+}: InputLiquidPanelProps) => {
   let theme = "white-theme";
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
