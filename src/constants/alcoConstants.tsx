@@ -5,7 +5,7 @@ import {
   Year,
   AlcoContentType,
 } from "../types/alcoTypes";
-import { getDateMonthYear } from "../componentsHandlers";
+import { getDateMonthYear } from "../components/handlers";
 import { AppLanguages } from "../types/appTypes";
 
 //for calendar: new Date(year, monthIndex(0-11), day)
