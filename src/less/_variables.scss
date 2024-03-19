@@ -11,16 +11,19 @@ $font-weight--h2: 500;
 
 $header-color--white-theme: rgb(26, 100, 219);
 $shadow-color--white-theme: #a7a7a7;
+
 $tabel-bg-color--white-theme: rgb(244, 244, 244);
 $display-bg-color--white-theme: aquamarine;
 $box-border-color--white-theme: grey;
 $box-border-color--dark-theme: rgb(213, 213, 213);
 
 $shadow-size--sm: 3px 3px 3px;
-$shadow-size--md: 5px 10px 8px;
+$shadow-size--md: 3px 7px 5px;
+$shadow-size--lg: 5px 10px 8px;
 
 $shadow-blur--sm: 3px;
-$shadow-blur--md: 10px;
+$shadow-blur--md: 5px;
+$shadow-blur--lg: 10px;
 
 %header-shadow--white-theme {
   box-shadow: $shadow-size--sm $shadow-color--white-theme;
@@ -38,5 +41,5 @@ $shadow-blur--md: 10px;
   font-weight: $font-weight--h2;
   font-size: $font-size--h2;
   text-align: center;
-  color: rgb(26, 100, 219);
+  color: $header-color--white-theme;
 }

@@ -1,4 +1,4 @@
-//TODO: add normalize styles
+//TODO: normalize styles
 
 body {
   margin: 0;
@@ -12,14 +12,15 @@ body {
 
 .app {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
 
   &__menu {
-    display: inline-block;
-
+    display: flex;
+    align-items: center;
+    margin: 10px;
     // &--white-theme {
     //   box-shadow: none;
     // }

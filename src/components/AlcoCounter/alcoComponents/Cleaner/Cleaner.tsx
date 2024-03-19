@@ -14,7 +14,7 @@ export const Cleaner = () => {
 
   return (
     <div
-      className='alcoCounter__cleaner'
+      className='alco-counter__cleaner alco-counter__cleaner--white-theme'
       data-testid='cleaner'
     >
       <button onClick={() => dispatch(clearMonthData())}>
