@@ -1,6 +1,6 @@
-import { useAppSelector } from "../../../../store/hooks/redux";
-import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
-import { InputLiquid } from "./Inputs";
+import { useAppSelector } from "../../../../../store/hooks/redux";
+import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
+import { InputLiquid } from "../Inputs";
 
 type InputLiquidPanelProps = {
   volumeDrank: string;
@@ -23,7 +23,7 @@ export const InputLiquidPanel = ({
   );
 
   return (
-    <div className='control-panel__input-panel'>
+    <div className='control-panel__inputs-panel'>
       <InputLiquid
         val={volumeDrank}
         step={100}

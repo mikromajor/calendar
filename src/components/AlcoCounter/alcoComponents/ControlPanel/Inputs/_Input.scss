@@ -2,6 +2,8 @@
 
 .input-box {
   display: block;
+  width: 2rem;
+  background-color: #fff;
 
   &__label {
     margin: 5px;
@@ -11,7 +13,6 @@
     }
   }
   &__buttons-wrapper {
-    width: 3rem;
   }
 
   &__input {

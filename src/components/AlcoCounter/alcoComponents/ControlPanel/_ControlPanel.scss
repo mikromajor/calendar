@@ -25,38 +25,12 @@
     }
   }
 
-  &__container {
+  &__inputs-container {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     margin: 3px;
-
-    // &--white-theme {
-    //   box-shadow: none;
-    // }
-    // &--dark-theme {
-    //   box-shadow: none;
-    // }
   }
-
-  &__inputs-panel {
-    // &--white-theme {
-    //   box-shadow: none;
-    // }
-    // &--dark-theme {
-    //   box-shadow: none;
-    // }
-  }
-
-  // &__input-box {
-
-  // &--white-theme {
-  //   box-shadow: none;
-  // }
-  // &--dark-theme {
-  //   box-shadow: none;
-  // }
-  // }
 
   &__switch-panel {
     margin: 1rem 0;

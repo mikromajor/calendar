@@ -1,8 +1,8 @@
-import { useAppSelector } from "../../../../store/hooks/redux";
-import { alcoActions } from "../../../../store/reducer/alcoReducer";
-import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
+import { useAppSelector } from "../../../../../store/hooks/redux";
+import { alcoActions } from "../../../../../store/reducer/alcoReducer";
+import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
 
-import { InputDate } from "./Inputs";
+import { InputDate } from "../Inputs";
 
 export const InputDatePanel = () => {
   const { day, month, year } = useAppSelector(
@@ -17,7 +17,7 @@ export const InputDatePanel = () => {
     alcoActions;
 
   return (
-    <div className='control-panel__input-panel'>
+    <div className='control-panel__inputs-panel'>
       <InputDate
         data={day}
         changeData={changeDay}

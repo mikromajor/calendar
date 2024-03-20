@@ -2,8 +2,8 @@ import { useAppSelector } from "../../../../store/hooks/redux";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 // import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
-import { InputDatePanel } from "./InputDatePanel";
-import { InputLiquidPanel } from "./InputLiquidPanel";
+import { InputDatePanel } from "./InputsPanel/InputDatePanel";
+import { InputLiquidPanel } from "./InputsPanel/InputLiquidPanel";
 import { SwitchPanel } from "./SwitchPanel";
 
 type ControlPanelProps = {
@@ -36,9 +36,7 @@ export const ControlPanel = ({
         {ALCO_CONTENT[currentLang].controlPanelHeader}
       </h2>
 
-      <div
-        className={`control-panel__inputs-container control-panel__inputs-container--${theme}`}
-      >
+      <div className='control-panel__inputs-container'>
         {!showPanelInputDate && <InputDatePanel />}
         <InputLiquidPanel
           volumeDrank={volumeDrank}
