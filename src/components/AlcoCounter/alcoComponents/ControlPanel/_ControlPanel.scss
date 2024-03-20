@@ -35,6 +35,11 @@
     align-items: center;
     justify-content: space-evenly;
     margin: 3px;
+
+    &--direction-column {
+      justify-content: none;
+      flex-direction: column;
+    }
   }
 
   &__switch-panel {

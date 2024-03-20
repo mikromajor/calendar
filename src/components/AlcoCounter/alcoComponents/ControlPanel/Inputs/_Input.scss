@@ -1,10 +1,8 @@
 // @import '../../../../../less/variables';
 
 .input-box {
-  display: block;
-  width: 5rem;
-
   &__label {
+    text-align: center;
     margin: 5px;
   }
 
@@ -21,5 +19,12 @@
     &--dark-theme {
       color: $text-color--dark-theme;
     }
+  }
+
+  &--direction-inline {
+    display: inline-block;
+  }
+  &--direction-block {
+    width: 5rem;
   }
 }

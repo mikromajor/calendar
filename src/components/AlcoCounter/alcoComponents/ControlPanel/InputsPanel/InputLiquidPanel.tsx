@@ -23,7 +23,7 @@ export const InputLiquidPanel = ({
   );
 
   return (
-    <div className='control-panel__inputs-panel'>
+    <div className='control-panel__inputs-panel control-panel__inputs-panel--direction-column'>
       <InputLiquid
         val={volumeDrank}
         step={100}

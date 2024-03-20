@@ -17,7 +17,7 @@ export const InputDate = ({
   const dispatch = useAppDispatch();
 
   return (
-    <div className='input-box'>
+    <div className='input-box input-box--direction-block'>
       <p id={label} className='input-box__label'>
         {label}
       </p>

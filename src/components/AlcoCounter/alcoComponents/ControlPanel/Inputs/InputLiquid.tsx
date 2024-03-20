@@ -16,7 +16,7 @@ export const InputLiquid = ({
 }: InputLiquidProps) => {
   return (
     <>
-      <div className='input-box'>
+      <div className='input-box input-box--direction-inline'>
         <p id={label} className='input-box__label'>
           {label}
         </p>
@@ -34,7 +34,7 @@ export const InputLiquid = ({
         </Button>
         <input
           id={label + "Input"}
-          className='input-box__input'
+          className='input-box__input input-box__input--white-theme'
           type='number'
           value={val}
           onChange={(e) =>

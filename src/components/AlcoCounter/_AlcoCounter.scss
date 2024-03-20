@@ -7,9 +7,7 @@
   font-weight: 500;
 
   &__header {
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
+    text-align: center;
     margin: 0;
     font-size: $font-size--h1;
     font-weight: $font-weight--h1;

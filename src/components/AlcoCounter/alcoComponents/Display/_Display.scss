@@ -10,6 +10,7 @@
 
   &__header {
     @extend %header__h2;
+    margin-bottom: 0.5rem;
 
     &--white-theme {
       text-shadow: $shadow-size--sm
