@@ -16,7 +16,7 @@ import { getDateMonthYear } from "../handlers";
 
 export const AlcoCounter = () => {
   const [showAlcoCalendar, setShowAlcoCalendar] =
-    useState(true);
+    useState(false);
 
   const dispatch = useAppDispatch();
   const { changeDay, changeMonth, changeYear } =

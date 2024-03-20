@@ -1,6 +1,6 @@
 // @import '../../../../../less/variables';
 
-.input-block {
+.input-box {
   display: block;
 
   &__label {
@@ -10,17 +10,20 @@
       color: blue;
     }
   }
+  &__buttons-wrapper {
+    width: 3rem;
+  }
+
   &__input {
     width: 55px;
     border-radius: $button--brd-radius;
     font-size: 1rem;
     margin: 5px 0;
+    &--white-theme {
+      color: $text-color--white-theme;
+    }
+    &--dark-theme {
+      color: $text-color--dark-theme;
+    }
   }
-
-  // &--white-theme {
-  //   box-shadow: none;
-  // }
-  // &--dark-theme {
-  //   box-shadow: none;
-  // }
 }
