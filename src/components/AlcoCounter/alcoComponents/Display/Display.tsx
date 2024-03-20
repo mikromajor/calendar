@@ -27,7 +27,9 @@ export const Display = () => {
       >
         {ALCO_CONTENT[currentLang].caption}
       </caption>
-      <tbody>
+      <tbody
+        className={`display__body display__body--${theme}`}
+      >
         <tr className={`display__tr display__tr--${theme}`}>
           <th
             className={`display__th display__th--${theme}`}

@@ -18,6 +18,7 @@ export const Salary = () => {
   const language = useAppSelector(
     (state) => state.appReducer.currentLang
   );
+  let theme = "white-theme";
 
   SALARY_KEYS.forEach((key, i) => {
     td = NO_INPUTS.includes(key) ? (
@@ -46,7 +47,11 @@ export const Salary = () => {
   return (
     <div className='salary'>
       <table>
-        <caption>{SALARY_CONTENT[language].header}</caption>
+        <caption
+          className={`salary__header salary__header--${theme}`}
+        >
+          {SALARY_CONTENT[language].header}
+        </caption>
         <tbody>{tableRows}</tbody>
       </table>
     </div>

@@ -17,7 +17,7 @@ export const InputDatePanel = () => {
     alcoActions;
 
   return (
-    <div className='inputs-panel'>
+    <div className='control-panel__input-panel'>
       <InputDate
         data={day}
         changeData={changeDay}

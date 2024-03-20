@@ -37,7 +37,7 @@ export const ControlPanel = ({
       </h2>
 
       <div
-        className={`control-panel__block-of-inputs control-panel__block-of-inputs--${theme}`}
+        className={`control-panel__inputs-container control-panel__inputs-container--${theme}`}
       >
         {!showPanelInputDate && <InputDatePanel />}
         <InputLiquidPanel

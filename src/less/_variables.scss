@@ -2,15 +2,18 @@ $button--brd-radius: 5px;
 $cell--brd-radius: 5px;
 $box--brd-radius: 5px;
 
-$font-size--h1: 1.75rem;
-$font-size--h2: 1.5rem;
+$font-size--h1: 2rem;
+$font-size--h2: 1.75rem;
 $font-size--p: 1rem;
 
 $font-weight--h1: 600;
 $font-weight--h2: 500;
 
 $header-color--white-theme: rgb(26, 100, 219);
+$header-color--dark-theme: rgb(0, 58, 150);
+
 $shadow-color--white-theme: #a7a7a7;
+$shadow-color--dark-theme: none;
 
 $tabel-bg-color--white-theme: rgb(244, 244, 244);
 $display-bg-color--white-theme: aquamarine;
@@ -25,14 +28,13 @@ $shadow-blur--sm: 3px;
 $shadow-blur--md: 5px;
 $shadow-blur--lg: 10px;
 
-%header-shadow--white-theme {
-  box-shadow: $shadow-size--sm $shadow-color--white-theme;
-}
+// %header-shadow--white-theme {
+//   text-shadow: $shadow-size--sm $shadow-color--white-theme;
+// }
 
-%box-shadow--white-theme {
-  box-shadow: $shadow-size--md $shadow-blur--md
-    $shadow-color--white-theme;
-}
+// box-shadow: $shadow-size--md $shadow-blur--md
+//   $shadow-color--white-theme;
+
 %box-border--white-theme {
   border: 1px solid $box-border-color--dark-theme;
 }
@@ -41,5 +43,4 @@ $shadow-blur--lg: 10px;
   font-weight: $font-weight--h2;
   font-size: $font-size--h2;
   text-align: center;
-  color: $header-color--white-theme;
 }

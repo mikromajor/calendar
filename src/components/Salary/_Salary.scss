@@ -1,14 +1,4 @@
-%headerStyle {
-  text-align: center;
-  color: rgb(26, 100, 219);
-  text-shadow: 3px 3px 3px #b2b2b2;
-}
-
-%h1_size {
-  font-size: 35px;
-  font-weight: 600;
-}
-$cellTextSize: 1rem;
+@import "../../less/variables";
 
 .salary {
   display: flex;
@@ -21,13 +11,23 @@ $cellTextSize: 1rem;
     background-color: rgb(244, 244, 244);
     border: 3px solid white;
     border-radius: 5px;
-    box-shadow: 5px 10px 8px 10px #a7a7a7;
+    box-shadow: $shadow-size--lg $shadow-blur--lg
+      $shadow-color--white-theme;
   }
 
-  caption {
-    @extend %headerStyle;
-    @extend %h1_size;
+  &__header {
+    @extend %header__h2;
     margin-bottom: 10px;
+
+    &--white-theme {
+      text-shadow: $shadow-size--sm
+        $shadow-color--white-theme;
+      color: $header-color--white-theme;
+    }
+    &--dark-theme {
+      text-shadow: $shadow-color--dark-theme;
+      color: $header-color--dark-theme;
+    }
   }
   tr {
     padding: 10px;
@@ -69,7 +69,7 @@ $cellTextSize: 1rem;
     border-radius: 5px;
     padding: 0.5rem 0;
     border: none;
-    font-size: $cellTextSize;
+    font-size: $font-size--p;
     background-color: rgb(251, 255, 133);
     &:hover {
       background-color: rgb(224, 232, 0);
@@ -83,7 +83,7 @@ $cellTextSize: 1rem;
     border: none;
     border-radius: 5px;
     text-align: center;
-    font-size: $cellTextSize;
+    font-size: $font-size--p;
     &:hover {
       background-color: rgb(224, 232, 0);
     }

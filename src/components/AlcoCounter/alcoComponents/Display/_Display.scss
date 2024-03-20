@@ -5,15 +5,29 @@
   flex-flow: column wrap;
   align-items: center;
   justify-content: space-around;
-  margin: 3px;
-  padding: 10px;
   border-radius: $box--brd-radius;
+  margin: 0.75rem;
 
   &__header {
     @extend %header__h2;
 
     &--white-theme {
-      @extend %header-shadow--white-theme;
+      text-shadow: $shadow-size--sm
+        $shadow-color--white-theme;
+      color: $header-color--white-theme;
+    }
+    &--dark-theme {
+      text-shadow: $shadow-color--dark-theme;
+      color: $header-color--dark-theme;
+    }
+  }
+
+  &__body {
+    border-radius: $cell--brd-radius;
+
+    &--white-theme {
+      box-shadow: $shadow-size--md $shadow-blur--md
+        $shadow-color--white-theme;
     }
     &--dark-theme {
       box-shadow: none;
@@ -26,8 +40,8 @@
     &--white-theme {
       border: 2px solid grey;
     }
-    // &--dark-theme {
-    // }
+    &--dark-theme {
+    }
   }
 
   &__th {
@@ -58,8 +72,9 @@
 
   &--white-theme {
     background-color: $display-bg-color--white-theme;
-    @extend %box-shadow--white-theme;
-    @extend %box-border--white-theme;
+    box-shadow: $shadow-size--md $shadow-blur--md
+      $shadow-color--white-theme;
+    border: 1px solid $box-border-color--dark-theme;
     color: black;
   }
 
