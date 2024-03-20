@@ -7,12 +7,13 @@
 
   max-width: 400px;
   margin: 0.75rem;
-  padding: 0.5rem;
+  padding: 0 1rem 1rem;
   border: 1px solid grey;
   border-radius: $box--brd-radius;
 
   &__header {
     @extend %header__h2;
+    margin: 0;
 
     &--white-theme {
       text-shadow: $shadow-size--sm
@@ -26,9 +27,13 @@
   }
 
   &__inputs-container {
+    width: 100%;
+    margin: 3px;
+  }
+  &__inputs-panel {
     display: flex;
-    flex-flow: column wrap;
     align-items: center;
+    justify-content: space-evenly;
     margin: 3px;
   }
 
