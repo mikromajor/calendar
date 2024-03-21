@@ -30,7 +30,7 @@ export const SwitchPanel = ({
   const { calculating } = alcoActions;
 
   return (
-    <div className='switch-panel'>
+    <div className='control-panel__switch-panel'>
       <Button
         id='btnAdd'
         variant='contained'
