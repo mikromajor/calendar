@@ -72,7 +72,7 @@ export const AlcoCounter = () => {
   );
 };
 
-//  TODO alcoCalculator v1:
+//  technical task - create alcoCalculator v1:
 // write a simple calculator with the next fields that you can change
 // volume of liquid drunk
 // quantity percent alcohol
@@ -81,7 +81,7 @@ export const AlcoCounter = () => {
 // volume of drunk clear alcohol per current month
 // equivalent volume this alcohol in 40% (vodka) per current month
 
-//extra TODO:
+//extra task:
 // add info about volume of drunk clear alcohol per current year
 // add info about volume of drunk vodka per current year
 // add different smiles for 5 sec after clicked "calc button"
