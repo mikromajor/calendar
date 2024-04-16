@@ -1,5 +1,14 @@
 {
   "compilerOptions": {
+    //задачу реалізувати не вийшло
+    // "../../../../store/" =>  "store/"
+
+    // "baseUrl": ".",
+    // "paths": {
+    //   "*": ["src/*"],
+    //   "underscore": ["lodash"]
+    // },
+
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

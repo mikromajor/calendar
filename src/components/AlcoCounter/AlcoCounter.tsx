@@ -29,6 +29,9 @@ export const AlcoCounter = () => {
   const [d, m, y] = [day, month, year].map((date) =>
     Number(date)
   );
+  const vodkaInCurrentDay = yearData?.months[m]?.days[d]
+    ? yearData.months[m].days[d].totalVodka
+    : "0";
 
   const [value, onChange] = useState<Dates>(
     new Date(y, m, d)
@@ -46,7 +49,9 @@ export const AlcoCounter = () => {
     }
   }, [value, onChange]);
 
-  const handleTileContent = () => <p>It's Sunday!</p>;
+  const handleTileContent = () => (
+    <p>Vodka {vodkaInCurrentDay}</p>
+  );
 
   return (
     <>

@@ -1,6 +1,5 @@
 import { useAppSelector } from "../../../../store/hooks/redux";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
-// import { asyncAdder } from "../../store/api/asyncAdder";
 import { useState } from "react";
 import { InputDatePanel } from "./InputsPanel/InputDatePanel";
 import { InputLiquidPanel } from "./InputsPanel/InputLiquidPanel";
