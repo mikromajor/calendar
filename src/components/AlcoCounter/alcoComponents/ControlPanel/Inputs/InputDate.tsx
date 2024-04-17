@@ -17,40 +17,41 @@ export const InputDate = ({
   const dispatch = useAppDispatch();
 
   return (
-    <div className='input-box input-box--direction-block'>
+    <div className='input-box'>
       <p id={label} className='input-box__label'>
         {label}
       </p>
-
-      <Button
-        variant='outlined'
-        size='small'
-        onClick={() => {
-          dispatch(changeData(Number(data) + 1 + ""));
-        }}
-      >
-        +1
-      </Button>
-      <input
-        className='input-box__input input-box__input--white-theme'
-        id={label + "Input"}
-        type='number'
-        value={data}
-        onChange={(e) => {
-          const newData = e.target.value;
-          Number(newData) > 0 &&
-            dispatch(changeData(newData));
-        }}
-      />
-      <Button
-        variant='outlined'
-        size='small'
-        onClick={() => {
-          dispatch(changeData(Number(data) - 1 + ""));
-        }}
-      >
-        -1
-      </Button>
+      <div className='input-box__wrap input-box__wrap--direction-column'>
+        <Button
+          variant='outlined'
+          size='small'
+          onClick={() => {
+            dispatch(changeData(Number(data) + 1 + ""));
+          }}
+        >
+          +1
+        </Button>
+        <input
+          className='input-box__input'
+          id={label + "Input"}
+          type='number'
+          value={data}
+          onChange={(e) => {
+            const newData = e.target.value;
+            Number(newData) > 0 &&
+              dispatch(changeData(newData));
+          }}
+        />
+        <Button
+          variant='outlined'
+          size='small'
+          onClick={() => {
+            dispatch(changeData(Number(data) - 1 + ""));
+          }}
+        >
+          -1
+        </Button>
+      </div>
     </div>
   );
 };
