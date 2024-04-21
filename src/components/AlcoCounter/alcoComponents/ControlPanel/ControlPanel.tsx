@@ -1,9 +1,13 @@
-import { useAppSelector } from "../../../../store/hooks/redux";
+import { Button } from "@mui/material";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 import { useState } from "react";
 import { InputDatePanel } from "./InputsPanel/InputDatePanel";
 import { InputLiquidPanel } from "./InputsPanel/InputLiquidPanel";
-import { SwitchPanel } from "./SwitchPanel";
+import { alcoActions } from "../../../../store/reducer/alcoReducer";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../../../store/hooks/redux";
 
 type ControlPanelProps = {
   setShowAlcoCalendar: React.Dispatch<
@@ -19,10 +23,16 @@ export const ControlPanel = ({
   const [volumeDrank, setVolumeDrank] = useState("500");
   const [percent, setPercent] = useState("5");
 
+  const { calculating } = alcoActions;
+
   let theme = "white-theme";
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
+  const dispatch = useAppDispatch();
+
+  const handleCalculating = () =>
+    dispatch(calculating([volumeDrank, percent]));
 
   return (
     <div
@@ -37,6 +47,19 @@ export const ControlPanel = ({
 
       <div className='control-panel__inputs-container'>
         {!showPanelInputDate && <InputDatePanel />}
+
+        <div className='control-panel__show-calendar-btn'>
+          <Button
+            id='btnShowAlcoCalendar'
+            variant='contained'
+            onClick={() =>
+              setShowAlcoCalendar((show) => !show)
+            }
+          >
+            {ALCO_CONTENT[currentLang].btnShowAlcoCalendar}
+          </Button>
+        </div>
+
         <InputLiquidPanel
           volumeDrank={volumeDrank}
           setVolumeDrank={setVolumeDrank}
@@ -45,11 +68,15 @@ export const ControlPanel = ({
         />
       </div>
 
-      <SwitchPanel
-        setShowAlcoCalendar={setShowAlcoCalendar}
-        volumeDrank={volumeDrank}
-        percent={percent}
-      />
+      <div className='control-panel__add-btn'>
+        <Button
+          id='btnAdd'
+          variant='contained'
+          onClick={handleCalculating}
+        >
+          {ALCO_CONTENT[currentLang].btnAdd}
+        </Button>
+      </div>
 
       {/* <button onClick={(e) => dispatch(asyncAdder())}>
         +50 L in 1 sec

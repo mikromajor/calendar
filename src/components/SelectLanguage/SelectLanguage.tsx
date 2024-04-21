@@ -35,6 +35,7 @@ export const SelectLanguage = ({
     <div className='select-lang'>
       <label
         id='lblLang'
+        htmlFor='LANGS'
         className={`select-lang__label select-lang--${theme}`}
       >
         {APP_CONTENT[currentLang].lblLang}

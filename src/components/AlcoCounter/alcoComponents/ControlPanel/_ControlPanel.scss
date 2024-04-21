@@ -30,6 +30,7 @@
     width: 100%;
     margin: 3px;
   }
+
   &__inputs-panel {
     display: flex;
     align-items: center;
@@ -41,12 +42,16 @@
     }
   }
 
-  &__switch-panel {
-    margin: 1rem;
+  &__show-calendar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    button {
-      margin: 5px;
-    }
+  &__add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &--white-theme {
