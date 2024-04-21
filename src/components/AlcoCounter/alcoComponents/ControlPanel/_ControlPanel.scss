@@ -42,16 +42,12 @@
     }
   }
 
-  &__show-calendar-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+  &__show-calendar-btn,
   &__add-btn {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 0.5rem;
   }
 
   &--white-theme {
