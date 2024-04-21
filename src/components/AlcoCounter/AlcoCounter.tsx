@@ -65,7 +65,7 @@ export const AlcoCounter = () => {
         <AlcoHeader />
         <Display />
         {showAlcoCalendar && (
-          <div className='alcoCalendar'>
+          <div className='alco-counter__calendar'>
             <Calendar
               onChange={onChange}
               value={value}
@@ -73,7 +73,7 @@ export const AlcoCounter = () => {
             />
           </div>
         )}
-        <div className='control-panel__show-calendar-btn'>
+        <div className='alco-counter__show-calendar-btn alco-counter__show-calendar-btn--white-theme'>
           <Button
             id='btnShowAlcoCalendar'
             variant='contained'

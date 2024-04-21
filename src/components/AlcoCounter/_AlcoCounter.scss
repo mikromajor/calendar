@@ -22,6 +22,12 @@
       text-shadow: none;
     }
   }
+  &__show-calendar-btn {
+    &--white-theme {
+      box-shadow: $shadow-size--md $shadow-blur--md
+        $shadow-color--white-theme;
+    }
+  }
 
   &__cleaner {
     display: flex;
