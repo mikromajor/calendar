@@ -4,6 +4,7 @@ import {
   Cleaner,
   AlcoHeader,
 } from "./alcoComponents";
+import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import { Dates } from "../../types/alcoTypes";
@@ -13,10 +14,15 @@ import {
 } from "../../store/hooks/redux";
 import { alcoActions } from "../../store/reducer/alcoReducer";
 import { getDateMonthYear } from "../handlers";
+import { ALCO_CONTENT } from "../../constants/alcoConstants";
 
 export const AlcoCounter = () => {
   const [showAlcoCalendar, setShowAlcoCalendar] =
     useState(false);
+
+  const { currentLang } = useAppSelector(
+    (state) => state.appReducer
+  );
 
   const dispatch = useAppDispatch();
   const { changeDay, changeMonth, changeYear } =
@@ -67,8 +73,19 @@ export const AlcoCounter = () => {
             />
           </div>
         )}
+        <div className='control-panel__show-calendar-btn'>
+          <Button
+            id='btnShowAlcoCalendar'
+            variant='contained'
+            onClick={() =>
+              setShowAlcoCalendar((show) => !show)
+            }
+          >
+            {ALCO_CONTENT[currentLang].btnShowAlcoCalendar}
+          </Button>
+        </div>
+
         <ControlPanel
-          setShowAlcoCalendar={setShowAlcoCalendar}
           showPanelInputDate={showAlcoCalendar}
         />
         <Cleaner />
