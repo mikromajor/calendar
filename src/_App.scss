@@ -15,10 +15,11 @@ body {
   justify-content: center;
   margin-bottom: 2rem;
 
-  &__menu {
+  &__top-menu {
     display: flex;
-    align-items: center;
-    margin: 10px;
+    justify-content: right;
+    width: 98vw;
+
     // &--white-theme {
     //   box-shadow: none;
     // }
