@@ -4,26 +4,21 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-const options = [
-  "None",
-  "Atria",
-  "Callisto",
-  "Dione",
-  "Ganymede",
-  "Hangouts Call",
-  "Luna",
-  "Oberon",
-  "Phobos",
-  "Pyxis",
-  "Sedna",
-  "Titania",
-  "Triton",
-  "Umbriel",
-];
+import { APP_CONTENT } from "../../constants/appConstants";
+import { useAppSelector } from "../../store/hooks/redux";
+import { SelectLanguage } from "../.";
 
-const ITEM_HEIGHT = 48;
+interface TopMenuPops {
+  switchCalc: boolean;
+  setSwitchCalc: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
+}
 
-export default function LongMenu() {
+export function TopMenu({
+  switchCalc,
+  setSwitchCalc,
+}: TopMenuPops) {
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -35,9 +30,17 @@ export default function LongMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleChangeCalc = () => {
+    setSwitchCalc((switcher) => !switcher);
+    setAnchorEl(null);
+  };
 
+  const { currentLang } = useAppSelector(
+    (state) => state.appReducer
+  );
+  let theme = "white-theme";
   return (
-    <div>
+    <div className={`app__menu app__menu--${theme}`}>
       <IconButton
         aria-label='more'
         id='long-button'
@@ -56,22 +59,13 @@ export default function LongMenu() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        PaperProps={{
-          style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
-            width: "20ch",
-          },
-        }}
       >
-        {options.map((option) => (
-          <MenuItem
-            key={option}
-            selected={option === "Pyxis"}
-            onClick={handleClose}
-          >
-            {option}
-          </MenuItem>
-        ))}
+        <MenuItem onClick={handleChangeCalc}>
+          {APP_CONTENT[currentLang].btnChangeCalc}
+        </MenuItem>
+        <MenuItem>
+          <SelectLanguage handleClose={handleClose} />
+        </MenuItem>
       </Menu>
     </div>
   );

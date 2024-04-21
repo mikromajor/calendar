@@ -15,7 +15,7 @@ export const APP_CONTENT = {
   },
   [AppLanguages.UA]: {
     btnChangeCalc: "Зміни калькулятор",
-    lblLang: "Мова",
+    lblLang: "Змінити мову",
   },
 };
 

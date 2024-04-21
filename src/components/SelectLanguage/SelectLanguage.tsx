@@ -7,7 +7,13 @@ import {
 } from "../../store/hooks/redux";
 import { appActions } from "../../store/reducer/appReducer";
 
-export const SelectLanguage = () => {
+interface SelectLanguageProps {
+  handleClose(): void;
+}
+
+export const SelectLanguage = ({
+  handleClose,
+}: SelectLanguageProps) => {
   const currentLang = useAppSelector(
     (state) => state.appReducer.currentLang
   );
@@ -42,6 +48,7 @@ export const SelectLanguage = () => {
                 e.currentTarget.value as AppLanguages
               )
             );
+            handleClose();
           }}
         >
           {Options}
