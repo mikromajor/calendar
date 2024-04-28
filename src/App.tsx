@@ -8,10 +8,7 @@ function App() {
   return (
     <div className={`app app--${theme}`}>
       <div className='app__top-menu'>
-        <TopMenu
-          switchCalc={switchCalc}
-          setSwitchCalc={setSwitchCalc}
-        />
+        <TopMenu setSwitchCalc={setSwitchCalc} />
       </div>
       {switchCalc ? <AlcoCounter /> : <Salary />}
     </div>

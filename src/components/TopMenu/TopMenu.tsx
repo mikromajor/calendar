@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,19 +9,19 @@ import { useAppSelector } from "../../store/hooks/redux";
 import { SelectLanguage } from "../.";
 
 interface TopMenuPops {
-  switchCalc: boolean;
   setSwitchCalc: React.Dispatch<
     React.SetStateAction<boolean>
   >;
 }
 
-export function TopMenu({
-  switchCalc,
-  setSwitchCalc,
-}: TopMenuPops) {
+export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
+
+  const [onFocus, setOnFocus] =
+    React.useState<boolean>(false);
   const open = Boolean(anchorEl);
+
   const handleClick = (
     event: React.MouseEvent<HTMLElement>
   ) => {
@@ -33,6 +33,18 @@ export function TopMenu({
   const handleChangeCalc = () => {
     setSwitchCalc((switcher) => !switcher);
     setAnchorEl(null);
+  };
+
+  const giveFocusSelectLanguages = (
+    e:
+      | React.KeyboardEvent<HTMLElement>
+      | React.MouseEvent<HTMLElement>
+  ) => {
+    // TODO use useRef for selectLanguages focus()
+    // selectLanguagesRef.current.focus();
+    const selectLanguages = document
+      .getElementById("selectLanguages")
+      ?.focus();
   };
 
   const { currentLang } = useAppSelector(
@@ -63,7 +75,7 @@ export function TopMenu({
         <MenuItem onClick={handleChangeCalc}>
           {APP_CONTENT[currentLang].btnChangeCalc}
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={giveFocusSelectLanguages}>
           <SelectLanguage handleClose={handleClose} />
         </MenuItem>
       </Menu>
