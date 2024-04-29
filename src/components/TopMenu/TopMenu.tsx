@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -18,8 +18,10 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
-  const [onFocus, setOnFocus] =
-    React.useState<boolean>(false);
+  const selectLangsRef = useRef<HTMLSelectElement | null>(
+    null
+  );
+
   const open = Boolean(anchorEl);
 
   const handleClick = (
@@ -35,16 +37,13 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
     setAnchorEl(null);
   };
 
-  const giveFocusSelectLanguages = (
-    e:
-      | React.KeyboardEvent<HTMLElement>
-      | React.MouseEvent<HTMLElement>
-  ) => {
+  const giveFocusSelectLangs = () => {
     // TODO use useRef for selectLanguages focus()
-    // selectLanguagesRef.current.focus();
-    const selectLanguages = document
-      .getElementById("selectLanguages")
-      ?.focus();
+    selectLangsRef.current &&
+      selectLangsRef.current.focus();
+    // const selectLanguages = document
+    //   .getElementById("selectLanguages")
+    //   ?.focus();
   };
 
   const { currentLang } = useAppSelector(
@@ -75,8 +74,11 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
         <MenuItem onClick={handleChangeCalc}>
           {APP_CONTENT[currentLang].btnChangeCalc}
         </MenuItem>
-        <MenuItem onClick={giveFocusSelectLanguages}>
-          <SelectLanguage handleClose={handleClose} />
+        <MenuItem onClick={giveFocusSelectLangs}>
+          <SelectLanguage
+            handleClose={handleClose}
+            ref={selectLangsRef}
+          />
         </MenuItem>
       </Menu>
     </div>
