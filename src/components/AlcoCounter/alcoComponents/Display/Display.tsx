@@ -2,12 +2,19 @@ import { useAppSelector } from "../../../../store/hooks/redux";
 // import { AppLanguages } from "../../../../types/appTypes";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 import { getTotalDrankData } from "../../../../store/reducer/alcoHandlers";
+import { useEffect, useState } from "react";
 
 export const Display = () => {
   const alcoState = useAppSelector(
     (state) => state.alcoReducer
   );
   const { day, month, year } = alcoState.currentDate;
+
+  const td = "display__td";
+
+  const [backlight, setBacklight] = useState<string>(
+    "display__td--backlightColor"
+  );
 
   //TODO: add enum theme to appConstants
   let theme = "white-theme";
@@ -18,6 +25,14 @@ export const Display = () => {
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
+
+  useEffect(() => {
+    setBacklight("display__td--backlightColor");
+    const backlightTimer = setTimeout(() => {
+      setBacklight("");
+    }, 500);
+    return () => clearTimeout(backlightTimer);
+  }, [totalForDay]);
 
   return (
     <table className='display' data-testid='display'>
@@ -55,17 +70,17 @@ export const Display = () => {
         </tr>
         <tr className={`display__tr display__tr--${theme}`}>
           <td
-            className={`display__td display__td--${theme}`}
+            className={`${td} ${td}--${theme} ${backlight}`}
           >
             {totalForDay + " ml"}
           </td>
           <td
-            className={`display__td display__td--${theme}`}
+            className={`${td} ${td}--${theme} ${backlight}`}
           >
             {totalForMonth + " ml"}
           </td>
           <td
-            className={`display__td display__td--${theme}`}
+            className={`${td} ${td}--${theme} ${backlight}`}
           >
             {totalForYear + " ml"}
           </td>

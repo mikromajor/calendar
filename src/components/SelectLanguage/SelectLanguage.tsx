@@ -6,7 +6,7 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { appActions } from "../../store/reducer/appReducer";
-import React, { useRef, forwardRef } from "react";
+import React, { forwardRef } from "react";
 interface SelectLanguageProps {
   handleClose(): void;
 }
@@ -16,9 +16,6 @@ export const SelectLanguage = forwardRef(
     { handleClose }: SelectLanguageProps,
     ref: React.ForwardedRef<HTMLSelectElement | null>
   ) => {
-    const selectLanguagesRef =
-      useRef<HTMLSelectElement>(null);
-
     const currentLang = useAppSelector(
       (state) => state.appReducer.currentLang
     );

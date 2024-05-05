@@ -38,12 +38,8 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   };
 
   const giveFocusSelectLangs = () => {
-    // TODO use useRef for selectLanguages focus()
     selectLangsRef.current &&
       selectLangsRef.current.focus();
-    // const selectLanguages = document
-    //   .getElementById("selectLanguages")
-    //   ?.focus();
   };
 
   const { currentLang } = useAppSelector(

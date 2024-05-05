@@ -80,12 +80,16 @@ export const alcoReducer = createSlice({
     },
     clearMonthData: (state) => {
       const currentMonth = Number(state.currentDate.month);
-      const monthData = state.yearData.months[currentMonth];
-      state.yearData.totalBill -= monthData.totalBill;
-      state.yearData.totalVodka -= monthData.totalVodka;
-      state.yearData.months[currentMonth] = {
-        ...INIT_MONTH,
-      };
+      //TODO add checking for the existence of a month-object
+      if (state?.yearData?.months?.[currentMonth]) {
+        const monthData =
+          state?.yearData?.months?.[currentMonth];
+        state.yearData.totalBill -= monthData.totalBill;
+        state.yearData.totalVodka -= monthData.totalVodka;
+        state.yearData.months[currentMonth] = {
+          ...INIT_MONTH,
+        };
+      }
     },
     clearAllStor: () => {
       window.localStorage.clear();
