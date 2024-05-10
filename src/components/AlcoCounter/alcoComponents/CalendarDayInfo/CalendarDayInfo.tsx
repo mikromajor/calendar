@@ -8,14 +8,19 @@ import {
   PickersDayProps,
 } from "@mui/x-date-pickers/PickersDay";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { DayCalendarSkeleton } from "@mui/x-date-pickers/DayCalendarSkeleton";
 import { useAppSelector } from "../../../../store/hooks/redux";
-// import { alcoActions } from "../../../../store/reducer/alcoReducer";
-// import { getDateMonthYear } from "../../../handlers";
 import { Total, Month } from "../../../../types/alcoTypes";
-// import {INIT_MONTH} from '../../../../constants/alcoConstants';
+import updateLocale from "dayjs/plugin/updateLocale";
 
-function ServerDay(
+dayjs.extend(updateLocale);
+
+// Replace "en" with the name of the locale you want to update.
+dayjs.updateLocale("en", {
+  // Sunday = 0, Monday = 1.
+  weekStart: 1,
+});
+
+function ViewInfoDay(
   props: PickersDayProps<Dayjs> & {
     highlightedDays?: Total[];
   }
@@ -24,7 +29,7 @@ function ServerDay(
   const { currentDate, yearData } = useAppSelector(
     (state) => state.alcoReducer
   );
-  const { day, month, year } = currentDate;
+  const { month } = currentDate;
   const { months } = yearData;
   const isMonthData = months[Number(month)];
   const highlightedDays = !!isMonthData
@@ -41,13 +46,13 @@ function ServerDay(
       overlap='circular'
       badgeContent={
         isSelected
-          ? isSelected.totalVodka.toString() + " ml"
+          ? isSelected.totalVodka.toString()
           : undefined
       }
     >
       <PickersDay
         {...props}
-        outsideCurrentMonth={props.outsideCurrentMonth}
+        outsideCurrentMonth={outsideCurrentMonth}
         day={props.day}
       />
     </Badge>
@@ -55,26 +60,21 @@ function ServerDay(
 }
 
 interface CalendarDayInfoProps {
-  setVal: React.Dispatch<
+  setDate: React.Dispatch<
     React.SetStateAction<dayjs.Dayjs | null>
   >;
-  val: Dayjs | null;
+  date: Dayjs | null;
 }
 
 export function CalendarDayInfo({
-  val,
-  setVal,
+  date,
+  setDate,
 }: CalendarDayInfoProps) {
+  // TODO не изменяется месяц и год в редаксе, связать новый календарь со стейтом редакса
   const { currentDate, yearData } = useAppSelector(
     (state) => state.alcoReducer
   );
   const { day, month, year } = currentDate;
-  const initialValue = dayjs(
-    year + "-" + month + "-" + day
-  );
-  const [value, setValue] = React.useState<Dayjs | null>(
-    dayjs(initialValue)
-  );
 
   const { months } = yearData;
   const isMonthData = months[Number(month)];
@@ -84,16 +84,21 @@ export function CalendarDayInfo({
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
-        value={val}
-        onChange={(newVal) => setVal(newVal)}
+        value={date}
+        onChange={(newDate) => setDate(newDate)}
         slots={{
-          day: ServerDay,
+          day: ViewInfoDay,
         }}
         slotProps={{
           day: {
             highlightedDays,
           } as any,
         }}
+        showDaysOutsideCurrentMonth
+        fixedWeekNumber={6}
+        dayOfWeekFormatter={(weekday) =>
+          `${weekday.format("ddd")}.`
+        }
       />
     </LocalizationProvider>
   );

@@ -7,8 +7,6 @@ import {
 } from "./alcoComponents";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
-import Calendar from "react-calendar";
-import { Dates } from "../../types/alcoTypes";
 import {
   useAppSelector,
   useAppDispatch,
@@ -23,6 +21,8 @@ export const AlcoCounter = () => {
   const [showAlcoCalendar, setShowAlcoCalendar] =
     useState(false);
 
+  //TODO npm uninstall react-calendar
+
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
@@ -31,47 +31,26 @@ export const AlcoCounter = () => {
   const { changeDay, changeMonth, changeYear } =
     alcoActions;
 
-  const { currentDate, yearData } = useAppSelector(
+  const { currentDate } = useAppSelector(
     (state) => state.alcoReducer
   );
   const { day, month, year } = currentDate;
-  // const [d, m, y] = [day, month, year].map((date) =>
-  //   Number(date)
-  // );
 
-  const initialValue = dayjs(
-    year + "-" + month + "-" + day
+  const [date, setDate] = useState<Dayjs | null>(
+    dayjs(year + "-" + month + "-" + day)
   );
-  const [val, setVal] = useState<Dayjs | null>(
-    dayjs(initialValue)
-  );
+
   useEffect(() => {
-    if (val && val !== null) {
-      const newDay = val.date().toString();
-      const newMonth = val.month().toString();
-      const newYear = val.year().toString();
+    if (date && date !== null) {
+      const newDay = date.date().toString();
+      const newMonth = date.month().toString();
+      const newYear = date.year().toString();
 
       newYear !== year && dispatch(changeYear(newYear));
       newMonth !== month && dispatch(changeMonth(newMonth));
       newDay !== day && dispatch(changeDay(newDay));
     }
-  }, [val, setVal]);
-
-  // const [value, onChange] = useState<Dates>(
-  //   new Date(y, m, d)
-  // );
-  // useEffect(() => {
-  //   if (value && value !== null && !Array.isArray(value)) {
-  //     const [newDay, newMonth, newYear] =
-  //       getDateMonthYear(value);
-
-  //     newYear !== year &&
-  //       dispatch(changeYear(newYear + ""));
-  //     newMonth !== month &&
-  //       dispatch(changeMonth(newMonth + ""));
-  //     newDay !== day && dispatch(changeDay(newDay + ""));
-  //   }
-  // }, [value, onChange]);
+  }, [date, setDate]);
 
   return (
     <>
@@ -80,13 +59,10 @@ export const AlcoCounter = () => {
         <Display />
         {showAlcoCalendar && (
           <div className='alco-counter__calendar'>
-            <CalendarDayInfo setVal={setVal} val={val} />
-            {/* <Calendar
-              onChange={onChange}
-              value={value}
-              // tileContent={handleTileContent}
-              //TODO add   <CalendarDayInfo />
-            /> */}
+            <CalendarDayInfo
+              setDate={setDate}
+              date={date}
+            />
           </div>
         )}
         <div className='alco-counter__show-calendar-btn alco-counter__show-calendar-btn--white-theme'>

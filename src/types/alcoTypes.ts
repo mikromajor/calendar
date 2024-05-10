@@ -41,9 +41,6 @@ export interface AdditiveDayData {
   additiveVodka?: number;
   additiveBill?: number;
 }
-type isDate = Date | null;
-export type Dates = isDate | [isDate, isDate];
-
 type AlcoContentLabels = typeof ALCO_CONTENT_LABELS;
 
 type AutoType<K extends string, O> = {
