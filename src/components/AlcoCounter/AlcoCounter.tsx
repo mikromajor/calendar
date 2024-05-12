@@ -6,52 +6,18 @@ import {
   CalendarDayInfo,
 } from "./alcoComponents";
 import { Button } from "@mui/material";
-import { useState, useEffect } from "react";
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../store/hooks/redux";
-import { alcoActions } from "../../store/reducer/alcoReducer";
-import { getDateMonthYear } from "../handlers";
-import { ALCO_CONTENT } from "../../constants/alcoConstants";
+import { useState } from "react";
+import { useAppSelector } from "../../store/hooks/redux";
 
-import dayjs, { Dayjs } from "dayjs";
+import { ALCO_CONTENT } from "../../constants/alcoConstants";
 
 export const AlcoCounter = () => {
   const [showAlcoCalendar, setShowAlcoCalendar] =
     useState(false);
 
-  //TODO npm uninstall react-calendar
-
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
-
-  const dispatch = useAppDispatch();
-  const { changeDay, changeMonth, changeYear } =
-    alcoActions;
-
-  const { currentDate } = useAppSelector(
-    (state) => state.alcoReducer
-  );
-  const { day, month, year } = currentDate;
-
-  const [date, setDate] = useState<Dayjs | null>(
-    dayjs(year + "-" + month + "-" + day)
-  );
-
-  useEffect(() => {
-    if (date && date !== null) {
-      const newDay = date.date().toString();
-      const newMonth = date.month().toString();
-      const newYear = date.year().toString();
-
-      newYear !== year && dispatch(changeYear(newYear));
-      newMonth !== month && dispatch(changeMonth(newMonth));
-      newDay !== day && dispatch(changeDay(newDay));
-    }
-  }, [date, setDate]);
-
   return (
     <>
       <div className='alco-counter '>
@@ -59,10 +25,7 @@ export const AlcoCounter = () => {
         <Display />
         {showAlcoCalendar && (
           <div className='alco-counter__calendar'>
-            <CalendarDayInfo
-              setDate={setDate}
-              date={date}
-            />
+            <CalendarDayInfo />
           </div>
         )}
         <div className='alco-counter__show-calendar-btn alco-counter__show-calendar-btn--white-theme'>

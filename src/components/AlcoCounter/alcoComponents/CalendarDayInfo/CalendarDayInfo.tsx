@@ -8,7 +8,11 @@ import {
   PickersDayProps,
 } from "@mui/x-date-pickers/PickersDay";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { useAppSelector } from "../../../../store/hooks/redux";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../../../store/hooks/redux";
+import { alcoActions } from "../../../../store/reducer/alcoReducer";
 import { Total, Month } from "../../../../types/alcoTypes";
 import updateLocale from "dayjs/plugin/updateLocale";
 
@@ -59,33 +63,40 @@ function ViewInfoDay(
   );
 }
 
-interface CalendarDayInfoProps {
-  setDate: React.Dispatch<
-    React.SetStateAction<dayjs.Dayjs | null>
-  >;
-  date: Dayjs | null;
-}
-
-export function CalendarDayInfo({
-  date,
-  setDate,
-}: CalendarDayInfoProps) {
+export function CalendarDayInfo() {
   // TODO не изменяется месяц и год в редаксе, связать новый календарь со стейтом редакса
   const { currentDate, yearData } = useAppSelector(
     (state) => state.alcoReducer
   );
   const { day, month, year } = currentDate;
 
+  const dispatch = useAppDispatch();
+  const { changeDay, changeMonth, changeYear } =
+    alcoActions;
+
   const { months } = yearData;
   const isMonthData = months[Number(month)];
   const highlightedDays = !!isMonthData
     ? isMonthData.days
     : [];
+
+  const changeDate = (date: Dayjs) => {
+    if (date && date !== null) {
+      const newDay = date.date().toString();
+      const newMonth = (date.month() + 1).toString();
+      const newYear = date.year().toString();
+
+      newYear !== year && dispatch(changeYear(newYear));
+      newMonth !== month && dispatch(changeMonth(newMonth));
+      newDay !== day && dispatch(changeDay(newDay));
+    }
+  };
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
-        value={date}
-        onChange={(newDate) => setDate(newDate)}
+        value={dayjs(year + "-" + month + "-" + day)}
+        onChange={(newDate) => changeDate(dayjs(newDate))}
         slots={{
           day: ViewInfoDay,
         }}
