@@ -13,6 +13,7 @@ import {
   setDecimal,
   createKey,
   addVodkaToState,
+  checkMinMaxAmountDaysInCurrentMonth,
 } from "./alcoHandlers";
 import { AppLanguages } from "../../types/appTypes";
 
@@ -26,7 +27,15 @@ export const alcoReducer = createSlice({
   reducers: {
     changeDay: (state, action: PayloadAction<string>) => {
       const day = Number(action.payload);
-      if (day > 0 && day <= 31) {
+      const { month, year } = state.currentDate;
+
+      if (
+        checkMinMaxAmountDaysInCurrentMonth(
+          day,
+          Number(month),
+          Number(year)
+        )
+      ) {
         // TODO add validation for max amount days in months
         state.currentDate.day = action.payload;
       }

@@ -48,6 +48,8 @@ function ViewInfoDay(
     <Badge
       key={props.day.toString()}
       overlap='circular'
+      color='secondary'
+      max={999}
       badgeContent={
         isSelected
           ? isSelected.totalVodka.toString()
@@ -64,7 +66,7 @@ function ViewInfoDay(
 }
 
 export function CalendarDayInfo() {
-  // TODO не изменяется месяц и год в редаксе, связать новый календарь со стейтом редакса
+  // TODO: change month in CalendarDayInfo does not change state
   const { currentDate, yearData } = useAppSelector(
     (state) => state.alcoReducer
   );
@@ -96,7 +98,7 @@ export function CalendarDayInfo() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
         value={dayjs(year + "-" + month + "-" + day)}
-        onChange={(newDate) => changeDate(dayjs(newDate))}
+        onChange={(date) => changeDate(dayjs(date))}
         slots={{
           day: ViewInfoDay,
         }}
@@ -110,6 +112,12 @@ export function CalendarDayInfo() {
         dayOfWeekFormatter={(weekday) =>
           `${weekday.format("ddd")}.`
         }
+        views={["year", "month", "day"]}
+        onMonthChange={(date) => {
+          dispatch(
+            changeMonth((date.month() + 1).toString())
+          );
+        }}
       />
     </LocalizationProvider>
   );
