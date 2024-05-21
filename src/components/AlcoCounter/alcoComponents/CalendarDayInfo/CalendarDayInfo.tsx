@@ -13,7 +13,7 @@ import {
   useAppDispatch,
 } from "../../../../store/hooks/redux";
 import { alcoActions } from "../../../../store/reducer/alcoReducer";
-import { Total, Month } from "../../../../types/alcoTypes";
+import { Total } from "../../../../types/alcoTypes";
 import updateLocale from "dayjs/plugin/updateLocale";
 
 dayjs.extend(updateLocale);
@@ -30,7 +30,7 @@ function ViewInfoDay(
   }
 ) {
   // TODO fix problem with highlightedDays
-  //console.js:273 Warning: React does not recognize the `drunkDays` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `drunkdays` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+
   const { outsideCurrentMonth } = props;
   const { currentDate, yearData } = useAppSelector(
     (state) => state.alcoReducer
@@ -38,13 +38,13 @@ function ViewInfoDay(
   const { month } = currentDate;
   const { months } = yearData;
   const isMonthData = months[Number(month)];
-  const highlightedDays = !!isMonthData
+  const highlightedDaysInMonth = !!isMonthData
     ? isMonthData.days
     : [];
 
   const isSelected =
     !outsideCurrentMonth &&
-    highlightedDays[props.day.date()];
+    highlightedDaysInMonth[props.day.date()];
 
   return (
     <Badge

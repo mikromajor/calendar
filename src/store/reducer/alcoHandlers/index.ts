@@ -5,4 +5,4 @@ export { saveStateInStorage } from "./saveStateInStorage";
 export { trimFirstZero } from "./trimFirstZero";
 export { addVodkaToState } from "./addVodkaToState";
 export { getTotalDrankData } from "./getTotalDrankData";
-export { checkMinMaxAmountDaysInCurrentMonth } from "./checkMinMaxAmountDaysInCurrentMonth";
+export { getMaxValidDayInCurrentMonth } from "./getMaxValidDayInCurrentMonth";

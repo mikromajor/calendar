@@ -13,7 +13,7 @@ import {
   setDecimal,
   createKey,
   addVodkaToState,
-  checkMinMaxAmountDaysInCurrentMonth,
+  getMaxValidDayInCurrentMonth,
 } from "./alcoHandlers";
 import { AppLanguages } from "../../types/appTypes";
 
@@ -29,22 +29,25 @@ export const alcoReducer = createSlice({
       const day = Number(action.payload);
       const { month, year } = state.currentDate;
 
-      if (
-        checkMinMaxAmountDaysInCurrentMonth(
-          day,
-          Number(month),
-          Number(year)
-        )
-      ) {
-        // TODO add validation for max amount days in months
-        state.currentDate.day = action.payload;
-      }
+      state.currentDate.day = getMaxValidDayInCurrentMonth(
+        day,
+        Number(month),
+        Number(year)
+      );
     },
 
     changeMonth: (state, action: PayloadAction<string>) => {
       const month = Number(action.payload);
       if (month > 0 && month < 13) {
-        state.currentDate.month = action.payload;
+        const { day, year } = state.currentDate;
+
+        state.currentDate.day =
+          getMaxValidDayInCurrentMonth(
+            Number(day),
+            month,
+            Number(year)
+          );
+        state.currentDate.month = month.toString();
       }
     },
     changeYear: (state, action: PayloadAction<string>) => {
