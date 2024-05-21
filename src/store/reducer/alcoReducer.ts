@@ -26,7 +26,8 @@ export const alcoReducer = createSlice({
   reducers: {
     changeDay: (state, action: PayloadAction<string>) => {
       const day = Number(action.payload);
-      if (day > 0 && day < 31) {
+      if (day > 0 && day <= 31) {
+        // TODO add validation for max amount days in months
         state.currentDate.day = action.payload;
       }
     },
