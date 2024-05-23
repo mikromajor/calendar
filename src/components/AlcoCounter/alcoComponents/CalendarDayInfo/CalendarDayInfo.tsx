@@ -68,7 +68,7 @@ function ViewInfoDay(
 }
 
 export function CalendarDayInfo() {
-  // TODO: change month in CalendarDayInfo does not change state
+  // TODO: change calendar's language when app lang change
   const { currentDate, yearData } = useAppSelector(
     (state) => state.alcoReducer
   );
