@@ -97,30 +97,32 @@ export function CalendarDayInfo() {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar
-        value={dayjs(year + "-" + month + "-" + day)}
-        onChange={(date) => changeDate(dayjs(date))}
-        slots={{
-          day: ViewInfoDay,
-        }}
-        slotProps={{
-          day: {
-            highlightedDays,
-          } as any,
-        }}
-        showDaysOutsideCurrentMonth
-        fixedWeekNumber={6}
-        dayOfWeekFormatter={(weekday) =>
-          `${weekday.format("ddd")}.`
-        }
-        views={["year", "month", "day"]}
-        onMonthChange={(date) => {
-          dispatch(
-            changeMonth((date.month() + 1).toString())
-          );
-        }}
-      />
-    </LocalizationProvider>
+    <div className='alco-counter__calendar-day-info'>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DateCalendar
+          value={dayjs(year + "-" + month + "-" + day)}
+          onChange={(date) => changeDate(dayjs(date))}
+          slots={{
+            day: ViewInfoDay,
+          }}
+          slotProps={{
+            day: {
+              highlightedDays,
+            } as any,
+          }}
+          showDaysOutsideCurrentMonth
+          fixedWeekNumber={6}
+          dayOfWeekFormatter={(weekday) =>
+            `${weekday.format("ddd")}.`
+          }
+          views={["year", "month", "day"]}
+          onMonthChange={(date) => {
+            dispatch(
+              changeMonth((date.month() + 1).toString())
+            );
+          }}
+        />
+      </LocalizationProvider>
+    </div>
   );
 }
