@@ -15,7 +15,7 @@ export const AlcoCounter = () => {
   const [showAlcoCalendar, setShowAlcoCalendar] =
     useState(false);
 
-  const { currentLang } = useAppSelector(
+  const { currentLang, currentTheme } = useAppSelector(
     (state) => state.appReducer
   );
   return (
@@ -23,12 +23,10 @@ export const AlcoCounter = () => {
       <div className='alco-counter '>
         <AlcoHeader />
         <Display />
-        {showAlcoCalendar && (
-          <div className='alco-counter__calendar'>
-            <CalendarDayInfo />
-          </div>
-        )}
-        <div className='alco-counter__show-calendar-btn alco-counter__show-calendar-btn--white-theme'>
+        {showAlcoCalendar && <CalendarDayInfo />}
+        <div
+          className={`alco-counter__show-calendar-btn alco-counter__show-calendar-btn--${currentTheme}`}
+        >
           <Button
             id='btnShowAlcoCalendar'
             variant='contained'

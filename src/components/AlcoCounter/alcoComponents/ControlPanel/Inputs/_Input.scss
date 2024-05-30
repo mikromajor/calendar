@@ -25,9 +25,11 @@
 
     &--white-theme {
       color: $text-color--white-theme;
+      background-color: white;
     }
     &--dark-theme {
       color: $text-color--dark-theme;
+      background-color: rgb(73, 89, 80);
     }
   }
 }

@@ -2,13 +2,13 @@ import { useAppSelector } from "../../../../store/hooks/redux";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 
 export const AlcoHeader = () => {
-  const { currentLang } = useAppSelector(
+  const { currentLang, currentTheme } = useAppSelector(
     (state) => state.appReducer
   );
-  let theme = "white-theme";
+
   return (
     <h1
-      className={`alco-counter__header alco-counter__header--${theme}`}
+      className={`alco-counter__header alco-counter__header--${currentTheme}`}
     >
       {ALCO_CONTENT[currentLang].alcoHeader}
     </h1>

@@ -1,6 +1,9 @@
 import { Button } from "@mui/material";
 
-import { useAppDispatch } from "../../../../../store/hooks/redux";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../../../store/hooks/redux";
 import { ActionsChangeData } from "../../../../../types/alcoTypes";
 
 type InputDataProps = {
@@ -15,6 +18,14 @@ export const InputDate = ({
   label,
 }: InputDataProps) => {
   const dispatch = useAppDispatch();
+  const { currentTheme } = useAppSelector(
+    (state) => state.appReducer
+  );
+
+  const variantButton =
+    currentTheme === "white-theme"
+      ? "outlined"
+      : "contained";
 
   return (
     <div className='input-box'>
@@ -23,7 +34,7 @@ export const InputDate = ({
       </p>
       <div className='input-box__wrap input-box__wrap--direction-column'>
         <Button
-          variant='outlined'
+          variant={variantButton}
           size='small'
           onClick={() => {
             dispatch(changeData(Number(data) + 1 + ""));
@@ -32,7 +43,7 @@ export const InputDate = ({
           +1
         </Button>
         <input
-          className='input-box__input'
+          className={`input-box__input input-box__input--${currentTheme}`}
           id={label + "Input"}
           type='number'
           value={data}
@@ -43,7 +54,7 @@ export const InputDate = ({
           }}
         />
         <Button
-          variant='outlined'
+          variant={variantButton}
           size='small'
           onClick={() => {
             dispatch(changeData(Number(data) - 1 + ""));

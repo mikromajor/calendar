@@ -72,6 +72,9 @@ export function CalendarDayInfo() {
   const { currentDate, yearData } = useAppSelector(
     (state) => state.alcoReducer
   );
+  const { currentTheme } = useAppSelector(
+    (state) => state.appReducer
+  );
   const { day, month, year } = currentDate;
 
   const dispatch = useAppDispatch();
@@ -97,7 +100,9 @@ export function CalendarDayInfo() {
   };
 
   return (
-    <div className='alco-counter__calendar-day-info'>
+    <div
+      className={`alco-counter__calendar-day-info alco-counter__calendar-day-info--${currentTheme}`}
+    >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
           value={dayjs(year + "-" + month + "-" + day)}

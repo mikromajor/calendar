@@ -13,7 +13,8 @@ export const InputLiquidPanel = () => {
   const [percent, setPercent] = useState("5");
 
   const { calculating } = alcoActions;
-  const { currentLang } = useAppSelector(
+
+  const { currentLang, currentTheme } = useAppSelector(
     (state) => state.appReducer
   );
   const dispatch = useAppDispatch();
@@ -24,17 +25,17 @@ export const InputLiquidPanel = () => {
   return (
     <div className='control-panel__inputs-panel control-panel__inputs-panel--direction-column'>
       <InputLiquid
+        role='volume'
         val={volumeDrank}
         step={100}
         setVal={setVolumeDrank}
-        label={ALCO_CONTENT[currentLang].lblVolume}
       />
 
       <InputLiquid
+        role='percent'
         val={percent}
         step={1}
         setVal={setPercent}
-        label={ALCO_CONTENT[currentLang].lblPercent}
       />
       <div className='control-panel__add-btn'>
         <Button

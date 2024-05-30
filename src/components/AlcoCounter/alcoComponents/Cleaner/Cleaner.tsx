@@ -8,13 +8,13 @@ import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 export const Cleaner = () => {
   const dispatch = useAppDispatch();
   const { clearYearData, clearMonthData } = alcoActions;
-  const { currentLang } = useAppSelector(
+  const { currentLang, currentTheme } = useAppSelector(
     (state) => state.appReducer
   );
 
   return (
     <div
-      className='alco-counter__cleaner alco-counter__cleaner--white-theme'
+      className={`alco-counter__cleaner alco-counter__cleaner--${currentTheme}`}
       data-testid='cleaner'
     >
       <button onClick={() => dispatch(clearMonthData())}>

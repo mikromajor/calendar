@@ -51,9 +51,11 @@
   &--white-theme {
     box-shadow: $shadow-size--md $shadow-blur--md
       $shadow-color--white-theme;
-    background-color: $display-bg-color--white-theme;
+    background-color: $display-bgc--white-theme;
   }
-  // &--dark-theme{
-
-  // }
+  &--dark-theme {
+    background-color: $display-bgc--dark-theme;
+    box-shadow: none;
+    color: $text-color--dark-theme;
+  }
 }

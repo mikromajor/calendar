@@ -55,6 +55,7 @@
     }
     &--dark-theme {
       background-color: rgb(15, 118, 84);
+      color: $text-color--dark-theme;
     }
   }
   &__td {
@@ -71,14 +72,15 @@
     &--dark-theme {
       border-color: whitesmoke;
       background-color: rgb(73, 89, 80);
+      color: $text-color--dark-theme;
     }
     &--backlightColor {
-      background-color: rgb(155, 226, 246);
+      background-color: rgb(17, 158, 197);
     }
   }
 
   &--white-theme {
-    background-color: $display-bg-color--white-theme;
+    background-color: $display-bgc--white-theme;
     box-shadow: $shadow-size--md $shadow-blur--md
       $shadow-color--white-theme;
     border: 1px solid $box-border-color--white-theme;
@@ -86,7 +88,7 @@
   }
 
   &--dark-theme {
-    background-color: $display-bg-color--dark-theme;
+    background-color: $display-bgc--dark-theme;
     box-shadow: $shadow-size--md $shadow-blur--md
       $shadow-color--dark-theme;
     border: 1px solid $box-border-color--dark-theme;

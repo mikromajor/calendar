@@ -10,17 +10,26 @@ $font-weight--h1: 600;
 $font-weight--h2: 500;
 
 $header-color--white-theme: rgb(26, 100, 219);
-$header-color--dark-theme: rgb(0, 58, 150);
+$header-color--dark-theme: rgb(178, 149, 99);
 
 $text-color--white-theme: black;
-$text-color--dark-theme: white;
+// $text-color--dark-theme: rgb(111, 172, 212);
+$text-color--dark-theme: rgb(230, 230, 230);
 
 $shadow-color--white-theme: #a7a7a7;
 $shadow-color--dark-theme: none;
 
 $tabel-bg-color--white-theme: rgb(244, 244, 244);
-$display-bg-color--white-theme: aquamarine;
-$display-bg-color--dark-theme: rgb(9, 118, 82);
+
+$app__bgc--white-theme: rgb(187, 233, 231);
+$app__bgc--dark-theme: rgb(50, 50, 50);
+
+$display-bgc--white-theme: aquamarine;
+$display-bgc--dark-theme: rgb(40, 40, 40);
+
+// $control-panel-bgc--white-theme: rgb(9, 118, 82);
+// $control-panel-bgc--dark-theme: rgb(9, 118, 82);
+
 $box-border-color--white-theme: grey;
 $box-border-color--dark-theme: rgb(213, 213, 213);
 

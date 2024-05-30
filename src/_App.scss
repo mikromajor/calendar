@@ -1,6 +1,3 @@
-$app__bgc--white: rgb(187, 233, 231);
-$app__bgc--dark: rgb(40, 40, 40);
-
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
@@ -17,23 +14,23 @@ body {
   align-items: center;
   justify-content: center;
   padding-bottom: 2rem;
-  height: 100%;
+
   &__top-menu {
     display: flex;
     justify-content: right;
     width: 98vw;
 
     &--white-theme {
-      background-color: $app__bgc--white;
+      background-color: $app__bgc--white-theme;
     }
     &--dark-theme {
-      background-color: $app__bgc--dark;
+      background-color: $app__bgc--dark-theme;
     }
   }
   &--white-theme {
-    background-color: $app__bgc--white;
+    background-color: $app__bgc--white-theme;
   }
   &--dark-theme {
-    background-color: $app__bgc--dark;
+    background-color: $app__bgc--dark-theme;
   }
 }

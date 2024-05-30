@@ -8,8 +8,8 @@ export const InputDatePanel = () => {
   const { day, month, year } = useAppSelector(
     (state) => state.alcoReducer.currentDate
   );
-  let theme = "white-theme";
-  const { currentLang } = useAppSelector(
+
+  const { currentLang, currentTheme } = useAppSelector(
     (state) => state.appReducer
   );
 
