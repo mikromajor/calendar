@@ -52,10 +52,9 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const { currentLang, currentTheme } = useAppSelector(
     (state) => state.appReducer
   );
+  //TODO fix compatibility Menu with dark-theme
   return (
-    <div
-      className={`app__top-menu app__top-menu--${currentTheme}`}
-    >
+    <div className={`app__top-menu`}>
       <IconButton
         aria-label='more'
         id='long-button'
