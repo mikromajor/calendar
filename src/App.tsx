@@ -1,19 +1,16 @@
 import { AlcoCounter, Salary, TopMenu } from "./components";
 import { useState } from "react";
+import { useAppSelector } from "./store/hooks/redux";
 
 function App() {
   const [switchCalc, setSwitchCalc] = useState(true);
-  const [theme, setTheme] = useState("white-theme");
+  const { currentTheme } = useAppSelector(
+    (state) => state.appReducer
+  );
 
   return (
-    <div className={`app app--${theme}`}>
-      <div className='app__top-menu'>
-        <TopMenu
-          setSwitchCalc={setSwitchCalc}
-          setTheme={setTheme}
-          theme={theme}
-        />
-      </div>
+    <div className={`app app--${currentTheme}`}>
+      <TopMenu setSwitchCalc={setSwitchCalc} />
       {switchCalc ? <AlcoCounter /> : <Salary />}
     </div>
   );

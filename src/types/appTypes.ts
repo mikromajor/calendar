@@ -4,8 +4,8 @@ export enum AppLanguages {
   EN = "EN",
 }
 export enum AppThemes {
-  WHITE = "white",
-  dark = "dark",
+  WHITE = "white-theme",
+  DARK = "dark-theme",
 }
 
 //  export type LanguagesList = keyof typeof AppLanguages;

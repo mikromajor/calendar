@@ -1,3 +1,6 @@
+$app__bgc--white: rgb(187, 233, 231);
+$app__bgc--dark: rgb(40, 40, 40);
+
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
@@ -13,24 +16,24 @@ body {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
-
+  padding-bottom: 2rem;
+  height: 100%;
   &__top-menu {
     display: flex;
     justify-content: right;
     width: 98vw;
 
-    // &--white-theme {
-    //   box-shadow: none;
-    // }
-    // &--dark-theme {
-    //   box-shadow: none;
-    // }
+    &--white-theme {
+      background-color: $app__bgc--white;
+    }
+    &--dark-theme {
+      background-color: $app__bgc--dark;
+    }
   }
-  // &--white-theme {
-  //   box-shadow: none;
-  // }
-  // &--dark-theme {
-  //   box-shadow: none;
-  // }
+  &--white-theme {
+    background-color: $app__bgc--white;
+  }
+  &--dark-theme {
+    background-color: $app__bgc--dark;
+  }
 }

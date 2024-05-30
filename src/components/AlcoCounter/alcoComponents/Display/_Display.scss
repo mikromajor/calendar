@@ -42,6 +42,7 @@
       border: 2px solid grey;
     }
     &--dark-theme {
+      border: 2px solid rgb(228, 228, 228);
     }
   }
 
@@ -52,8 +53,9 @@
     &--white-theme {
       background-color: rgb(86, 223, 178);
     }
-    // &--dark-theme {
-    // }
+    &--dark-theme {
+      background-color: rgb(15, 118, 84);
+    }
   }
   &__td {
     border-radius: $cell--brd-radius;
@@ -79,11 +81,15 @@
     background-color: $display-bg-color--white-theme;
     box-shadow: $shadow-size--md $shadow-blur--md
       $shadow-color--white-theme;
-    border: 1px solid $box-border-color--dark-theme;
+    border: 1px solid $box-border-color--white-theme;
     color: black;
   }
 
-  // &--dark-theme{
-  // color:white;
-  // }
+  &--dark-theme {
+    background-color: $display-bg-color--dark-theme;
+    box-shadow: $shadow-size--md $shadow-blur--md
+      $shadow-color--dark-theme;
+    border: 1px solid $box-border-color--dark-theme;
+    color: rgb(32, 136, 148);
+  }
 }

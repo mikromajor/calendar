@@ -12,15 +12,9 @@ interface TopMenuPops {
   setSwitchCalc: React.Dispatch<
     React.SetStateAction<boolean>
   >;
-  theme: string;
-  setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function TopMenu({
-  setSwitchCalc,
-  theme,
-  setTheme,
-}: TopMenuPops) {
+export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
@@ -55,11 +49,13 @@ export function TopMenu({
       selectLangsRef.current.focus();
   };
 
-  const { currentLang } = useAppSelector(
+  const { currentLang, currentTheme } = useAppSelector(
     (state) => state.appReducer
   );
   return (
-    <div className={`app__menu app__menu--${theme}`}>
+    <div
+      className={`app__top-menu app__top-menu--${currentTheme}`}
+    >
       <IconButton
         aria-label='more'
         id='long-button'

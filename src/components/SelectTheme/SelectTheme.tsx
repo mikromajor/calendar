@@ -31,7 +31,7 @@ export const SelectTheme = forwardRef(
         value={theme}
         className={`select-lang__option select-lang__option--${currentTheme}`}
       >
-        {theme}
+        {APP_CONTENT[currentLang][theme]}
       </option>
     ));
 
@@ -58,7 +58,7 @@ export const SelectTheme = forwardRef(
           id='selectThemes'
           className={`select-lang__selector select-lang__selector--${currentTheme}`}
           name='select-lang__selector '
-          defaultValue={currentLang}
+          defaultValue={currentTheme}
           onChange={handleChangeTheme}
         >
           {Options}
