@@ -6,19 +6,28 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { APP_CONTENT } from "../../constants/appConstants";
 import { useAppSelector } from "../../store/hooks/redux";
-import { SelectLanguage } from "../.";
+import { SelectLanguage, SelectTheme } from "../.";
 
 interface TopMenuPops {
   setSwitchCalc: React.Dispatch<
     React.SetStateAction<boolean>
   >;
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function TopMenu({ setSwitchCalc }: TopMenuPops) {
+export function TopMenu({
+  setSwitchCalc,
+  theme,
+  setTheme,
+}: TopMenuPops) {
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
   const selectLangsRef = useRef<HTMLSelectElement | null>(
+    null
+  );
+  const selectThemeRef = useRef<HTMLSelectElement | null>(
     null
   );
 
@@ -37,6 +46,10 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
     setAnchorEl(null);
   };
 
+  const giveFocusSelectTheme = () => {
+    selectThemeRef.current &&
+      selectThemeRef.current.focus();
+  };
   const giveFocusSelectLangs = () => {
     selectLangsRef.current &&
       selectLangsRef.current.focus();
@@ -45,7 +58,6 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
-  let theme = "white-theme";
   return (
     <div className={`app__menu app__menu--${theme}`}>
       <IconButton
@@ -67,6 +79,13 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
         open={open}
         onClose={handleClose}
       >
+        <MenuItem onClick={giveFocusSelectTheme}>
+          <SelectTheme
+            handleClose={handleClose}
+            ref={selectThemeRef}
+          />
+        </MenuItem>
+
         <MenuItem onClick={handleChangeCalc}>
           {APP_CONTENT[currentLang].btnChangeCalc}
         </MenuItem>

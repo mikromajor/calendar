@@ -4,7 +4,10 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { INIT_APP_STATE } from "../../constants/appConstants";
-import { AppLanguages } from "../../types/appTypes";
+import {
+  AppLanguages,
+  AppThemes,
+} from "../../types/appTypes";
 
 export const appReducer = createSlice({
   name: "appState",
@@ -15,6 +18,12 @@ export const appReducer = createSlice({
       action: PayloadAction<AppLanguages>
     ) => {
       state.currentLang = action.payload;
+    },
+    changeTheme: (
+      state,
+      action: PayloadAction<AppThemes>
+    ) => {
+      state.currentTheme = action.payload;
     },
   },
 });

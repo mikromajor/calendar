@@ -3,12 +3,16 @@ import { useState } from "react";
 
 function App() {
   const [switchCalc, setSwitchCalc] = useState(true);
+  const [theme, setTheme] = useState("white-theme");
 
-  let theme = "white-theme";
   return (
     <div className={`app app--${theme}`}>
       <div className='app__top-menu'>
-        <TopMenu setSwitchCalc={setSwitchCalc} />
+        <TopMenu
+          setSwitchCalc={setSwitchCalc}
+          setTheme={setTheme}
+          theme={theme}
+        />
       </div>
       {switchCalc ? <AlcoCounter /> : <Salary />}
     </div>
