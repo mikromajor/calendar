@@ -89,8 +89,7 @@
 
   &--dark-theme {
     background-color: $display-bgc--dark-theme;
-    box-shadow: $shadow-size--md $shadow-blur--md
-      $shadow-color--dark-theme;
+    box-shadow: none;
     border: 1px solid $box-border-color--dark-theme;
     color: rgb(32, 136, 148);
   }
