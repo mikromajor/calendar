@@ -18,3 +18,8 @@ function App() {
 export default App;
 
 //TODO: add menu with "select lang" and "choose theme";
+
+// type Obj2 = {
+//   [k:string]:number
+// }
+// type Obj1 = Record<string,number>// equivalent

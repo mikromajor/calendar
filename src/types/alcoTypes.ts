@@ -41,7 +41,7 @@ export interface AdditiveDayData {
   additiveVodka?: number;
   additiveBill?: number;
 }
-type AlcoContentLabels = typeof ALCO_CONTENT_LABELS;
+export type AlcoContentLabels = typeof ALCO_CONTENT_LABELS;
 
 type AutoType<K extends string, O> = {
   [keys in K]: O;
