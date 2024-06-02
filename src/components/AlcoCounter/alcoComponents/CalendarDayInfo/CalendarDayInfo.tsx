@@ -53,7 +53,7 @@ function ViewInfoDay(
       color='secondary'
       max={999}
       badgeContent={
-        isSelected
+        isSelected && isSelected.totalVodka > 0
           ? isSelected.totalVodka.toString()
           : undefined
       }

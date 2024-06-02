@@ -3,8 +3,8 @@ import {
   DayInfo,
   MonthInfo,
   YearInfo,
-  AlcoContentType,
-  AlcoContentLabels,
+  // AlcoContentType,
+  // AlcoContentLabels,
 } from "../types/alcoTypes";
 import { getDateMonthYear } from "../components/handlers";
 import { AppLanguages } from "../types/appTypes";

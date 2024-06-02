@@ -1,6 +1,6 @@
-import { ALCO_CONTENT_LABELS } from "../constants/alcoConstants";
 import { alcoActions } from "../store/reducer/alcoReducer";
-import { AppLanguages } from "../types/appTypes";
+// import { ALCO_CONTENT_LABELS } from "../constants/alcoConstants";
+// import { AppLanguages } from "../types/appTypes";
 
 export interface DayInfo {
   totalVodka: number;
@@ -41,13 +41,14 @@ export interface AdditiveDayData {
   additiveVodka?: number;
   additiveBill?: number;
 }
-export type AlcoContentLabels = typeof ALCO_CONTENT_LABELS;
+// not necessary but interesting for example
+// export type AlcoContentLabels = typeof ALCO_CONTENT_LABELS;
 
-type AutoType<K extends string, O> = {
-  [keys in K]: O;
-};
+// type AutoType<K extends string, O> = {
+//   [keys in K]: O;
+// };
 
-export type AlcoContentType = AutoType<
-  AppLanguages,
-  AlcoContentLabels
->;
+// export type AlcoContentType = AutoType<
+//   AppLanguages,
+//   AlcoContentLabels
+// >;
