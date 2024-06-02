@@ -2,17 +2,17 @@ import { ALCO_CONTENT_LABELS } from "../constants/alcoConstants";
 import { alcoActions } from "../store/reducer/alcoReducer";
 import { AppLanguages } from "../types/appTypes";
 
-export interface Total {
+export interface DayInfo {
   totalVodka: number;
   totalBill: number;
 }
 
-export interface Month extends Total {
-  days: Total[];
+export interface MonthInfo extends DayInfo {
+  days: DayInfo[];
 }
 
-export interface Year extends Total {
-  months: Month[];
+export interface YearInfo extends DayInfo {
+  months: MonthInfo[];
 }
 
 interface CurrentDate {
@@ -23,7 +23,7 @@ interface CurrentDate {
 
 export interface AlcoState {
   currentDate: CurrentDate;
-  yearData: Year;
+  yearData: YearInfo;
 }
 
 export type StateKeys = keyof AlcoState;

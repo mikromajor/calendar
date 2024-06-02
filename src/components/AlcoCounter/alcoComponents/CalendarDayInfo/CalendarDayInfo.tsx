@@ -13,7 +13,7 @@ import {
   useAppDispatch,
 } from "../../../../store/hooks/redux";
 import { alcoActions } from "../../../../store/reducer/alcoReducer";
-import { Total } from "../../../../types/alcoTypes";
+import { DayInfo } from "../../../../types/alcoTypes";
 import updateLocale from "dayjs/plugin/updateLocale";
 
 dayjs.extend(updateLocale);
@@ -26,7 +26,7 @@ dayjs.updateLocale("en", {
 
 function ViewInfoDay(
   props: PickersDayProps<Dayjs> & {
-    highlightedDays?: Total[];
+    highlightedDays?: DayInfo[];
   }
 ) {
   // TODO fix problem with highlightedDays

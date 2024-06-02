@@ -1,8 +1,13 @@
 import React, { useRef } from "react";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import {
+  Menu,
+  MenuItem,
+  IconButton,
+  styled,
+} from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 
 import { APP_CONTENT } from "../../constants/appConstants";
 import { useAppSelector } from "../../store/hooks/redux";
@@ -13,6 +18,14 @@ interface TopMenuPops {
     React.SetStateAction<boolean>
   >;
 }
+
+const CustomizedMenu = styled(Menu)`
+  color: #20b2aa;
+
+  :hover {
+    color: #2e8b57;
+  }
+`;
 
 export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const [anchorEl, setAnchorEl] =

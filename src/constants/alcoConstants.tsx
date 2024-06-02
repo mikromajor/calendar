@@ -1,8 +1,8 @@
 import {
   AlcoState,
-  Total,
-  Month,
-  Year,
+  DayInfo,
+  MonthInfo,
+  YearInfo,
   AlcoContentType,
 } from "../types/alcoTypes";
 import { getDateMonthYear } from "../components/handlers";
@@ -19,16 +19,16 @@ const CURRENT_DATE = {
 };
 
 //created new structure for keeping year data
-export const INIT_DAY: Total = {
+export const INIT_DAY: DayInfo = {
   totalVodka: 0,
   totalBill: 0,
 };
-export const INIT_MONTH: Month = {
+export const INIT_MONTH: MonthInfo = {
   totalVodka: 0,
   totalBill: 0,
   days: [], // 30 days info
 };
-export const INIT_YEAR: Year = {
+export const INIT_YEAR: YearInfo = {
   totalVodka: 0,
   totalBill: 0,
   months: [], // 12 months info
@@ -75,7 +75,7 @@ export const ALCO_CONTENT = {
     alcoHeader: "Alcohol consumption counter ",
     controlPanelHeader: "Enter the drink consumed",
     lblDay: "Day",
-    lblMonth: "Month",
+    lblMonth: "MonthInfo",
     lblYear: "Year",
     lblVolume: "Volume liquid, ml",
     lblPercent: "Alcohol content, %",
