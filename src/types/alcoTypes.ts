@@ -1,6 +1,6 @@
 import { alcoActions } from "../store/reducer/alcoReducer";
 // import { ALCO_CONTENT_LABELS } from "../constants/alcoConstants";
-// import { AppLanguages } from "../types/appTypes";
+import { AppLanguages } from "../types/appTypes";
 
 export interface DayInfo {
   totalVodka: number;
@@ -41,8 +41,33 @@ export interface AdditiveDayData {
   additiveVodka?: number;
   additiveBill?: number;
 }
-// not necessary but interesting for example
-// export type AlcoContentLabels = typeof ALCO_CONTENT_LABELS;
+
+export enum ContentKeys {
+  alcoHeader = "alcoHeader",
+  controlPanelHeader = "controlPanelHeader",
+  lblDay = "lblDay",
+  lblMonth = "lblMonth",
+  lblYear = "lblYear",
+  lblVolume = "lblVolume",
+  lblPercent = "lblPercent",
+  btnAdd = "btnAdd",
+  btnShowAlcoCalendar = "btnShowAlcoCalendar",
+  caption = "caption",
+
+  deleteYear = "deleteYear",
+  deleteMonth = "deleteMonth",
+}
+
+type ContentLabels = Record<ContentKeys, string>;
+
+export type AlcoContent = Record<
+  AppLanguages,
+  ContentLabels
+>;
+
+//  example_1:
+
+// export type ContentLabels = typeof ALCO_CONTENT_LABELS;
 
 // type AutoType<K extends string, O> = {
 //   [keys in K]: O;
@@ -50,5 +75,27 @@ export interface AdditiveDayData {
 
 // export type AlcoContentType = AutoType<
 //   AppLanguages,
-//   AlcoContentLabels
+//   ContentLabels
 // >;
+
+// type Obj2 = {
+//   [k:string]:number
+// }
+// type Obj1 = Record<string,number>// equivalent to Obj2
+
+//  example_2:
+
+// enum k2{
+//   first = 'first',
+//  second ='second',
+//   third='third'
+// }
+
+// type ObjK2 = Record<k2,string>
+
+// const myObj:  ObjK2= {
+//   first:'s',
+//   second: 'ss',
+//   third: 'sss'
+
+// }

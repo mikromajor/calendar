@@ -3,8 +3,7 @@ import {
   DayInfo,
   MonthInfo,
   YearInfo,
-  // AlcoContentType,
-  // AlcoContentLabels,
+  AlcoContent,
 } from "../types/alcoTypes";
 import { getDateMonthYear } from "../components/handlers";
 import { AppLanguages } from "../types/appTypes";
@@ -18,36 +17,6 @@ const CURRENT_DATE = {
   month: currentMonth,
   year: currentYear,
 };
-
-//created new structure for keeping year data
-//TODO replace object INIT_DAY to class INIT_DAY...
-// туфта с конструкторами - продумай
-// class CLASS_DAY{
-//   totalVodka=0;
-//   totalBill=0;
-//   constructor(additionVodka:number=0,additionBill: number=0){
-//     this.totalVodka += additionVodka;
-//     this.totalBill += additionBill;
-//   }
-// }
-
-// class CLASS_MONTH extends CLASS_DAY{
-// days: DayInfo[] =[];
-// constructor(day: DayInfo, i:number){
-// super(day.totalVodka, day.totalBill);
-// this.days[i] = day;
-// }
-// }
-
-// class CLASS_YEAR extends CLASS_DAY{
-//   months: MonthInfo[]=[];
-//   constructor(month: MonthInfo, indexMonth:number){
-//     super();
-//   }
-
-// }
-
-//--------|
 
 export const INIT_DAY: DayInfo = {
   totalVodka: 0,
@@ -69,24 +38,7 @@ export const INIT_ALCO_STATE: AlcoState = {
   yearData: INIT_YEAR,
 };
 
-export const ALCO_CONTENT_LABELS = {
-  alcoHeader: "alcoHeader",
-  controlPanelHeader: "controlPanelHeader",
-  AlcoHeader: "AlcoHeader",
-  lblDay: "lblDay",
-  lblMonth: "lblMonth",
-  lblYear: "lblYear",
-  lblVolume: "lblVolume",
-  lblPercent: "lblPercent",
-  btnAdd: "btnAdd",
-  btnShowAlcoCalendar: "btnShowAlcoCalendar",
-  caption: "caption",
-
-  deleteYear: "deleteYear",
-  deleteMonth: "deleteMonth",
-};
-
-export const ALCO_CONTENT = {
+export const ALCO_CONTENT: AlcoContent = {
   [AppLanguages.PL]: {
     alcoHeader: "Licznik spożycia alkoholu",
     controlPanelHeader: "Wprowadź dane napoju",
@@ -130,4 +82,33 @@ export const ALCO_CONTENT = {
     deleteMonth: "Видалити дані за місяць",
   },
 };
-// as AlcoContentType;
+
+//created new structure for keeping year data
+//TODO replace object INIT_DAY to class INIT_DAY...
+// туфта с конструкторами - продумай
+// class CLASS_DAY{
+//   totalVodka=0;
+//   totalBill=0;
+//   constructor(additionVodka:number=0,additionBill: number=0){
+//     this.totalVodka += additionVodka;
+//     this.totalBill += additionBill;
+//   }
+// }
+
+// class CLASS_MONTH extends CLASS_DAY{
+// days: DayInfo[] =[];
+// constructor(day: DayInfo, i:number){
+// super(day.totalVodka, day.totalBill);
+// this.days[i] = day;
+// }
+// }
+
+// class CLASS_YEAR extends CLASS_DAY{
+//   months: MonthInfo[]=[];
+//   constructor(month: MonthInfo, indexMonth:number){
+//     super();
+//   }
+
+// }
+
+//--------|

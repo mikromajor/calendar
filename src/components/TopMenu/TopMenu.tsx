@@ -54,8 +54,6 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const { currentLang, currentTheme } = useAppSelector(
     (state) => state.appReducer
   );
-  //TODO fix compatibility Menu with dark-theme
-  // https://stackoverflow.com/questions/61023797/how-to-change-the-color-of-menu-in-material-ui
 
   const theme = createTheme({
     palette: {
