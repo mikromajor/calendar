@@ -82,3 +82,12 @@
     }
   }
 }
+.Menu {
+  &--white-theme {
+    background-color: white;
+  }
+
+  &--dark-theme {
+    background-color: rgb(129, 129, 129);
+  }
+}

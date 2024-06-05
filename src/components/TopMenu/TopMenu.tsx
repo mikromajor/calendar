@@ -1,31 +1,20 @@
 import React, { useRef } from "react";
-import {
-  Menu,
-  MenuItem,
-  IconButton,
-  styled,
-} from "@mui/material";
+import { Menu, MenuItem, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 
 import { APP_CONTENT } from "../../constants/appConstants";
 import { useAppSelector } from "../../store/hooks/redux";
 import { SelectLanguage, SelectTheme } from "../.";
+import {
+  ThemeProvider,
+  createTheme,
+} from "@mui/material/styles";
 
 interface TopMenuPops {
   setSwitchCalc: React.Dispatch<
     React.SetStateAction<boolean>
   >;
 }
-
-const CustomizedMenu = styled(Menu)`
-  color: #20b2aa;
-
-  :hover {
-    color: #2e8b57;
-  }
-`;
 
 export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const [anchorEl, setAnchorEl] =
@@ -66,44 +55,57 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
     (state) => state.appReducer
   );
   //TODO fix compatibility Menu with dark-theme
+  // https://stackoverflow.com/questions/61023797/how-to-change-the-color-of-menu-in-material-ui
+
+  const theme = createTheme({
+    palette: {
+      mode:
+        currentTheme === "white-theme" ? "light" : "dark",
+    },
+  });
+
   return (
     <div className={`app__top-menu`}>
-      <IconButton
-        aria-label='more'
-        id='long-button'
-        aria-controls={open ? "long-menu" : undefined}
-        aria-expanded={open ? "true" : undefined}
-        aria-haspopup='true'
-        onClick={handleClick}
-      >
-        <MoreVertIcon />
-      </IconButton>
-      <Menu
-        id='long-menu'
-        MenuListProps={{
-          "aria-labelledby": "long-button",
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={giveFocusSelectTheme}>
-          <SelectTheme
-            handleClose={handleClose}
-            ref={selectThemeRef}
-          />
-        </MenuItem>
+      <ThemeProvider theme={theme}>
+        <IconButton
+          aria-label='more'
+          id='long-button'
+          aria-controls={open ? "long-menu" : undefined}
+          aria-expanded={open ? "true" : undefined}
+          aria-haspopup='true'
+          onClick={handleClick}
+        >
+          <MoreVertIcon />
+        </IconButton>
+        <Menu
+          id='long-menu'
+          MenuListProps={{
+            "aria-labelledby": "long-button",
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          //TODO theme
+          className={`Menu Menu--${currentTheme}`}
+        >
+          <MenuItem onClick={giveFocusSelectTheme}>
+            <SelectTheme
+              handleClose={handleClose}
+              ref={selectThemeRef}
+            />
+          </MenuItem>
 
-        <MenuItem onClick={handleChangeCalc}>
-          {APP_CONTENT[currentLang].btnChangeCalc}
-        </MenuItem>
-        <MenuItem onClick={giveFocusSelectLangs}>
-          <SelectLanguage
-            handleClose={handleClose}
-            ref={selectLangsRef}
-          />
-        </MenuItem>
-      </Menu>
+          <MenuItem onClick={handleChangeCalc}>
+            {APP_CONTENT[currentLang].btnChangeCalc}
+          </MenuItem>
+          <MenuItem onClick={giveFocusSelectLangs}>
+            <SelectLanguage
+              handleClose={handleClose}
+              ref={selectLangsRef}
+            />
+          </MenuItem>
+        </Menu>
+      </ThemeProvider>
     </div>
   );
 }
