@@ -18,6 +18,7 @@ export const AlcoCounter = () => {
   const { currentLang, currentTheme } = useAppSelector(
     (state) => state.appReducer
   );
+
   return (
     <>
       <div className='alco-counter '>

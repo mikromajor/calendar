@@ -7,18 +7,16 @@ import {
 } from "../../constants/salaryConstants";
 
 export const Salary = () => {
-  const salaryReducer = useAppSelector(
-    (state) => state.salaryReducer
+  const { salaryReducer, appReducer } = useAppSelector(
+    (state) => state
   );
 
-  const tableRows: JSX.Element[] = [];
+  const { currentLang, currentTheme } = appReducer;
+
+  const tr: JSX.Element[] = [];
   let td: JSX.Element;
   let th: JSX.Element;
   // add compatibility V1 & V2
-  const language = useAppSelector(
-    (state) => state.appReducer.currentLang
-  );
-  let theme = "white-theme";
 
   SALARY_KEYS.forEach((key, i) => {
     td = NO_INPUTS.includes(key) ? (
@@ -28,15 +26,9 @@ export const Salary = () => {
         <Input payloadsKey={key} />
       </td>
     );
-    th = (
-      <th>
-        <label htmlFor={key}>
-          {SALARY_CONTENT?.[language]?.[key]}
-        </label>
-      </th>
-    );
+    th = <th>{SALARY_CONTENT?.[currentLang]?.[key]}</th>;
 
-    tableRows.push(
+    tr.push(
       <tr key={String(i) + key}>
         {th}
         {td}
@@ -46,13 +38,15 @@ export const Salary = () => {
 
   return (
     <div className='salary'>
-      <table>
+      <table
+        className={`salary__tabel salary_tabel--${currentTheme}`}
+      >
         <caption
-          className={`salary__header salary__header--${theme}`}
+          className={`salary__header salary__header--${currentTheme}`}
         >
-          {SALARY_CONTENT[language].header}
+          {SALARY_CONTENT[currentLang].header}
         </caption>
-        <tbody>{tableRows}</tbody>
+        <tbody>{tr}</tbody>
       </table>
     </div>
   );

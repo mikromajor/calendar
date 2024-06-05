@@ -25,12 +25,12 @@ export const INIT_DAY: DayInfo = {
 export const INIT_MONTH: MonthInfo = {
   totalVodka: 0,
   totalBill: 0,
-  days: [], // 30 days info
+  days: [], // 1-31 days info (exist validation max  days in a month)
 };
 export const INIT_YEAR: YearInfo = {
   totalVodka: 0,
   totalBill: 0,
-  months: [], // 12 months info
+  months: [], // 1-12 months info
 };
 
 export const INIT_ALCO_STATE: AlcoState = {
