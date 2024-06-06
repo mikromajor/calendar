@@ -1,26 +1,34 @@
 @import "../../less/variables";
 
+%td__basic-styles {
+  text-align: center;
+  border-radius: 5px;
+  padding: 0;
+  min-height: 24px; //необхідно для того щоб нащадок "input"
+  height: 1px; // зміг прийняти height:100%;
+  border: 2px solid;
+  &:hover {
+    background-color: rgb(97, 143, 48);
+  }
+}
+
 .salary {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 30px;
 
-  &__tabel {
-    border-radius: 5px;
+  // &__tabel {
+  //   border-radius: 5px;
+  //   border: 3px solid;
 
-    &--white-theme {
-      background-color: rgb(244, 244, 244);
-      border: 3px solid white;
-      box-shadow: $shadow-size--lg $shadow-blur--lg
-        $shadow-color--white-theme;
-    }
-    &--dark-theme {
-      box-shadow: none;
-      background-color: rgb(0, 0, 0);
-      border: 3px solid rgb(255, 255, 255);
-    }
-  }
+  //   &--white-theme {
+  //     border-color: $app__bgc--white-theme;
+  //   }
+  //   &--dark-theme {
+  //     border-color: rgb(0, 0, 0);
+  //   }
+  // }
 
   &__header {
     @extend %header__h2;
@@ -36,47 +44,61 @@
       color: $header-color--dark-theme;
     }
   }
-  tr {
+  &__tr {
     padding: 10px;
     border: 2px solid grey;
     border-radius: 5px;
-    &:hover {
-      outline: 2px solid rgb(7, 95, 7);
+
+    &--white-theme {
+      &:hover {
+        outline: 2px solid rgb(7, 95, 7);
+      }
+    }
+    &--dark-theme {
+      &:hover {
+        outline: 2px solid rgb(142, 167, 148);
+      }
     }
   }
-  th {
-    // writing-mode: vertical-lr;
-    // writing-mode: vertical-rl;
-    // transform: rotate(-90deg);
-    // background-color: rgb(153, 183, 236);
+  &__th {
     border-radius: 5px;
-    background-color: rgb(153, 183, 236);
-  }
-  td {
-    text-align: center;
-    border: 2px solid grey;
-    border-radius: 5px;
-    padding: 0;
-    min-height: 24px; //необхідно для того щоб нащадок "input"
-    height: 1px; // зміг прийняти height:100%;
-  }
-  td[data-no-input] {
-    background-color: rgb(205, 255, 226);
-  }
-  select {
-    height: 100%;
-    width: 100%;
-    border-radius: 5px;
-    padding: 0.5rem 0;
-    border: none;
-    font-size: $font-size--p;
-    background-color: rgb(251, 255, 133);
-    &:hover {
-      background-color: rgb(224, 232, 0);
+
+    &--white-theme {
+      background-color: rgb(153, 183, 236);
+      color: $header-color--white-theme;
+    }
+    &--dark-theme {
+      background-color: rgb(0, 0, 0);
+      color: $header-color--dark-theme;
     }
   }
-  input {
-    background-color: rgb(251, 255, 133);
+  &__td {
+    @extend %td__basic-styles;
+
+    &--white-theme {
+      border-color: grey;
+    }
+    &--dark-theme {
+      border-color: rgb(192, 192, 192);
+    }
+  }
+
+  &__td-no-inputs {
+    @extend %td__basic-styles;
+
+    &--white-theme {
+      border-color: grey;
+      background-color: #49b2cc;
+      color: black;
+    }
+    &--dark-theme {
+      border-color: rgb(192, 192, 192);
+      background-color: #0b333c;
+      color: rgb(221, 221, 221);
+    }
+  }
+
+  &__input {
     height: 100%;
     width: 60px;
     margin: 0;
@@ -85,10 +107,14 @@
     text-align: center;
     font-size: $font-size--p;
     &:hover {
-      background-color: rgb(224, 232, 0);
+      background-color: rgb(97, 143, 48);
+    }
+
+    &--white-theme {
+      background-color: rgb(223, 227, 103);
+    }
+    &--dark-theme {
+      background-color: rgb(131, 133, 42);
     }
   }
-  // &-all {
-  //   background-color: rgb(126, 204, 126);
-  // }
 }

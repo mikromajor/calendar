@@ -20,16 +20,31 @@ export const Salary = () => {
 
   SALARY_KEYS.forEach((key, i) => {
     td = NO_INPUTS.includes(key) ? (
-      <td data-no-input> {salaryReducer[key]} </td>
+      <td
+        className={`salary__td-no-inputs salary__td-no-inputs--${currentTheme}`}
+      >
+        {salaryReducer[key]}
+      </td>
     ) : (
-      <td>
+      <td
+        className={`salary__td salary__td--${currentTheme}`}
+      >
         <Input payloadsKey={key} />
       </td>
     );
-    th = <th>{SALARY_CONTENT?.[currentLang]?.[key]}</th>;
+    th = (
+      <th
+        className={`salary__th salary__th--${currentTheme}`}
+      >
+        {SALARY_CONTENT?.[currentLang]?.[key]}
+      </th>
+    );
 
     tr.push(
-      <tr key={String(i) + key}>
+      <tr
+        className={`salary__tr salary__tr--${currentTheme}`}
+        key={String(i) + key}
+      >
         {th}
         {td}
       </tr>
@@ -39,7 +54,7 @@ export const Salary = () => {
   return (
     <div className='salary'>
       <table
-        className={`salary__tabel salary_tabel--${currentTheme}`}
+        className={`salary__tabel salary__tabel--${currentTheme}`}
       >
         <caption
           className={`salary__header salary__header--${currentTheme}`}

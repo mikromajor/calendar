@@ -12,9 +12,11 @@ type InputProps = {
 
 export const Input = ({ payloadsKey }: InputProps) => {
   const dispatch = useAppDispatch();
-  const salaryReducer = useAppSelector(
-    (state) => state.salaryReducer
+  const { salaryReducer, appReducer } = useAppSelector(
+    (state) => state
   );
+
+  const currentTheme = appReducer.currentTheme;
   const { getSalary, changeSalaryDate } = salaryActions;
 
   const handlerInputChange = (
@@ -31,6 +33,7 @@ export const Input = ({ payloadsKey }: InputProps) => {
 
   return (
     <input
+      className={`salary__input salary__input--${currentTheme}`}
       id={payloadsKey}
       type='number'
       autoComplete='off'
