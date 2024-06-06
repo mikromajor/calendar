@@ -5,10 +5,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { APP_CONTENT } from "../../constants/appConstants";
 import { useAppSelector } from "../../store/hooks/redux";
 import { SelectLanguage, SelectTheme } from "../.";
-import {
-  ThemeProvider,
-  createTheme,
-} from "@mui/material/styles";
 
 interface TopMenuPops {
   setSwitchCalc: React.Dispatch<
@@ -51,59 +47,48 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
       selectLangsRef.current.focus();
   };
 
-  const { currentLang, currentTheme } = useAppSelector(
+  const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
 
-  const theme = createTheme({
-    palette: {
-      mode:
-        currentTheme === "white-theme" ? "light" : "dark",
-    },
-  });
-
   return (
     <div className={`app__top-menu`}>
-      <ThemeProvider theme={theme}>
-        <IconButton
-          aria-label='more'
-          id='long-button'
-          aria-controls={open ? "long-menu" : undefined}
-          aria-expanded={open ? "true" : undefined}
-          aria-haspopup='true'
-          onClick={handleClick}
-        >
-          <MoreVertIcon />
-        </IconButton>
-        <Menu
-          id='long-menu'
-          MenuListProps={{
-            "aria-labelledby": "long-button",
-          }}
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          //TODO theme
-          className={`Menu Menu--${currentTheme}`}
-        >
-          <MenuItem onClick={giveFocusSelectTheme}>
-            <SelectTheme
-              handleClose={handleClose}
-              ref={selectThemeRef}
-            />
-          </MenuItem>
+      <IconButton
+        aria-label='more'
+        id='long-button'
+        aria-controls={open ? "long-menu" : undefined}
+        aria-expanded={open ? "true" : undefined}
+        aria-haspopup='true'
+        onClick={handleClick}
+      >
+        <MoreVertIcon />
+      </IconButton>
+      <Menu
+        id='long-menu'
+        MenuListProps={{
+          "aria-labelledby": "long-button",
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={giveFocusSelectTheme}>
+          <SelectTheme
+            handleClose={handleClose}
+            ref={selectThemeRef}
+          />
+        </MenuItem>
 
-          <MenuItem onClick={handleChangeCalc}>
-            {APP_CONTENT[currentLang].btnChangeCalc}
-          </MenuItem>
-          <MenuItem onClick={giveFocusSelectLangs}>
-            <SelectLanguage
-              handleClose={handleClose}
-              ref={selectLangsRef}
-            />
-          </MenuItem>
-        </Menu>
-      </ThemeProvider>
+        <MenuItem onClick={handleChangeCalc}>
+          {APP_CONTENT[currentLang].btnChangeCalc}
+        </MenuItem>
+        <MenuItem onClick={giveFocusSelectLangs}>
+          <SelectLanguage
+            handleClose={handleClose}
+            ref={selectLangsRef}
+          />
+        </MenuItem>
+      </Menu>
     </div>
   );
 }

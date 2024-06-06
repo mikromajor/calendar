@@ -19,14 +19,8 @@ body {
     display: flex;
     justify-content: right;
     width: 98vw;
-
-    &--white-theme {
-      background-color: $app__bgc--white-theme;
-    }
-    &--dark-theme {
-      background-color: $app__bgc--dark-theme;
-    }
   }
+
   &--white-theme {
     background-color: $app__bgc--white-theme;
   }
