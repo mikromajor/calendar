@@ -4,9 +4,10 @@
   text-align: center;
   border-radius: 5px;
   padding: 0;
-  min-height: 24px; //необхідно для того щоб нащадок "input"
+  min-height: 30px; //необхідно для того щоб нащадок "input"
   height: 1px; // зміг прийняти height:100%;
   border: 2px solid;
+  font-size: $font-size--p;
   &:hover {
     background-color: rgb(97, 143, 48);
   }
@@ -45,7 +46,6 @@
     }
   }
   &__tr {
-    padding: 10px;
     border: 2px solid grey;
     border-radius: 5px;
 
@@ -85,6 +85,7 @@
 
   &__td-no-inputs {
     @extend %td__basic-styles;
+    padding: 3px;
 
     &--white-theme {
       border-color: grey;

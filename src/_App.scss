@@ -1,4 +1,6 @@
-body {
+body,
+html {
+  overflow: hidden;
   margin: 0;
   font-family: "Open Sans", sans-serif;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -8,12 +10,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#app-container {
+  min-height: 100%;
+  background-color: red;
+}
+
 .app {
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   padding-bottom: 2rem;
+  min-height: 100vh;
 
   &__top-menu {
     display: flex;
