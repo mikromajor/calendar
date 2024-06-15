@@ -23,7 +23,7 @@ export const determStandardSalary = (state: SalaryInit) => {
         state.salaryRate *
         8 *
         bloodDonationCoefficient +
-      state.premiumUzn
+      state.premiumUzn * (1 - state.taxRate / 100)
   );
 };
 // TODO: зробити хворобові як середнє за останні 12 місяців
