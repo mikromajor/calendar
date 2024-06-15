@@ -39,7 +39,7 @@ export const PREMIUM_COEFFICIENT = {
 
 export const SOCIAL_COEFFICIENTS = {
   sickCoefficient: 0.64,
-  bloodDonationCoefficient: 1,
+  bloodDonationCoefficient: 0.73,
 };
 
 export const SALARY_KEYS = Object.keys(

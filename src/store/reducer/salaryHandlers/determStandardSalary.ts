@@ -11,6 +11,19 @@ export const determStandardSalary = (state: SalaryInit) => {
     (averageVacationPayPerDay =
       determineVacationPayCoefficient(state));
 
+  let premiumConstPayment =
+    state.premiumUzn * (1 - state.taxRate / 100);
+  let premiumRatePayment =
+    (state.premiumRate / 100) *
+    state.nettoPerHours *
+    state.standardWorkHours;
+
+  let sumBloodDonationPayment =
+    state.bloodDonation *
+    8 *
+    state.salaryRate *
+    bloodDonationCoefficient;
+
   return Math.round(
     state.standardWorkHours * state.nettoPerHours +
       state.usedVacation * averageVacationPayPerDay +
@@ -20,8 +33,8 @@ export const determStandardSalary = (state: SalaryInit) => {
         state.nettoPerHours *
         8 +
       state.bloodDonation *
-        state.salaryRate *
         8 *
+        state.salaryRate *
         bloodDonationCoefficient +
       state.premiumUzn * (1 - state.taxRate / 100)
   );
