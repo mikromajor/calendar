@@ -13,7 +13,7 @@ export const SALARY_INIT: SalaryInit = {
   salaryRate: 0,
   premiumRate: 0,
   premiumUzn: 0,
-  taxRate: 26.7,
+  taxRate: 27,
   nettoPerHours: 0,
   weekDays: 0,
   weekendDays: 0,
@@ -39,7 +39,7 @@ export const PREMIUM_COEFFICIENT = {
 
 export const SOCIAL_COEFFICIENTS = {
   sickCoefficient: 0.64,
-  bloodDonationCoefficient: 0.73,
+  bloodDonationCoefficient: 1,
 };
 
 export const SALARY_KEYS = Object.keys(
