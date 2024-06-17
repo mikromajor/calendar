@@ -4,7 +4,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { APP_CONTENT } from "../../constants/appConstants";
 import { useAppSelector } from "../../store/hooks/redux";
-import { SelectLanguage, SelectTheme } from "../.";
+import {
+  SelectLanguage,
+  SelectTheme,
+} from "./topMenuComponents";
 
 interface TopMenuPops {
   setSwitchCalc: React.Dispatch<

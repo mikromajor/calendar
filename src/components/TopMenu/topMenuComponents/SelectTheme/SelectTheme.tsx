@@ -1,10 +1,10 @@
-import { AppThemes } from "../../types/appTypes";
-import { APP_CONTENT } from "../../constants/appConstants";
+import { AppThemes } from "../../../../types/appTypes";
+import { APP_CONTENT } from "../../../../constants/appConstants";
 import {
   useAppSelector,
   useAppDispatch,
-} from "../../store/hooks/redux";
-import { appActions } from "../../store/reducer/appReducer";
+} from "../../../../store/hooks/redux";
+import { appActions } from "../../../../store/reducer/appReducer";
 import React, { forwardRef } from "react";
 
 interface SelectThemeProps {
