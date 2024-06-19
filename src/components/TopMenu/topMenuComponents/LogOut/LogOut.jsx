@@ -4,17 +4,20 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { getSession } from "../../../../firebase";
-import { endSession } from "../../../../store/session/session";
+// import {} from "../../../../firebase";
+import {
+  endSession,
+  isLoggedIn,
+  getSession,
+} from "../../../../store/session/session";
 
-export default function User() {
-  let navigate = useNavigate();
+export function LogOut({ isLogin }) {
+  // let navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   useEffect(() => {
     if (!isLoggedIn()) {
-      navigate("/login");
+      // navigate("/login");
     }
 
     let session = getSession();
@@ -23,10 +26,11 @@ export default function User() {
     console.log(
       "Your access token is: " + session.accessToken
     );
-  }, [navigate]);
+  }, []);
 
   const onLogout = () => {
     endSession();
+    isLogin(false);
     // navigate("/login");
   };
 

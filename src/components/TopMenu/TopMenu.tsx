@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
@@ -8,8 +8,10 @@ import {
   SelectLanguage,
   SelectTheme,
   Login,
+  Register,
+  LogOut,
 } from "./topMenuComponents";
-
+import { isLoggedIn } from "../../store/session/session";
 interface TopMenuPops {
   setSwitchCalc: React.Dispatch<
     React.SetStateAction<boolean>
@@ -19,7 +21,8 @@ interface TopMenuPops {
 export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const [anchorEl, setAnchorEl] =
     useState<null | HTMLElement>(null);
-  const [] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   const selectLangsRef = useRef<HTMLSelectElement | null>(
     null
@@ -55,6 +58,11 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
+
+  useEffect(() => {
+    //todo: fix
+    setIsLogin(!!isLoggedIn());
+  }, [setIsLogin]);
 
   return (
     <div className={`app__top-menu`}>
@@ -94,7 +102,16 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
           />
         </MenuItem>
         <MenuItem>
-          <Login />
+          {isLogin ? (
+            <LogOut isLogin={setIsLogin} />
+          ) : showRegister ? (
+            <Register turnToRegister={setShowRegister} />
+          ) : (
+            <Login
+              turnToRegister={setShowRegister}
+              isLogin={setIsLogin}
+            />
+          )}
         </MenuItem>
       </Menu>
     </div>

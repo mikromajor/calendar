@@ -11,7 +11,11 @@ import { useState } from "react";
 import { signInUser } from "../../../../firebase";
 import { startSession } from "../../../../store/session/session";
 
-export function Login() {
+// interface LoginProps{
+//   turnToRegister: React.Dispatch<React.SetStateAction<boolean>>;
+// }
+
+export function Login({ turnToRegister, isLogin }) {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,15 +32,17 @@ export function Login() {
     // clear the errors
     setError("");
 
-    // TODO: send the login request
+    //send the login request
     try {
       let loginResponse = await signInUser(email, password);
       startSession(loginResponse.user);
+      isLogin(true);
       console.error("fire startSession");
       // navigate("/user");
     } catch (error) {
       console.error(error.message);
       setError(error.message);
+      isLogin(false);
     }
   };
 
@@ -93,7 +99,7 @@ export function Login() {
           Don't have an account yet?
           <Link
             onClick={() => {
-              // checkout to register page
+              turnToRegister(true);
             }}
           >
             Register

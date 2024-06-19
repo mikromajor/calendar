@@ -7,13 +7,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUser } from "../../../../firebase";
 import { startSession } from "../../../../store/session/session";
 
-export default function Register() {
-  const navigate = useNavigate();
+export function Register({ turnToRegister }) {
+  // const navigate = useNavigate();
 
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
@@ -52,14 +51,7 @@ export default function Register() {
   };
 
   return (
-    <Container
-      maxWidth='xs'
-      sx={{
-        display: "flex",
-        flexDirection: { xs: "column", md: "column" },
-        alignItems: "center",
-      }}
-    >
+    <Container maxWidth='xs'>
       <Typography
         variant='h6'
         component='h1'
@@ -73,18 +65,21 @@ export default function Register() {
           {error}
         </Alert>
       )}
-      <Box component='form' onSubmit={onSubmit}>
+      <Box
+        component='form'
+        onSubmit={onSubmit}
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "column" },
+          alignItems: "center",
+        }}
+      >
         <TextField
           label='Email'
           variant='outlined'
           autoComplete='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
         />
         <TextField
           label='Password'
@@ -111,7 +106,7 @@ export default function Register() {
           Already have an account?{" "}
           <Link
             onClick={() => {
-              // checkout to login page
+              turnToRegister(false);
             }}
           >
             Login
