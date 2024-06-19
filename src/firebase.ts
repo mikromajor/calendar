@@ -2,6 +2,11 @@
 // use npm install firebase
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  getAuth,
+} from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,3 +27,25 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+export const createUser = async (
+  email: string,
+  password: string
+) => {
+  return createUserWithEmailAndPassword(
+    getAuth(app),
+    email,
+    password
+  );
+};
+
+export const signInUser = async (
+  email: string,
+  password: string
+) => {
+  return signInWithEmailAndPassword(
+    getAuth(app),
+    email,
+    password
+  );
+};

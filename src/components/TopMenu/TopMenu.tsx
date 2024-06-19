@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
@@ -7,6 +7,7 @@ import { useAppSelector } from "../../store/hooks/redux";
 import {
   SelectLanguage,
   SelectTheme,
+  Login,
 } from "./topMenuComponents";
 
 interface TopMenuPops {
@@ -17,7 +18,8 @@ interface TopMenuPops {
 
 export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const [anchorEl, setAnchorEl] =
-    React.useState<null | HTMLElement>(null);
+    useState<null | HTMLElement>(null);
+  const [] = useState(false);
 
   const selectLangsRef = useRef<HTMLSelectElement | null>(
     null
@@ -90,6 +92,9 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
             handleClose={handleClose}
             ref={selectLangsRef}
           />
+        </MenuItem>
+        <MenuItem>
+          <Login />
         </MenuItem>
       </Menu>
     </div>

@@ -8,4 +8,7 @@ export enum AppThemes {
   DARK = "dark-theme",
 }
 
-//  export type LanguagesList = keyof typeof AppLanguages;
+export interface User {
+  email: "string";
+  accessToken: "string";
+}
