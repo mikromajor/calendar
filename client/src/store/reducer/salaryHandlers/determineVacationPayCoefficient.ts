@@ -33,7 +33,10 @@ export const determineVacationPayCoefficient = (
       !!item && (JSON.parse(item) as SalaryInit);
 
     vacationPayCoefficientPerDay += !!savedData
-      ? savedData.totalSalary / savedData.weekDays
+      ? savedData.totalSalary /
+        (savedData.weekDays +
+          savedData.sickLeaveWeekDays +
+          savedData.usedVacation)
       : 8 * state.nettoPerHours;
   }
 
