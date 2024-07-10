@@ -25,6 +25,7 @@ yarn-error.log*
 #add client server git ignore
 .idea
 /client/node_modules
+/client/build
 /client/.pnp
 /client/.pnp.js
 
