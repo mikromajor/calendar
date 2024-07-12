@@ -92,8 +92,6 @@ AlcoDay.belongsTo(AlcoMonth);
 AlcoDay.hasOne(CurrentDate);
 CurrentDate.belongsTo(AlcoDay);
 
-//-----------------
-
 module.exports = {
   User,
   AlcoYear,
