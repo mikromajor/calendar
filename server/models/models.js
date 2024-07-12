@@ -11,126 +11,93 @@ const User = sequelize.define("user", {
   password: { type: DataTypes.STRING },
 });
 
-const AlcoState = sequelize.define("basket", {
+const AlcoYear = sequelize.define("year", {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-});
-
-const BasketDevice = sequelize.define("basket_device", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-});
-
-const Device = sequelize.define("device", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  name: {
     type: DataTypes.STRING,
-    unique: true,
-    allowNull: false,
   },
-  price: { type: DataTypes.INTEGER, allowNull: false },
-  rating: { type: DataTypes.INTEGER, defaultValue: 0 },
-  img: { type: DataTypes.STRING, allowNull: false },
-});
-
-const Type = sequelize.define("type", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  name: {
+  total_vodka: {
     type: DataTypes.STRING,
-    unique: true,
-    allowNull: false,
+    defaultValue: 0,
   },
-});
-
-const Brand = sequelize.define("brand", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  name: {
+  total_bill: {
     type: DataTypes.STRING,
-    unique: true,
-    allowNull: false,
+    defaultValue: 0,
   },
 });
 
-const Rating = sequelize.define("rating", {
+const AlcoMonth = sequelize.define("month", {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
+  },
+  total_vodka: {
+    type: DataTypes.STRING,
+    defaultValue: 0,
+  },
+  total_bill: {
+    type: DataTypes.STRING,
+    defaultValue: 0,
+  },
+});
+
+const AlcoDay = sequelize.define("day", {
+  id: {
+    type: DataTypes.STRING,
+  },
+  total_vodka: {
+    type: DataTypes.STRING,
+    defaultValue: 0,
+  },
+  total_bill: {
+    type: DataTypes.STRING,
+    defaultValue: 0,
+  },
+});
+const CurrentDate = sequelize.define("current_date", {
+  id: {
+    type: DataTypes.NUMBER,
     primaryKey: true,
     autoIncrement: true,
   },
-  rate: { type: DataTypes.INTEGER, allowNull: false },
-});
-
-const DeviceInfo = sequelize.define("device_info", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+  year: {
+    type: DataTypes.NUMBER,
+    defaultValue: 0,
   },
-  title: { type: DataTypes.STRING, allowNull: false },
-  description: { type: DataTypes.STRING, allowNull: false },
-});
-
-const TypeBrand = sequelize.define("type_brand", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+  month: {
+    type: DataTypes.NUMBER,
+    defaultValue: 0,
+  },
+  day: {
+    type: DataTypes.NUMBER,
+    defaultValue: 0,
   },
 });
+User.hasMany(AlcoYear);
+AlcoYear.belongsTo(User);
 
-User.hasOne(Basket);
-Basket.belongsTo(User);
+User.hasOne(CurrentDate);
+CurrentDate.belongsTo(User);
 
-User.hasMany(Rating);
-Rating.belongsTo(User);
+AlcoYear.hasMany(AlcoMonth);
+AlcoMonth.belongsTo(AlcoYear);
 
-Basket.hasMany(BasketDevice);
-BasketDevice.belongsTo(Basket);
+AlcoYear.hasMany(CurrentDate);
+CurrentDate.belongsTo(AlcoYear);
 
-Type.hasMany(Device);
-Device.belongsTo(Type);
+AlcoMonth.hasMany(CurrentDate);
+CurrentDate.belongsTo(AlcoMonth);
 
-Brand.hasMany(Device);
-Device.belongsTo(Brand);
+AlcoMonth.hasMany(AlcoDay);
+AlcoDay.belongsTo(AlcoMonth);
 
-Device.hasMany(Rating);
-Rating.belongsTo(Device);
+AlcoDay.hasOne(CurrentDate);
+CurrentDate.belongsTo(AlcoDay);
 
-Device.hasMany(BasketDevice);
-BasketDevice.belongsTo(Device);
-
-Device.hasMany(DeviceInfo, { as: "info" });
-DeviceInfo.belongsTo(Device);
-
-Type.belongsToMany(Brand, { through: TypeBrand });
-Brand.belongsToMany(Type, { through: TypeBrand });
+//-----------------
 
 module.exports = {
   User,
-  Basket,
-  BasketDevice,
-  Device,
-  Type,
-  Brand,
-  Rating,
-  TypeBrand,
-  DeviceInfo,
+  AlcoYear,
+  AlcoMonth,
+  AlcoDay,
+  CurrentDate,
 };
