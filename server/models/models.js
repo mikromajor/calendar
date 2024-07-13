@@ -15,6 +15,7 @@ const AlcoYear = sequelize.define("year", {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
+    autoIncrement: true,
   },
   total_vodka: {
     type: DataTypes.STRING,
@@ -30,6 +31,7 @@ const AlcoMonth = sequelize.define("month", {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
+    autoIncrement: true,
   },
   total_vodka: {
     type: DataTypes.STRING,
@@ -45,6 +47,7 @@ const AlcoDay = sequelize.define("day", {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
+    autoIncrement: true,
   },
   total_vodka: {
     type: DataTypes.STRING,
