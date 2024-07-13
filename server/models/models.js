@@ -4,6 +4,8 @@ const { DataTypes } = require("sequelize");
 const User = sequelize.define("user", {
   id: {
     type: DataTypes.STRING,
+    primaryKey: true,
+    autoIncrement: true,
   },
   email: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
@@ -12,6 +14,7 @@ const User = sequelize.define("user", {
 const AlcoYear = sequelize.define("year", {
   id: {
     type: DataTypes.STRING,
+    primaryKey: true,
   },
   total_vodka: {
     type: DataTypes.STRING,
@@ -26,6 +29,7 @@ const AlcoYear = sequelize.define("year", {
 const AlcoMonth = sequelize.define("month", {
   id: {
     type: DataTypes.STRING,
+    primaryKey: true,
   },
   total_vodka: {
     type: DataTypes.STRING,
@@ -40,6 +44,7 @@ const AlcoMonth = sequelize.define("month", {
 const AlcoDay = sequelize.define("day", {
   id: {
     type: DataTypes.STRING,
+    primaryKey: true,
   },
   total_vodka: {
     type: DataTypes.STRING,
