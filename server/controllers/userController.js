@@ -20,18 +20,19 @@ class UserController {
       );
     }
     const candidate = await User.findOne({
-      where: { email },
+      where: { id, email },
     });
     if (candidate) {
       return next(
         ApiError.badRequest(
-          "A user with this email address already exists."
+          "A user with this email address or id already exists."
         )
       );
     }
 
     const hashPassword = await bcrypt.hash(password, 5);
     const user = await User.create({
+      id,
       email,
       password: hashPassword,
     });

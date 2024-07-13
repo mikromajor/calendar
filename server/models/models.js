@@ -7,54 +7,55 @@ const User = sequelize.define("user", {
     primaryKey: true,
     autoIncrement: true,
   },
-  email: { type: DataTypes.STRING, unique: true },
-  password: { type: DataTypes.STRING },
+  email: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false,
+  },
+  password: { type: DataTypes.STRING, allowNull: false },
 });
 
 const AlcoYear = sequelize.define("year", {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  total_vodka: {
     type: DataTypes.STRING,
+    primaryKey: true,
+  },
+  totalVodka: {
+    type: DataTypes.INTEGER,
     defaultValue: 0,
   },
-  total_bill: {
-    type: DataTypes.STRING,
+  totalBill: {
+    type: DataTypes.INTEGER,
     defaultValue: 0,
   },
 });
 
 const AlcoMonth = sequelize.define("month", {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  total_vodka: {
     type: DataTypes.STRING,
+    primaryKey: true,
+  },
+  totalVodka: {
+    type: DataTypes.INTEGER,
     defaultValue: 0,
   },
-  total_bill: {
-    type: DataTypes.STRING,
+  totalBill: {
+    type: DataTypes.INTEGER,
     defaultValue: 0,
   },
 });
 
 const AlcoDay = sequelize.define("day", {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  total_vodka: {
     type: DataTypes.STRING,
+    primaryKey: true,
+  },
+  totalVodka: {
+    type: DataTypes.INTEGER,
     defaultValue: 0,
   },
-  total_bill: {
-    type: DataTypes.STRING,
+  totalBill: {
+    type: DataTypes.INTEGER,
     defaultValue: 0,
   },
 });
