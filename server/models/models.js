@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 
 const User = sequelize.define("user", {
   id: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
@@ -13,7 +13,7 @@ const User = sequelize.define("user", {
 
 const AlcoYear = sequelize.define("year", {
   id: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
@@ -29,7 +29,7 @@ const AlcoYear = sequelize.define("year", {
 
 const AlcoMonth = sequelize.define("month", {
   id: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
@@ -45,7 +45,7 @@ const AlcoMonth = sequelize.define("month", {
 
 const AlcoDay = sequelize.define("day", {
   id: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },

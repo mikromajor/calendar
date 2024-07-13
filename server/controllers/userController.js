@@ -1,7 +1,7 @@
 const ApiError = require("../error/ApiError");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { User, AlcoYear } = require("../models/models");
+const { User } = require("../models/models");
 
 const generateJwt = (id, email) => {
   return jwt.sign({ id, email }, process.env.SECRET_KEY, {
@@ -11,8 +11,7 @@ const generateJwt = (id, email) => {
 
 class UserController {
   async registration(req, res, next) {
-    const { email, password } = req.body;
-    console.log("email, password  => ", email, password);
+    const { id, email, password } = req.body;
     if (!email || !password) {
       return next(
         ApiError.badRequest(
@@ -30,15 +29,11 @@ class UserController {
         )
       );
     }
+
     const hashPassword = await bcrypt.hash(password, 5);
     const user = await User.create({
       email,
       password: hashPassword,
-    });
-
-    const alcoYear = await AlcoYear.create({
-      userId: user.id,
-      id: "2024",
     });
 
     const token = generateJwt(user.id, user.email);

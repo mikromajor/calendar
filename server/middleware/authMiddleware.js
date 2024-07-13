@@ -9,7 +9,7 @@ module.exports = function (req, res, next) {
     if (!token) {
       return res
         .status(401)
-        .json({ message: "Не авторизован" });
+        .json({ message: "User is not authorized" });
     }
     const decoded = jwt.verify(
       token,
@@ -18,6 +18,6 @@ module.exports = function (req, res, next) {
     req.user = decoded;
     next();
   } catch (e) {
-    res.status(401).json({ message: "Не авторизован" });
+    res.status(401).json({ message: "Not authorized" });
   }
 };
