@@ -10,9 +10,8 @@ const User = sequelize.define("user", {
   email: {
     type: DataTypes.STRING,
     unique: true,
-    allowNull: false,
   },
-  password: { type: DataTypes.STRING, allowNull: false },
+  password: { type: DataTypes.STRING },
 });
 
 const AlcoYear = sequelize.define("year", {
@@ -65,6 +64,9 @@ AlcoYear.belongsTo(User);
 
 AlcoYear.hasMany(AlcoMonth);
 AlcoMonth.belongsTo(AlcoYear);
+
+AlcoYear.hasMany(AlcoDay);
+AlcoDay.belongsTo(AlcoYear);
 
 AlcoMonth.hasMany(AlcoDay);
 AlcoDay.belongsTo(AlcoMonth);

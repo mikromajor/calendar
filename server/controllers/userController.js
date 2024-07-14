@@ -11,7 +11,7 @@ const generateJwt = (id, email) => {
 
 class UserController {
   async registration(req, res, next) {
-    const { id, email, password } = req.body;
+    const { email, password } = req.body;
     if (!email || !password) {
       return next(
         ApiError.badRequest(
@@ -20,7 +20,7 @@ class UserController {
       );
     }
     const candidate = await User.findOne({
-      where: { id, email },
+      where: { email },
     });
     if (candidate) {
       return next(
@@ -32,7 +32,6 @@ class UserController {
 
     const hashPassword = await bcrypt.hash(password, 5);
     const user = await User.create({
-      id,
       email,
       password: hashPassword,
     });
