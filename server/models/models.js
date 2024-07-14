@@ -59,6 +59,98 @@ const AlcoDay = sequelize.define("day", {
   },
 });
 
+const Salary = sequelize.define("salary", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  year: {
+    type: DataTypes.INTEGER,
+    defaultValue: 2024,
+  },
+  month: {
+    type: DataTypes.INTEGER,
+    defaultValue: 1,
+  },
+  salaryRate: {
+    type: DataTypes.INTEGER,
+    defaultValue: 28,
+  },
+  premiumRate: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  premiumUzn: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  taxRate: {
+    type: DataTypes.INTEGER,
+    defaultValue: 27,
+  },
+  nettoPerHours: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  weekDays: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  weekendDays: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  standardWorkHours: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  extraHours_50: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  extraHours_100: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  extraHours_120: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  sickLeaveWeekDays: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  sickLeaveWeekendDays: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  holidays: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  usedVacation: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  bloodDonation: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  standardSalary: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  extraSalary: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  totalSalary: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+});
+
 User.hasMany(AlcoYear);
 AlcoYear.belongsTo(User);
 
@@ -71,9 +163,13 @@ AlcoDay.belongsTo(AlcoYear);
 AlcoMonth.hasMany(AlcoDay);
 AlcoDay.belongsTo(AlcoMonth);
 
+User.hasMany(Salary);
+Salary.belongsTo(User);
+
 module.exports = {
   User,
   AlcoYear,
   AlcoMonth,
   AlcoDay,
+  Salary,
 };

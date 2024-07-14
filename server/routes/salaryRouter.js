@@ -2,7 +2,7 @@
 // const router = new Router();
 // const salaryController = require("../controllers/salaryController");
 
-// router.post("/", salaryController.create);
-// router.get("/", salaryController.get);
+// router.post("/salary", salaryController.create);
+// router.get("/salary", salaryController.get);
 
 // module.exports = router;
