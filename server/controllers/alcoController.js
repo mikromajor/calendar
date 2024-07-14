@@ -64,19 +64,34 @@ class AlcoController {
     // create front-end store model (INIT_YEAR)
 
     const YEAR = {
-      ...alcoYear,
+      totalVodka: alcoYear.totalVodka,
+      totalBill: alcoYear.totalBill,
+      id: yearId,
       months: [],
     };
 
     alcoMonths.forEach((m) => {
       const [yearIndex, monthIndex] = m.id.split("_");
-      YEAR.months[monthIndex] = { ...m, days: [] };
+      YEAR.months[monthIndex] = {
+        totalVodka: m.totalVodka,
+        totalBill: m.totalBill,
+        id: monthId,
+        createdAt: m.createdAt,
+        updatedAt: m.updatedAt,
+        days: [],
+      };
     });
 
     alcoDays.forEach((d) => {
       const [yearIndex, monthIndex, dayIndex] =
         d.id.split("_");
-      YEAR.months[monthIndex].days[dayIndex] = d;
+      YEAR.months[monthIndex].days[dayIndex] = {
+        totalVodka: d.totalVodka,
+        totalBill: d.totalBill,
+        id: d.id,
+        createdAt: d.createdAt,
+        updatedAt: d.updatedAt,
+      };
     });
 
     return res.json(YEAR);

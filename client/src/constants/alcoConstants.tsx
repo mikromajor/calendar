@@ -129,7 +129,6 @@ const m = {
   totalBill: 0,
   createdAt: "2024-07-14T09:47:42.575Z",
   updatedAt: "2024-07-14T10:13:04.781Z",
-  yearId: "2024",
   days: [d],
 };
 const respons = {
@@ -138,6 +137,5 @@ const respons = {
   totalBill: 0,
   createdAt: "2024-07-14T09:35:29.269Z",
   updatedAt: "2024-07-14T10:13:04.761Z",
-  userId: null,
   months: [m],
 };
