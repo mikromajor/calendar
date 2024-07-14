@@ -1,9 +1,10 @@
 const Router = require("express");
 const router = new Router();
 const salaryController = require("../controllers/salaryController");
-// TODO check valid '/' or ''
-router.post("/", salaryController.add);
-router.get("/:year:month", salaryController.getOne);
-router.get("/", salaryController.getAll);
+const authMiddleware = require("../middleware/authMiddleware");
+
+router.post("/", authMiddleware, salaryController.add);
+router.get("/", authMiddleware, salaryController.getOne);
+router.get("/", authMiddleware, salaryController.getAll);
 
 module.exports = router;
