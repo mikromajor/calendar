@@ -3,23 +3,28 @@ const ApiError = require("../error/ApiError");
 
 class SalaryController {
   async add(req, res) {
-    //POST //http://localhost:7000/api/salary/set
+    //POST //http://localhost:7000/api/salary/add
     // add body {} look for salary_example bellow
     const { year, month } = req.body;
-
-    let salary = await Salary.findOne({
-      where: { year, month },
-    });
-    if (salary) {
-      Object.assign(salary, req.body);
-      salary.userId = req.user.id;
-      await salary.save();
-    } else {
-      salary = await Salary.create({
-        ...req.body,
-        userId: Number(req.user.id),
+    let salary;
+    try {
+      salary = await Salary.findOne({
+        where: { year, month },
       });
+      if (salary) {
+        Object.assign(salary, req.body);
+        salary.userId = req.user.id;
+        await salary.save();
+      } else {
+        salary = await Salary.create({
+          ...req.body,
+          userId: Number(req.user.id),
+        });
+      }
+    } catch (e) {
+      throw new console.error(e);
     }
+
     return res.json({ user: req.user, salary });
   }
 
