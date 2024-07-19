@@ -58,7 +58,7 @@ const createResponseModel = async (year, userId) => {
 class AlcoController {
   async addNewDose(req, res, next) {
     //POST http://localhost:7000/api/alco_calendar/add
-    // req.body = {year, month, day, additionVodka}
+    // req.body = {"year":"2020", "month":"1", "day":"1", "additionVodka":"65"}
     try {
       const { year, month, day, additionVodka } = req.body;
       const dayId = year + "_" + month + "_" + day;
@@ -118,11 +118,11 @@ class AlcoController {
     }
   }
 
-  async getYearData(req, res, next) {
+  async getAlcoYear(req, res, next) {
+    //GET http://localhost:7000/api/alco_calendar/get?year=2020
     try {
-      const { year } = req.body;
       const response_model = await createResponseModel(
-        year,
+        req.query.year,
         req.user.id
       );
       return res.json(response_model);

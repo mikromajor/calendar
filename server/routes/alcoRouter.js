@@ -8,10 +8,10 @@ router.post(
   authMiddleware,
   alcoController.addNewDose
 );
-router.post(
+router.get(
   "/get",
   authMiddleware,
-  alcoController.getYearData
+  alcoController.getAlcoYear
 );
 
 module.exports = router;
