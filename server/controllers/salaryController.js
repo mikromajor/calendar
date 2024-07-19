@@ -7,15 +7,14 @@ class SalaryController {
     // add body {} look for salary_example bellow
 
     //TODO: after saving the same month to db, is only last user
-    const { year, month } = req.body;
-    let salary;
+
     try {
-      salary = await Salary.findOne({
-        where: { year, month },
+      const { year, month } = req.body;
+      let salary = await Salary.findOne({
+        where: { year, month, userId: req.user.id },
       });
       if (salary) {
         Object.assign(salary, req.body);
-        salary.userId = req.user.id;
         await salary.save();
       } else {
         salary = await Salary.create({
@@ -23,11 +22,10 @@ class SalaryController {
           userId: Number(req.user.id),
         });
       }
+      return res.json({ user: req.user, salary });
     } catch (e) {
-      throw new console.error(e);
+      ApiError.badRequest(e);
     }
-
-    return res.json({ user: req.user, salary });
   }
 
   async getOne(req, res) {
@@ -48,7 +46,6 @@ class SalaryController {
   async getLast_2years(req, res) {
     //GET http://localhost:7000/api/salary/getLast_2years?year=2020
     const { year } = req.query;
-
     const salaries = await Promise.allSettled([
       Salary.findAll({
         where: { userId: req.user.id, year: year - 1 },
