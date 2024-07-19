@@ -19,7 +19,7 @@ class SalaryController {
       } else {
         salary = await Salary.create({
           ...req.body,
-          userId: Number(req.user.id),
+          userId: req.user.id,
         });
       }
       return res.json({ user: req.user, salary });

@@ -154,6 +154,12 @@ const Salary = sequelize.define("salary", {
 User.hasMany(AlcoYear);
 AlcoYear.belongsTo(User);
 
+User.hasMany(AlcoMonth);
+AlcoMonth.belongsTo(User);
+
+User.hasMany(AlcoDay);
+AlcoDay.belongsTo(User);
+
 AlcoYear.hasMany(AlcoMonth);
 AlcoMonth.belongsTo(AlcoYear);
 

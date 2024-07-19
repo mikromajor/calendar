@@ -5,17 +5,18 @@ const {
 } = require("../models/models");
 const ApiError = require("../error/ApiError");
 
-const createResponseModel = async (year) => {
+//create response models for front-end
+const createResponseModel = async (year, userId) => {
   try {
     const alcoYear = await AlcoYear.findOne({
-      where: { id: year },
+      where: { id: year, userId },
     });
     const alcoMonths = await AlcoMonth.findAll({
-      where: { yearId: year },
+      where: { yearId: year, userId },
     });
 
     const alcoDays = await AlcoDay.findAll({
-      where: { yearId: year },
+      where: { yearId: year, userId },
     });
 
     const YEAR = {
@@ -56,13 +57,15 @@ const createResponseModel = async (year) => {
 
 class AlcoController {
   async addNewDose(req, res, next) {
+    //POST http://localhost:7000/api/alco_calendar/add
+    // req.body = {year, month, day, additionVodka}
     try {
       const { year, month, day, additionVodka } = req.body;
       const dayId = year + "_" + month + "_" + day;
       const monthId = year + "_" + month;
 
       const alcoYear = await AlcoYear.findOne({
-        where: { id: year },
+        where: { id: year, userId: req.user.id },
       });
       if (alcoYear) {
         alcoYear.totalVodka += Number(additionVodka);
@@ -70,12 +73,13 @@ class AlcoController {
       } else {
         await AlcoYear.create({
           id: year,
+          userId: req.user.id,
           totalVodka: Number(additionVodka),
         });
       }
 
       const alcoMonth = await AlcoMonth.findOne({
-        where: { id: monthId },
+        where: { id: monthId, userId: req.user.id },
       });
       if (alcoMonth) {
         alcoMonth.totalVodka += Number(additionVodka);
@@ -83,13 +87,14 @@ class AlcoController {
       } else {
         await AlcoMonth.create({
           id: monthId,
+          userId: req.user.id,
           yearId: year,
           totalVodka: Number(additionVodka),
         });
       }
 
       const alcoDay = await AlcoDay.findOne({
-        where: { id: dayId },
+        where: { id: dayId, userId: req.user.id },
       });
       if (alcoDay) {
         alcoDay.totalVodka += Number(additionVodka);
@@ -97,13 +102,15 @@ class AlcoController {
       } else {
         await AlcoDay.create({
           id: dayId,
+          userId: req.user.id,
           monthId,
           yearId: year,
           totalVodka: Number(additionVodka),
         });
       }
       const response_model = await createResponseModel(
-        year
+        year,
+        req.user.id
       );
       return res.json(response_model);
     } catch (e) {
@@ -115,7 +122,8 @@ class AlcoController {
     try {
       const { year } = req.body;
       const response_model = await createResponseModel(
-        year
+        year,
+        req.user.id
       );
       return res.json(response_model);
     } catch (error) {
