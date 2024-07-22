@@ -6,36 +6,31 @@ module.exports = function (req, res, next) {
     next();
   }
   try {
-    // Bearer tokentoken
+    // Bearer "tokenHeader.tokenBody.tokenEnd"
     const token = req.headers.authorization.split(" ")[1];
     if (!token) {
       return next(
-        ApiError.unauthorized("User not authorized")
+        ApiError.unauthorized(
+          "User not authorized. Please sign in."
+        )
       );
-      // res
-      //   .status(401)
-      //   .json({ message: "User is not authorized" });
     }
-    const decoded = jwt.verify(
+    jwt.verify(
       token,
       process.env.SECRET_KEY,
       (err, user) => {
         if (err)
           return next(
-            ApiError.forbidden("You have not access.")
+            ApiError.forbidden(
+              "You have not access. Please login"
+            )
           );
         req.user = user;
         next();
       }
     );
-
-    // vulnerability: everybody who has the token, has full access.
-    //TODO: add sekret_keys to the cooki or sms else - find out about it
-
-    // req.user = decoded; // {id,email}
-    // next();
   } catch (e) {
     // res.status(401).json({ message: "Not authorized" });
-    next(ApiError.unauthorized("Not authorized"));
+    next(ApiError.forbidden("No access"));
   }
 };
