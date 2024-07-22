@@ -10,7 +10,8 @@ const generateJwt = (id, email) => {
 };
 
 class UserController {
-  //http://localhost:7000/api/user/registration
+  //POST http://localhost:7000/api/user/registration
+  // body={email, password}
   async registration(req, res, next) {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -25,7 +26,7 @@ class UserController {
     });
     if (candidate) {
       return next(
-        ApiError.badRequest(
+        ApiError.forbidden(
           "A user with this email address or id already exists."
         )
       );
@@ -39,17 +40,22 @@ class UserController {
 
     const token = generateJwt(user.id, user.email);
 
-    return res.json({ token });
+    return res.json({
+      token,
+      message: "Registration successful",
+    });
   }
 
-  //http://localhost:7000/api/user/login
+  //POST http://localhost:7000/api/user/login
+  // body={email, password}
   async login(req, res, next) {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
     if (!user) {
       return next(
-        ApiError.badRequest(
-          `E-mail ${email} has not found. Check "Caps lock" and try again`
+        ApiError.unauthorized(
+          `Authorization failed. E-mail ${email} has not been found.
+          You need to login first`
         )
       );
     }
@@ -58,13 +64,13 @@ class UserController {
       user.password
     );
     if (!comparePassword) {
-      return next(ApiError.internal("Invalid password"));
+      return next(ApiError.forbidden("Invalid password"));
     }
     const token = generateJwt(user.id, user.email);
     return res.json({ token });
   }
 
-  // http://localhost:7000/api/user/auth
+  //GET http://localhost:7000/api/user/auth
   async check(req, res, next) {
     const token = generateJwt(req.user.id, req.user.email);
     return res.json({ token });

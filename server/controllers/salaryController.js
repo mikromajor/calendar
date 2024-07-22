@@ -6,8 +6,6 @@ class SalaryController {
     //POST //http://localhost:7000/api/salary/add
     // add body {} look for salary_example bellow
 
-    //TODO: after saving the same month to db, is only last user
-
     try {
       const { year, month } = req.body;
       let salary = await Salary.findOne({
