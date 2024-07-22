@@ -15,7 +15,10 @@ module.exports = function (req, res, next) {
       token,
       process.env.SECRET_KEY
     );
-    req.user = decoded;
+    console.log("TOKEN decoded =>", decoded);
+    //TODO
+    // vulnerability: everybody who has the token, has full access.
+    req.user = decoded; // {id,email}
     next();
   } catch (e) {
     res.status(401).json({ message: "Not authorized" });
