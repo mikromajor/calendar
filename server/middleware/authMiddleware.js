@@ -15,9 +15,11 @@ module.exports = function (req, res, next) {
       token,
       process.env.SECRET_KEY
     );
-    console.log("TOKEN decoded =>", decoded);
-    //TODO
+    // console.log("TOKEN decoded =>", decoded);
+
     // vulnerability: everybody who has the token, has full access.
+    //TODO: add sekret_keys to the cooki or sms else - find out about it
+
     req.user = decoded; // {id,email}
     next();
   } catch (e) {

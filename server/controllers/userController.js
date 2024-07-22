@@ -10,6 +10,7 @@ const generateJwt = (id, email) => {
 };
 
 class UserController {
+  //http://localhost:7000/api/user/registration
   async registration(req, res, next) {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -41,6 +42,7 @@ class UserController {
     return res.json({ token });
   }
 
+  //http://localhost:7000/api/user/login
   async login(req, res, next) {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
@@ -62,6 +64,7 @@ class UserController {
     return res.json({ token });
   }
 
+  // http://localhost:7000/api/user/auth
   async check(req, res, next) {
     const token = generateJwt(req.user.id, req.user.email);
     return res.json({ token });
