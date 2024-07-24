@@ -9,6 +9,10 @@ import { SalaryInit } from "../types/salaryTypes";
 import { SALARY_INIT } from "../constants/salaryConstants";
 import { INIT_ALCO_STATE } from "../constants/alcoConstants";
 
+//Main task:
+// all data calculate & save on the server, get new data from the server,
+// on client side save only token
+
 export default class AppStore {
   _currentLang: AppLanguages;
   _currentTheme: AppThemes;
@@ -43,8 +47,8 @@ export default class AppStore {
   setSalary(salary: SalaryInit) {
     this._salary = salary;
   }
-  setAlcoYear(_alcoYear: AlcoState) {
-    this._alcoYear = _alcoYear;
+  setAlcoYear(alcoYear: AlcoState) {
+    this._alcoYear = alcoYear;
   }
   get currentLang() {
     return this._currentLang;

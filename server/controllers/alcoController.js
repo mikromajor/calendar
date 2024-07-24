@@ -11,6 +11,7 @@ const createResponseModel = async (year, userId) => {
     const alcoYear = await AlcoYear.findOne({
       where: { id: year, userId },
     });
+
     const alcoMonths = await AlcoMonth.findAll({
       where: { yearId: year, userId },
     });
@@ -20,20 +21,14 @@ const createResponseModel = async (year, userId) => {
     });
 
     const YEAR = {
-      totalVodka: alcoYear.totalVodka,
-      totalBill: alcoYear.totalBill,
-      id: year,
+      ...alcoYear.dataValues,
       months: [],
     };
 
     alcoMonths.forEach((m) => {
       const [yearIndex, monthIndex] = m.id.split("_");
       YEAR.months[monthIndex] = {
-        totalVodka: m.totalVodka,
-        totalBill: m.totalBill,
-        id: m.id,
-        createdAt: m.createdAt,
-        updatedAt: m.updatedAt,
+        ...m.dataValues,
         days: [],
       };
     });
@@ -42,16 +37,14 @@ const createResponseModel = async (year, userId) => {
       const [yearIndex, monthIndex, dayIndex] =
         d.id.split("_");
       YEAR.months[monthIndex].days[dayIndex] = {
-        totalVodka: d.totalVodka,
-        totalBill: d.totalBill,
-        id: d.id,
-        createdAt: d.createdAt,
-        updatedAt: d.updatedAt,
+        ...d.dataValues,
       };
     });
     return YEAR;
   } catch (error) {
-    ApiError.internal("Response model was not create");
+    return ApiError.internal(
+      "Response model was not create"
+    );
   }
 };
 
@@ -74,7 +67,7 @@ class AlcoController {
         await AlcoYear.create({
           id: year,
           userId: req.user.id,
-          totalVodka: Number(additionVodka),
+          totalVodka: additionVodka,
         });
       }
 
@@ -89,7 +82,7 @@ class AlcoController {
           id: monthId,
           userId: req.user.id,
           yearId: year,
-          totalVodka: Number(additionVodka),
+          totalVodka: additionVodka,
         });
       }
 
@@ -105,7 +98,7 @@ class AlcoController {
           userId: req.user.id,
           monthId,
           yearId: year,
-          totalVodka: Number(additionVodka),
+          totalVodka: additionVodka,
         });
       }
       const response_model = await createResponseModel(
@@ -114,7 +107,7 @@ class AlcoController {
       );
       return res.json(response_model);
     } catch (e) {
-      ApiError.badRequest(e);
+      ApiError.badRequest("It has not been add new dose");
     }
   }
 
@@ -127,7 +120,9 @@ class AlcoController {
       );
       return res.json(response_model);
     } catch (error) {
-      ApiError.badRequest(error);
+      return ApiError.badRequest(
+        "Information not found for this year."
+      );
     }
   }
 }
