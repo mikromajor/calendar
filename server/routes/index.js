@@ -1,12 +1,12 @@
 const Router = require("express");
 const router = new Router();
 
-// const userRouter = require('./userRouter')
-// const salaryRouter = require('./salaryRouter')
-// const calendarRouter = require('./calendarRouter')
+const salaryRouter = require("./salaryRouter");
+const userRouter = require("./userRouter");
+const alcoRouter = require("./alcoRouter");
 
-// router.use('/user', userRouter)
-// router.use('/salary', salaryRouter)
-// router.use('/calendar', calendarRouter)
+router.use("/user", userRouter);
+router.use("/alco_calendar", alcoRouter);
+router.use("/salary", salaryRouter);
 
 module.exports = router;

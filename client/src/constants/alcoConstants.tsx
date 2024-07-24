@@ -111,4 +111,31 @@ export const ALCO_CONTENT: AlcoContent = {
 
 // }
 
-//--------|
+//---response_model-----|
+
+const d = {
+  totalBill: 0,
+  id: "2024_9_2",
+  monthId: "2024_9",
+  yearId: "2024",
+  totalVodka: 126,
+  updatedAt: "2024-07-14T10:13:04.789Z",
+  createdAt: "2024-07-14T10:13:04.789Z",
+};
+
+const m = {
+  id: "2024_9",
+  totalVodka: 882,
+  totalBill: 0,
+  createdAt: "2024-07-14T09:47:42.575Z",
+  updatedAt: "2024-07-14T10:13:04.781Z",
+  days: [d],
+};
+const respons = {
+  id: "2024",
+  totalVodka: 2268,
+  totalBill: 0,
+  createdAt: "2024-07-14T09:35:29.269Z",
+  updatedAt: "2024-07-14T10:13:04.761Z",
+  months: [m],
+};

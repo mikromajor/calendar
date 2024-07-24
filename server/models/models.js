@@ -7,130 +7,175 @@ const User = sequelize.define("user", {
     primaryKey: true,
     autoIncrement: true,
   },
-  email: { type: DataTypes.STRING, unique: true },
+  email: {
+    type: DataTypes.STRING,
+    unique: true,
+  },
   password: { type: DataTypes.STRING },
 });
 
-const AlcoState = sequelize.define("basket", {
+const AlcoYear = sequelize.define("year", {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-});
-
-const BasketDevice = sequelize.define("basket_device", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-});
-
-const Device = sequelize.define("device", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  name: {
     type: DataTypes.STRING,
-    unique: true,
-    allowNull: false,
+    primaryKey: true,
   },
-  price: { type: DataTypes.INTEGER, allowNull: false },
-  rating: { type: DataTypes.INTEGER, defaultValue: 0 },
-  img: { type: DataTypes.STRING, allowNull: false },
+  totalVodka: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  totalBill: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
 });
 
-const Type = sequelize.define("type", {
+const AlcoMonth = sequelize.define("month", {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  name: {
     type: DataTypes.STRING,
-    unique: true,
-    allowNull: false,
+    primaryKey: true,
+  },
+  totalVodka: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  totalBill: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
   },
 });
 
-const Brand = sequelize.define("brand", {
+const AlcoDay = sequelize.define("day", {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  name: {
     type: DataTypes.STRING,
-    unique: true,
-    allowNull: false,
+    primaryKey: true,
+  },
+  totalVodka: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  totalBill: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
   },
 });
 
-const Rating = sequelize.define("rating", {
+const Salary = sequelize.define("salary", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  rate: { type: DataTypes.INTEGER, allowNull: false },
-});
-
-const DeviceInfo = sequelize.define("device_info", {
-  id: {
+  year: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+    defaultValue: 2024,
   },
-  title: { type: DataTypes.STRING, allowNull: false },
-  description: { type: DataTypes.STRING, allowNull: false },
-});
-
-const TypeBrand = sequelize.define("type_brand", {
-  id: {
+  month: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+    defaultValue: 1,
+  },
+  salaryRate: {
+    type: DataTypes.INTEGER,
+    defaultValue: 28,
+  },
+  premiumRate: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  premiumUzn: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  taxRate: {
+    type: DataTypes.INTEGER,
+    defaultValue: 27,
+  },
+  nettoPerHours: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  weekDays: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  weekendDays: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  standardWorkHours: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  extraHours_50: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  extraHours_100: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  extraHours_120: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  sickLeaveWeekDays: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  sickLeaveWeekendDays: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  holidays: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  usedVacation: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  bloodDonation: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  standardSalary: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  extraSalary: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  totalSalary: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
   },
 });
 
-User.hasOne(Basket);
-Basket.belongsTo(User);
+User.hasMany(AlcoYear);
+AlcoYear.belongsTo(User);
 
-User.hasMany(Rating);
-Rating.belongsTo(User);
+User.hasMany(AlcoMonth);
+AlcoMonth.belongsTo(User);
 
-Basket.hasMany(BasketDevice);
-BasketDevice.belongsTo(Basket);
+User.hasMany(AlcoDay);
+AlcoDay.belongsTo(User);
 
-Type.hasMany(Device);
-Device.belongsTo(Type);
+AlcoYear.hasMany(AlcoMonth);
+AlcoMonth.belongsTo(AlcoYear);
 
-Brand.hasMany(Device);
-Device.belongsTo(Brand);
+AlcoYear.hasMany(AlcoDay);
+AlcoDay.belongsTo(AlcoYear);
 
-Device.hasMany(Rating);
-Rating.belongsTo(Device);
+AlcoMonth.hasMany(AlcoDay);
+AlcoDay.belongsTo(AlcoMonth);
 
-Device.hasMany(BasketDevice);
-BasketDevice.belongsTo(Device);
-
-Device.hasMany(DeviceInfo, { as: "info" });
-DeviceInfo.belongsTo(Device);
-
-Type.belongsToMany(Brand, { through: TypeBrand });
-Brand.belongsToMany(Type, { through: TypeBrand });
+User.hasMany(Salary);
+Salary.belongsTo(User);
 
 module.exports = {
   User,
-  Basket,
-  BasketDevice,
-  Device,
-  Type,
-  Brand,
-  Rating,
-  TypeBrand,
-  DeviceInfo,
+  AlcoYear,
+  AlcoMonth,
+  AlcoDay,
+  Salary,
 };
