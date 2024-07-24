@@ -41,6 +41,8 @@ class SalaryController {
     });
     return res.json({ user: req.user, salaries });
   }
+
+  // TODO: check it
   async getLast_2years(req, res) {
     //GET http://localhost:7000/api/salary/getLast_2years?year=2020
     const { year } = req.query;
@@ -52,14 +54,9 @@ class SalaryController {
         where: {
           userId: req.user.id,
           year,
-          year: year - 1,
         },
       }),
     ]);
-    Salary.findAll({
-      where: { userId: req.user.id, year },
-    });
-
     return res.json({ user: req.user, salaries });
   }
 }
