@@ -1,15 +1,15 @@
-import { alcoActions } from "../reducer/alcoReducer";
-import { AppDispatch } from "..";
+// import { alcoActions } from "../reducer/alcoReducer";
+// import { AppDispatch } from "..";
 
-// import axios from "axios";
-import { AlcoState } from "../../types/alcoTypes";
-import { appSlice } from "../reducer/appReducer";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+// // import axios from "axios";
+// import { AlcoState } from "../../types/alcoTypes";
+// import { appSlice } from "../reducer/appReducer";
+// import { createAsyncThunk } from "@reduxjs/toolkit";
 
 // export const fetchUser =
 //   () => async (dispatch: AppDispatch) => {
 //     try {
-//       dispatch(appSlice.actions.fetching());
+//       dispatch(appSlice.actions.loading(true));
 //       const response = await axios.get<IUser[]>(
 //         "https://jsonplaceholder.typicode.com/users"
 //       );
@@ -18,6 +18,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 //           response.data
 //         )
 //       );
+//       dispatch(appSlice.actions.loading(false));
 //     } catch (e) {
 //       dispatch(
 //         userSlice.actions.usersFetchingError(e.message)
