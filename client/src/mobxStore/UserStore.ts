@@ -3,11 +3,11 @@ import { User } from "../types/appTypes";
 
 export default class UserStore {
   _isAuth: boolean;
-  _user: User | {};
+  _user: User | null;
 
   constructor() {
     this._isAuth = false;
-    this._user = {};
+    this._user = null;
     makeAutoObservable(this);
   }
 

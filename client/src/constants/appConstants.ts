@@ -11,7 +11,6 @@ export const INIT_APP_STATE = {
   currentTheme: AppThemes.WHITE,
   isLoading: false,
   error: "",
-  user: null,
   salary: SALARY_INIT,
   alcoData: INIT_ALCO_STATE,
 };
