@@ -107,8 +107,10 @@ export const alcoReducer = createSlice({
     clearAllStor: () => {
       window.localStorage.clear();
     },
+    fetching: () => {},
   },
 });
 
 export default alcoReducer.reducer;
 export const alcoActions = alcoReducer.actions;
+export const alcoSlice = alcoReducer;

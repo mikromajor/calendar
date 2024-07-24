@@ -25,8 +25,12 @@ export const appReducer = createSlice({
     ) => {
       state.currentTheme = action.payload;
     },
+    fetching: (state) => {
+      state.isLoading = true;
+    },
   },
 });
 
 export default appReducer.reducer;
 export const appActions = appReducer.actions;
+export const appSlice = appReducer;

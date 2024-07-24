@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   salaryReducer,
 });
 
-export const store = configureStore({
+const store = configureStore({
   reducer: rootReducer,
 });
 

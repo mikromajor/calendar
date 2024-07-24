@@ -1,8 +1,19 @@
-import { AppThemes, AppLanguages } from "../types/appTypes";
+import {
+  AppThemes,
+  AppLanguages,
+  User,
+} from "../types/appTypes";
+import { SALARY_INIT } from "./salaryConstants";
+import { INIT_ALCO_STATE } from "./alcoConstants";
 
 export const INIT_APP_STATE = {
   currentLang: AppLanguages.UA,
   currentTheme: AppThemes.WHITE,
+  isLoading: false,
+  error: "",
+  user: null,
+  salary: SALARY_INIT,
+  alcoData: INIT_ALCO_STATE,
 };
 
 export const APP_CONTENT = {
