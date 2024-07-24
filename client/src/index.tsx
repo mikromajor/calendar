@@ -1,16 +1,22 @@
-import { Provider } from "react-redux";
+import React, { createContext } from "react";
+import ReactDOM from "react-dom";
 import App from "./App";
-import store from "./store";
-import "./index.scss";
-import { createRoot } from "react-dom/client";
+import UserStore from "./mobxStore/UserStore";
+import AppStore from "./mobxStore/AppStore";
 
-const container = document.getElementById("app-container");
-const root = createRoot(container!);
+const state = {
+  user: new UserStore(),
+  app: new AppStore(),
+};
+type State = typeof state;
 
-root.render(
-  <Provider store={store}>
+export const Context = createContext<null | State>(null);
+
+ReactDOM.render(
+  <Context.Provider value={state}>
     <App />
-  </Provider>
+  </Context.Provider>,
+  document.getElementById("root")
 );
 
 // const MONTHS = {

@@ -5,7 +5,8 @@ const {
 } = require("../models/models");
 const ApiError = require("../error/ApiError");
 
-//create response models for front-end
+//create response models for front-end equal INIT_YEAR
+// or error {status: number, message:string}
 const createResponseModel = async (year, userId) => {
   try {
     const alcoYear = await AlcoYear.findOne({
@@ -54,6 +55,16 @@ class AlcoController {
     // req.body = {"year":"2020", "month":"1", "day":"1", "additionVodka":"65"}
     try {
       const { year, month, day, additionVodka } = req.body;
+      if (
+        year <= 0 ||
+        month <= 0 ||
+        day <= 0 ||
+        isNaN(additionVodka)
+      ) {
+        return res.json(
+          ApiError.badRequest("Request's data incorrect")
+        );
+      }
       const dayId = year + "_" + month + "_" + day;
       const monthId = year + "_" + month;
 
@@ -107,7 +118,9 @@ class AlcoController {
       );
       return res.json(response_model);
     } catch (e) {
-      ApiError.badRequest("It has not been add new dose");
+      return ApiError.badRequest(
+        "It has not been add new dose"
+      );
     }
   }
 
