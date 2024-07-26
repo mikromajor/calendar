@@ -1,7 +1,7 @@
 import {
   AppThemes,
   AppLanguages,
-  User,
+  IUser,
 } from "../types/appTypes";
 import { SALARY_INIT } from "./salaryConstants";
 import { INIT_ALCO_STATE } from "./alcoConstants";

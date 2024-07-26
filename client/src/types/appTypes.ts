@@ -7,7 +7,7 @@ export enum AppThemes {
   WHITE = "white-theme",
   DARK = "dark-theme",
 }
-export interface User {
+export interface IUser {
   id: string;
   email: string;
   token: string;

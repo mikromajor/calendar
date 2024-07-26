@@ -1,9 +1,9 @@
 import { makeAutoObservable } from "mobx";
-import { User } from "../types/appTypes";
+import { IUser } from "../types/appTypes";
 
 export default class UserStore {
   _isAuth: boolean;
-  _user: User | null;
+  _user: IUser | null;
 
   constructor() {
     this._isAuth = false;
@@ -14,7 +14,7 @@ export default class UserStore {
   setIsAuth(bool: boolean) {
     this._isAuth = bool;
   }
-  setUser(user: User) {
+  setUser(user: IUser) {
     this._user = user;
   }
 

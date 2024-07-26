@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import {
   AppThemes,
   AppLanguages,
-  User,
+  IUser,
 } from "../types/appTypes";
 import { AlcoState } from "../types/alcoTypes";
 import { SalaryInit } from "../types/salaryTypes";
