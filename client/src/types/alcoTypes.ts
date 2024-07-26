@@ -42,6 +42,13 @@ export interface AdditiveDayData {
   additiveBill?: number;
 }
 
+export interface IDose {
+  year: string;
+  month: string;
+  day: string;
+  additionVodka: string;
+}
+
 export enum ContentKeys {
   alcoHeader = "alcoHeader",
   controlPanelHeader = "controlPanelHeader",

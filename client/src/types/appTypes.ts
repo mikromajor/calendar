@@ -13,4 +13,9 @@ export interface IUser {
   token: string;
 }
 
+export interface EmailPassword {
+  email: string;
+  password: string;
+}
+
 //  export type LanguagesList = keyof typeof AppLanguages;

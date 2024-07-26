@@ -1,5 +1,4 @@
 import {
-  // createAsyncThunk,
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
@@ -7,7 +6,13 @@ import { INIT_APP_STATE } from "../../constants/appConstants";
 import {
   AppLanguages,
   AppThemes,
+  IUser,
 } from "../../types/appTypes";
+import {
+  fetchUserAuth,
+  fetchUserLogin,
+  fetchUserRegistration,
+} from "./http/userActions";
 
 export const appReducer = createSlice({
   name: "appState",
@@ -25,11 +30,67 @@ export const appReducer = createSlice({
     ) => {
       state.currentTheme = action.payload;
     },
-    loading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
-    },
-    registration: (state) => {
+  },
+  extraReducers: {
+    //Registration
+    [fetchUserRegistration.pending.type]: (state) => {
       state.isLoading = true;
+    },
+    [fetchUserRegistration.fulfilled.type]: (
+      state,
+      action: PayloadAction<IUser>
+    ) => {
+      state.isLoading = false;
+      state.error = "";
+      state.user = action.payload;
+    },
+
+    [fetchUserRegistration.rejected.type]: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    //Login
+    [fetchUserLogin.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchUserLogin.fulfilled.type]: (
+      state,
+      action: PayloadAction<IUser>
+    ) => {
+      state.isLoading = false;
+      state.error = "";
+      state.user = action.payload;
+    },
+
+    [fetchUserLogin.rejected.type]: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    //Auth
+    [fetchUserAuth.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchUserAuth.fulfilled.type]: (
+      state,
+      action: PayloadAction<IUser>
+    ) => {
+      state.isLoading = false;
+      state.error = "";
+      state.user = action.payload;
+    },
+
+    [fetchUserAuth.rejected.type]: (
+      state,
+      action: PayloadAction<string>
+    ) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });

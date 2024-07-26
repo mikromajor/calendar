@@ -10,7 +10,7 @@ import {
 } from "@mui/material/styles";
 import { observer } from "mobx-react-lite";
 import { Context } from "./index_mobx";
-import { check } from "./http/userApi";
+import { check } from "./http_mobx/userApi";
 
 // import {BrowserRouter} from "react-router-dom";
 //import {Spinner} from "react-bootstrap";

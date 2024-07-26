@@ -1,11 +1,5 @@
 import { $authHost, $host } from "./index";
-
-interface IDose {
-  year: string;
-  month: string;
-  day: string;
-  additionVodka: string;
-}
+import { IDose } from "../types/alcoTypes";
 
 export const addAlcoDose = async (dose: IDose) => {
   //POST http://localhost:7000/api/alco_calendar/add

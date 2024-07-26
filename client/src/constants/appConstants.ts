@@ -6,6 +6,12 @@ import {
 import { SALARY_INIT } from "./salaryConstants";
 import { INIT_ALCO_STATE } from "./alcoConstants";
 
+const INIT_USER: IUser = {
+  id: "",
+  email: "",
+  token: "",
+};
+
 export const INIT_APP_STATE = {
   currentLang: AppLanguages.UA,
   currentTheme: AppThemes.WHITE,
@@ -13,6 +19,7 @@ export const INIT_APP_STATE = {
   error: "",
   salary: SALARY_INIT,
   alcoData: INIT_ALCO_STATE,
+  user: INIT_USER,
 };
 
 export const APP_CONTENT = {
