@@ -28,11 +28,9 @@ yarn-error.log*
 /client/build
 /client/.pnp
 /client/.pnp.js
-
+/client/build
 
 /coverage
-
-/build
 
 /client/.DS_Store
 /client/.env.local
@@ -45,3 +43,4 @@ yarn-error.log*
 /client/yarn-error.log*
 
 /server/node_modules
+/server/build

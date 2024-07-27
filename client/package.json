@@ -2,7 +2,6 @@
   "name": "useful_calculators",
   "version": "0.3.6",
   "private": true,
-  "homepage": "https://mikromajor.github.io/useful_calculators/",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -66,5 +65,6 @@
     "@types/redux-saga": "^0.10.5",
     "babel-plugin-module-resolver": "^5.0.0"
   },
-  "type-check": "tsc -p tsconfig.json --pretty --noEmit && echo"
+  "type-check": "tsc -p tsconfig.json --pretty --noEmit && echo",
+  "proxy": "http://localhost:7000"
 }
