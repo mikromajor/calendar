@@ -1,33 +1,27 @@
 import React, { useState } from "react";
 import { AccountCircle } from "@mui/icons-material";
-import PasswordIcon from "@mui/icons-material/Password";
 import {
   TextField,
   Stack,
   InputAdornment,
-  Button,
+  IconButton,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
-import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../../store/hooks/redux";
+import { fetchUserRegistration } from "../../../store/reducer/http/userActions";
 
 export const Registration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleClickShowPassword = () =>
     setShowPassword((show) => !show);
@@ -41,6 +35,24 @@ export const Registration = () => {
   const { isLoading } = useAppSelector(
     (state) => state.appReducer
   );
+  const dispatch = useAppDispatch();
+
+  const handleRepeatPassword = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >
+  ) => {
+    const currentRepeated = e.target.value;
+    setRepeatPassword(currentRepeated);
+
+    password === currentRepeated
+      ? setPasswordError(false)
+      : setPasswordError(true);
+  };
+
+  const sendRequest = () => {
+    dispatch(fetchUserRegistration({ email, password }));
+  };
 
   return (
     <>
@@ -94,13 +106,16 @@ export const Registration = () => {
           id='outlined-basic'
           label='Repeat password'
           type={showPassword ? "text" : "password"}
-          helperText='Repeat your password again'
+          helperText={
+            passwordError
+              ? "Repeat your password again"
+              : "Wrong repeated password"
+          }
           variant='outlined'
+          error={passwordError}
           required
           value={repeatPassword}
-          onChange={(e) =>
-            setRepeatPassword(e.target.value)
-          }
+          onChange={handleRepeatPassword}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
@@ -124,6 +139,7 @@ export const Registration = () => {
           variant='contained'
           startIcon={<SendIcon />}
           loading={isLoading}
+          onClick={sendRequest}
         >
           Send
         </LoadingButton>
