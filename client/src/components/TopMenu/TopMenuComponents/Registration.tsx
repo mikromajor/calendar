@@ -5,6 +5,7 @@ import {
   Stack,
   InputAdornment,
   IconButton,
+  Button,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
@@ -51,6 +52,9 @@ export const Registration = () => {
   };
 
   const sendRequest = () => {
+    //TODO add email validation
+    //TODO add password validation
+    console.log("=>", { email, password });
     dispatch(fetchUserRegistration({ email, password }));
   };
 

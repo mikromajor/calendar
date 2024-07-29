@@ -3,12 +3,12 @@
   "version": "0.3.6",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
     "@fontsource/roboto": "^5.0.13",
     "@mui/icons-material": "^5.15.15",
     "@mui/lab": "^5.0.0-alpha.173",
-    "@mui/material": "^5.15.17",
+    "@mui/material": "^5.16.5",
     "@mui/styled-engine-sc": "^6.0.0-alpha.5",
     "@mui/x-date-pickers": "^7.3.2",
     "@reduxjs/toolkit": "^1.8.5",
@@ -68,5 +68,5 @@
     "babel-plugin-module-resolver": "^5.0.0"
   },
   "type-check": "tsc -p tsconfig.json --pretty --noEmit && echo",
-  "do not forget": "proxy : http://localhost:7000"
+  "proxy": "http://localhost:7000"
 }
