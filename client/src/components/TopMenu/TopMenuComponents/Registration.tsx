@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AccountCircle } from "@mui/icons-material";
 import {
   TextField,
@@ -15,7 +15,10 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "../../../store/hooks/redux";
-import { fetchUserRegistration } from "../../../store/reducer/http/userActions";
+import {
+  fetchUserRegistration,
+  cleanMessageWithDelay,
+} from "../../../store/reducer/http/userActions";
 
 export const Registration = () => {
   const [email, setEmail] = useState("");
@@ -57,7 +60,11 @@ export const Registration = () => {
     console.log("=>", { email, password });
     dispatch(fetchUserRegistration({ email, password }));
   };
-
+  useEffect(() => {
+    if (isError) {
+      dispatch(cleanMessageWithDelay());
+    }
+  }, [isError]);
   return (
     <>
       <Stack direction='column' spacing={2}>
@@ -87,6 +94,7 @@ export const Registration = () => {
           variant='outlined'
           required
           value={password}
+          error={isError}
           onChange={(e) => setPassword(e.target.value)}
           InputProps={{
             endAdornment: (

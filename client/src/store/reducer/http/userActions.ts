@@ -1,11 +1,21 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-
+import {
+  createAsyncThunk,
+  Dispatch,
+} from "@reduxjs/toolkit";
+import { appActions } from "../appReducer";
 import {
   IUser,
   EmailPassword,
 } from "../../../types/appTypes";
 import { $host, $authHost } from "./host";
 import { AxiosError, AxiosResponse } from "axios";
+
+export const cleanMessageWithDelay =
+  () => (dispatch: Dispatch) => {
+    setTimeout(() => {
+      dispatch(appActions.clearMessage());
+    }, 10000);
+  };
 
 export const fetchUserRegistration = createAsyncThunk(
   "user/fetchUserRegistration",
@@ -32,17 +42,21 @@ export const fetchUserRegistration = createAsyncThunk(
 
 export const fetchUserLogin = createAsyncThunk(
   "user/fetchUserLogin",
-  async (emailPassword: EmailPassword, thunkAPI) => {
+  async (
+    emailPassword: EmailPassword,
+    { rejectWithValue }
+  ) => {
     try {
       const response = await $host.post<IUser>(
         "api/user/login",
         emailPassword
       );
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(
-        "user/fetchUserLogin catch error"
-      );
+    } catch (error: any) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -56,10 +70,11 @@ export const fetchUserAuth = createAsyncThunk(
       );
       localStorage.setItem("token", response.data.token);
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(
-        "user/fetchUserAuth catch error"
-      );
+    } catch (error: any) {
+      if (!error.response) {
+        throw error;
+      }
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );

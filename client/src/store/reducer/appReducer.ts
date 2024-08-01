@@ -1,6 +1,7 @@
 import {
   createSlice,
   PayloadAction,
+  Dispatch,
 } from "@reduxjs/toolkit";
 import { INIT_APP_STATE } from "../../constants/appConstants";
 import {
@@ -35,7 +36,10 @@ export const appReducer = createSlice({
     ) => {
       state.currentTheme = action.payload;
     },
-    registrationSuccess: () => {},
+    clearMessage: (state) => {
+      state.message = "";
+      state.isError = false;
+    },
   },
   extraReducers: {
     //Registration
@@ -57,8 +61,9 @@ export const appReducer = createSlice({
       state,
       action: PayloadAction<IUser>
     ) => {
-      const message = action.payload.message;
-      message && (state.message = message);
+      const message = action.payload?.message;
+
+      state.message = message ? message : "";
       state.isLoading = false;
       state.isError = true;
     },
