@@ -33,7 +33,7 @@ export const Registration = () => {
     event.preventDefault();
   };
 
-  const { isLoading } = useAppSelector(
+  const { isLoading, isError, message } = useAppSelector(
     (state) => state.appReducer
   );
   const dispatch = useAppDispatch();
@@ -67,6 +67,8 @@ export const Registration = () => {
           variant='outlined'
           required
           value={email}
+          helperText={!!message ? message : ""}
+          error={isError}
           onChange={(e) => setEmail(e.target.value)}
           InputProps={{
             endAdornment: (

@@ -28,7 +28,7 @@ class UserController {
     if (candidate) {
       return next(
         ApiError.forbidden(
-          "A user with this email address or id already exists."
+          "A user with this email address already exists."
         )
       );
     }

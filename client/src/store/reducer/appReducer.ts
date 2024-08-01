@@ -13,6 +13,11 @@ import {
   fetchUserLogin,
   fetchUserRegistration,
 } from "./http/userActions";
+import { AxiosError } from "axios";
+
+interface RegAction extends IUser {
+  message: string;
+}
 
 export const appReducer = createSlice({
   name: "appState",
@@ -30,6 +35,7 @@ export const appReducer = createSlice({
     ) => {
       state.currentTheme = action.payload;
     },
+    registrationSuccess: () => {},
   },
   extraReducers: {
     //Registration
@@ -38,20 +44,25 @@ export const appReducer = createSlice({
     },
     [fetchUserRegistration.fulfilled.type]: (
       state,
-      action: PayloadAction<IUser>
+      action: PayloadAction<RegAction>
     ) => {
+      const { token, message } = action.payload;
       state.isLoading = false;
-      state.error = "";
-      state.user = action.payload;
+      state.isError = false;
+      state.user.token = token;
+      state.message = message;
     },
 
     [fetchUserRegistration.rejected.type]: (
       state,
-      action: PayloadAction<string>
+      action: PayloadAction<IUser>
     ) => {
+      const message = action.payload.message;
+      message && (state.message = message);
       state.isLoading = false;
-      state.error = action.payload;
+      state.isError = true;
     },
+
     //Login
     [fetchUserLogin.pending.type]: (state) => {
       state.isLoading = true;
@@ -61,16 +72,18 @@ export const appReducer = createSlice({
       action: PayloadAction<IUser>
     ) => {
       state.isLoading = false;
-      state.error = "";
+      state.isError = false;
       state.user = action.payload;
     },
 
     [fetchUserLogin.rejected.type]: (
       state,
-      action: PayloadAction<string>
+      action: PayloadAction<IUser>
     ) => {
       state.isLoading = false;
-      state.error = action.payload;
+      state.isError = true;
+      const message = action.payload.message;
+      message && (state.message = message);
     },
     //Auth
     [fetchUserAuth.pending.type]: (state) => {
@@ -81,7 +94,7 @@ export const appReducer = createSlice({
       action: PayloadAction<IUser>
     ) => {
       state.isLoading = false;
-      state.error = "";
+      state.isError = false;
       state.user = action.payload;
     },
 
@@ -90,7 +103,8 @@ export const appReducer = createSlice({
       action: PayloadAction<string>
     ) => {
       state.isLoading = false;
-      state.error = action.payload;
+      state.isError = true;
+      state.message = "Authentication refused";
     },
   },
 });

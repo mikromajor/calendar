@@ -11,8 +11,13 @@ export interface IUser {
   id: string;
   email: string;
   token: string;
+  message?: string;
 }
 
+export interface IUserResReject {
+  message: string;
+  status: string;
+}
 export interface EmailPassword {
   email: string;
   password: string;

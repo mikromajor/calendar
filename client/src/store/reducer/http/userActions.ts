@@ -5,6 +5,7 @@ import {
   EmailPassword,
 } from "../../../types/appTypes";
 import { $host, $authHost } from "./host";
+import { AxiosError, AxiosResponse } from "axios";
 
 export const fetchUserRegistration = createAsyncThunk(
   "user/fetchUserRegistration",
@@ -13,14 +14,18 @@ export const fetchUserRegistration = createAsyncThunk(
     { rejectWithValue, dispatch, getState }
   ) => {
     try {
-      const { data } = await $host.post<IUser>(
+      const res = await $host.post<IUser>(
         "api/user/registration",
         emailPassword
       );
-      localStorage.setItem("token", data.token);
-      return data;
-    } catch (e) {
-      return rejectWithValue(e);
+      const token = res.data?.token;
+      !!token && localStorage.setItem("token", token);
+      return res.data;
+    } catch (error: any) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -35,7 +40,9 @@ export const fetchUserLogin = createAsyncThunk(
       );
       return response.data;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e);
+      return thunkAPI.rejectWithValue(
+        "user/fetchUserLogin catch error"
+      );
     }
   }
 );
@@ -50,7 +57,9 @@ export const fetchUserAuth = createAsyncThunk(
       localStorage.setItem("token", response.data.token);
       return response.data;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e);
+      return thunkAPI.rejectWithValue(
+        "user/fetchUserAuth catch error"
+      );
     }
   }
 );
