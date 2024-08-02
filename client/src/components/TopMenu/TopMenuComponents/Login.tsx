@@ -1,8 +1,4 @@
-import React, {
-  ReactNode,
-  useState,
-  useEffect,
-} from "react";
+import React, { useState, useEffect } from "react";
 import { AccountCircle } from "@mui/icons-material";
 import {
   TextField,
@@ -20,16 +16,16 @@ import {
   useAppDispatch,
 } from "../../../store/hooks/redux";
 import {
-  fetchUserRegistration,
   cleanMessageWithDelay,
+  fetchUserLogin,
 } from "../../../store/reducer/http/userActions";
 
-export const Registration = () => {
+export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
+  //TODO add email validation
+  //TODO add password validation
 
   const handleClickShowPassword = () =>
     setShowPassword((show) => !show);
@@ -45,23 +41,9 @@ export const Registration = () => {
   );
   const dispatch = useAppDispatch();
 
-  const handleRepeatPassword = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >
-  ) => {
-    const currentRepeated = e.target.value;
-    setRepeatPassword(currentRepeated);
-    setPasswordError(
-      password === currentRepeated ? true : false
-    );
-  };
-
-  const sendRequest = () => {
-    //TODO add email validation
-    //TODO add password validation
+  const sendLoginRequest = () => {
     console.log("=>", { email, password });
-    dispatch(fetchUserRegistration({ email, password }));
+    dispatch(fetchUserLogin({ email, password }));
   };
   if (isError) {
     dispatch(cleanMessageWithDelay());
@@ -121,45 +103,11 @@ export const Registration = () => {
             ),
           }}
         />
-
-        <TextField
-          id='outlined-basic'
-          label='Repeat password'
-          type={showPassword ? "text" : "password"}
-          helperText={
-            passwordError
-              ? "Repeat your password again"
-              : "Wrong repeated password"
-          }
-          variant='outlined'
-          error={passwordError}
-          required
-          value={repeatPassword}
-          onChange={handleRepeatPassword}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position='end'>
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge='end'
-                >
-                  {showPassword ? (
-                    <VisibilityOff />
-                  ) : (
-                    <Visibility />
-                  )}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
         <LoadingButton
           variant='contained'
           startIcon={<SendIcon />}
           loading={isLoading}
-          onClick={sendRequest}
+          onClick={sendLoginRequest}
         >
           Send
         </LoadingButton>

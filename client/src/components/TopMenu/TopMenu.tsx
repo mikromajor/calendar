@@ -5,7 +5,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { APP_CONTENT } from "../../constants/appConstants";
 import { useAppSelector } from "../../store/hooks/redux";
 import { SelectLanguage, SelectTheme } from "../.";
-import { Registration } from "./TopMenuComponents/Registration";
 import { UserAuthLinks } from "./TopMenuComponents/UserAuthLinks";
 interface TopMenuPops {
   setSwitchCalc: React.Dispatch<
@@ -92,8 +91,6 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
         <MenuItem>
           <UserAuthLinks />
         </MenuItem>
-
-        <Registration />
       </Menu>
     </div>
   );
