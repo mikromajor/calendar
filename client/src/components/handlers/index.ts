@@ -1,2 +1,2 @@
 export { getDateMonthYear } from "./alcoComponentsHandlers";
-export { passwordWalidator } from "./appComponentHandlers/passwordWalidator";
+export { passwordValidator } from "./appComponentHandlers/passwordValidator";

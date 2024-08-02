@@ -19,7 +19,7 @@ import {
   cleanMessageWithDelay,
   fetchUserLogin,
 } from "../../../store/reducer/http/userActions";
-import { passwordWalidator } from "../../handlers";
+import { passwordValidator } from "../../handlers";
 
 export const Login = () => {
   const [email, setEmail] = useState("");

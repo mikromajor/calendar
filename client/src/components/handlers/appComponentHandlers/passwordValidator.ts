@@ -1,4 +1,4 @@
-export const passwordWalidator = (
+export const passwordValidator = (
   passwordValue: string
 ) => {
   let passwordMessage = "";
