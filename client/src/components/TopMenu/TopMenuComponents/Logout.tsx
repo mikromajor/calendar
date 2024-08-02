@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import SendIcon from "@mui/icons-material/Send";
 
 interface LogoutProps {
   setOpen: React.Dispatch<"" | "reg" | "login" | "logout">;
