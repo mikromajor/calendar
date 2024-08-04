@@ -6,12 +6,14 @@ export interface IUpdatePassword {
   passwordMessage?: string;
   showPassword?: boolean;
   passwordError?: boolean;
+  repeatPasswordMessage?: string;
 }
 
 const INIT_PASSWORD = {
   password: "",
   repeatPassword: "",
   passwordMessage: "",
+  repeatPasswordMessage: "",
   showPassword: false,
   passwordError: false,
 };
