@@ -18,7 +18,7 @@ const INIT_PASSWORD = {
   passwordError: false,
 };
 
-export default function usePassword() {
+export function usePassword() {
   const [passwordState, setPasswordState] =
     useState(INIT_PASSWORD);
 

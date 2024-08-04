@@ -1,15 +1,26 @@
 import React from "react";
-import { AccountCircle } from "@mui/icons-material";
 import {
   TextField,
   Stack,
   InputAdornment,
   IconButton,
+  Button,
 } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
+
+import {
+  AccountCircle,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
+import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
+import Snackbar, {
+  SnackbarCloseReason,
+} from "@mui/material/Snackbar";
+
+import { LoadingButton } from "@mui/lab";
+
 import {
   useAppSelector,
   useAppDispatch,
@@ -18,12 +29,8 @@ import {
   fetchUserRegistration,
   cleanMessageWithDelay,
 } from "../../../store/reducer/http/userActions";
-import {
-  passwordValidator,
-  emailValidator,
-} from "./handlers";
-import usePassword from "./hooks/usePassword";
-import useEmail from "./hooks/useEmail";
+import { passwordValidator } from "./handlers";
+import { usePassword, useEmail } from "./hooks";
 
 export const Registration = () => {
   //TODO add window for server messages
@@ -57,21 +64,6 @@ export const Registration = () => {
   //   event.preventDefault();
   //   console.log("handleMouseDownPassword fire");
   // };
-
-  const handleEmail = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >
-  ) => {
-    const emailValue = e.target.value;
-    const isEmailValid = emailValidator(emailValue);
-    updateEmailState({
-      email: emailValue,
-      emailMessage: isEmailValid ? isEmailValid : "",
-      emailError: !!isEmailValid,
-    });
-  };
-
   const setPassword = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement
@@ -106,19 +98,50 @@ export const Registration = () => {
     const isPasswordMachining = password === repPassword;
     updatePasswordState({
       repeatPassword: repPassword,
+      passwordError: !isPasswordMachining,
       repeatPasswordMessage: !repPassword.length
         ? "Repeat password"
         : isPasswordMachining
         ? "All right"
         : "Error matching passwords",
-      passwordError: !isPasswordMachining,
     });
   };
 
   const sendRequest = () => {
-    console.log("=>", { email, password });
     dispatch(fetchUserRegistration({ email, password }));
   };
+  //snack
+  const handleClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: SnackbarCloseReason
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    //TODO
+    //dispatch(toggleServerError())
+    // setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button
+        color='error'
+        size='small'
+        onClick={handleClose}
+      >
+        {message}
+      </Button>
+      <IconButton
+        size='small'
+        aria-label='close'
+        color='inherit'
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize='small' />
+      </IconButton>
+    </React.Fragment>
+  );
 
   return (
     <>
@@ -137,7 +160,7 @@ export const Registration = () => {
               : ""
           }
           error={isError || emailError}
-          onChange={handleEmail}
+          onChange={updateEmailState}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
@@ -216,6 +239,13 @@ export const Registration = () => {
           Send
         </LoadingButton>
       </Stack>
+      <Snackbar
+        open={!!message}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message='Note archived'
+        action={action}
+      />
     </>
   );
 };

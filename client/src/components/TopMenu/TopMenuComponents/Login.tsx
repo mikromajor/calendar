@@ -23,8 +23,7 @@ import {
   passwordValidator,
   emailValidator,
 } from "./handlers";
-import usePassword from "./hooks/usePassword";
-import useEmail from "./hooks/useEmail";
+import { usePassword, useEmail } from "./hooks";
 
 export const Login = () => {
   //TODO add window for server messages
@@ -56,20 +55,6 @@ export const Login = () => {
   //   event.preventDefault();
   //   console.log("handleMouseDownPassword fire");
   // };
-
-  const handleEmail = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >
-  ) => {
-    const emailValue = e.target.value;
-    const isEmailValid = emailValidator(emailValue);
-    updateEmailState({
-      email: emailValue,
-      emailMessage: isEmailValid ? isEmailValid : "",
-      emailError: !!isEmailValid,
-    });
-  };
 
   const setPassword = (
     e: React.ChangeEvent<
@@ -110,7 +95,7 @@ export const Login = () => {
               : ""
           }
           error={isError || emailError}
-          onChange={handleEmail}
+          onChange={updateEmailState}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>

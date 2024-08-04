@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { emailValidator } from "../handlers";
 
 interface IUpdateEmail {
   email?: string;
@@ -12,11 +13,21 @@ const INIT_EMAIL = {
   emailMessage: "Please write your email",
 };
 
-export default function useEmail() {
+export function useEmail() {
   const [emailState, setEmailState] = useState(INIT_EMAIL);
 
-  const updateEmailState = (updateEmail: IUpdateEmail) => {
-    setEmailState({ ...emailState, ...updateEmail });
+  const updateEmailState = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >
+  ) => {
+    const emailValue = e.currentTarget.value;
+    const isEmailValid = emailValidator(emailValue);
+    setEmailState({
+      email: emailValue,
+      emailMessage: isEmailValid ? isEmailValid : "",
+      emailError: !!isEmailValid,
+    });
   };
   return { emailState, updateEmailState };
 }
