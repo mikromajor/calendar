@@ -19,41 +19,80 @@ import {
   cleanMessageWithDelay,
   fetchUserLogin,
 } from "../../../store/reducer/http/userActions";
-import { passwordValidator } from "./handlers";
+import {
+  passwordValidator,
+  emailValidator,
+} from "./handlers";
+import usePassword from "./hooks/usePassword";
+import useEmail from "./hooks/useEmail";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  //TODO add email validation
-  //TODO add password validation
-
-  const handleClickShowPassword = () =>
-    setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
-
+  //TODO add window for server messages
   const { isLoading, isError, message } = useAppSelector(
     (state) => state.appReducer
   );
   const dispatch = useAppDispatch();
 
-  const sendLoginRequest = () => {
+  const { emailState, updateEmailState } = useEmail();
+  const { passwordState, updatePasswordState } =
+    usePassword();
+  const { email, emailError, emailMessage } = emailState;
+  const {
+    password,
+    passwordError,
+    passwordMessage,
+    showPassword,
+  } = passwordState;
+
+  const handleClickShowPassword = () => {
+    updatePasswordState({
+      showPassword: !showPassword,
+    });
+  };
+
+  // const handleMouseDownPassword = (
+  //   event: React.MouseEvent<HTMLButtonElement>
+  // ) => {
+  //   event.preventDefault();
+  //   console.log("handleMouseDownPassword fire");
+  // };
+
+  const handleEmail = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >
+  ) => {
+    const emailValue = e.target.value;
+    const isEmailValid = emailValidator(emailValue);
+    updateEmailState({
+      email: emailValue,
+      emailMessage: isEmailValid ? isEmailValid : "",
+      emailError: !!isEmailValid,
+    });
+  };
+
+  const setPassword = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >
+  ) => {
+    const passwordVal = e.target.value;
+    const validMessage = passwordValidator(passwordVal);
+
+    updatePasswordState({
+      password: passwordVal,
+      passwordError: !!validMessage ? true : false,
+      passwordMessage: validMessage
+        ? validMessage
+        : "Password valid",
+    });
+    console.log("passwordState => ", passwordState);
+  };
+
+  const sendRequest = () => {
     console.log("=>", { email, password });
     dispatch(fetchUserLogin({ email, password }));
   };
-  if (isError) {
-    dispatch(cleanMessageWithDelay());
-  }
-  // useEffect(() => {
-  //   if (isError) {
-  //     dispatch(cleanMessageWithDelay());
-  //   }
-  // }, [isError]);
   return (
     <>
       <Stack direction='column' spacing={2}>
@@ -63,9 +102,15 @@ export const Login = () => {
           variant='outlined'
           required
           value={email}
-          helperText={!!message ? message : ""}
-          error={isError}
-          onChange={(e) => setEmail(e.target.value)}
+          helperText={
+            !!message
+              ? message
+              : emailMessage
+              ? emailMessage
+              : ""
+          }
+          error={isError || emailError}
+          onChange={handleEmail}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
@@ -79,19 +124,19 @@ export const Login = () => {
           id='outlined-basic'
           label='Password'
           type={showPassword ? "text" : "password"}
-          helperText='Remember your password'
+          helperText={passwordMessage}
           variant='outlined'
           required
           value={password}
-          error={isError}
-          onChange={(e) => setPassword(e.target.value)}
+          error={passwordError}
+          onChange={setPassword}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
                 <IconButton
                   aria-label='toggle password visibility'
                   onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
+                  // onMouseDown={handleMouseDownPassword}
                   edge='end'
                 >
                   {showPassword ? (
@@ -104,11 +149,13 @@ export const Login = () => {
             ),
           }}
         />
+
         <LoadingButton
           variant='contained'
           startIcon={<SendIcon />}
           loading={isLoading}
-          onClick={sendLoginRequest}
+          disabled={emailError || passwordError || !email}
+          onClick={sendRequest}
         >
           Send
         </LoadingButton>

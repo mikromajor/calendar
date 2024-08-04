@@ -26,6 +26,7 @@ import usePassword from "./hooks/usePassword";
 import useEmail from "./hooks/useEmail";
 
 export const Registration = () => {
+  //TODO add window for server messages
   const { isLoading, isError, message } = useAppSelector(
     (state) => state.appReducer
   );
@@ -71,11 +72,6 @@ export const Registration = () => {
     });
   };
 
-  const sendRequest = () => {
-    console.log("=>", { email, password });
-    dispatch(fetchUserRegistration({ email, password }));
-  };
-
   const setPassword = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement
@@ -117,6 +113,11 @@ export const Registration = () => {
         : "Error matching passwords",
       passwordError: !isPasswordMachining,
     });
+  };
+
+  const sendRequest = () => {
+    console.log("=>", { email, password });
+    dispatch(fetchUserRegistration({ email, password }));
   };
 
   return (
