@@ -19,16 +19,23 @@ import {
   fetchUserRegistration,
   cleanMessageWithDelay,
 } from "../../../store/reducer/http/userActions";
-import { passwordValidator } from "./handlers";
-import usePassword, {
-  IUpdatePassword,
-} from "./hooks/usePassword";
+import {
+  passwordValidator,
+  emailValidator,
+} from "./handlers";
+import usePassword from "./hooks/usePassword";
+import useEmail from "./hooks/useEmail";
 
 export const Registration = () => {
-  const [email, setEmail] = useState("");
+  const { isLoading, isError, message } = useAppSelector(
+    (state) => state.appReducer
+  );
+  const dispatch = useAppDispatch();
 
+  const { emailState, updateEmailState } = useEmail();
   const { passwordState, updatePasswordState } =
     usePassword();
+  const { email, emailError, emailMessage } = emailState;
   const {
     password,
     passwordError,
@@ -51,10 +58,19 @@ export const Registration = () => {
   //   console.log("handleMouseDownPassword fire");
   // };
 
-  const { isLoading, isError, message } = useAppSelector(
-    (state) => state.appReducer
-  );
-  const dispatch = useAppDispatch();
+  const handleEmail = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >
+  ) => {
+    const emailValue = e.target.value;
+    const isEmailValid = emailValidator(emailValue);
+    updateEmailState({
+      email: emailValue,
+      emailMessage: isEmailValid ? isEmailValid : "",
+      emailError: !!isEmailValid,
+    });
+  };
 
   const sendRequest = () => {
     //TODO add email validation
@@ -106,9 +122,15 @@ export const Registration = () => {
           variant='outlined'
           required
           value={email}
-          helperText={!!message ? message : ""}
-          error={isError}
-          onChange={(e) => setEmail(e.target.value)}
+          helperText={
+            !!message
+              ? message
+              : emailMessage
+              ? emailMessage
+              : ""
+          }
+          error={isError || emailError}
+          onChange={handleEmail}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
