@@ -17,16 +17,16 @@ export const passwordValidator = (
 
     if (!passwordValue.match(regexUpperCase)) {
       passwordMessage +=
-        " Password must be this at least one capital letter.";
+        " The password must have at least one capital letter.";
     } else if (!passwordValue.match(regexLowerCase)) {
       passwordMessage +=
-        " Password must be this at least one small letter.";
+        " The password must have at least one small letter.";
     } else if (!passwordValue.match(regexDigit)) {
       passwordMessage +=
-        " Password must be this at least one digit.";
+        " The password must have at least one digit.";
     } else if (!passwordValue.match(regexSpecSymbol)) {
       passwordMessage +=
-        " Password must be this at least one special symbol.";
+        " The password must have at least one special symbol (!,$,%).";
     }
   }
   return passwordMessage;

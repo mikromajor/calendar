@@ -1,8 +1,4 @@
-import React, {
-  ReactNode,
-  useState,
-  useEffect,
-} from "react";
+import React, { useState, useEffect } from "react";
 import { AccountCircle } from "@mui/icons-material";
 import {
   TextField,
@@ -23,6 +19,7 @@ import {
   fetchUserRegistration,
   cleanMessageWithDelay,
 } from "../../../store/reducer/http/userActions";
+import { passwordValidator } from "./handlers/passwordValidator";
 
 export const Registration = () => {
   const [email, setEmail] = useState("");
@@ -30,6 +27,8 @@ export const Registration = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [passwordMessage, setPasswordMessage] =
+    useState("");
 
   const handleClickShowPassword = () =>
     setShowPassword((show) => !show);
@@ -38,6 +37,7 @@ export const Registration = () => {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
+    console.log("handleMouseDownPassword fire");
   };
 
   const { isLoading, isError, message } = useAppSelector(
@@ -58,10 +58,17 @@ export const Registration = () => {
   };
 
   const sendRequest = () => {
+    const validMessage = passwordValidator(password);
+    setPasswordError(validMessage ? true : false);
+    setPasswordMessage(
+      validMessage ? validMessage : "Password valid"
+    );
+
     //TODO add email validation
     //TODO add password validation
     console.log("=>", { email, password });
-    dispatch(fetchUserRegistration({ email, password }));
+    !validMessage &&
+      dispatch(fetchUserRegistration({ email, password }));
   };
   if (isError) {
     dispatch(cleanMessageWithDelay());
