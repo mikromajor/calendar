@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { AccountCircle } from "@mui/icons-material";
 import {
   TextField,
   Stack,
   InputAdornment,
   IconButton,
-  Button,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
@@ -73,9 +72,7 @@ export const Registration = () => {
   };
 
   const sendRequest = () => {
-    //TODO add email validation
     console.log("=>", { email, password });
-
     dispatch(fetchUserRegistration({ email, password }));
   };
 
@@ -86,13 +83,22 @@ export const Registration = () => {
   ) => {
     const passwordVal = e.target.value;
     const validMessage = passwordValidator(passwordVal);
+    const isPasswordMachining =
+      passwordVal === repeatPassword;
     updatePasswordState({
       password: passwordVal,
-      passwordError: validMessage ? true : false,
+      passwordError:
+        !!validMessage && !isPasswordMachining
+          ? true
+          : false,
       passwordMessage: validMessage
         ? validMessage
         : "Password valid",
+      repeatPasswordMessage: isPasswordMachining
+        ? ""
+        : "Passwords not equals",
     });
+    console.log("passwordState => ", passwordState);
   };
 
   const setRepeatPassword = (
@@ -101,15 +107,15 @@ export const Registration = () => {
     >
   ) => {
     const repPassword = e.target.value;
-    const isPasswordMacing = password === repPassword;
+    const isPasswordMachining = password === repPassword;
     updatePasswordState({
       repeatPassword: repPassword,
       repeatPasswordMessage: !repPassword.length
         ? "Repeat password"
-        : isPasswordMacing
+        : isPasswordMachining
         ? "All right"
         : "Error matching passwords",
-      passwordError: !isPasswordMacing,
+      passwordError: !isPasswordMachining,
     });
   };
 
@@ -203,6 +209,7 @@ export const Registration = () => {
           variant='contained'
           startIcon={<SendIcon />}
           loading={isLoading}
+          disabled={emailError || passwordError || !email}
           onClick={sendRequest}
         >
           Send
