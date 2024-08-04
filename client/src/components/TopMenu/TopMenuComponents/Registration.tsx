@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Stack,
@@ -37,6 +37,13 @@ export const Registration = () => {
   const { isLoading, isError, message } = useAppSelector(
     (state) => state.appReducer
   );
+  const [openSnack, setOpenSnack] = useState(false);
+  useEffect(() => {
+    if (message) {
+      setOpenSnack(true);
+    }
+  }, [message, isError]);
+
   const dispatch = useAppDispatch();
 
   const { emailState, updateEmailState } = useEmail();
@@ -118,15 +125,13 @@ export const Registration = () => {
     if (reason === "clickaway") {
       return;
     }
-    //TODO
-    //dispatch(toggleServerError())
-    // setOpen(false);
+    setOpenSnack(false);
   };
-
+  // TODO create single component "Snack" and give him props
   const action = (
     <React.Fragment>
       <Button
-        color='error'
+        color={isError ? "error" : "success"}
         size='small'
         onClick={handleClose}
       >
@@ -240,10 +245,10 @@ export const Registration = () => {
         </LoadingButton>
       </Stack>
       <Snackbar
-        open={!!message}
+        open={openSnack}
         autoHideDuration={6000}
         onClose={handleClose}
-        message='Note archived'
+        message='Response from server:'
         action={action}
       />
     </>
