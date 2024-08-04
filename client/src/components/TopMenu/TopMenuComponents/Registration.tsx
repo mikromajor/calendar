@@ -19,19 +19,36 @@ import {
   fetchUserRegistration,
   cleanMessageWithDelay,
 } from "../../../store/reducer/http/userActions";
-import { passwordValidator } from "./handlers/passwordValidator";
+import { passwordValidator } from "./handlers";
+import usePassword, {
+  IUpdatePassword,
+} from "./hooks/usePassword";
 
 export const Registration = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordMessage, setPasswordMessage] =
-    useState("");
+  // const [password, setPassword] = useState("");
+  // const [repeatPassword, setRepeatPassword] = useState("");
+  // const [showPassword, setShowPassword] = useState(false);
+  // const [passwordError, setPasswordError] = useState(false);
+  // const [passwordMessage, setPasswordMessage] =
+  //   useState("");
 
-  const handleClickShowPassword = () =>
-    setShowPassword((show) => !show);
+  const { passwordState, updatePasswordState } =
+    usePassword();
+  const {
+    password,
+    passwordError,
+    passwordMessage,
+    repeatPassword,
+    showPassword,
+  } = passwordState;
+
+  const handleClickShowPassword = () => {
+    updatePasswordState({
+      showPassword: !showPassword,
+    });
+    //  setShowPassword((show) => !show);
+  };
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -51,18 +68,29 @@ export const Registration = () => {
     >
   ) => {
     const currentRepeated = e.target.value;
-    setRepeatPassword(currentRepeated);
-    setPasswordError(
-      password === currentRepeated ? true : false
-    );
+    updatePasswordState({
+      repeatPassword: currentRepeated,
+
+      passwordError: currentRepeated ? true : false,
+    });
+    // setRepeatPassword(currentRepeated);
+    // setPasswordError(
+    //   password === currentRepeated ? true : false
+    // );
   };
 
   const sendRequest = () => {
     const validMessage = passwordValidator(password);
-    setPasswordError(validMessage ? true : false);
-    setPasswordMessage(
-      validMessage ? validMessage : "Password valid"
-    );
+    updatePasswordState({
+      passwordError: validMessage ? true : false,
+      passwordMessage: validMessage
+        ? validMessage
+        : "Password valid",
+    });
+    // setPasswordError(validMessage ? true : false);
+    // setPasswordMessage(
+    //   validMessage ? validMessage : "Password valid"
+    // );
 
     //TODO add email validation
     //TODO add password validation
@@ -78,6 +106,21 @@ export const Registration = () => {
   //     dispatch(cleanMessageWithDelay());
   //   }
   // }, [isError]);
+  const setPassword = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >
+  ) => {
+    updatePasswordState({ password: e.target.value });
+  };
+  const setRepeatPassword = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >
+  ) => {
+    updatePasswordState({ repeatPassword: e.target.value });
+  };
+
   return (
     <>
       <Stack direction='column' spacing={2}>
@@ -89,7 +132,7 @@ export const Registration = () => {
           value={email}
           helperText={!!message ? message : ""}
           error={isError}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={setPassword}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
@@ -103,12 +146,16 @@ export const Registration = () => {
           id='outlined-basic'
           label='Password'
           type={showPassword ? "text" : "password"}
-          helperText='Remember your password'
+          helperText={
+            passwordMessage
+              ? passwordMessage
+              : "Don't show your password"
+          }
           variant='outlined'
           required
           value={password}
-          error={isError}
-          onChange={(e) => setPassword(e.target.value)}
+          error={passwordError}
+          onChange={setRepeatPassword}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
