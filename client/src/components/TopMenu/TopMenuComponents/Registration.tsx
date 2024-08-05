@@ -196,7 +196,13 @@ export const Registration = () => {
           variant='contained'
           startIcon={<SendIcon />}
           loading={isLoading}
-          disabled={emailError || passwordError || !email}
+          disabled={
+            emailError ||
+            passwordError ||
+            !email ||
+            !password ||
+            !repeatPassword
+          }
           onClick={sendRequest}
         >
           Send

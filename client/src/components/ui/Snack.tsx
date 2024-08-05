@@ -55,7 +55,7 @@ export default function Snack({
     <div>
       <Snackbar
         open={open}
-        autoHideDuration={6000}
+        autoHideDuration={10000}
         onClose={handleClose}
         message='Response from server:'
         action={action}

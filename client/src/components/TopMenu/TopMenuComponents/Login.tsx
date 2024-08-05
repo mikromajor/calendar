@@ -86,14 +86,8 @@ export const Login = () => {
           variant='outlined'
           required
           value={email}
-          helperText={
-            !!message
-              ? message
-              : emailMessage
-              ? emailMessage
-              : ""
-          }
-          error={isError || emailError}
+          helperText={emailMessage ? emailMessage : ""}
+          error={emailError}
           onChange={updateEmailState}
           InputProps={{
             endAdornment: (
@@ -138,7 +132,12 @@ export const Login = () => {
           variant='contained'
           startIcon={<SendIcon />}
           loading={isLoading}
-          disabled={emailError || passwordError || !email}
+          disabled={
+            emailError ||
+            passwordError ||
+            !email ||
+            !password
+          }
           onClick={sendRequest}
         >
           Send
