@@ -78,12 +78,10 @@ export const Registration = () => {
     updatePasswordState({
       password: passwordVal,
       passwordError:
-        !!validMessage && !isPasswordMachining
+        !!validMessage || !isPasswordMachining
           ? true
           : false,
-      passwordMessage: validMessage
-        ? validMessage
-        : "Password valid",
+      passwordMessage: validMessage ? validMessage : "",
       repeatPasswordMessage: isPasswordMachining
         ? ""
         : "Passwords not equals",
@@ -99,11 +97,12 @@ export const Registration = () => {
     const isPasswordMachining = password === repPassword;
     updatePasswordState({
       repeatPassword: repPassword,
-      passwordError: !isPasswordMachining,
+      passwordError:
+        !isPasswordMachining || !!passwordMessage,
       repeatPasswordMessage: !repPassword.length
         ? "Repeat password"
         : isPasswordMachining
-        ? "All right"
+        ? ""
         : "Error matching passwords",
     });
   };
@@ -122,7 +121,7 @@ export const Registration = () => {
           required
           value={email}
           helperText={emailMessage ? emailMessage : ""}
-          error={isError || emailError}
+          error={emailError}
           onChange={updateEmailState}
           InputProps={{
             endAdornment: (
