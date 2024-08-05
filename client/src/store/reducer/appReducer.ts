@@ -16,7 +16,7 @@ import {
 } from "./http/userActions";
 import { AxiosError } from "axios";
 
-interface RegAction extends IUser {
+interface ServerResponse extends IUser {
   message: string;
 }
 
@@ -48,7 +48,7 @@ export const appReducer = createSlice({
     },
     [fetchUserRegistration.fulfilled.type]: (
       state,
-      action: PayloadAction<RegAction>
+      action: PayloadAction<ServerResponse>
     ) => {
       const { token, message } = action.payload;
       state.isLoading = false;
@@ -59,7 +59,7 @@ export const appReducer = createSlice({
 
     [fetchUserRegistration.rejected.type]: (
       state,
-      action: PayloadAction<IUser>
+      action: PayloadAction<ServerResponse>
     ) => {
       const message = action.payload?.message;
 
@@ -74,16 +74,19 @@ export const appReducer = createSlice({
     },
     [fetchUserLogin.fulfilled.type]: (
       state,
-      action: PayloadAction<IUser>
+      action: PayloadAction<ServerResponse>
     ) => {
+      const { token, message, email } = action.payload;
       state.isLoading = false;
       state.isError = false;
-      state.user = action.payload;
+      state.user.token = token;
+      state.user.email = email;
+      state.message = message;
     },
 
     [fetchUserLogin.rejected.type]: (
       state,
-      action: PayloadAction<IUser>
+      action: PayloadAction<ServerResponse>
     ) => {
       state.isLoading = false;
       state.isError = true;

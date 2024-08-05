@@ -68,13 +68,17 @@ class UserController {
       return next(ApiError.forbidden("Invalid password"));
     }
     const token = generateJwt(user.id, user.email);
-    return res.json({ token });
+    return res.json({
+      token,
+      email,
+      message: "Successful login",
+    });
   }
 
   //GET http://localhost:7000/api/user/auth
   async check(req, res, next) {
     const token = generateJwt(req.user.id, req.user.email);
-    return res.json({ token });
+    return res.json({ token, message: "Login successful" });
   }
 }
 
