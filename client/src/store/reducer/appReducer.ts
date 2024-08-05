@@ -1,7 +1,6 @@
 import {
   createSlice,
   PayloadAction,
-  Dispatch,
 } from "@reduxjs/toolkit";
 import { INIT_APP_STATE } from "../../constants/appConstants";
 import {
@@ -9,6 +8,8 @@ import {
   AppThemes,
   IUser,
 } from "../../types/appTypes";
+import { YearInfo } from "../../types/alcoTypes";
+import { SalaryInit } from "../../types/salaryTypes";
 import {
   fetchUserAuth,
   fetchUserLogin,
@@ -18,6 +19,8 @@ import { AxiosError } from "axios";
 
 interface ServerResponse extends IUser {
   message: string;
+  alcoYear: YearInfo;
+  salaries: SalaryInit[];
 }
 
 export const appReducer = createSlice({
@@ -50,11 +53,15 @@ export const appReducer = createSlice({
       state,
       action: PayloadAction<ServerResponse>
     ) => {
-      const { token, message } = action.payload;
+      const { token, message, alcoYear, salaries } =
+        action.payload;
       state.isLoading = false;
       state.isError = false;
       state.user.token = token;
       state.message = message;
+      //TODO
+      // state.salary = salaries
+      // state.alcoData.yearData=alcoYear
     },
 
     [fetchUserRegistration.rejected.type]: (
@@ -106,10 +113,7 @@ export const appReducer = createSlice({
       state.user = action.payload;
     },
 
-    [fetchUserAuth.rejected.type]: (
-      state,
-      action: PayloadAction<string>
-    ) => {
+    [fetchUserAuth.rejected.type]: (state) => {
       state.isLoading = false;
       state.isError = true;
       state.message = "Authentication refused";

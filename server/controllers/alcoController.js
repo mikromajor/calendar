@@ -3,12 +3,18 @@ const {
   AlcoMonth,
   AlcoDay,
 } = require("../models/models");
+const {
+  getDateMonthYear,
+} = require("../utils/getDateMonthYear");
 const ApiError = require("../error/ApiError");
 
 //create response models for front-end equal INIT_YEAR
 // or error {status: number, message:string}
 const createResponseModel = async (year, userId) => {
   try {
+    const [currentDay, currentMonth] = getDateMonthYear(
+      new Date()
+    );
     const alcoYear = await AlcoYear.findOne({
       where: { id: year, userId },
     });
@@ -21,14 +27,14 @@ const createResponseModel = async (year, userId) => {
       where: { yearId: year, userId },
     });
 
-    const YEAR = {
+    const yearData = {
       ...alcoYear.dataValues,
       months: [],
     };
 
     alcoMonths.forEach((m) => {
       const [yearIndex, monthIndex] = m.id.split("_");
-      YEAR.months[monthIndex] = {
+      yearData.months[monthIndex] = {
         ...m.dataValues,
         days: [],
       };
@@ -37,11 +43,19 @@ const createResponseModel = async (year, userId) => {
     alcoDays.forEach((d) => {
       const [yearIndex, monthIndex, dayIndex] =
         d.id.split("_");
-      YEAR.months[monthIndex].days[dayIndex] = {
+      yearData.months[monthIndex].days[dayIndex] = {
         ...d.dataValues,
       };
     });
-    return YEAR;
+
+    return {
+      currentDate: {
+        day: currentDay,
+        month: currentMonth,
+        year,
+      },
+      yearData: yearData,
+    };
   } catch (error) {
     return ApiError.internal(
       "Response model was not create"
