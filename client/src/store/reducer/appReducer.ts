@@ -8,8 +8,7 @@ import {
   AppThemes,
   IUser,
 } from "../../types/appTypes";
-import { YearInfo } from "../../types/alcoTypes";
-import { SalaryInit } from "../../types/salaryTypes";
+import { AlcoState } from "../../types/alcoTypes";
 import {
   fetchUserAuth,
   fetchUserLogin,
@@ -19,8 +18,7 @@ import { AxiosError } from "axios";
 
 interface ServerResponse extends IUser {
   message: string;
-  alcoYear: YearInfo;
-  salaries: SalaryInit[];
+  alcoYear: AlcoState;
 }
 
 export const appReducer = createSlice({
@@ -53,15 +51,11 @@ export const appReducer = createSlice({
       state,
       action: PayloadAction<ServerResponse>
     ) => {
-      const { token, message, alcoYear, salaries } =
-        action.payload;
+      const { token, message } = action.payload;
       state.isLoading = false;
       state.isError = false;
       state.user.token = token;
       state.message = message;
-      //TODO
-      // state.salary = salaries
-      // state.alcoData.yearData=alcoYear
     },
 
     [fetchUserRegistration.rejected.type]: (
@@ -95,10 +89,11 @@ export const appReducer = createSlice({
       state,
       action: PayloadAction<ServerResponse>
     ) => {
+      const message = action.payload.message;
+
       state.isLoading = false;
       state.isError = true;
-      const message = action.payload.message;
-      message && (state.message = message);
+      state.message = message ? message : "";
     },
     //Auth
     [fetchUserAuth.pending.type]: (state) => {

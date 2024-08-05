@@ -145,11 +145,14 @@ class AlcoController {
         req.query.year,
         req.user.id
       );
-      return res.json(response_model);
+      return res.json({ response_model });
     } catch (error) {
-      return ApiError.badRequest(
-        "Information not found for this year."
-      );
+      return res.json({
+        alcoYear: `Data not exist for the ${req.query.year} year.`,
+      });
+      // ApiError.badRequest(
+      //   `Information not found for the ${req.query.year} year.`
+      // );
     }
   }
 }

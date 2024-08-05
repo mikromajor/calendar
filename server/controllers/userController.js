@@ -2,6 +2,10 @@ const ApiError = require("../error/ApiError");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User, Salary } = require("../models/models");
+const {
+  getDateMonthYear,
+} = require("../utils/getDateMonthYear");
+
 // expiresIn: 60, => number -  seconds
 // expiresIn: "7d", string -"3h"-hours "8d"-days
 const generateJwt = (id, email) => {
@@ -68,14 +72,19 @@ class UserController {
       return next(ApiError.forbidden("Invalid password"));
     }
     const token = generateJwt(user.id, user.email);
+    //TODO при логине сервер должен также отдавать алко данные за год
+    // const [currentDay, currentMonth, currentYear] =
+    //   getDateMonthYear(new Date());
+    // req.headers.authorization = "Bearer " + token;
 
+    // req.query.year = currentYear;
+    // return next(
+    //   `api/alco_calendar/get?year=${currentYear}`
+    // );
     return res.json({
       token,
       email,
       message: "Successful login",
-      // TODO
-      // salaryStore,
-      // alcoStore
     });
   }
 
