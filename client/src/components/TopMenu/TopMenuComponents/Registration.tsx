@@ -117,36 +117,6 @@ export const Registration = () => {
   const sendRequest = () => {
     dispatch(fetchUserRegistration({ email, password }));
   };
-  //snack
-  const handleClose = (
-    event: React.SyntheticEvent | Event,
-    reason?: SnackbarCloseReason
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpenSnack(false);
-  };
-  // TODO create single component "Snack" and give him props
-  const action = (
-    <React.Fragment>
-      <Button
-        color={isError ? "error" : "success"}
-        size='small'
-        onClick={handleClose}
-      >
-        {message}
-      </Button>
-      <IconButton
-        size='small'
-        aria-label='close'
-        color='inherit'
-        onClick={handleClose}
-      >
-        <CloseIcon fontSize='small' />
-      </IconButton>
-    </React.Fragment>
-  );
 
   return (
     <>
@@ -157,13 +127,7 @@ export const Registration = () => {
           variant='outlined'
           required
           value={email}
-          helperText={
-            !!message
-              ? message
-              : emailMessage
-              ? emailMessage
-              : ""
-          }
+          helperText={emailMessage ? emailMessage : ""}
           error={isError || emailError}
           onChange={updateEmailState}
           InputProps={{
