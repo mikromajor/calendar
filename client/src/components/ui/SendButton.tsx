@@ -1,17 +1,33 @@
 import SendIcon from "@mui/icons-material/Send";
 import { LoadingButton } from "@mui/lab";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../store/hooks/redux";
+import { AsyncThunk } from "@reduxjs/toolkit";
+import { EmailPassword, IUser } from "../../types/appTypes";
+import { fetchUserRegistration } from "../../store/reducer/http/userActions";
 
 interface ISendButtonProps {
   sendProtector: boolean;
-  isLoading: boolean;
-  sendRequest: () => void;
+  sendData: EmailPassword;
+  sendHandler: AsyncThunk<IUser, EmailPassword, {}>;
 }
 
 export const SendButton = ({
-  isLoading,
   sendProtector,
-  sendRequest,
+  sendData,
+  sendHandler,
 }: ISendButtonProps) => {
+  const isLoading = useAppSelector(
+    (state) => state.appReducer.isLoading
+  );
+  const dispatch = useAppDispatch();
+
+  const sendRequest = () => {
+    dispatch(sendHandler(sendData));
+  };
+
   return (
     <LoadingButton
       variant='contained'

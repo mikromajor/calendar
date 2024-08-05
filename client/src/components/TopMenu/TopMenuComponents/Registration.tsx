@@ -1,12 +1,9 @@
 import React from "react";
 import { Stack } from "@mui/material";
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../../store/hooks/redux";
-import { fetchUserRegistration } from "../../../store/reducer/http/userActions";
+import { useAppSelector } from "../../../store/hooks/redux";
 import { passwordValidator } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
+import { fetchUserRegistration } from "../../../store/reducer/http/userActions";
 import {
   Snack,
   Email,
@@ -15,10 +12,9 @@ import {
 } from "../../ui";
 
 export const Registration = () => {
-  const { isLoading, isError, message } = useAppSelector(
+  const { isError, message } = useAppSelector(
     (state) => state.appReducer
   );
-  const dispatch = useAppDispatch();
 
   const { emailState, updateEmailState } = useEmail();
   const { passwordState, updatePasswordState } =
@@ -79,10 +75,7 @@ export const Registration = () => {
     });
   };
 
-  const sendRequest = () => {
-    dispatch(fetchUserRegistration({ email, password }));
-  };
-  let sendProtect =
+  let sendProtector =
     emailError ||
     passwordError ||
     !email ||
@@ -119,9 +112,9 @@ export const Registration = () => {
         />
 
         <SendButton
-          isLoading={isLoading}
-          sendProtector={sendProtect}
-          sendRequest={sendRequest}
+          sendHandler={fetchUserRegistration}
+          sendProtector={sendProtector}
+          sendData={{ email, password }}
         />
       </Stack>
       <Snack
