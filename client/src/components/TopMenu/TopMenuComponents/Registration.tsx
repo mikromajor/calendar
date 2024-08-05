@@ -15,10 +15,6 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
 
-import Snackbar, {
-  SnackbarCloseReason,
-} from "@mui/material/Snackbar";
-
 import { LoadingButton } from "@mui/lab";
 
 import {
@@ -69,7 +65,6 @@ export const Registration = () => {
   //   event: React.MouseEvent<HTMLButtonElement>
   // ) => {
   //   event.preventDefault();
-  //   console.log("handleMouseDownPassword fire");
   // };
   const setPassword = (
     e: React.ChangeEvent<
@@ -93,7 +88,6 @@ export const Registration = () => {
         ? ""
         : "Passwords not equals",
     });
-    console.log("passwordState => ", passwordState);
   };
 
   const setRepeatPassword = (

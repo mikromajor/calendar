@@ -18,7 +18,7 @@ export default function Snack({
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
-    setOpen(true);
+    setOpen(!!serverMessage ? true : false);
   }, [serverMessage]);
 
   const handleClose = (

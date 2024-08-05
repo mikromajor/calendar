@@ -24,6 +24,7 @@ import {
   emailValidator,
 } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
+import Snack from "../../ui/Snack";
 
 export const Login = () => {
   //TODO add window for server messages
@@ -71,13 +72,11 @@ export const Login = () => {
         ? validMessage
         : "Password valid",
     });
-    console.log("passwordState => ", passwordState);
   };
 
-  const sendRequest = () => {
-    console.log("=>", { email, password });
+  const sendRequest = () =>
     dispatch(fetchUserLogin({ email, password }));
-  };
+
   return (
     <>
       <Stack direction='column' spacing={2}>
@@ -145,6 +144,10 @@ export const Login = () => {
           Send
         </LoadingButton>
       </Stack>
+      <Snack
+        serverError={isError}
+        serverMessage={message}
+      />
     </>
   );
 };
