@@ -11,7 +11,7 @@ interface ISnackProps {
   serverMessage: string;
 }
 
-export default function Snack({
+export function Snack({
   serverError,
   serverMessage,
 }: ISnackProps) {

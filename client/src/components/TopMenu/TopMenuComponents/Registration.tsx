@@ -1,45 +1,23 @@
-import React, { useState, useEffect } from "react";
-import {
-  TextField,
-  Stack,
-  InputAdornment,
-  IconButton,
-  Button,
-} from "@mui/material";
-
-import {
-  AccountCircle,
-  Visibility,
-  VisibilityOff,
-} from "@mui/icons-material";
-import CloseIcon from "@mui/icons-material/Close";
-import SendIcon from "@mui/icons-material/Send";
-
-import { LoadingButton } from "@mui/lab";
-
+import React from "react";
+import { Stack } from "@mui/material";
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../../store/hooks/redux";
-import {
-  fetchUserRegistration,
-  cleanMessageWithDelay,
-} from "../../../store/reducer/http/userActions";
+import { fetchUserRegistration } from "../../../store/reducer/http/userActions";
 import { passwordValidator } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
-import Snack from "../../ui/Snack";
+import {
+  Snack,
+  Email,
+  Password,
+  SendButton,
+} from "../../ui";
 
 export const Registration = () => {
   const { isLoading, isError, message } = useAppSelector(
     (state) => state.appReducer
   );
-  const [openSnack, setOpenSnack] = useState(false);
-  useEffect(() => {
-    if (message) {
-      setOpenSnack(true);
-    }
-  }, [message, isError]);
-
   const dispatch = useAppDispatch();
 
   const { emailState, updateEmailState } = useEmail();
@@ -60,12 +38,6 @@ export const Registration = () => {
       showPassword: !showPassword,
     });
   };
-
-  // const handleMouseDownPassword = (
-  //   event: React.MouseEvent<HTMLButtonElement>
-  // ) => {
-  //   event.preventDefault();
-  // };
   const setPassword = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement
@@ -110,102 +82,47 @@ export const Registration = () => {
   const sendRequest = () => {
     dispatch(fetchUserRegistration({ email, password }));
   };
-
+  let sendProtect =
+    emailError ||
+    passwordError ||
+    !email ||
+    !password ||
+    !repeatPassword;
   return (
     <>
       <Stack direction='column' spacing={2}>
-        <TextField
-          id='outlined-basic'
-          label='Email'
-          variant='outlined'
-          required
-          value={email}
-          helperText={emailMessage ? emailMessage : ""}
-          error={emailError}
-          onChange={updateEmailState}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position='end'>
-                <AccountCircle />
-              </InputAdornment>
-            ),
-          }}
+        <Email
+          email={email}
+          emailMessage={emailMessage}
+          emailError={emailError}
+          updateEmailState={updateEmailState}
         />
 
-        <TextField
-          id='outlined-basic'
-          label='Password'
-          type={showPassword ? "text" : "password"}
-          helperText={passwordMessage}
-          variant='outlined'
-          required
-          value={password}
-          error={passwordError}
-          onChange={setPassword}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position='end'>
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowPassword}
-                  // onMouseDown={handleMouseDownPassword}
-                  edge='end'
-                >
-                  {showPassword ? (
-                    <VisibilityOff />
-                  ) : (
-                    <Visibility />
-                  )}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
+        <Password
+          label={"Password"}
+          showPassword={showPassword}
+          passwordError={passwordError}
+          password={password}
+          passwordMessage={passwordMessage}
+          setPassword={setPassword}
+          handleClickShowPassword={handleClickShowPassword}
         />
 
-        <TextField
-          id='outlined-basic'
-          label='Repeat password'
-          type={showPassword ? "text" : "password"}
-          helperText={repeatPasswordMessage}
-          variant='outlined'
-          error={passwordError}
-          required
-          value={repeatPassword}
-          onChange={setRepeatPassword}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position='end'>
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowPassword}
-                  // onMouseDown={handleMouseDownPassword}
-                  edge='end'
-                >
-                  {showPassword ? (
-                    <VisibilityOff />
-                  ) : (
-                    <Visibility />
-                  )}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
+        <Password
+          label={"Repeat password"}
+          showPassword={showPassword}
+          passwordError={passwordError}
+          password={repeatPassword}
+          passwordMessage={repeatPasswordMessage}
+          setPassword={setRepeatPassword}
+          handleClickShowPassword={handleClickShowPassword}
         />
-        <LoadingButton
-          variant='contained'
-          startIcon={<SendIcon />}
-          loading={isLoading}
-          disabled={
-            emailError ||
-            passwordError ||
-            !email ||
-            !password ||
-            !repeatPassword
-          }
-          onClick={sendRequest}
-        >
-          Send
-        </LoadingButton>
+
+        <SendButton
+          isLoading={isLoading}
+          sendProtector={sendProtect}
+          sendRequest={sendRequest}
+        />
       </Stack>
       <Snack
         serverError={isError}

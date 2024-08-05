@@ -24,7 +24,7 @@ import {
   emailValidator,
 } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
-import Snack from "../../ui/Snack";
+import { Snack, Email } from "../../ui";
 
 export const Login = () => {
   //TODO add window for server messages
