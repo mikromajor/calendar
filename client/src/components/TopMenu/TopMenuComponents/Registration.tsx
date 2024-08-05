@@ -31,9 +31,9 @@ import {
 } from "../../../store/reducer/http/userActions";
 import { passwordValidator } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
+import Snack from "../../ui/Snack";
 
 export const Registration = () => {
-  //TODO add window for server messages
   const { isLoading, isError, message } = useAppSelector(
     (state) => state.appReducer
   );
@@ -244,12 +244,9 @@ export const Registration = () => {
           Send
         </LoadingButton>
       </Stack>
-      <Snackbar
-        open={openSnack}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        message='Response from server:'
-        action={action}
+      <Snack
+        serverError={isError}
+        serverMessage={message}
       />
     </>
   );
