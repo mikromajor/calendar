@@ -3,9 +3,6 @@ const {
   AlcoMonth,
   AlcoDay,
 } = require("../models/models");
-const {
-  getDateMonthYear,
-} = require("../utils/getDateMonthYear");
 const ApiError = require("../error/ApiError");
 
 //create response models for front-end equal INIT_YEAR
@@ -139,8 +136,6 @@ class AlcoController {
 
   async getAlcoYear(req, res, next) {
     //GET http://localhost:7000/api/alco_calendar/get?year=2020
-    const [currentDay, currentMonth, currentYear] =
-      getDateMonthYear(new Date());
     try {
       const modelYearData = await createModelYearData(
         req.query.year,
@@ -158,8 +153,6 @@ class AlcoController {
     }
   }
   async login(req, res, next) {
-    const [currentDay, currentMonth, currentYear] =
-      getDateMonthYear(new Date());
     try {
       const modelYearData = await createModelYearData(
         currentYear,
