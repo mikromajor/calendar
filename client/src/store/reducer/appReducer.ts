@@ -8,17 +8,17 @@ import {
   AppThemes,
   IUser,
 } from "../../types/appTypes";
-import { AlcoState } from "../../types/alcoTypes";
+import { YearInfo } from "../../types/alcoTypes";
 import {
   fetchUserAuth,
   fetchUserLogin,
   fetchUserRegistration,
 } from "./http/userActions";
-import { AxiosError } from "axios";
+import { INIT_YEAR } from "../../constants/alcoConstants";
 
 interface ServerResponse extends IUser {
   message: string;
-  alcoYear: AlcoState;
+  yearData: YearInfo;
 }
 
 export const appReducer = createSlice({
@@ -62,7 +62,7 @@ export const appReducer = createSlice({
       state,
       action: PayloadAction<ServerResponse>
     ) => {
-      const message = action.payload?.message;
+      const message = action.payload.message;
 
       state.message = message ? message : "";
       state.isLoading = false;
@@ -77,19 +77,23 @@ export const appReducer = createSlice({
       state,
       action: PayloadAction<ServerResponse>
     ) => {
-      const { token, message, email } = action.payload;
+      const { token, message, email, yearData } =
+        action.payload;
       state.isLoading = false;
       state.isError = false;
       state.user.token = token;
       state.user.email = email;
       state.message = message;
+      state.alcoData.yearData = !!yearData
+        ? yearData
+        : INIT_YEAR; // TODO data on the redux state not hange after response
     },
 
     [fetchUserLogin.rejected.type]: (
       state,
       action: PayloadAction<ServerResponse>
     ) => {
-      const message = action.payload.message;
+      const message = action.payload?.message;
 
       state.isLoading = false;
       state.isError = true;
