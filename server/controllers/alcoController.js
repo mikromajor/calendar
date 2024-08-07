@@ -9,15 +9,15 @@ const {
 const ApiError = require("../error/ApiError");
 
 //create response models for front-end equal INIT_YEAR
-// or error {status: number, message:string}
-const createResponseModel = async (year, userId) => {
+
+const createModelYearData = async (year, userId) => {
   try {
-    const [currentDay, currentMonth] = getDateMonthYear(
-      new Date()
-    );
     const alcoYear = await AlcoYear.findOne({
       where: { id: year, userId },
     });
+    if (!alcoYear) {
+      return null;
+    }
 
     const alcoMonths = await AlcoMonth.findAll({
       where: { yearId: year, userId },
@@ -48,14 +48,7 @@ const createResponseModel = async (year, userId) => {
       };
     });
 
-    return {
-      currentDate: {
-        day: currentDay,
-        month: currentMonth,
-        year,
-      },
-      yearData: yearData,
-    };
+    return yearData;
   } catch (error) {
     return ApiError.internal(
       "Response model was not create"
@@ -79,6 +72,7 @@ class AlcoController {
           ApiError.badRequest("Request's data incorrect")
         );
       }
+
       const dayId = year + "_" + month + "_" + day;
       const monthId = year + "_" + month;
 
@@ -126,33 +120,61 @@ class AlcoController {
           totalVodka: additionVodka,
         });
       }
-      const response_model = await createResponseModel(
+
+      const modelYearData = await createModelYearData(
         year,
         req.user.id
       );
-      return res.json(response_model);
+      return res.status(200).json({
+        user: req.user,
+        yearData: modelYearData, // type YearData |null
+        message: "",
+      });
     } catch (e) {
-      return ApiError.badRequest(
-        "It has not been add new dose"
+      return ApiError.internal(
+        "Error. The new dose wasn't add."
       );
     }
   }
 
   async getAlcoYear(req, res, next) {
     //GET http://localhost:7000/api/alco_calendar/get?year=2020
+    const [currentDay, currentMonth, currentYear] =
+      getDateMonthYear(new Date());
     try {
-      const response_model = await createResponseModel(
+      const modelYearData = await createModelYearData(
         req.query.year,
         req.user.id
       );
-      return res.json({ response_model });
-    } catch (error) {
-      return res.json({
-        alcoYear: `Data not exist for the ${req.query.year} year.`,
+      return res.status(200).json({
+        user: req.user,
+        yearData: modelYearData, // type YearData |null
+        message: "",
       });
-      // ApiError.badRequest(
-      //   `Information not found for the ${req.query.year} year.`
-      // );
+    } catch (error) {
+      ApiError.internal(
+        "Error in alcoController.getAlcoYear"
+      );
+    }
+  }
+  async login(req, res, next) {
+    const [currentDay, currentMonth, currentYear] =
+      getDateMonthYear(new Date());
+    try {
+      const modelYearData = await createModelYearData(
+        currentYear,
+        req.user.id
+      );
+
+      return res.status(200).json({
+        user: req.user,
+        yearData: modelYearData, // type YearData |null
+        message: "",
+      });
+    } catch (e) {
+      ApiError.internal(
+        "Error in alcoController.login => createModelYearData()"
+      );
     }
   }
 }
