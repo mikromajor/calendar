@@ -114,14 +114,10 @@ export const alcoReducer = createSlice({
       state,
       action: PayloadAction<YearInfo | null>
     ) => {
-      const alcoYearData = action.payload;
-
-      Object.assign(
-        state.yearData,
-        !!alcoYearData
-          ? alcoYearData
-          : INIT_ALCO_STATE.yearData
-      );
+      const alcoYear = action.payload;
+      state.yearData = !!alcoYear
+        ? alcoYear
+        : INIT_ALCO_STATE.yearData;
     },
   },
   extraReducers: {

@@ -126,7 +126,7 @@ class AlcoController {
       );
       return res.status(200).json({
         ...req.user,
-        yearData: modelYearData, // type YearData |null
+        alcoYear: modelYearData, // type YearData |null
       });
     } catch (e) {
       return ApiError.internal(
@@ -162,7 +162,7 @@ class AlcoController {
       );
       return res.status(200).json({
         ...req.user,
-        yearData: modelYearData, // type YearData |null
+        alcoYear: modelYearData, // type YearData |null
       });
     } catch (e) {
       return ApiError.internal(
