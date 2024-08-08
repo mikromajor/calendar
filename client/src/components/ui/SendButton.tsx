@@ -5,13 +5,17 @@ import {
   useAppSelector,
 } from "../../store/hooks/redux";
 import { AsyncThunk } from "@reduxjs/toolkit";
-import { EmailPassword, IUser } from "../../types/appTypes";
+import {
+  EmailPassword,
+  IUser,
+  IServerRes,
+} from "../../types/appTypes";
 import { fetchUserRegistration } from "../../store/reducer/http/userActions";
 
 interface ISendButtonProps {
   sendProtector: boolean;
   sendData: EmailPassword;
-  sendHandler: AsyncThunk<IUser, EmailPassword, {}>;
+  sendHandler: AsyncThunk<IServerRes, EmailPassword, {}>;
 }
 
 export const SendButton = ({

@@ -15,15 +15,17 @@ import {
   addVodkaToState,
   getMaxValidDayInCurrentMonth,
 } from "./alcoHandlers";
-import { AppLanguages } from "../../types/appTypes";
+import { fetchAlcoYear } from "./http/alcoActions";
+import { YearInfo } from "../../types/alcoTypes";
+import { IServerRes } from "../../types/appTypes";
 
-const store = tryStorageData(
-  INIT_ALCO_STATE.currentDate.year
-);
+// const store = tryStorageData(
+//   INIT_ALCO_STATE.currentDate.year
+// );
 
 export const alcoReducer = createSlice({
   name: "alcoState",
-  initialState: !!store ? store : INIT_ALCO_STATE,
+  initialState: INIT_ALCO_STATE,
   reducers: {
     changeDay: (state, action: PayloadAction<string>) => {
       const day = Number(action.payload);
@@ -107,7 +109,39 @@ export const alcoReducer = createSlice({
     clearAllStor: () => {
       window.localStorage.clear();
     },
-    fetching: () => {},
+    //---handle server response
+    changeAlcoYear: (
+      state,
+      action: PayloadAction<YearInfo | null>
+    ) => {
+      const alcoYearData = action.payload;
+
+      Object.assign(
+        state.yearData,
+        !!alcoYearData
+          ? alcoYearData
+          : INIT_ALCO_STATE.yearData
+      );
+    },
+  },
+  extraReducers: {
+    [fetchAlcoYear.pending.type]: (state) => {
+      // state.isLoading = true; // TODO create alcoState spinner
+    },
+    [fetchAlcoYear.fulfilled.type]: (
+      state,
+      action: PayloadAction<IServerRes>
+    ) => {
+      state.yearData = action.payload.alcoYear;
+      // state.isError = false;
+      // state.message = "";
+      // state.isLoading = false; // TODO create alcoState spinner
+    },
+    [fetchAlcoYear.rejected.type]: (state) => {
+      // state.isError = true;
+      // state.message = "Error. Can't fetch server data";
+      // state.isLoading = false;// TODO create alcoState spinner
+    },
   },
 });
 

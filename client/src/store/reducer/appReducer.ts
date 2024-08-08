@@ -2,24 +2,20 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
+
 import { INIT_APP_STATE } from "../../constants/appConstants";
 import {
   AppLanguages,
   AppThemes,
   IUser,
 } from "../../types/appTypes";
-import { YearInfo } from "../../types/alcoTypes";
+import { IServerRes } from "../../types/appTypes";
+
 import {
   fetchUserAuth,
   fetchUserLogin,
   fetchUserRegistration,
 } from "./http/userActions";
-import { INIT_YEAR } from "../../constants/alcoConstants";
-
-interface ServerResponse extends IUser {
-  message: string;
-  yearData: YearInfo;
-}
 
 export const appReducer = createSlice({
   name: "appState",
@@ -49,7 +45,7 @@ export const appReducer = createSlice({
     },
     [fetchUserRegistration.fulfilled.type]: (
       state,
-      action: PayloadAction<ServerResponse>
+      action: PayloadAction<IServerRes>
     ) => {
       const { token, message } = action.payload;
       state.isLoading = false;
@@ -60,7 +56,7 @@ export const appReducer = createSlice({
 
     [fetchUserRegistration.rejected.type]: (
       state,
-      action: PayloadAction<ServerResponse>
+      action: PayloadAction<IServerRes>
     ) => {
       const message = action.payload.message;
 
@@ -75,29 +71,25 @@ export const appReducer = createSlice({
     },
     [fetchUserLogin.fulfilled.type]: (
       state,
-      action: PayloadAction<ServerResponse>
+      action: PayloadAction<IServerRes>
     ) => {
-      const { token, message, email, yearData } =
-        action.payload;
-      state.isLoading = false;
-      state.isError = false;
-      state.user.token = token;
-      state.user.email = email;
+      const { token, message, email } = action.payload;
+
+      //TODO delete token from state, he lives in localStor
+      state.user.token = token; // temporarily save for testing
       state.message = message;
-      state.alcoData.yearData = !!yearData
-        ? yearData
-        : INIT_YEAR; // TODO data on the redux state not hange after response
+      state.isError = false;
+      state.isLoading = false;
     },
 
     [fetchUserLogin.rejected.type]: (
       state,
-      action: PayloadAction<ServerResponse>
+      action: PayloadAction<IServerRes>
     ) => {
       const message = action.payload?.message;
-
+      state.message = message ? message : "";
       state.isLoading = false;
       state.isError = true;
-      state.message = message ? message : "";
     },
     //Auth
     [fetchUserAuth.pending.type]: (state) => {
@@ -107,9 +99,9 @@ export const appReducer = createSlice({
       state,
       action: PayloadAction<IUser>
     ) => {
+      state.user = action.payload;
       state.isLoading = false;
       state.isError = false;
-      state.user = action.payload;
     },
 
     [fetchUserAuth.rejected.type]: (state) => {

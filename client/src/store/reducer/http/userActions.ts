@@ -3,13 +3,18 @@ import {
   Dispatch,
 } from "@reduxjs/toolkit";
 import { appActions } from "../appReducer";
+import { alcoActions } from "../alcoReducer";
 import {
-  IUser,
+  IServerRes,
   EmailPassword,
 } from "../../../types/appTypes";
+import { YearInfo } from "../../../types/alcoTypes";
 import { $host, $authHost } from "./host";
 import { AxiosError, AxiosResponse } from "axios";
 
+const saveTokenToLocalStorage = (token: string) => {
+  !!token && localStorage.setItem("token", token);
+};
 export const cleanMessageWithDelay =
   () => (dispatch: Dispatch) => {
     setTimeout(() => {
@@ -24,12 +29,11 @@ export const fetchUserRegistration = createAsyncThunk(
     { rejectWithValue, dispatch, getState }
   ) => {
     try {
-      const res = await $host.post<IUser>(
+      const res = await $host.post<IServerRes>(
         "api/user/registration",
         emailPassword
       );
-      const token = res.data?.token;
-      !!token && localStorage.setItem("token", token);
+      saveTokenToLocalStorage(res.data?.token);
       return res.data;
     } catch (error: any) {
       if (!error.response) {
@@ -44,13 +48,17 @@ export const fetchUserLogin = createAsyncThunk(
   "user/fetchUserLogin",
   async (
     emailPassword: EmailPassword,
-    { rejectWithValue }
+    { rejectWithValue, dispatch, getState }
   ) => {
     try {
-      const response = await $host.post<IUser>(
+      const response = await $host.post<IServerRes>(
         "api/user/login",
         emailPassword
       );
+      dispatch(
+        alcoActions.changeAlcoYear(response.data.alcoYear)
+      ); // TODO not work
+      saveTokenToLocalStorage(response.data?.token);
       return response.data;
     } catch (error: any) {
       if (!error.response) {
@@ -65,7 +73,7 @@ export const fetchUserAuth = createAsyncThunk(
   "user/fetchUserAuth",
   async (_, thunkAPI) => {
     try {
-      const response = await $authHost.get<IUser>(
+      const response = await $authHost.get<IServerRes>(
         "api/user/auth"
       );
       localStorage.setItem("token", response.data.token);

@@ -4,10 +4,12 @@ const {
   AlcoDay,
 } = require("../models/models");
 const ApiError = require("../error/ApiError");
-
+const {
+  getDateMonthYear,
+} = require("../utils/getDateMonthYear");
 //create response models for front-end equal INIT_YEAR
 
-const createModelYearData = async (year, userId) => {
+const createModelYearData = async (year, userId, next) => {
   try {
     const alcoYear = await AlcoYear.findOne({
       where: { id: year, userId },
@@ -47,8 +49,8 @@ const createModelYearData = async (year, userId) => {
 
     return yearData;
   } catch (error) {
-    return ApiError.internal(
-      "Response model was not create"
+    next(
+      ApiError.internal("Response model was not create")
     );
   }
 };
@@ -123,9 +125,8 @@ class AlcoController {
         req.user.id
       );
       return res.status(200).json({
-        user: req.user,
+        ...req.user,
         yearData: modelYearData, // type YearData |null
-        message: "",
       });
     } catch (e) {
       return ApiError.internal(
@@ -142,31 +143,30 @@ class AlcoController {
         req.user.id
       );
       return res.status(200).json({
-        user: req.user,
-        yearData: modelYearData, // type YearData |null
-        message: "",
+        ...req.user,
+        alcoYear: modelYearData, // type YearData |null
       });
     } catch (error) {
-      ApiError.internal(
-        "Error in alcoController.getAlcoYear"
+      return ApiError.internal(
+        "Server error. AlcoController.getAlcoYear has problem"
       );
     }
   }
   async login(req, res, next) {
     try {
+      const [d, m, y] = getDateMonthYear(new Date());
       const modelYearData = await createModelYearData(
-        currentYear,
-        req.user.id
+        y,
+        req.user.id,
+        next
       );
-
       return res.status(200).json({
-        user: req.user,
+        ...req.user,
         yearData: modelYearData, // type YearData |null
-        message: "",
       });
     } catch (e) {
-      ApiError.internal(
-        "Error in alcoController.login => createModelYearData()"
+      return ApiError.internal(
+        "Error in alcoController.login"
       );
     }
   }

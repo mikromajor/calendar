@@ -1,3 +1,6 @@
+import { YearInfo } from "./alcoTypes";
+import { SalaryInit } from "./salaryTypes";
+
 export enum AppLanguages {
   UA = "UA",
   PL = "PL",
@@ -20,6 +23,11 @@ export interface IUserResReject {
 export interface EmailPassword {
   email: string;
   password: string;
+}
+export interface IServerRes extends IUser {
+  message: string;
+  alcoYear: YearInfo;
+  salaryData: SalaryInit;
 }
 
 //  export type LanguagesList = keyof typeof AppLanguages;
