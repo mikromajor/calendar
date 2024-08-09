@@ -14,6 +14,7 @@ import {
   createKey,
   addVodkaToState,
   minMaxDayValidation,
+  minMaxMonthValidation,
 } from "./alcoHandlers";
 import { fetchAlcoYear } from "./http/alcoActions";
 import { YearInfo } from "../../types/alcoTypes";
@@ -28,28 +29,26 @@ export const alcoReducer = createSlice({
   initialState: INIT_ALCO_STATE,
   reducers: {
     changeDay: (state, action: PayloadAction<string>) => {
-      const day = Number(action.payload);
+      const day = action.payload;
       const { month, year } = state.currentDate;
 
       state.currentDate.day = minMaxDayValidation(
         day,
-        Number(month),
-        Number(year)
+        month,
+        year
       );
     },
 
     changeMonth: (state, action: PayloadAction<string>) => {
-      const month = Number(action.payload);
-      if (month > 0 && month < 13) {
-        const { day, year } = state.currentDate;
+      let month = minMaxMonthValidation(action.payload);
+      const { day, year } = state.currentDate;
 
-        state.currentDate.day = minMaxDayValidation(
-          Number(day),
-          month,
-          Number(year)
-        );
-        state.currentDate.month = month.toString();
-      }
+      state.currentDate.day = minMaxDayValidation(
+        day,
+        month,
+        year
+      );
+      state.currentDate.month = month;
     },
     changeYear: (state, action: PayloadAction<string>) => {
       const year = action.payload;
