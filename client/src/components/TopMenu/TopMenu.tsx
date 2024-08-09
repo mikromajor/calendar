@@ -89,7 +89,7 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
           />
         </MenuItem>
         <MenuItem>
-          <UserAuthLinks />
+          <UserAuthBar />
         </MenuItem>
       </Menu>
     </div>
