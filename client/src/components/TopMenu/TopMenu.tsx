@@ -5,7 +5,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { APP_CONTENT } from "../../constants/appConstants";
 import { useAppSelector } from "../../store/hooks/redux";
 import { SelectLanguage, SelectTheme } from "../.";
-import { UserAuthLinks } from "./TopMenuComponents/UserAuthLinks";
+import UserAuthBar from "./UserAuthBar/UserAuthBar";
 interface TopMenuPops {
   setSwitchCalc: React.Dispatch<
     React.SetStateAction<boolean>

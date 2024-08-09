@@ -5,7 +5,7 @@ import { Registration } from "./Registration";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
 
-export const UserAuthLinks = () => {
+export default function UserAuthBar() {
   const [open, setOpen] = useState<
     "reg" | "login" | "logout" | ""
   >("");
@@ -36,4 +36,4 @@ export const UserAuthLinks = () => {
       </UserModal>
     </Stack>
   );
-};
+}
