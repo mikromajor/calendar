@@ -1,4 +1,4 @@
-export const getMaxValidDayInCurrentMonth = (
+export const minMaxDayValidation = (
   day: number,
   month: number,
   year: number

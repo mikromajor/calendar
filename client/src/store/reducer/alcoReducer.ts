@@ -13,7 +13,7 @@ import {
   setDecimal,
   createKey,
   addVodkaToState,
-  getMaxValidDayInCurrentMonth,
+  minMaxDayValidation,
 } from "./alcoHandlers";
 import { fetchAlcoYear } from "./http/alcoActions";
 import { YearInfo } from "../../types/alcoTypes";
@@ -31,7 +31,7 @@ export const alcoReducer = createSlice({
       const day = Number(action.payload);
       const { month, year } = state.currentDate;
 
-      state.currentDate.day = getMaxValidDayInCurrentMonth(
+      state.currentDate.day = minMaxDayValidation(
         day,
         Number(month),
         Number(year)
@@ -43,12 +43,11 @@ export const alcoReducer = createSlice({
       if (month > 0 && month < 13) {
         const { day, year } = state.currentDate;
 
-        state.currentDate.day =
-          getMaxValidDayInCurrentMonth(
-            Number(day),
-            month,
-            Number(year)
-          );
+        state.currentDate.day = minMaxDayValidation(
+          Number(day),
+          month,
+          Number(year)
+        );
         state.currentDate.month = month.toString();
       }
     },
