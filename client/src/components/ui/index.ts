@@ -1,4 +1,4 @@
 export { Email } from "./Email";
-export { Snack } from "./Snack";
+export { ServerMessage } from "./ServerMessage";
 export { Password } from "./Password";
 export { SendButton } from "./SendButton";

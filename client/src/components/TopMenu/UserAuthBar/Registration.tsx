@@ -5,7 +5,7 @@ import { passwordValidator } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
 import { fetchUserRegistration } from "../../../store/reducer/http/userActions";
 import {
-  Snack,
+  ServerMessage,
   Email,
   Password,
   SendButton,
@@ -117,7 +117,7 @@ export const Registration = () => {
           sendData={{ email, password }}
         />
       </Stack>
-      <Snack
+      <ServerMessage
         serverError={isError}
         serverMessage={message}
       />
