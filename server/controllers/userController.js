@@ -1,14 +1,10 @@
 const ApiError = require("../error/ApiError");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const { User } = require("../models/models");
-// expiresIn: 60, => number -  seconds
-// expiresIn: "7d", string -"3h"-hours "8d"-days
-const generateJwt = (id, email) => {
-  return jwt.sign({ id, email }, process.env.SECRET_KEY, {
-    expiresIn: "30d",
-  });
-};
+const { User, Salary } = require("../models/models");
+const {
+  getDateMonthYear,
+} = require("../utils/getDateMonthYear");
+const { generateJwt } = require("../utils/useToken");
 
 class UserController {
   //POST http://localhost:7000/api/user/registration
@@ -28,7 +24,7 @@ class UserController {
     if (candidate) {
       return next(
         ApiError.forbidden(
-          "A user with this email address or id already exists."
+          "A user with this email address already exists."
         )
       );
     }
@@ -68,13 +64,20 @@ class UserController {
       return next(ApiError.forbidden("Invalid password"));
     }
     const token = generateJwt(user.id, user.email);
-    return res.json({ token });
+
+    req.user = {
+      id: user.id,
+      email,
+      token,
+      message: "Successful login",
+    };
+    return next();
   }
 
   //GET http://localhost:7000/api/user/auth
   async check(req, res, next) {
     const token = generateJwt(req.user.id, req.user.email);
-    return res.json({ token });
+    return res.json({ token, message: "Login successful" });
   }
 }
 

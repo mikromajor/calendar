@@ -13,42 +13,42 @@ import {
   setDecimal,
   createKey,
   addVodkaToState,
-  getMaxValidDayInCurrentMonth,
+  minMaxDayValidation,
+  minMaxMonthValidation,
 } from "./alcoHandlers";
-import { AppLanguages } from "../../types/appTypes";
+import { fetchAlcoYear } from "./http/alcoActions";
+import { YearInfo } from "../../types/alcoTypes";
+import { IServerRes } from "../../types/appTypes";
 
-const store = tryStorageData(
-  INIT_ALCO_STATE.currentDate.year
-);
+// const store = tryStorageData(
+//   INIT_ALCO_STATE.currentDate.year
+// );
 
 export const alcoReducer = createSlice({
   name: "alcoState",
-  initialState: !!store ? store : INIT_ALCO_STATE,
+  initialState: INIT_ALCO_STATE,
   reducers: {
     changeDay: (state, action: PayloadAction<string>) => {
-      const day = Number(action.payload);
+      const day = action.payload;
       const { month, year } = state.currentDate;
 
-      state.currentDate.day = getMaxValidDayInCurrentMonth(
+      state.currentDate.day = minMaxDayValidation(
         day,
-        Number(month),
-        Number(year)
+        month,
+        year
       );
     },
 
     changeMonth: (state, action: PayloadAction<string>) => {
-      const month = Number(action.payload);
-      if (month > 0 && month < 13) {
-        const { day, year } = state.currentDate;
+      let month = minMaxMonthValidation(action.payload);
+      const { day, year } = state.currentDate;
 
-        state.currentDate.day =
-          getMaxValidDayInCurrentMonth(
-            Number(day),
-            month,
-            Number(year)
-          );
-        state.currentDate.month = month.toString();
-      }
+      state.currentDate.day = minMaxDayValidation(
+        day,
+        month,
+        year
+      );
+      state.currentDate.month = month;
     },
     changeYear: (state, action: PayloadAction<string>) => {
       const year = action.payload;
@@ -107,8 +107,38 @@ export const alcoReducer = createSlice({
     clearAllStor: () => {
       window.localStorage.clear();
     },
+    //---handle server response
+    changeAlcoYear: (
+      state,
+      action: PayloadAction<YearInfo | null>
+    ) => {
+      const alcoYear = action.payload;
+      state.yearData = !!alcoYear
+        ? alcoYear
+        : INIT_ALCO_STATE.yearData;
+    },
+  },
+  extraReducers: {
+    [fetchAlcoYear.pending.type]: (state) => {
+      // state.isLoading = true; // TODO create alcoState spinner
+    },
+    [fetchAlcoYear.fulfilled.type]: (
+      state,
+      action: PayloadAction<IServerRes>
+    ) => {
+      state.yearData = action.payload.alcoYear;
+      // state.isError = false;
+      // state.message = "";
+      // state.isLoading = false; // TODO create alcoState spinner
+    },
+    [fetchAlcoYear.rejected.type]: (state) => {
+      // state.isError = true;
+      // state.message = "Error. Can't fetch server data";
+      // state.isLoading = false;// TODO create alcoState spinner
+    },
   },
 });
 
 export default alcoReducer.reducer;
 export const alcoActions = alcoReducer.actions;
+export const alcoSlice = alcoReducer;

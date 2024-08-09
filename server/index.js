@@ -10,9 +10,13 @@ const errorHandler = require("./middleware/ErrorHandlingMiddleware");
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // allows to send requests from browser
+app.use(express.json()); //allows app to parse .json
+app.use(express.static("build"));
 app.use("/api", router);
+app.use("/years", (req, res) => {
+  res.status(200).json({ message: "years path" });
+});
 app.use(errorHandler);
 
 const start = async () => {

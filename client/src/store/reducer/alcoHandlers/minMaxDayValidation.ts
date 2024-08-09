@@ -1,12 +1,16 @@
-export const getMaxValidDayInCurrentMonth = (
-  day: number,
-  month: number,
-  year: number
+export const minMaxDayValidation = (
+  d: string,
+  m: string,
+  y: string
 ): string => {
+  let day = Number(d);
+  let month = Number(m);
+  let year = Number(y);
+
   let validDay = 1;
   let isLeapYear = year % 4 === 0;
 
-  if (day <= 0) {
+  if (day < 1) {
     return "1";
   }
 
