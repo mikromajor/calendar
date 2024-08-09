@@ -34,7 +34,7 @@ export const Password = ({
 }: IPasswordProps) => {
   return (
     <TextField
-      id='outlined-basic'
+      id={"outlined-basic " + label}
       label={label}
       type={showPassword ? "text" : "password"}
       helperText={passwordMessage}
