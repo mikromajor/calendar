@@ -7,11 +7,17 @@ export interface DayInfo {
   totalBill: number;
 }
 
+export interface Service {
+  isError: boolean;
+  message: string;
+  isLoading: boolean;
+}
+
 export interface MonthInfo extends DayInfo {
   days: DayInfo[];
 }
 
-export interface YearInfo extends DayInfo {
+export interface AlcoYear extends DayInfo {
   months: MonthInfo[];
 }
 
@@ -23,7 +29,8 @@ export interface CurrentDate {
 
 export interface AlcoState {
   currentDate: CurrentDate;
-  yearData: YearInfo;
+  yearData: AlcoYear;
+  service: Service;
 }
 
 export type StateKeys = keyof AlcoState;

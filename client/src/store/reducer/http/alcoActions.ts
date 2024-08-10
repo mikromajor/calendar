@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host, $authHost } from "./host";
 import { AxiosError, AxiosResponse } from "axios";
-import { YearInfo } from "../../../types/alcoTypes";
+import { AlcoYear } from "../../../types/alcoTypes";
 import { IUser, IServerRes } from "../../../types/appTypes";
 import {
   CurrentDate,

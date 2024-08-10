@@ -5,7 +5,7 @@ import {
 import {
   INIT_ALCO_STATE,
   INIT_MONTH,
-  INIT_YEAR,
+  INIT_ALCO_YEAR,
 } from "../../constants/alcoConstants";
 import {
   tryStorageData,
@@ -17,7 +17,7 @@ import {
   minMaxMonthValidation,
 } from "./alcoHandlers";
 import { fetchAlcoYear } from "./http/alcoActions";
-import { YearInfo } from "../../types/alcoTypes";
+import { AlcoYear } from "../../types/alcoTypes";
 import { IServerRes } from "../../types/appTypes";
 
 // const store = tryStorageData(
@@ -89,7 +89,7 @@ export const alcoReducer = createSlice({
     clearYearData: (state) => {
       const key = createKey(state.currentDate.year);
       window.localStorage.removeItem(key);
-      state.yearData = { ...INIT_YEAR };
+      state.yearData = { ...INIT_ALCO_YEAR };
     },
     clearMonthData: (state) => {
       const currentMonth = Number(state.currentDate.month);
@@ -110,7 +110,7 @@ export const alcoReducer = createSlice({
     //---handle server response
     changeAlcoYear: (
       state,
-      action: PayloadAction<YearInfo | null>
+      action: PayloadAction<AlcoYear | null>
     ) => {
       const alcoYear = action.payload;
       state.yearData = !!alcoYear
@@ -126,7 +126,7 @@ export const alcoReducer = createSlice({
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      const {} = action.payload.alcoState.yearData;
+      state = action.payload.alcoState;
       // state.isError = false;
       // state.message = "";
       // state.isLoading = false; // TODO create alcoState spinner

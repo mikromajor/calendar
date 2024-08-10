@@ -2,8 +2,9 @@ import {
   AlcoState,
   DayInfo,
   MonthInfo,
-  YearInfo,
+  AlcoYear,
   AlcoContent,
+  Service,
 } from "../types/alcoTypes";
 import { getDateMonthYear } from "../utils";
 import { AppLanguages } from "../types/appTypes";
@@ -27,7 +28,13 @@ export const INIT_MONTH: MonthInfo = {
   totalBill: 0,
   days: [], // 1-31 days info (exist validation max  days in a month)
 };
-export const INIT_YEAR: YearInfo = {
+export const INIT_SERVICE: Service = {
+  isError: false,
+  isLoading: false,
+  message: "",
+};
+
+export const INIT_ALCO_YEAR: AlcoYear = {
   totalVodka: 0,
   totalBill: 0,
   months: [], // 1-12 months info
@@ -35,7 +42,8 @@ export const INIT_YEAR: YearInfo = {
 
 export const INIT_ALCO_STATE: AlcoState = {
   currentDate: CURRENT_DATE,
-  yearData: INIT_YEAR,
+  yearData: INIT_ALCO_YEAR,
+  service: INIT_SERVICE,
 };
 
 export const ALCO_CONTENT: AlcoContent = {

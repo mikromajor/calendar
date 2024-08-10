@@ -60,7 +60,7 @@ export type EntriesSalaryInit = Entries<SalaryInit>;
 // type Payload = {
 //   extraHours: number;
 //   MonthInfo: number;
-//   YearInfo: string;
+//   AlcoYear: string;
 // };
 // type KeysPayload = keyof Payload;
 // // remove written keys
@@ -72,7 +72,7 @@ export type EntriesSalaryInit = Entries<SalaryInit>;
 //   PayloadWithoutYear,
 //   keyof PayloadWithoutYear
 // > & {
-//   YearInfo: "2023" | "2024";
+//   AlcoYear: "2023" | "2024";
 //   salary: 5 | 10;
 // };
 // const pk: addField = {

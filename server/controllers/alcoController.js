@@ -7,7 +7,7 @@ const ApiError = require("../error/ApiError");
 const {
   getDateMonthYear,
 } = require("../utils/getDateMonthYear");
-//create response models for front-end equal INIT_YEAR
+//create response models for front-end equal INIT_ALCO_YEAR
 
 const createModelAlcoState = async (
   currentDate,
@@ -15,14 +15,14 @@ const createModelAlcoState = async (
   next
 ) => {
   const year = currentDate.year;
-  const INIT_YEAR = {
+  const INIT_ALCO_YEAR = {
     totalVodka: 0,
     totalBill: 0,
     months: [],
   };
   const alcoState = {
     currentDate,
-    yearData: INIT_YEAR,
+    yearData: INIT_ALCO_YEAR,
   };
 
   try {

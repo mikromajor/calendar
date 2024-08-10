@@ -8,7 +8,7 @@ import {
   IServerRes,
   EmailPassword,
 } from "../../../types/appTypes";
-import { YearInfo } from "../../../types/alcoTypes";
+import { AlcoYear } from "../../../types/alcoTypes";
 import { $host, $authHost } from "./host";
 import { AxiosError, AxiosResponse } from "axios";
 
