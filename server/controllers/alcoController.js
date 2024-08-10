@@ -175,6 +175,7 @@ class AlcoController {
       );
     }
   }
+
   async login(req, res, next) {
     try {
       const [day, month, year] = getDateMonthYear(
@@ -186,7 +187,8 @@ class AlcoController {
         next
       );
       return res.status(200).json({
-        ...req.user,
+        token: req.user.token,
+        message: req.user.message,
         alcoYear: alcoState, // type YearData |null
       });
     } catch (e) {

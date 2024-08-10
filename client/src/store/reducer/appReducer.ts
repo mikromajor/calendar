@@ -48,10 +48,10 @@ export const appReducer = createSlice({
       action: PayloadAction<IServerRes>
     ) => {
       const { token, message } = action.payload;
-      state.isLoading = false;
-      state.isError = false;
       state.user.token = token;
       state.message = message;
+      state.isLoading = false;
+      state.isError = false;
     },
 
     [fetchUserRegistration.rejected.type]: (
@@ -73,10 +73,10 @@ export const appReducer = createSlice({
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      const { token, message, email } = action.payload;
+      const { token, message } = action.payload;
 
-      //TODO delete token from state, he lives in localStor
-      state.user.token = token; // temporarily save for testing
+      //TODO delete token; temporarily save for testing
+      state.user.token = token;
       state.message = message;
       state.isError = false;
       state.isLoading = false;

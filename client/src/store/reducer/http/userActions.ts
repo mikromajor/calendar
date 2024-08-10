@@ -7,6 +7,7 @@ import { alcoActions } from "../alcoReducer";
 import {
   IServerRes,
   EmailPassword,
+  IUser,
 } from "../../../types/appTypes";
 import { AlcoYear } from "../../../types/alcoTypes";
 import { $host, $authHost } from "./host";
@@ -29,7 +30,7 @@ export const fetchUserRegistration = createAsyncThunk(
     { rejectWithValue, dispatch, getState }
   ) => {
     try {
-      const res = await $host.post<IServerRes>(
+      const res = await $host.post<IUser>(
         "api/user/registration",
         emailPassword
       );

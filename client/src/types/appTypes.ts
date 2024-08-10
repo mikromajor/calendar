@@ -11,7 +11,6 @@ export enum AppThemes {
   DARK = "dark-theme",
 }
 export interface IUser {
-  id: string;
   email: string;
   token: string;
 }
