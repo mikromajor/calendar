@@ -11,7 +11,6 @@ export enum AppThemes {
   DARK = "dark-theme",
 }
 export interface IUser {
-  email: string;
   token: string;
 }
 
@@ -26,7 +25,7 @@ export interface EmailPassword {
 export interface IServerRes extends IUser {
   message: string;
   alcoState: AlcoState;
-  salaryData: SalaryInit;
+  salaryState: SalaryInit;
 }
 
 //  export type LanguagesList = keyof typeof AppLanguages;

@@ -31,8 +31,8 @@ export const fetchAlcoYear = createAsyncThunk(
   }
 );
 
-export const addNewDose = createAsyncThunk(
-  "alcoCalc/addNewDose",
+export const addNewDoseToDB = createAsyncThunk(
+  "alcoCalc/addNewDoseToDB",
   async (
     newDose: IDose,
     { rejectWithValue, dispatch, getState }

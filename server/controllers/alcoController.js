@@ -7,7 +7,19 @@ const ApiError = require("../error/ApiError");
 const {
   getDateMonthYear,
 } = require("../utils/getDateMonthYear");
-//create response models for front-end equal INIT_ALCO_YEAR
+
+//creating response models for front-end equal INIT_ALCO_STATE
+const INIT_ALCO_YEAR = {
+  totalVodka: 0,
+  totalBill: 0,
+  months: [],
+};
+
+const INIT_SERVICE = {
+  isError: false,
+  isLoading: false,
+  message: "",
+};
 
 const createModelAlcoState = async (
   currentDate,
@@ -15,14 +27,10 @@ const createModelAlcoState = async (
   next
 ) => {
   const year = currentDate.year;
-  const INIT_ALCO_YEAR = {
-    totalVodka: 0,
-    totalBill: 0,
-    months: [],
-  };
   const alcoState = {
     currentDate,
     yearData: INIT_ALCO_YEAR,
+    service: INIT_SERVICE,
   };
 
   try {
@@ -61,6 +69,7 @@ const createModelAlcoState = async (
         ...d.dataValues,
       };
     });
+
     alcoState.yearData = yearData;
 
     return alcoState;

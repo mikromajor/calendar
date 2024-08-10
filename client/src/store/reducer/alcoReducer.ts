@@ -18,7 +18,7 @@ import {
 } from "./alcoHandlers";
 import {
   fetchAlcoYear,
-  addNewDose,
+  addNewDoseToDB,
 } from "./http/alcoActions";
 import { AlcoYear } from "../../types/alcoTypes";
 import { IServerRes } from "../../types/appTypes";
@@ -131,9 +131,6 @@ export const alcoReducer = createSlice({
       action: PayloadAction<IServerRes>
     ) => {
       state = action.payload.alcoState;
-      state.service.message = "";
-      state.service.isError = false;
-      state.service.isLoading = false;
       // TODO create spinner in alcoComponents
     },
     [fetchAlcoYear.rejected.type]: (state) => {
@@ -143,9 +140,11 @@ export const alcoReducer = createSlice({
       state.service.isLoading = false;
     },
 
-    [addNewDose.pending.type]: () => {},
-    [addNewDose.fulfilled.type]: () => {},
-    [addNewDose.rejected.type]: () => {},
+    [addNewDoseToDB.pending.type]: (state) => {
+      state.service.isLoading = true;
+    },
+    [addNewDoseToDB.fulfilled.type]: (state) => {},
+    [addNewDoseToDB.rejected.type]: (state) => {},
   },
 });
 
