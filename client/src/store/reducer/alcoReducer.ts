@@ -16,7 +16,10 @@ import {
   minMaxDayValidation,
   minMaxMonthValidation,
 } from "./alcoHandlers";
-import { fetchAlcoYear } from "./http/alcoActions";
+import {
+  fetchAlcoYear,
+  addNewDose,
+} from "./http/alcoActions";
 import { AlcoYear } from "../../types/alcoTypes";
 import { IServerRes } from "../../types/appTypes";
 
@@ -119,6 +122,7 @@ export const alcoReducer = createSlice({
     },
   },
   extraReducers: {
+    // fetchAlcoYear
     [fetchAlcoYear.pending.type]: (state) => {
       state.service.isLoading = true;
     },
@@ -138,6 +142,10 @@ export const alcoReducer = createSlice({
         "Error. Can't fetch server data";
       state.service.isLoading = false;
     },
+
+    [addNewDose.pending.type]: () => {},
+    [addNewDose.fulfilled.type]: () => {},
+    [addNewDose.rejected.type]: () => {},
   },
 });
 
