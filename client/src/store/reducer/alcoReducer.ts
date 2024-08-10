@@ -120,21 +120,23 @@ export const alcoReducer = createSlice({
   },
   extraReducers: {
     [fetchAlcoYear.pending.type]: (state) => {
-      // state.isLoading = true; // TODO create alcoState spinner
+      state.service.isLoading = true;
     },
     [fetchAlcoYear.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
       state = action.payload.alcoState;
-      // state.isError = false;
-      // state.message = "";
-      // state.isLoading = false; // TODO create alcoState spinner
+      state.service.message = "";
+      state.service.isError = false;
+      state.service.isLoading = false;
+      // TODO create spinner in alcoComponents
     },
     [fetchAlcoYear.rejected.type]: (state) => {
-      // state.isError = true;
-      // state.message = "Error. Can't fetch server data";
-      // state.isLoading = false;// TODO create alcoState spinner
+      state.service.isError = true;
+      state.service.message =
+        "Error. Can't fetch server data";
+      state.service.isLoading = false;
     },
   },
 });
