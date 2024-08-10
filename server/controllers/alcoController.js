@@ -142,8 +142,9 @@ class AlcoController {
         next
       );
       return res.status(200).json({
-        ...req.user,
-        alcoState, // type alcoState |null
+        token: req.user.token,
+        message: req.user.message,
+        alcoState,
       });
     } catch (e) {
       return ApiError.internal(
@@ -153,17 +154,20 @@ class AlcoController {
   }
 
   async getAlcoYear(req, res, next) {
-    //GET http://localhost:7000/api/alco_calendar/get
-    //req.body = {"year":"2020", "month":"1", "day":"1"}
+    //GET http://localhost:7000/api/alco_calendar/get?year=2020&month=1&day=1
+    //req.query.year,
+    // GET don't has req.body
+    const { year, month, day } = req.query;
     try {
-      // const {year, month, day} = req.body
       const alcoState = await createModelAlcoState(
-        req.body,
-        req.user.id
+        { year, month, day },
+        req.user.id,
+        next
       );
       return res.status(200).json({
-        ...req.user,
-        alcoState, // type YearData |null
+        token: req.user.token,
+        message: req.user.message,
+        alcoState,
       });
     } catch (error) {
       return ApiError.internal(
@@ -194,6 +198,3 @@ class AlcoController {
 }
 
 module.exports = new AlcoController();
-
-//GET http://localhost:7000/api/alco_calendar/get?year=2020
-//req.query.year,

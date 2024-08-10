@@ -67,7 +67,6 @@ class UserController {
 
     req.user = {
       id: user.id,
-      email,
       token,
       message: "Successful login",
     };

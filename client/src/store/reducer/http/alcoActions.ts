@@ -14,9 +14,10 @@ export const fetchAlcoYear = createAsyncThunk(
     date: CurrentDate,
     { rejectWithValue, dispatch, getState }
   ) => {
+    const { year, month, day } = date;
     try {
       const response = await $authHost.get<IServerRes>(
-        `api/alco_calendar/get?year=${date.year}`
+        `api/alco_calendar/get?year=${year}&month=${month}&day=${day}`
       );
 
       return response.data;
