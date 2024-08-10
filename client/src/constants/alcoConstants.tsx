@@ -13,7 +13,7 @@ import { AppLanguages } from "../types/appTypes";
 const [currentDay, currentMonth, currentYear] =
   getDateMonthYear(new Date());
 
-const CURRENT_DATE = {
+export const CURRENT_DATE = {
   day: currentDay,
   month: currentMonth,
   year: currentYear,
