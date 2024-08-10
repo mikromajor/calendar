@@ -1,4 +1,4 @@
-import { YearInfo } from "./alcoTypes";
+import { AlcoState } from "./alcoTypes";
 import { SalaryInit } from "./salaryTypes";
 
 export enum AppLanguages {
@@ -26,7 +26,7 @@ export interface EmailPassword {
 }
 export interface IServerRes extends IUser {
   message: string;
-  alcoYear: YearInfo;
+  alcoState: AlcoState;
   salaryData: SalaryInit;
 }
 

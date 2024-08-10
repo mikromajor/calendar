@@ -15,7 +15,7 @@ export interface YearInfo extends DayInfo {
   months: MonthInfo[];
 }
 
-interface CurrentDate {
+export interface CurrentDate {
   day: string;
   month: string;
   year: string;

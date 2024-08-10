@@ -126,7 +126,7 @@ export const alcoReducer = createSlice({
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      state.yearData = action.payload.alcoYear;
+      const {} = action.payload.alcoState.yearData;
       // state.isError = false;
       // state.message = "";
       // state.isLoading = false; // TODO create alcoState spinner

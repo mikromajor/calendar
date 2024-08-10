@@ -9,13 +9,28 @@ const {
 } = require("../utils/getDateMonthYear");
 //create response models for front-end equal INIT_YEAR
 
-const createModelYearData = async (year, userId, next) => {
+const createModelAlcoState = async (
+  currentDate,
+  userId,
+  next
+) => {
+  const year = currentDate.year;
+  const INIT_YEAR = {
+    totalVodka: 0,
+    totalBill: 0,
+    months: [],
+  };
+  const alcoState = {
+    currentDate,
+    yearData: INIT_YEAR,
+  };
+
   try {
     const alcoYear = await AlcoYear.findOne({
       where: { id: year, userId },
     });
     if (!alcoYear) {
-      return null;
+      return alcoState;
     }
 
     const alcoMonths = await AlcoMonth.findAll({
@@ -46,8 +61,9 @@ const createModelYearData = async (year, userId, next) => {
         ...d.dataValues,
       };
     });
+    alcoState.yearData = yearData;
 
-    return yearData;
+    return alcoState;
   } catch (error) {
     next(
       ApiError.internal("Response model was not create")
@@ -120,13 +136,14 @@ class AlcoController {
         });
       }
 
-      const modelYearData = await createModelYearData(
-        year,
-        req.user.id
+      const alcoState = await createModelAlcoState(
+        { year, month, day },
+        req.user.id,
+        next
       );
       return res.status(200).json({
         ...req.user,
-        alcoYear: modelYearData, // type YearData |null
+        alcoState, // type alcoState |null
       });
     } catch (e) {
       return ApiError.internal(
@@ -136,15 +153,17 @@ class AlcoController {
   }
 
   async getAlcoYear(req, res, next) {
-    //GET http://localhost:7000/api/alco_calendar/get?year=2020
+    //GET http://localhost:7000/api/alco_calendar/get
+    //req.body = {"year":"2020", "month":"1", "day":"1"}
     try {
-      const modelYearData = await createModelYearData(
-        req.query.year,
+      // const {year, month, day} = req.body
+      const alcoState = await createModelAlcoState(
+        req.body,
         req.user.id
       );
       return res.status(200).json({
         ...req.user,
-        alcoYear: modelYearData, // type YearData |null
+        alcoState, // type YearData |null
       });
     } catch (error) {
       return ApiError.internal(
@@ -154,15 +173,17 @@ class AlcoController {
   }
   async login(req, res, next) {
     try {
-      const [d, m, y] = getDateMonthYear(new Date());
-      const modelYearData = await createModelYearData(
-        y,
+      const [day, month, year] = getDateMonthYear(
+        new Date()
+      );
+      const alcoState = await createModelAlcoState(
+        { day, month, year },
         req.user.id,
         next
       );
       return res.status(200).json({
         ...req.user,
-        alcoYear: modelYearData, // type YearData |null
+        alcoYear: alcoState, // type YearData |null
       });
     } catch (e) {
       return ApiError.internal(
@@ -173,3 +194,6 @@ class AlcoController {
 }
 
 module.exports = new AlcoController();
+
+//GET http://localhost:7000/api/alco_calendar/get?year=2020
+//req.query.year,

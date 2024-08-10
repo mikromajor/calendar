@@ -3,18 +3,22 @@ import { $host, $authHost } from "./host";
 import { AxiosError, AxiosResponse } from "axios";
 import { YearInfo } from "../../../types/alcoTypes";
 import { IUser, IServerRes } from "../../../types/appTypes";
+import {
+  CurrentDate,
+  AlcoState,
+} from "../../../types/alcoTypes";
 
 export const fetchAlcoYear = createAsyncThunk(
   "alcoCalc/fetchAlcoYear",
   async (
-    year: string,
+    date: CurrentDate,
     { rejectWithValue, dispatch, getState }
   ) => {
     try {
       const response = await $authHost.get<IServerRes>(
-        `api/alco_calendar/get?year=${year}`
+        `api/alco_calendar/get?year=${date.year}`
       );
-      // dispatch();
+
       return response.data;
     } catch (error: any) {
       if (!error.response) {

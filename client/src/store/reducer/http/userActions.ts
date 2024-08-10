@@ -55,9 +55,9 @@ export const fetchUserLogin = createAsyncThunk(
         "api/user/login",
         emailPassword
       );
-      dispatch(
-        alcoActions.changeAlcoYear(response.data.alcoYear)
-      ); // TODO not work
+      // dispatch(
+      //   alcoActions.changeAlcoYear(response.data.alcoYear)
+      // ); // TODO fix send data
       saveTokenToLocalStorage(response.data?.token);
       return response.data;
     } catch (error: any) {
