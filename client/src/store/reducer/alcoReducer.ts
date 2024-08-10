@@ -143,8 +143,22 @@ export const alcoReducer = createSlice({
     [addNewDoseToDB.pending.type]: (state) => {
       state.service.isLoading = true;
     },
-    [addNewDoseToDB.fulfilled.type]: (state) => {},
-    [addNewDoseToDB.rejected.type]: (state) => {},
+    [addNewDoseToDB.fulfilled.type]: (
+      state,
+      action: PayloadAction<IServerRes>
+    ) => {
+      state = action.payload.alcoState;
+    },
+    [addNewDoseToDB.rejected.type]: (
+      state,
+      action: PayloadAction<IServerRes>
+    ) => {
+      const message = action.payload.message;
+
+      state.service.message = message ? message : "";
+      state.service.isError = true;
+      state.service.isLoading = false;
+    },
   },
 });
 
