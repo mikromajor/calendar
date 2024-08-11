@@ -57,29 +57,6 @@ export const alcoReducer = createSlice({
       // state.currentDate.year = action.payload;
     },
 
-    calculating: (
-      state,
-      action: PayloadAction<string[]>
-    ) => {
-      const [vol, per] = action.payload.map((d) =>
-        Number(d)
-      );
-
-      if (vol && per) {
-        const vodka = setDecimal(
-          (vol * per * 2.5) / 100,
-          0
-        );
-
-        // addVodkaToState(state, vodka);
-
-        addNewDoseToDB({
-          additionVodka: vodka + "",
-          ...state.currentDate,
-        });
-        // saveStateInStorage(state);
-      }
-    },
     clearYearData: (state) => {
       const key = createKey(state.currentDate.year);
       window.localStorage.removeItem(key);
