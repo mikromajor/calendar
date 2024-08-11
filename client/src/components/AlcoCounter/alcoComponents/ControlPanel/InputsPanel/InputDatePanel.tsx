@@ -1,5 +1,6 @@
 import { useAppSelector } from "../../../../../store/hooks/redux";
 import { alcoActions } from "../../../../../store/reducer/alcoReducer";
+import { fetchAlcoYear } from "../../../../../store/reducer/http/alcoActions";
 import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
 
 import { InputDate } from "../Inputs";
@@ -9,7 +10,7 @@ export const InputDatePanel = () => {
     (state) => state.alcoReducer.currentDate
   );
 
-  const { currentLang, currentTheme } = useAppSelector(
+  const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
 

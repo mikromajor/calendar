@@ -24,24 +24,12 @@ export const AlcoCounter = () => {
       <div className='alco-counter '>
         <AlcoHeader />
         <Display />
-        {showAlcoCalendar && <CalendarDayInfo />}
+        <CalendarDayInfo />
         <div
           className={`alco-counter__show-calendar-btn alco-counter__show-calendar-btn--${currentTheme}`}
-        >
-          <Button
-            id='btnShowAlcoCalendar'
-            variant='contained'
-            onClick={() =>
-              setShowAlcoCalendar((show) => !show)
-            }
-          >
-            {ALCO_CONTENT[currentLang].btnShowAlcoCalendar}
-          </Button>
-        </div>
+        ></div>
 
-        <ControlPanel
-          showPanelInputDate={showAlcoCalendar}
-        />
+        <ControlPanel />
         <Cleaner />
       </div>
     </>

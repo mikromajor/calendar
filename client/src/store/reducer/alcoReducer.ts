@@ -125,7 +125,7 @@ export const alcoReducer = createSlice({
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      state = action.payload.alcoState;
+      Object.assign(state, action.payload.alcoState);
     },
     [addNewDoseToDB.rejected.type]: (
       state,

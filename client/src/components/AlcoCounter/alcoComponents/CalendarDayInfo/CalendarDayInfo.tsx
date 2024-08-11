@@ -107,17 +107,18 @@ export function CalendarDayInfo() {
       newDay !== day && dispatch(changeDay(newDay + ""));
     }
   };
-
   return (
     <div
-      className={`alco-counter__calendar-day-info alco-counter__calendar-day-info--${currentTheme}`}
+      className={`alco-counter__calendar-day-info alco-counter__calendar-day-info--${currentTheme}   `}
     >
-      {service.isLoading && (
-        <Box sx={{ width: "100%" }}>
+      <div style={{ height: "10px" }}>
+        <Box
+          sx={{ width: "100%" }}
+          hidden={!service.isLoading}
+        >
           <LinearProgress />
         </Box>
-      )}
-
+      </div>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
           value={dayjs(year + "-" + month + "-" + day)}
