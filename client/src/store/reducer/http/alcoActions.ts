@@ -23,10 +23,10 @@ export const fetchAlcoYear = createAsyncThunk(
 
       return response.data;
     } catch (error: any) {
-      if (!error.response) {
-        throw error;
+      if (error?.response) {
+        return rejectWithValue(error.response.data.message);
       }
-      return rejectWithValue(error.response.data);
+      return error;
     }
   }
 );

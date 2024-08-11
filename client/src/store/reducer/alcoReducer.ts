@@ -54,20 +54,7 @@ export const alcoReducer = createSlice({
       state.currentDate.month = month;
     },
     changeYear: (state, action: PayloadAction<string>) => {
-      const year = action.payload;
-
-      const isStoreData = tryStorageData(year);
-
-      Object.assign(
-        state,
-        !!isStoreData ? isStoreData : INIT_ALCO_STATE,
-        {
-          currentDate: {
-            ...state.currentDate,
-            year,
-          },
-        }
-      );
+      // state.currentDate.year = action.payload;
     },
 
     calculating: (
@@ -110,16 +97,6 @@ export const alcoReducer = createSlice({
     clearAllStor: () => {
       window.localStorage.clear();
     },
-    //---handle server response
-    changeAlcoYear: (
-      state,
-      action: PayloadAction<AlcoYear | null>
-    ) => {
-      const alcoYear = action.payload;
-      state.yearData = !!alcoYear
-        ? alcoYear
-        : INIT_ALCO_STATE.yearData;
-    },
   },
   extraReducers: {
     // fetchAlcoYear
@@ -130,16 +107,17 @@ export const alcoReducer = createSlice({
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      state = action.payload.alcoState;
-      // TODO create spinner in alcoComponents
+      Object.assign(state, action.payload.alcoState);
     },
-    [fetchAlcoYear.rejected.type]: (state) => {
-      state.service.isError = true;
-      state.service.message =
-        "Error. Can't fetch server data";
+    [fetchAlcoYear.rejected.type]: (
+      state,
+      action: PayloadAction<string>
+    ) => {
       state.service.isLoading = false;
+      state.service.isError = true;
+      state.service.message = action.payload;
     },
-
+    //addNewDose
     [addNewDoseToDB.pending.type]: (state) => {
       state.service.isLoading = true;
     },
@@ -151,11 +129,9 @@ export const alcoReducer = createSlice({
     },
     [addNewDoseToDB.rejected.type]: (
       state,
-      action: PayloadAction<IServerRes>
+      action: PayloadAction<string>
     ) => {
-      const message = action.payload.message;
-
-      state.service.message = message ? message : "";
+      state.service.message = action.payload;
       state.service.isError = true;
       state.service.isLoading = false;
     },

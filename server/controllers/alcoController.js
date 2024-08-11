@@ -156,8 +156,8 @@ class AlcoController {
         alcoState,
       });
     } catch (e) {
-      return ApiError.internal(
-        "Error. The new dose wasn't add."
+      next(
+        ApiError.internal("Error. The new dose wasn't add.")
       );
     }
   }
@@ -166,6 +166,7 @@ class AlcoController {
     //GET http://localhost:7000/api/alco_calendar/get?year=2020&month=1&day=1
     //req.query.year,
     // GET don't has req.body
+
     const { year, month, day } = req.query;
     try {
       const alcoState = await createModelAlcoState(
@@ -179,10 +180,22 @@ class AlcoController {
         alcoState,
       });
     } catch (error) {
-      return ApiError.internal(
-        "Server error. AlcoController.getAlcoYear has problem"
+      next(
+        ApiError.internal(
+          "Server error. AlcoController.getAlcoYear has problem"
+        )
       );
     }
+
+    // //correct handle error
+    //     return next(
+    //       ApiError.badRequest("Request's data incorrect")
+    //     );
+    //     next(
+    //       ApiError.internal(
+    //         "Server error. AlcoController.getAlcoYear has problem"
+    //       )
+    //     );
   }
 
   async login(req, res, next) {
@@ -201,8 +214,8 @@ class AlcoController {
         alcoYear: alcoState, // type YearData |null
       });
     } catch (e) {
-      return ApiError.internal(
-        "Error in alcoController.login"
+      next(
+        ApiError.internal("Error in alcoController.login")
       );
     }
   }

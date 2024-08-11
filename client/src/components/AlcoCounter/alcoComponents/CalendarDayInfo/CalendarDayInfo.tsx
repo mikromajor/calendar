@@ -98,6 +98,7 @@ export function CalendarDayInfo() {
       const newYear = date.year() + "";
 
       newYear !== year &&
+        // dispatch(changeYear(newYear)),
         dispatch(
           fetchAlcoYear({ year: newYear, month, day })
         );
@@ -136,7 +137,8 @@ export function CalendarDayInfo() {
           }
           views={["year", "month", "day"]}
           onMonthChange={(date) => {
-            dispatch(changeMonth(date.month() + 1 + ""));
+            date.month() + 1 + "" !== month &&
+              dispatch(changeMonth(date.month() + 1 + ""));
           }}
         />
       </LocalizationProvider>

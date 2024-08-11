@@ -7,8 +7,6 @@ import { SALARY_INIT } from "./salaryConstants";
 import { INIT_ALCO_STATE } from "./alcoConstants";
 
 const INIT_USER: IUser = {
-  id: "",
-  email: "",
   token: "",
 };
 
