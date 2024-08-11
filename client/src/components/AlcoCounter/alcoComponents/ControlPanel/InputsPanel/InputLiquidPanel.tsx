@@ -21,16 +21,7 @@ export const InputLiquidPanel = () => {
         step={1}
         setVal={setPercent}
       />
-      <div className='control-panel__add-btn'>
-        {/* <Button
-          id='btnAdd'
-          variant='contained'
-          onClick={calculating}
-        >
-          {ALCO_CONTENT[currentLang].btnAdd}
-        </Button> */}
-        <AddButton volume={volume} percent={percent} />
-      </div>
+      <AddButton volume={volume} percent={percent} />
     </div>
   );
 };

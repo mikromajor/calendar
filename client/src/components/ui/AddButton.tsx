@@ -1,11 +1,7 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import { green } from "@mui/material/colors";
 import Button from "@mui/material/Button";
-import Fab from "@mui/material/Fab";
-import CheckIcon from "@mui/icons-material/Check";
-import SaveIcon from "@mui/icons-material/Save";
 import {
   useAppDispatch,
   useAppSelector,
@@ -58,7 +54,13 @@ export function AddButton({
   };
   //TODO add message from server
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        marginTop: "5px",
+      }}
+    >
       <Box sx={{ m: 1, position: "relative" }}>
         <Button
           variant='contained'
