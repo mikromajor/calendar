@@ -8,11 +8,14 @@ import {
   PickersDayProps,
 } from "@mui/x-date-pickers/PickersDay";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../../../store/hooks/redux";
 import { alcoActions } from "../../../../store/reducer/alcoReducer";
+import { fetchAlcoYear } from "../../../../store/reducer/http/alcoActions";
 import { DayInfo } from "../../../../types/alcoTypes";
 import updateLocale from "dayjs/plugin/updateLocale";
 
@@ -32,12 +35,13 @@ function ViewInfoDay(
   // TODO fix problem with highlightedDays
 
   const { outsideCurrentMonth } = props;
-  const { currentDate, yearData } = useAppSelector(
+  const { currentDate, yearData, service } = useAppSelector(
     (state) => state.alcoReducer
   );
-  const { month } = currentDate;
+
+  const month = Number(currentDate.month);
   const { months } = yearData;
-  const isMonthData = months[Number(month)];
+  const isMonthData = months[month];
   const highlightedDaysInMonth = !!isMonthData
     ? isMonthData.days
     : [];
@@ -69,7 +73,7 @@ function ViewInfoDay(
 
 export function CalendarDayInfo() {
   // TODO: change calendar's language when app lang change
-  const { currentDate, yearData } = useAppSelector(
+  const { currentDate, yearData, service } = useAppSelector(
     (state) => state.alcoReducer
   );
   const { currentTheme } = useAppSelector(
@@ -88,14 +92,18 @@ export function CalendarDayInfo() {
     : [];
 
   const changeDate = (date: Dayjs) => {
-    if (date && date !== null) {
-      const newDay = date.date().toString();
-      const newMonth = (date.month() + 1).toString();
-      const newYear = date.year().toString();
+    if (!!date) {
+      const newDay = date.date() + "";
+      const newMonth = date.month() + 1 + "";
+      const newYear = date.year() + "";
 
-      newYear !== year && dispatch(changeYear(newYear));
-      newMonth !== month && dispatch(changeMonth(newMonth));
-      newDay !== day && dispatch(changeDay(newDay));
+      newYear !== year &&
+        dispatch(
+          fetchAlcoYear({ year: newYear, month, day })
+        );
+      newMonth !== month &&
+        dispatch(changeMonth(newMonth + ""));
+      newDay !== day && dispatch(changeDay(newDay + ""));
     }
   };
 
@@ -103,6 +111,12 @@ export function CalendarDayInfo() {
     <div
       className={`alco-counter__calendar-day-info alco-counter__calendar-day-info--${currentTheme}`}
     >
+      {service.isLoading && (
+        <Box sx={{ width: "100%" }}>
+          <LinearProgress />
+        </Box>
+      )}
+
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
           value={dayjs(year + "-" + month + "-" + day)}
@@ -122,9 +136,7 @@ export function CalendarDayInfo() {
           }
           views={["year", "month", "day"]}
           onMonthChange={(date) => {
-            dispatch(
-              changeMonth((date.month() + 1).toString())
-            );
+            dispatch(changeMonth(date.month() + 1 + ""));
           }}
         />
       </LocalizationProvider>

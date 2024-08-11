@@ -7,16 +7,13 @@ export const getTotalDrankData = (alcoState: AlcoState) => {
     totalForMonth = 0;
   const { yearData, currentDate } = alcoState;
   const { day, month } = converterStringToNumb(currentDate);
-  const d = Number(day);
-  const m = Number(month);
   const { months } = yearData;
-  if (months?.[Number(month)]) {
-    const currentMonth = months[Number(month)];
+  if (months?.[month]) {
+    const currentMonth = months[month];
     totalForMonth = currentMonth.totalVodka;
 
-    if (currentMonth.days?.[Number(day)]) {
-      totalForDay =
-        currentMonth.days[Number(day)].totalVodka;
+    if (currentMonth.days?.[day]) {
+      totalForDay = currentMonth.days[day].totalVodka;
     }
   }
 
