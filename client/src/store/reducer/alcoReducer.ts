@@ -71,9 +71,13 @@ export const alcoReducer = createSlice({
           0
         );
 
-        addVodkaToState(state, vodka);
+        // addVodkaToState(state, vodka);
 
-        saveStateInStorage(state);
+        addNewDoseToDB({
+          additionVodka: vodka + "",
+          ...state.currentDate,
+        });
+        // saveStateInStorage(state);
       }
     },
     clearYearData: (state) => {
