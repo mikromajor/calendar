@@ -6,7 +6,7 @@ import {
   useAppDispatch,
 } from "../../../../../store/hooks/redux";
 import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
-import { InputLiquid } from "../Inputs";
+import { InputLiquid } from "../Inputs/InputLiquid";
 
 export const InputLiquidPanel = () => {
   const [volumeDrank, setVolumeDrank] = useState("500");

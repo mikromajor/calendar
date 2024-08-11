@@ -1,6 +1,5 @@
 import { Button } from "@mui/material";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
-import { InputDatePanel } from "./InputsPanel/InputDatePanel";
 import { InputLiquidPanel } from "./InputsPanel/InputLiquidPanel";
 import { useAppSelector } from "../../../../store/hooks/redux";
 
