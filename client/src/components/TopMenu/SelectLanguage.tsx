@@ -15,7 +15,7 @@ import {
 import { appActions } from "../../store/reducer/appReducer";
 import { AppLanguages } from "../../types/appTypes";
 
-export function ChooseLanguage() {
+export function SelectLanguage() {
   // customization
   const dispatch = useAppDispatch();
   const { currentLang } = useAppSelector(

@@ -6,7 +6,7 @@ import { APP_CONTENT } from "../../constants/appConstants";
 import { useAppSelector } from "../../store/hooks/redux";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
 import { SelectTheme } from "./SelectTheme";
-import { ChooseLanguage } from "./ChooseLanguage";
+import { SelectLanguage } from "./SelectLanguage";
 
 interface TopMenuPops {
   setShowAlcoCalc: React.Dispatch<
@@ -87,7 +87,7 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
           {APP_CONTENT[currentLang].goToSalary}
         </MenuItem>
 
-        <ChooseLanguage />
+        <SelectLanguage />
         <UserAuthBar />
       </Menu>
     </div>
