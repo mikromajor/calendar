@@ -4,10 +4,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import {
-  LANGUAGES_LIST,
-  APP_CONTENT,
-} from "../../constants/appConstants";
+import { APP_CONTENT } from "../../constants/appConstants";
 import {
   useAppDispatch,
   useAppSelector,
@@ -22,11 +19,12 @@ export function SelectLanguage() {
     (state) => state.appReducer
   );
   const { changeLanguage } = appActions;
+  const languages = Object.values(AppLanguages);
 
+  //-------------------------//
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] =
-    React.useState(1);
+
   const open = Boolean(anchorEl);
   const handleClickListItem = (
     event: React.MouseEvent<HTMLElement>
@@ -34,15 +32,9 @@ export function SelectLanguage() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (
-    event: React.MouseEvent<HTMLElement>,
-    index: number
-  ) => {
-    setSelectedIndex(index);
+  const handleMenuItemClick = (language: AppLanguages) => {
     setAnchorEl(null);
-    dispatch(
-      changeLanguage(LANGUAGES_LIST[index] as AppLanguages)
-    );
+    dispatch(changeLanguage(language));
   };
 
   const handleClose = () => {
@@ -51,13 +43,9 @@ export function SelectLanguage() {
 
   return (
     <>
-      <List
-        component='nav'
-        aria-label='Device settings'
-        // sx={{ bgcolor: "background.paper" }}
-      >
+      <List component='nav' aria-label='Device settings'>
         <ListItemButton
-          id='lock-button'
+          id='lock-button-language'
           aria-haspopup='listbox'
           aria-controls='lock-menu'
           aria-label='when device is locked'
@@ -66,12 +54,12 @@ export function SelectLanguage() {
         >
           <ListItemText
             primary={APP_CONTENT[currentLang].lblLang}
-            secondary={LANGUAGES_LIST[selectedIndex]}
+            secondary={currentLang}
           />
         </ListItemButton>
       </List>
       <Menu
-        id='lock-menu'
+        id='lock-menu-language'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -80,14 +68,11 @@ export function SelectLanguage() {
           role: "listbox",
         }}
       >
-        {LANGUAGES_LIST.map((language, index) => (
+        {languages.map((language) => (
           <MenuItem
             key={language}
-            // disabled={index === 0}
-            selected={index === selectedIndex}
-            onClick={(event) => {
-              handleMenuItemClick(event, index);
-            }}
+            selected={language === currentLang}
+            onClick={() => handleMenuItemClick(language)}
           >
             {language}
           </MenuItem>
