@@ -1,69 +1,102 @@
-import { AppThemes } from "../../types/appTypes";
-import { APP_CONTENT } from "../../constants/appConstants";
+import * as React from "react";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
 import {
-  useAppSelector,
+  LANGUAGES_LIST,
+  APP_CONTENT,
+} from "../../constants/appConstants";
+import {
   useAppDispatch,
+  useAppSelector,
 } from "../../store/hooks/redux";
 import { appActions } from "../../store/reducer/appReducer";
-import React, { forwardRef } from "react";
+import {
+  AppLanguages,
+  AppThemes,
+} from "../../types/appTypes";
 
-interface SelectThemeProps {
-  handleClose(): void;
-}
+//TODO
+const themes = [AppThemes.DARK, AppThemes.WHITE];
 
-export const SelectTheme = forwardRef(
-  (
-    { handleClose }: SelectThemeProps,
-    ref: React.ForwardedRef<HTMLSelectElement | null>
+export function SelectTheme() {
+  // customization
+  const dispatch = useAppDispatch();
+  const { currentLang } = useAppSelector(
+    (state) => state.appReducer
+  );
+  const { changeTheme } = appActions;
+  //
+  const [anchorEl, setAnchorEl] =
+    React.useState<null | HTMLElement>(null);
+  const [selectedIndex, setSelectedIndex] =
+    React.useState(1);
+  const open = Boolean(anchorEl);
+  const handleClickListItem = (
+    event: React.MouseEvent<HTMLElement>
   ) => {
-    const { currentLang, currentTheme } = useAppSelector(
-      (state) => state.appReducer
-    );
+    setAnchorEl(event.currentTarget);
+  };
 
-    const dispatch = useAppDispatch();
+  const handleMenuItemClick = (
+    event: React.MouseEvent<HTMLElement>,
+    index: number
+  ) => {
+    setSelectedIndex(index);
+    setAnchorEl(null);
+    dispatch(changeTheme(themes[index]));
+  };
 
-    const { changeTheme } = appActions;
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-    const themesList = Object.values(AppThemes);
-    const Options = themesList.map((theme, i) => (
-      <option
-        key={theme + i}
-        value={theme}
-        className={`select-lang__option select-lang__option--${currentTheme}`}
+  return (
+    <div>
+      <List
+        component='nav'
+        aria-label='Device settings'
+        sx={{ bgcolor: "background.paper" }}
       >
-        {APP_CONTENT[currentLang][theme]}
-      </option>
-    ));
-
-    const handleChangeTheme = (
-      e: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-      dispatch(
-        changeTheme(e.currentTarget.value as AppThemes)
-      );
-      handleClose();
-    };
-
-    return (
-      <div className='select-lang'>
-        <label
-          id='lblLang'
-          className={`select-lang__label select-lang--${currentTheme}`}
+        <ListItemButton
+          id='lock-button'
+          aria-haspopup='listbox'
+          aria-controls='lock-menu'
+          aria-label='when device is locked'
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClickListItem}
         >
-          {APP_CONTENT[currentLang].lblTheme}
-        </label>
-        <br />
-        <select
-          ref={ref}
-          id='selectThemes'
-          className={`select-lang__selector select-lang__selector--${currentTheme}`}
-          name='select-lang__selector '
-          defaultValue={currentTheme}
-          onChange={handleChangeTheme}
-        >
-          {Options}
-        </select>
-      </div>
-    );
-  }
-);
+          <ListItemText
+            primary={APP_CONTENT[currentLang].lblTheme}
+            secondary={themes[selectedIndex]}
+          />
+        </ListItemButton>
+      </List>
+      <Menu
+        id='lock-menu'
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "lock-button",
+          role: "listbox",
+        }}
+      >
+        {themes.map((option, index) => (
+          <MenuItem
+            key={option}
+            disabled={index === 0}
+            selected={index === selectedIndex}
+            onClick={(event) =>
+              handleMenuItemClick(event, index)
+            }
+          >
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+  );
+}

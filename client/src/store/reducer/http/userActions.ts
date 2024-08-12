@@ -1,29 +1,15 @@
-import {
-  createAsyncThunk,
-  Dispatch,
-} from "@reduxjs/toolkit";
-import { appActions } from "../appReducer";
-import { alcoActions } from "../alcoReducer";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   IServerRes,
   EmailPassword,
-  IUser,
 } from "../../../types/appTypes";
-import { AlcoYear } from "../../../types/alcoTypes";
 import { $host, $authHost } from "./host";
-import { AxiosError, AxiosResponse } from "axios";
 
 const saveTokenToLocalStorage = (token: string) => {
   !!token && localStorage.setItem("token", token);
 };
-export const cleanMessageWithDelay =
-  () => (dispatch: Dispatch) => {
-    setTimeout(() => {
-      dispatch(appActions.clearMessage());
-    }, 10000);
-  };
 
-export const fetchUserRegistration = createAsyncThunk(
+const fetchUserRegistration = createAsyncThunk(
   "user/fetchUserRegistration",
   async (
     emailPassword: EmailPassword,
@@ -45,7 +31,7 @@ export const fetchUserRegistration = createAsyncThunk(
   }
 );
 
-export const fetchUserLogin = createAsyncThunk(
+const fetchUserLogin = createAsyncThunk(
   "user/fetchUserLogin",
   async (
     emailPassword: EmailPassword,
@@ -66,8 +52,7 @@ export const fetchUserLogin = createAsyncThunk(
     }
   }
 );
-
-export const fetchUserAuth = createAsyncThunk(
+const fetchUserAuth = createAsyncThunk(
   "user/fetchUserAuth",
   async (_, thunkAPI) => {
     try {
@@ -84,3 +69,8 @@ export const fetchUserAuth = createAsyncThunk(
     }
   }
 );
+export {
+  fetchUserAuth,
+  fetchUserLogin,
+  fetchUserRegistration,
+};

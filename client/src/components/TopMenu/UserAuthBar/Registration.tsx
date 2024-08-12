@@ -11,7 +11,7 @@ import {
   SendButton,
 } from "../../ui";
 
-export const Registration = () => {
+export function Registration() {
   const { isError, message } = useAppSelector(
     (state) => state.appReducer
   );
@@ -123,4 +123,4 @@ export const Registration = () => {
       />
     </>
   );
-};
+}

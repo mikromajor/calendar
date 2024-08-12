@@ -20,11 +20,11 @@ interface ModalProps {
   setOpen: React.Dispatch<"reg" | "login" | "logout" | "">;
 }
 
-export const UserModal = ({
+export function UserModal({
   open,
   setOpen,
   children,
-}: PropsWithChildren<ModalProps>) => {
+}: PropsWithChildren<ModalProps>) {
   return (
     <div>
       <Modal
@@ -37,4 +37,4 @@ export const UserModal = ({
       </Modal>
     </div>
   );
-};
+}

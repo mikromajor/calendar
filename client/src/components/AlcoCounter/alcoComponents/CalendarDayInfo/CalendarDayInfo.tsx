@@ -15,7 +15,7 @@ import {
   useAppDispatch,
 } from "../../../../store/hooks/redux";
 import { alcoActions } from "../../../../store/reducer/alcoReducer";
-import { fetchAlcoYear } from "../../../../store/reducer/http/alcoActions";
+import { getAlcoYear } from "../../../../store/reducer/http/alcoActions";
 import { DayInfo } from "../../../../types/alcoTypes";
 import updateLocale from "dayjs/plugin/updateLocale";
 
@@ -100,7 +100,7 @@ export function CalendarDayInfo() {
       newYear !== year &&
         // dispatch(changeYear(newYear)),
         dispatch(
-          fetchAlcoYear({ year: newYear, month, day })
+          getAlcoYear({ year: newYear, month, day })
         );
       newMonth !== month &&
         dispatch(changeMonth(newMonth + ""));

@@ -4,9 +4,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { APP_CONTENT } from "../../constants/appConstants";
 import { useAppSelector } from "../../store/hooks/redux";
-import { SelectTheme } from "./SelectTheme";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
-import { ChooseLanguage } from "../ui";
+import { SelectTheme } from "./SelectTheme";
+import { ChooseLanguage } from "./ChooseLanguage";
+
 interface TopMenuPops {
   setShowAlcoCalc: React.Dispatch<
     React.SetStateAction<boolean>
@@ -77,12 +78,7 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={giveFocusSelectTheme}>
-          <SelectTheme
-            handleClose={handleClose}
-            ref={selectThemeRef}
-          />
-        </MenuItem>
+        <SelectTheme />
 
         <MenuItem onClick={switchToAlcoCalc}>
           {APP_CONTENT[currentLang].goToAlcoCalc}

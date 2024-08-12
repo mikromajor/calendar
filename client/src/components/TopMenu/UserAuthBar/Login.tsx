@@ -11,7 +11,7 @@ import {
   SendButton,
 } from "../../ui";
 
-export const Login = () => {
+export function Login() {
   const { isLoading, isError, message } = useAppSelector(
     (state) => state.appReducer
   );
@@ -86,4 +86,4 @@ export const Login = () => {
       />
     </>
   );
-};
+}

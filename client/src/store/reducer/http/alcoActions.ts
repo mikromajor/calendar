@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host, $authHost } from "./host";
-import { AxiosError, AxiosResponse } from "axios";
 import { AlcoYear } from "../../../types/alcoTypes";
 import { IServerRes } from "../../../types/appTypes";
 import { IDose } from "../../../types/alcoTypes";
@@ -9,8 +8,8 @@ import {
   AlcoState,
 } from "../../../types/alcoTypes";
 
-export const fetchAlcoYear = createAsyncThunk(
-  "alcoCalc/fetchAlcoYear",
+export const getAlcoYear = createAsyncThunk(
+  "alcoCalc/getAlcoYear",
   async (
     date: CurrentDate,
     { rejectWithValue, dispatch, getState }

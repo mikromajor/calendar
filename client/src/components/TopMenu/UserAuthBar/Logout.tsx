@@ -6,7 +6,7 @@ interface LogoutProps {
   setOpen: React.Dispatch<"" | "reg" | "login" | "logout">;
 }
 
-export const Logout: FC<LogoutProps> = ({ setOpen }) => {
+export function Logout({ setOpen }: LogoutProps) {
   const sendLogoutRequest = () => {
     localStorage.setItem("token", "");
   };
@@ -33,4 +33,4 @@ export const Logout: FC<LogoutProps> = ({ setOpen }) => {
       </Stack>
     </>
   );
-};
+}

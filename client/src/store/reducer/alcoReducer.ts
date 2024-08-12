@@ -17,7 +17,7 @@ import {
   minMaxMonthValidation,
 } from "./alcoHandlers";
 import {
-  fetchAlcoYear,
+  getAlcoYear,
   addNewDoseToDB,
 } from "./http/alcoActions";
 import { AlcoYear } from "../../types/alcoTypes";
@@ -80,17 +80,17 @@ export const alcoReducer = createSlice({
     },
   },
   extraReducers: {
-    // fetchAlcoYear
-    [fetchAlcoYear.pending.type]: (state) => {
+    // getAlcoYear
+    [getAlcoYear.pending.type]: (state) => {
       state.service.isLoading = true;
     },
-    [fetchAlcoYear.fulfilled.type]: (
+    [getAlcoYear.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
       Object.assign(state, action.payload.alcoState);
     },
-    [fetchAlcoYear.rejected.type]: (
+    [getAlcoYear.rejected.type]: (
       state,
       action: PayloadAction<string>
     ) => {
