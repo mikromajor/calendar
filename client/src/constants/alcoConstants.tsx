@@ -48,7 +48,7 @@ export const INIT_ALCO_STATE: AlcoState = {
 
 export const ALCO_CONTENT: AlcoContent = {
   [AppLanguages.PL]: {
-    alcoHeader: "Licznik spożycia alkoholu",
+    alcoHeader: "Alcokalendarz",
     controlPanelHeader: "Wprowadź dane napoju",
     lblDay: "Dzień",
     lblMonth: "Miesiąc",
@@ -62,7 +62,7 @@ export const ALCO_CONTENT: AlcoContent = {
     deleteMonth: "Usunąć dane za miesiąc",
   },
   [AppLanguages.EN]: {
-    alcoHeader: "Alcohol consumption counter ",
+    alcoHeader: "Аlcohol calendar",
     controlPanelHeader: "Enter the drink consumed",
     lblDay: "Day",
     lblMonth: "MonthInfo",
@@ -76,7 +76,7 @@ export const ALCO_CONTENT: AlcoContent = {
     deleteMonth: "Delete month's data",
   },
   [AppLanguages.UA]: {
-    alcoHeader: "Лічильник споживання алкоголю",
+    alcoHeader: "Алкокалендар",
     controlPanelHeader: "Введіть спожитий напій",
     lblDay: "День",
     lblMonth: "Місяць",

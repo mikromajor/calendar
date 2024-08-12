@@ -7,7 +7,7 @@ import {
 } from "@mui/material/styles";
 
 function App() {
-  const [switchCalc, setSwitchCalc] = useState(true);
+  const [showAlcoCalc, setShowAlcoCalc] = useState(true);
   const { currentTheme } = useAppSelector(
     (state) => state.appReducer
   );
@@ -22,8 +22,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className={`app app--${currentTheme}`}>
-        <TopMenu setSwitchCalc={setSwitchCalc} />
-        {switchCalc ? <AlcoCounter /> : <Salary />}
+        <TopMenu setShowAlcoCalc={setShowAlcoCalc} />
+        {showAlcoCalc ? <AlcoCounter /> : <Salary />}
       </div>
     </ThemeProvider>
   );

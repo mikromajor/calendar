@@ -4,16 +4,16 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { APP_CONTENT } from "../../constants/appConstants";
 import { useAppSelector } from "../../store/hooks/redux";
-import { SelectLanguage } from "./SelectLanguage/SelectLanguage";
 import { SelectTheme } from "./SelectTheme";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
+import { ChooseLanguage } from "../ui";
 interface TopMenuPops {
-  setSwitchCalc: React.Dispatch<
+  setShowAlcoCalc: React.Dispatch<
     React.SetStateAction<boolean>
   >;
 }
 
-export function TopMenu({ setSwitchCalc }: TopMenuPops) {
+export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
@@ -34,8 +34,12 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleChangeCalc = () => {
-    setSwitchCalc((switcher) => !switcher);
+  const switchToAlcoCalc = () => {
+    setShowAlcoCalc(true);
+    setAnchorEl(null);
+  };
+  const switchToSalary = () => {
+    setShowAlcoCalc(false);
     setAnchorEl(null);
   };
 
@@ -80,18 +84,15 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
           />
         </MenuItem>
 
-        <MenuItem onClick={handleChangeCalc}>
-          {APP_CONTENT[currentLang].btnChangeCalc}
+        <MenuItem onClick={switchToAlcoCalc}>
+          {APP_CONTENT[currentLang].goToAlcoCalc}
         </MenuItem>
-        <MenuItem onClick={giveFocusSelectLangs}>
-          <SelectLanguage
-            handleClose={handleClose}
-            ref={selectLangsRef}
-          />
+        <MenuItem onClick={switchToSalary}>
+          {APP_CONTENT[currentLang].goToSalary}
         </MenuItem>
-        <MenuItem>
-          <UserAuthBar />
-        </MenuItem>
+
+        <ChooseLanguage />
+        <UserAuthBar />
       </Menu>
     </div>
   );

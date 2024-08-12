@@ -24,21 +24,24 @@ export const INIT_APP_STATE = {
 export const APP_CONTENT = {
   [AppLanguages.EN]: {
     lblTheme: "theme",
-    btnChangeCalc: "Change calculator",
+    goToAlcoCalc: "Alcohol calendar",
+    goToSalary: "Salary",
     lblLang: "Change language:",
     [AppThemes.DARK]: "Black",
     [AppThemes.WHITE]: "White",
   },
   [AppLanguages.PL]: {
     lblTheme: "theme",
-    btnChangeCalc: "Zmień kalkulator",
+    goToAlcoCalc: "Alcocalendarz",
+    goToSalary: "Wypłata",
     lblLang: "Zmień język",
     [AppThemes.DARK]: "Ciemna",
     [AppThemes.WHITE]: "Światła",
   },
   [AppLanguages.UA]: {
     lblTheme: "тема",
-    btnChangeCalc: "Зміни калькулятор",
+    goToAlcoCalc: "Алкокалендар",
+    goToSalary: "Зарплата",
     lblLang: "Змінити мову",
     [AppThemes.DARK]: "Темна",
     [AppThemes.WHITE]: "Світла",
