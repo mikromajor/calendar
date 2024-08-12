@@ -23,7 +23,7 @@ export const INIT_APP_STATE = {
 
 export const APP_CONTENT = {
   [AppLanguages.EN]: {
-    lblTheme: "theme",
+    lblTheme: "Theme",
     goToAlcoCalc: "Alcohol calendar",
     goToSalary: "Salary",
     lblLang: "Change language:",
@@ -31,7 +31,7 @@ export const APP_CONTENT = {
     [AppThemes.WHITE]: "White",
   },
   [AppLanguages.PL]: {
-    lblTheme: "theme",
+    lblTheme: "Theme",
     goToAlcoCalc: "Alcocalendarz",
     goToSalary: "Wypłata",
     lblLang: "Zmień język",
@@ -39,7 +39,7 @@ export const APP_CONTENT = {
     [AppThemes.WHITE]: "Światła",
   },
   [AppLanguages.UA]: {
-    lblTheme: "тема",
+    lblTheme: "Tема",
     goToAlcoCalc: "Алкокалендар",
     goToSalary: "Зарплата",
     lblLang: "Змінити мову",

@@ -4,35 +4,27 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import {
-  LANGUAGES_LIST,
-  APP_CONTENT,
-} from "../../constants/appConstants";
+import { APP_CONTENT } from "../../constants/appConstants";
 import {
   useAppDispatch,
   useAppSelector,
 } from "../../store/hooks/redux";
 import { appActions } from "../../store/reducer/appReducer";
-import {
-  AppLanguages,
-  AppThemes,
-} from "../../types/appTypes";
-
-//TODO
-const themes = [AppThemes.DARK, AppThemes.WHITE];
+import { AppThemes } from "../../types/appTypes";
 
 export function SelectTheme() {
-  // customization
+  //---- customization
   const dispatch = useAppDispatch();
-  const { currentLang } = useAppSelector(
+  const { currentLang, currentTheme } = useAppSelector(
     (state) => state.appReducer
   );
   const { changeTheme } = appActions;
-  //
+
+  const themes = Object.values(AppThemes);
+  //-----------------//
+
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] =
-    React.useState(1);
   const open = Boolean(anchorEl);
   const handleClickListItem = (
     event: React.MouseEvent<HTMLElement>
@@ -40,13 +32,9 @@ export function SelectTheme() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (
-    event: React.MouseEvent<HTMLElement>,
-    index: number
-  ) => {
-    setSelectedIndex(index);
+  const handleMenuItemClick = (theme: AppThemes) => {
     setAnchorEl(null);
-    dispatch(changeTheme(themes[index]));
+    dispatch(changeTheme(theme));
   };
 
   const handleClose = () => {
@@ -58,10 +46,10 @@ export function SelectTheme() {
       <List
         component='nav'
         aria-label='Device settings'
-        sx={{ bgcolor: "background.paper" }}
+        // sx={{ bgcolor: "background.paper" }}
       >
         <ListItemButton
-          id='lock-button'
+          id='lock-button-theme'
           aria-haspopup='listbox'
           aria-controls='lock-menu'
           aria-label='when device is locked'
@@ -70,12 +58,14 @@ export function SelectTheme() {
         >
           <ListItemText
             primary={APP_CONTENT[currentLang].lblTheme}
-            secondary={themes[selectedIndex]}
+            secondary={
+              APP_CONTENT[currentLang][currentTheme]
+            }
           />
         </ListItemButton>
       </List>
       <Menu
-        id='lock-menu'
+        id='lock-menu-theme'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -84,16 +74,13 @@ export function SelectTheme() {
           role: "listbox",
         }}
       >
-        {themes.map((option, index) => (
+        {themes.map((theme) => (
           <MenuItem
-            key={option}
-            disabled={index === 0}
-            selected={index === selectedIndex}
-            onClick={(event) =>
-              handleMenuItemClick(event, index)
-            }
+            key={theme}
+            selected={theme === currentTheme}
+            onClick={() => handleMenuItemClick(theme)}
           >
-            {option}
+            {APP_CONTENT[currentLang][theme]}
           </MenuItem>
         ))}
       </Menu>
