@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useState } from "react";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
@@ -16,14 +16,7 @@ interface TopMenuPops {
 
 export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
   const [anchorEl, setAnchorEl] =
-    React.useState<null | HTMLElement>(null);
-
-  const selectLangsRef = useRef<HTMLSelectElement | null>(
-    null
-  );
-  const selectThemeRef = useRef<HTMLSelectElement | null>(
-    null
-  );
+    useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
 
@@ -44,15 +37,6 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
     setAnchorEl(null);
   };
 
-  const giveFocusSelectTheme = () => {
-    selectThemeRef.current &&
-      selectThemeRef.current.focus();
-  };
-  const giveFocusSelectLangs = () => {
-    selectLangsRef.current &&
-      selectLangsRef.current.focus();
-  };
-
   const { currentLang } = useAppSelector(
     (state) => state.appReducer
   );
@@ -61,7 +45,7 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
     <div className={`app__top-menu`}>
       <IconButton
         aria-label='more'
-        id='long-button'
+        id='long-button-top-menu'
         aria-controls={open ? "long-menu" : undefined}
         aria-expanded={open ? "true" : undefined}
         aria-haspopup='true'
@@ -70,7 +54,7 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
         <MoreVertIcon />
       </IconButton>
       <Menu
-        id='long-menu'
+        id='long-menu-top-menu'
         MenuListProps={{
           "aria-labelledby": "long-button",
         }}
