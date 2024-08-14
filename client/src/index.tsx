@@ -3,7 +3,6 @@ import App from "./App";
 import store from "./store";
 import "./index.scss";
 import { createRoot } from "react-dom/client";
-import { Temple } from "./index_mobx";
 
 const container = document.getElementById("app-container");
 const root = createRoot(container!);
