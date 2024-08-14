@@ -3,7 +3,7 @@ import {
   Display,
   Cleaner,
   AlcoHeader,
-  CalendarDayInfo,
+  Calendar,
 } from "./alcoComponents";
 import { Button } from "@mui/material";
 import { useState } from "react";
@@ -24,7 +24,7 @@ export const AlcoCounter = () => {
       <div className='alco-counter '>
         <AlcoHeader />
         <Display />
-        <CalendarDayInfo />
+        <Calendar />
         <div
           className={`alco-counter__show-calendar-btn alco-counter__show-calendar-btn--${currentTheme}`}
         ></div>

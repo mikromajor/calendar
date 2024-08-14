@@ -70,7 +70,7 @@ function CustomDay(
   );
 }
 
-export function CalendarDayInfo() {
+export function Calendar() {
   // TODO: change calendar's language when app lang change
   const { currentDate, yearData, service } = useAppSelector(
     (state) => state.alcoReducer
