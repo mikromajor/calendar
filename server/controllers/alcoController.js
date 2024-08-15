@@ -211,7 +211,7 @@ class AlcoController {
       return res.status(200).json({
         token: req.user.token,
         message: req.user.message,
-        alcoYear: alcoState, // type YearData |null
+        alcoState, // type YearData |null
       });
     } catch (e) {
       next(

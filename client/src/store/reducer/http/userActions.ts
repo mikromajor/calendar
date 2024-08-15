@@ -8,7 +8,7 @@ import { $host, $authHost } from "./host";
 const saveTokenToLocalStorage = (token: string) => {
   !!token && localStorage.setItem("token", token);
 };
-
+//REGISTRATION
 const fetchUserRegistration = createAsyncThunk(
   "user/fetchUserRegistration",
   async (
@@ -30,7 +30,7 @@ const fetchUserRegistration = createAsyncThunk(
     }
   }
 );
-
+//LOGIN
 const fetchUserLogin = createAsyncThunk(
   "user/fetchUserLogin",
   async (
@@ -52,6 +52,7 @@ const fetchUserLogin = createAsyncThunk(
     }
   }
 );
+//AUTH
 const fetchUserAuth = createAsyncThunk(
   "user/fetchUserAuth",
   async (_, thunkAPI) => {
