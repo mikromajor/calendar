@@ -82,9 +82,6 @@ export const alcoReducer = createSlice({
         };
       }
     },
-    clearAllStor: () => {
-      window.localStorage.clear();
-    },
   },
   extraReducers: {
     // getAlcoYear

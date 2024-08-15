@@ -30,7 +30,7 @@ export const AlcoCounter = () => {
         ></div>
 
         <ControlPanel />
-        <Cleaner />
+        {/* <Cleaner /> */}
       </div>
     </>
   );
