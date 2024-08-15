@@ -25,10 +25,9 @@ import updateLocale from "dayjs/plugin/updateLocale";
 
 dayjs.extend(updateLocale);
 
-// Replace "en" with the name of the locale you want to update.
 dayjs.updateLocale("en", {
   // Sunday = 0, Monday = 1.
-  //"en" - не меняет язык
+  //"en" - if you change it, the language will not change;
   weekStart: 1,
 });
 
@@ -84,6 +83,8 @@ export function Calendar() {
   const { changeDay, changeMonth } = alcoActions;
 
   const { months } = yearData;
+
+  React.useEffect(() => {}, [yearData]);
 
   const isMonthData = months?.[Number(month)];
 
