@@ -85,13 +85,11 @@ class AlcoController {
     //POST http://localhost:7000/api/alco_calendar/add
     // req.body = {"year":"2020", "month":"1", "day":"1", "additionVodka":"65"}
     try {
-      const { year, month, day, additionVodka } = req.body;
-      if (
-        year <= 0 ||
-        month <= 0 ||
-        day <= 0 ||
-        isNaN(additionVodka)
-      ) {
+      const { year, month, day } = req.body; //string
+      const additionVodka = Number(req.body.additionVodka);
+      const userId = Number(req.user.id);
+
+      if (year <= 0 || month <= 0 || day <= 0) {
         return res.json(
           ApiError.badRequest("Request's data incorrect")
         );
@@ -99,55 +97,61 @@ class AlcoController {
 
       const dayId = year + "_" + month + "_" + day;
       const monthId = year + "_" + month;
+      const yearId = year + "";
 
       const alcoYear = await AlcoYear.findOne({
-        where: { id: year, userId: req.user.id },
+        where: { userId, id: yearId },
       });
-      if (alcoYear) {
-        alcoYear.totalVodka += Number(additionVodka);
+
+      if (!!alcoYear) {
+        alcoYear.totalVodka += additionVodka;
         await alcoYear.save();
       } else {
         await AlcoYear.create({
-          id: year,
-          userId: req.user.id,
+          id: yearId,
+          userId,
           totalVodka: additionVodka,
         });
       }
-
+      let y = await AlcoYear.findOne({
+        where: { userId, id: yearId },
+      });
+      console.log(" data  =>", y);
+      //--above tested, bellow - not ---//
       const alcoMonth = await AlcoMonth.findOne({
-        where: { id: monthId, userId: req.user.id },
+        where: { id: monthId, userId },
       });
       if (alcoMonth) {
-        alcoMonth.totalVodka += Number(additionVodka);
+        alcoMonth.totalVodka += additionVodka;
         await alcoMonth.save();
       } else {
         await AlcoMonth.create({
           id: monthId,
-          userId: req.user.id,
-          yearId: year,
+          userId,
+          yearId,
           totalVodka: additionVodka,
         });
       }
 
       const alcoDay = await AlcoDay.findOne({
-        where: { id: dayId, userId: req.user.id },
+        where: { id: dayId, userId },
       });
       if (alcoDay) {
-        alcoDay.totalVodka += Number(additionVodka);
+        alcoDay.totalVodka += additionVodka;
         await alcoDay.save();
       } else {
         await AlcoDay.create({
           id: dayId,
-          userId: req.user.id,
           monthId,
-          yearId: year,
+          yearId,
+          userId,
           totalVodka: additionVodka,
         });
       }
 
       const alcoState = await createModelAlcoState(
         { year, month, day },
-        req.user.id,
+        userId,
         next
       );
       return res.status(200).json({
@@ -171,7 +175,7 @@ class AlcoController {
     try {
       const alcoState = await createModelAlcoState(
         { year, month, day },
-        req.user.id,
+        Number(req.user.id),
         next
       );
       return res.status(200).json({
@@ -186,16 +190,6 @@ class AlcoController {
         )
       );
     }
-
-    // //correct handle error
-    //     return next(
-    //       ApiError.badRequest("Request's data incorrect")
-    //     );
-    //     next(
-    //       ApiError.internal(
-    //         "Server error. AlcoController.getAlcoYear has problem"
-    //       )
-    //     );
   }
 
   async login(req, res, next) {
@@ -205,7 +199,7 @@ class AlcoController {
       );
       const alcoState = await createModelAlcoState(
         { day, month, year },
-        req.user.id,
+        Number(req.user.id),
         next
       );
       return res.status(200).json({
@@ -222,3 +216,13 @@ class AlcoController {
 }
 
 module.exports = new AlcoController();
+
+// //Note: correct handle error
+//     return next(
+//       ApiError.badRequest("Request's data incorrect")
+//     );
+//     next(
+//       ApiError.internal(
+//         "Server error. AlcoController.getAlcoYear has problem"
+//       )
+//     );

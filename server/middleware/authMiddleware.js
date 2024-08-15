@@ -19,12 +19,13 @@ module.exports = function (req, res, next) {
       token,
       process.env.SECRET_KEY,
       (err, user) => {
-        if (err)
+        if (err) {
           return next(
             ApiError.forbidden(
               "You have not access. Please login"
             )
           );
+        }
         req.user = user;
         next();
       }

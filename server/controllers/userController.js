@@ -75,8 +75,12 @@ class UserController {
 
   //GET http://localhost:7000/api/user/auth
   async check(req, res, next) {
-    const token = generateJwt(req.user.id, req.user.email);
-    return res.json({ token, message: "Login successful" });
+    const { id, email } = req.user;
+    const token = generateJwt(id, email);
+    return res.json({
+      token,
+      message: "Authorization is ok",
+    });
   }
 }
 
