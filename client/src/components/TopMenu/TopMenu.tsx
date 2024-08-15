@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import { APP_CONTENT } from "../../constants/appConstants";
+import { APP_CONTENT } from "../../constants/userConstants";
 import { useAppSelector } from "../../store/hooks/redux";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
 import { SelectTheme } from "./SelectTheme";

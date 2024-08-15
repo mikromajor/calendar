@@ -3,7 +3,7 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 
-import { INIT_APP_STATE } from "../../constants/appConstants";
+import { INIT_APP_STATE } from "../../constants/userConstants";
 import {
   AppLanguages,
   AppThemes,
@@ -18,7 +18,7 @@ import {
 } from "./http/userActions";
 
 export const userReducer = createSlice({
-  name: "appState",
+  name: "userState",
   initialState: INIT_APP_STATE,
   reducers: {
     changeLanguage: (
@@ -72,18 +72,9 @@ export const userReducer = createSlice({
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      const { token, message, alcoState, salaryState } =
-        action.payload;
+      const { message } = action.payload;
 
-      // state.message = message;
-      state.message = "uh";
-      // state.alcoData.currentDate = {
-      //   day: "1",
-      //   month: "1",
-      //   year: "2020",
-      // };
-      // state.alcoData = alcoState;
-      // state.salary = salaryState;
+      state.message = message;
       state.isError = false;
       state.isLoading = false;
     },

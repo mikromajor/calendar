@@ -4,7 +4,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { APP_CONTENT } from "../../constants/appConstants";
+import { APP_CONTENT } from "../../constants/userConstants";
 import {
   useAppDispatch,
   useAppSelector,
