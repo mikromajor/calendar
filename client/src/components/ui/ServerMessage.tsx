@@ -55,9 +55,9 @@ export function ServerMessage({
     <div>
       <Snackbar
         open={open}
-        autoHideDuration={10000}
+        autoHideDuration={5000}
         onClose={handleClose}
-        message='Response from server:'
+        message='Server message:'
         action={action}
       />
     </div>

@@ -4,6 +4,7 @@ import {
   EmailPassword,
 } from "../../../types/userTypes";
 import { $host, $authHost } from "./host";
+import { alcoActions } from "../../reducer/alcoReducer";
 
 const saveTokenToLocalStorage = (token: string) => {
   !!token && localStorage.setItem("token", token);
@@ -37,19 +38,30 @@ const fetchUserLogin = createAsyncThunk(
     emailPassword: EmailPassword,
     { rejectWithValue, dispatch, getState }
   ) => {
+    let response;
     try {
-      const response = await $host.post<IServerRes>(
+      response = await $host.post<IServerRes>(
         "api/user/login",
         emailPassword
       );
       saveTokenToLocalStorage(response.data?.token);
-      return response.data;
     } catch (error: any) {
       if (!error.response) {
         throw error;
       }
       return rejectWithValue(error.response.data);
     }
+
+    try {
+      dispatch(
+        alcoActions.changeYear(response.data.alcoState)
+      );
+    } catch (error) {
+      response.data.message =
+        "ERROR. Problem with dispatch in fetchUserLogin";
+    }
+
+    return response.data;
   }
 );
 //AUTH

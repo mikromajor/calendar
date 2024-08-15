@@ -10,6 +10,7 @@ import {
   IUser,
 } from "../../types/userTypes";
 import { IServerRes } from "../../types/userTypes";
+import { MESSAGES } from "../../constants/userConstants";
 
 import {
   fetchUserAuth,
@@ -59,7 +60,9 @@ export const userReducer = createSlice({
     ) => {
       const message = action.payload.message;
 
-      state.message = message ? message : "";
+      state.message = message
+        ? message
+        : MESSAGES.unexpectedError;
       state.isLoading = false;
       state.isError = true;
     },
@@ -84,7 +87,9 @@ export const userReducer = createSlice({
       action: PayloadAction<IServerRes>
     ) => {
       const message = action.payload?.message;
-      state.message = message ? message : "";
+      state.message = message
+        ? message
+        : MESSAGES.unexpectedError;
       state.isLoading = false;
       state.isError = true;
     },
@@ -104,7 +109,7 @@ export const userReducer = createSlice({
     [fetchUserAuth.rejected.type]: (state) => {
       state.isLoading = false;
       state.isError = true;
-      state.message = "Authentication refused";
+      state.message = MESSAGES.authRefused;
     },
   },
 });
