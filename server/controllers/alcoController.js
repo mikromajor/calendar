@@ -26,7 +26,8 @@ const createModelAlcoState = async (
   userId,
   next
 ) => {
-  const year = currentDate.year;
+  const yearId = userId + "_" + currentDate.year;
+
   const alcoState = {
     currentDate,
     yearData: INIT_ALCO_YEAR,
@@ -35,18 +36,18 @@ const createModelAlcoState = async (
 
   try {
     const alcoYear = await AlcoYear.findOne({
-      where: { id: year, userId },
+      where: { id: yearId, userId },
     });
     if (!alcoYear) {
       return alcoState;
     }
 
     const alcoMonths = await AlcoMonth.findAll({
-      where: { yearId: year, userId },
+      where: { yearId, userId },
     });
 
     const alcoDays = await AlcoDay.findAll({
-      where: { yearId: year, userId },
+      where: { yearId, userId },
     });
 
     const yearData = {
@@ -55,7 +56,8 @@ const createModelAlcoState = async (
     };
 
     alcoMonths.forEach((m) => {
-      const [yearIndex, monthIndex] = m.id.split("_");
+      const [userIndex, yearIndex, monthIndex] =
+        m.id.split("_");
       yearData.months[monthIndex] = {
         ...m.dataValues,
         days: [],
@@ -63,7 +65,7 @@ const createModelAlcoState = async (
     });
 
     alcoDays.forEach((d) => {
-      const [yearIndex, monthIndex, dayIndex] =
+      const [userIndex, yearIndex, monthIndex, dayIndex] =
         d.id.split("_");
       yearData.months[monthIndex].days[dayIndex] = {
         ...d.dataValues,
@@ -84,81 +86,81 @@ class AlcoController {
   async addNewDose(req, res, next) {
     //POST http://localhost:7000/api/alco_calendar/add
     // req.body = {"year":"2020", "month":"1", "day":"1", "additionVodka":"65"}
-    try {
-      const { year, month, day } = req.body; //string
-      const additionVodka = Number(req.body.additionVodka);
-      const userId = Number(req.user.id);
 
-      if (year <= 0 || month <= 0 || day <= 0) {
-        return res.json(
-          ApiError.badRequest("Request's data incorrect")
-        );
-      }
+    const { year, month, day } = req.body; //string
+    const additionVodka = Number(req.body.additionVodka);
 
-      const dayId = year + "_" + month + "_" + day;
-      const monthId = year + "_" + month;
-      const yearId = year + "";
+    const userId = Number(req.user.id);
+    const yearId = userId + "_" + year;
+    const monthId = yearId + "_" + month;
+    const dayId = monthId + "_" + day;
 
-      const alcoYear = await AlcoYear.findOne({
-        where: { userId, id: yearId },
-      });
-
-      if (!!alcoYear) {
-        alcoYear.totalVodka += additionVodka;
-        await alcoYear.save();
-      } else {
-        await AlcoYear.create({
-          id: yearId,
-          userId,
-          totalVodka: additionVodka,
-        });
-      }
-      let y = await AlcoYear.findOne({
-        where: { userId, id: yearId },
-      });
-      console.log(" data  =>", y);
-      //--above tested, bellow - not ---//
-      const alcoMonth = await AlcoMonth.findOne({
-        where: { id: monthId, userId },
-      });
-      if (alcoMonth) {
-        alcoMonth.totalVodka += additionVodka;
-        await alcoMonth.save();
-      } else {
-        await AlcoMonth.create({
-          id: monthId,
-          userId,
-          yearId,
-          totalVodka: additionVodka,
-        });
-      }
-
-      const alcoDay = await AlcoDay.findOne({
-        where: { id: dayId, userId },
-      });
-      if (alcoDay) {
-        alcoDay.totalVodka += additionVodka;
-        await alcoDay.save();
-      } else {
-        await AlcoDay.create({
-          id: dayId,
-          monthId,
-          yearId,
-          userId,
-          totalVodka: additionVodka,
-        });
-      }
-
-      const alcoState = await createModelAlcoState(
-        { year, month, day },
-        userId,
-        next
+    if (year <= 0 || month <= 0 || day <= 0) {
+      return res.json(
+        ApiError.badRequest("Request's data incorrect")
       );
-      return res.status(200).json({
-        token: req.user.token,
-        message: req.user.message,
-        alcoState,
+    }
+
+    const alcoYear = await AlcoYear.findOne({
+      where: { userId, id: yearId },
+    });
+
+    if (!!alcoYear) {
+      alcoYear.totalVodka += additionVodka;
+      await alcoYear.save();
+    } else {
+      await AlcoYear.create({
+        id: yearId,
+        userId,
+        totalVodka: additionVodka,
       });
+    }
+    let y = await AlcoYear.findOne({
+      where: { userId, id: yearId },
+    });
+    //--above tested, bellow - not ---//
+    const alcoMonth = await AlcoMonth.findOne({
+      where: { id: monthId, userId },
+    });
+    if (alcoMonth) {
+      alcoMonth.totalVodka += additionVodka;
+      await alcoMonth.save();
+    } else {
+      await AlcoMonth.create({
+        id: monthId,
+        userId,
+        yearId,
+        totalVodka: additionVodka,
+      });
+    }
+
+    const alcoDay = await AlcoDay.findOne({
+      where: { id: dayId, userId },
+    });
+    if (alcoDay) {
+      alcoDay.totalVodka += additionVodka;
+      await alcoDay.save();
+    } else {
+      await AlcoDay.create({
+        id: dayId,
+        monthId,
+        yearId,
+        userId,
+        totalVodka: additionVodka,
+      });
+    }
+
+    const alcoState = await createModelAlcoState(
+      { year, month, day },
+      userId,
+      next
+    );
+    return res.status(200).json({
+      token: req.user.token,
+      message: req.user.message,
+      alcoState,
+    });
+    try {
     } catch (e) {
       next(
         ApiError.internal("Error. The new dose wasn't add.")
