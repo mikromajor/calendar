@@ -1,12 +1,12 @@
 import { AlcoState } from "./alcoTypes";
 import { SalaryInit } from "./salaryTypes";
 
-export enum AppLanguages {
+export enum UserLanguages {
   UA = "UA",
   PL = "PL",
   EN = "EN",
 }
-export enum AppThemes {
+export enum UserThemes {
   WHITE = "white-theme",
   DARK = "dark-theme",
 }
@@ -28,4 +28,4 @@ export interface IServerRes extends IUser {
   salaryState: SalaryInit;
 }
 
-//  export type LanguagesList = keyof typeof AppLanguages;
+//  export type LanguagesList = keyof typeof UserLanguages;

@@ -4,13 +4,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { APP_CONTENT } from "../../constants/userConstants";
+import { TOP_MENU_CONTENT } from "../../constants/userConstants";
 import {
   useAppDispatch,
   useAppSelector,
 } from "../../store/hooks/redux";
 import { appActions } from "../../store/reducer/userReducer";
-import { AppThemes } from "../../types/userTypes";
+import { UserThemes } from "../../types/userTypes";
 
 export function SelectTheme() {
   //---- customization
@@ -20,7 +20,7 @@ export function SelectTheme() {
   );
   const { changeTheme } = appActions;
 
-  const themes = Object.values(AppThemes);
+  const themes = Object.values(UserThemes);
   //-----------------//
 
   const [anchorEl, setAnchorEl] =
@@ -32,7 +32,7 @@ export function SelectTheme() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (theme: AppThemes) => {
+  const handleMenuItemClick = (theme: UserThemes) => {
     setAnchorEl(null);
     dispatch(changeTheme(theme));
   };
@@ -57,9 +57,9 @@ export function SelectTheme() {
           onClick={handleClickListItem}
         >
           <ListItemText
-            primary={APP_CONTENT[currentLang].lblTheme}
+            primary={TOP_MENU_CONTENT[currentLang].lblTheme}
             secondary={
-              APP_CONTENT[currentLang][currentTheme]
+              TOP_MENU_CONTENT[currentLang][currentTheme]
             }
           />
         </ListItemButton>
@@ -80,7 +80,7 @@ export function SelectTheme() {
             selected={theme === currentTheme}
             onClick={() => handleMenuItemClick(theme)}
           >
-            {APP_CONTENT[currentLang][theme]}
+            {TOP_MENU_CONTENT[currentLang][theme]}
           </MenuItem>
         ))}
       </Menu>

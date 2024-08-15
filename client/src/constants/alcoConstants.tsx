@@ -7,7 +7,7 @@ import {
   Service,
 } from "../types/alcoTypes";
 import { getDateMonthYear } from "../utils";
-import { AppLanguages } from "../types/userTypes";
+import { UserLanguages } from "../types/userTypes";
 
 //for calendar: new Date(year, monthIndex(0-11), day)
 const [currentDay, currentMonth, currentYear] =
@@ -47,7 +47,7 @@ export const INIT_ALCO_STATE: AlcoState = {
 };
 
 export const ALCO_CONTENT: AlcoContent = {
-  [AppLanguages.PL]: {
+  [UserLanguages.PL]: {
     alcoHeader: "Alcokalendarz",
     controlPanelHeader: "Wprowadź dane napoju",
     lblDay: "Dzień",
@@ -61,7 +61,7 @@ export const ALCO_CONTENT: AlcoContent = {
     deleteYear: "Usunąć dane za rok",
     deleteMonth: "Usunąć dane za miesiąc",
   },
-  [AppLanguages.EN]: {
+  [UserLanguages.EN]: {
     alcoHeader: "Аlcohol calendar",
     controlPanelHeader: "Enter the drink consumed",
     lblDay: "Day",
@@ -75,7 +75,7 @@ export const ALCO_CONTENT: AlcoContent = {
     deleteYear: "Delete year's data",
     deleteMonth: "Delete month's data",
   },
-  [AppLanguages.UA]: {
+  [UserLanguages.UA]: {
     alcoHeader: "Алкокалендар",
     controlPanelHeader: "Введіть спожитий напій",
     lblDay: "День",

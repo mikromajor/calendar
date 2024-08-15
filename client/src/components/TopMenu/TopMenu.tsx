@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import { APP_CONTENT } from "../../constants/userConstants";
+import { TOP_MENU_CONTENT } from "../../constants/userConstants";
 import { useAppSelector } from "../../store/hooks/redux";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
 import { SelectTheme } from "./SelectTheme";
@@ -65,10 +65,10 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
         <SelectTheme />
 
         <MenuItem onClick={switchToAlcoCalc}>
-          {APP_CONTENT[currentLang].goToAlcoCalc}
+          {TOP_MENU_CONTENT[currentLang].goToAlcoCalc}
         </MenuItem>
         <MenuItem onClick={switchToSalary}>
-          {APP_CONTENT[currentLang].goToSalary}
+          {TOP_MENU_CONTENT[currentLang].goToSalary}
         </MenuItem>
 
         <SelectLanguage />

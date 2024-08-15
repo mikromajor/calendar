@@ -3,10 +3,10 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 
-import { INIT_APP_STATE } from "../../constants/userConstants";
+import { INIT_USER_STATE } from "../../constants/userConstants";
 import {
-  AppLanguages,
-  AppThemes,
+  UserLanguages,
+  UserThemes,
   IUser,
 } from "../../types/userTypes";
 import { IServerRes } from "../../types/userTypes";
@@ -19,17 +19,17 @@ import {
 
 export const userReducer = createSlice({
   name: "userState",
-  initialState: INIT_APP_STATE,
+  initialState: INIT_USER_STATE,
   reducers: {
     changeLanguage: (
       state,
-      action: PayloadAction<AppLanguages>
+      action: PayloadAction<UserLanguages>
     ) => {
       state.currentLang = action.payload;
     },
     changeTheme: (
       state,
-      action: PayloadAction<AppThemes>
+      action: PayloadAction<UserThemes>
     ) => {
       state.currentTheme = action.payload;
     },

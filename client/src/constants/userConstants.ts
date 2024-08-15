@@ -1,6 +1,6 @@
 import {
-  AppThemes,
-  AppLanguages,
+  UserThemes,
+  UserLanguages,
   IUser,
 } from "../types/userTypes";
 import { SALARY_INIT } from "./salaryConstants";
@@ -10,42 +10,42 @@ const INIT_USER: IUser = {
   token: "",
 };
 
-export const INIT_APP_STATE = {
-  currentLang: AppLanguages.UA,
-  currentTheme: AppThemes.WHITE,
+export const INIT_USER_STATE = {
+  currentLang: UserLanguages.UA,
+  currentTheme: UserThemes.WHITE,
   isLoading: false,
   isError: false,
   message: "",
   user: INIT_USER,
 };
 
-export const APP_CONTENT = {
-  [AppLanguages.EN]: {
+export const TOP_MENU_CONTENT = {
+  [UserLanguages.EN]: {
     lblTheme: "Theme",
     goToAlcoCalc: "Alcohol calendar",
     goToSalary: "Salary",
     lblLang: "Change language:",
-    [AppThemes.DARK]: "Black",
-    [AppThemes.WHITE]: "White",
+    [UserThemes.DARK]: "Black",
+    [UserThemes.WHITE]: "White",
   },
-  [AppLanguages.PL]: {
+  [UserLanguages.PL]: {
     lblTheme: "Theme",
     goToAlcoCalc: "Alcocalendarz",
     goToSalary: "Wypłata",
     lblLang: "Zmień język",
-    [AppThemes.DARK]: "Ciemna",
-    [AppThemes.WHITE]: "Światła",
+    [UserThemes.DARK]: "Ciemna",
+    [UserThemes.WHITE]: "Światła",
   },
-  [AppLanguages.UA]: {
+  [UserLanguages.UA]: {
     lblTheme: "Tема",
     goToAlcoCalc: "Алкокалендар",
     goToSalary: "Зарплата",
     lblLang: "Змінити мову",
-    [AppThemes.DARK]: "Темна",
-    [AppThemes.WHITE]: "Світла",
+    [UserThemes.DARK]: "Темна",
+    [UserThemes.WHITE]: "Світла",
   },
 };
 
 export const LANGUAGES_LIST = Object.keys(
-  APP_CONTENT
-) as (keyof typeof AppLanguages)[];
+  TOP_MENU_CONTENT
+) as (keyof typeof UserLanguages)[];

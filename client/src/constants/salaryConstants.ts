@@ -2,7 +2,7 @@ import {
   KeysSalaryInit,
   SalaryInit,
 } from "../types/salaryTypes";
-import { AppLanguages } from "../types/userTypes";
+import { UserLanguages } from "../types/userTypes";
 
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
@@ -57,7 +57,7 @@ export const NO_INPUTS = [
 ];
 
 export const SALARY_CONTENT = {
-  [AppLanguages.UA]: {
+  [UserLanguages.UA]: {
     header: "Зарплата",
 
     year: "Рік",
@@ -82,7 +82,7 @@ export const SALARY_CONTENT = {
     extraSalary: "ЗП понаднормова, зл нетто",
     totalSalary: "ЗП вся, зл нетто",
   },
-  [AppLanguages.EN]: {
+  [UserLanguages.EN]: {
     header: "Salary",
 
     year: "Year",
@@ -107,7 +107,7 @@ export const SALARY_CONTENT = {
     extraSalary: "Extra salary, net zl",
     totalSalary: "Total salary, net zl",
   },
-  [AppLanguages.PL]: {
+  [UserLanguages.PL]: {
     header: "Wyplata",
 
     year: "Rok",

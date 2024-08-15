@@ -1,6 +1,6 @@
 import { alcoActions } from "../store/reducer/alcoReducer";
 // import { ALCO_CONTENT_LABELS } from "../constants/alcoConstants";
-import { AppLanguages } from "./userTypes";
+import { UserLanguages } from "./userTypes";
 
 export interface DayInfo {
   totalVodka: number;
@@ -75,7 +75,7 @@ export enum ContentKeys {
 type ContentLabels = Record<ContentKeys, string>;
 
 export type AlcoContent = Record<
-  AppLanguages,
+  UserLanguages,
   ContentLabels
 >;
 
@@ -88,7 +88,7 @@ export type AlcoContent = Record<
 // };
 
 // export type AlcoContentType = AutoType<
-//   AppLanguages,
+//   UserLanguages,
 //   ContentLabels
 // >;
 

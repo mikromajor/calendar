@@ -4,13 +4,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { APP_CONTENT } from "../../constants/userConstants";
+import { TOP_MENU_CONTENT } from "../../constants/userConstants";
 import {
   useAppDispatch,
   useAppSelector,
 } from "../../store/hooks/redux";
 import { appActions } from "../../store/reducer/userReducer";
-import { AppLanguages } from "../../types/userTypes";
+import { UserLanguages } from "../../types/userTypes";
 
 export function SelectLanguage() {
   // customization
@@ -19,7 +19,7 @@ export function SelectLanguage() {
     (state) => state.userReducer
   );
   const { changeLanguage } = appActions;
-  const languages = Object.values(AppLanguages);
+  const languages = Object.values(UserLanguages);
 
   //-------------------------//
   const [anchorEl, setAnchorEl] =
@@ -32,7 +32,7 @@ export function SelectLanguage() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (language: AppLanguages) => {
+  const handleMenuItemClick = (language: UserLanguages) => {
     setAnchorEl(null);
     dispatch(changeLanguage(language));
   };
@@ -53,7 +53,7 @@ export function SelectLanguage() {
           onClick={handleClickListItem}
         >
           <ListItemText
-            primary={APP_CONTENT[currentLang].lblLang}
+            primary={TOP_MENU_CONTENT[currentLang].lblLang}
             secondary={currentLang}
           />
         </ListItemButton>
