@@ -75,7 +75,7 @@ export function Calendar() {
     (state) => state.alcoReducer
   );
   const { currentTheme, currentLang } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
   const { day, month, year } = currentDate;
 

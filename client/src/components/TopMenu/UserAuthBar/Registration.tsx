@@ -13,7 +13,7 @@ import {
 
 export function Registration() {
   const { isError, message } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
 
   const { emailState, updateEmailState } = useEmail();

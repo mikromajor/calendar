@@ -9,7 +9,7 @@ import {
 function App() {
   const [showAlcoCalc, setShowAlcoCalc] = useState(true);
   const { currentTheme } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
 
   const theme = createTheme({

@@ -5,7 +5,7 @@ import { useAppSelector } from "../../../../store/hooks/redux";
 
 export const ControlPanel = () => {
   const { currentLang, currentTheme } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
   return (
     <div

@@ -9,14 +9,14 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../store/hooks/redux";
-import { appActions } from "../../store/reducer/appReducer";
+import { appActions } from "../../store/reducer/userReducer";
 import { AppThemes } from "../../types/appTypes";
 
 export function SelectTheme() {
   //---- customization
   const dispatch = useAppDispatch();
   const { currentLang, currentTheme } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
   const { changeTheme } = appActions;
 

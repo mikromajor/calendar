@@ -24,7 +24,7 @@ export function AddButton({
   );
   const { isError, isLoading } = service;
   const { currentLang } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
   const dispatch = useAppDispatch();
 

@@ -17,7 +17,7 @@ export const InputLiquid = ({
   role,
 }: InputLiquidProps) => {
   const { currentLang, currentTheme } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
   const label =
     role === "percent"

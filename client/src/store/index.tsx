@@ -6,10 +6,10 @@ import {
 } from "@reduxjs/toolkit";
 import alcoReducer from "./reducer/alcoReducer";
 import salaryReducer from "./reducer/salaryReducer";
-import appReducer from "./reducer/appReducer";
+import userReducer from "./reducer/userReducer";
 
 const rootReducer = combineReducers({
-  appReducer,
+  userReducer,
   alcoReducer,
   salaryReducer,
 });

@@ -13,7 +13,7 @@ import {
 
 export function Login() {
   const { isLoading, isError, message } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
 
   const { emailState, updateEmailState } = useEmail();

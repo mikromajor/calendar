@@ -38,7 +38,7 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
   };
 
   const { currentLang } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
 
   return (

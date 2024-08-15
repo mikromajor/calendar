@@ -16,8 +16,6 @@ export const INIT_APP_STATE = {
   isLoading: false,
   isError: false,
   message: "",
-  salary: SALARY_INIT,
-  alcoData: INIT_ALCO_STATE,
   user: INIT_USER,
 };
 

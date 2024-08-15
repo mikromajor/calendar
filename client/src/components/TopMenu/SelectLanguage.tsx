@@ -9,14 +9,14 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../store/hooks/redux";
-import { appActions } from "../../store/reducer/appReducer";
+import { appActions } from "../../store/reducer/userReducer";
 import { AppLanguages } from "../../types/appTypes";
 
 export function SelectLanguage() {
   // customization
   const dispatch = useAppDispatch();
   const { currentLang } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
   const { changeLanguage } = appActions;
   const languages = Object.values(AppLanguages);

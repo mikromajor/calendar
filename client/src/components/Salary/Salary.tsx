@@ -7,11 +7,11 @@ import {
 } from "../../constants/salaryConstants";
 
 export const Salary = () => {
-  const { salaryReducer, appReducer } = useAppSelector(
+  const { salaryReducer, userReducer } = useAppSelector(
     (state) => state
   );
 
-  const { currentLang, currentTheme } = appReducer;
+  const { currentLang, currentTheme } = userReducer;
 
   const tr: JSX.Element[] = [];
   let td: JSX.Element;

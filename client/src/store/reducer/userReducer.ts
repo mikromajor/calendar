@@ -17,7 +17,7 @@ import {
   fetchUserRegistration,
 } from "./http/userActions";
 
-export const appReducer = createSlice({
+export const userReducer = createSlice({
   name: "appState",
   initialState: INIT_APP_STATE,
   reducers: {
@@ -48,7 +48,6 @@ export const appReducer = createSlice({
       action: PayloadAction<IServerRes>
     ) => {
       const { token, message } = action.payload;
-      state.user.token = token;
       state.message = message;
       state.isLoading = false;
       state.isError = false;
@@ -76,8 +75,14 @@ export const appReducer = createSlice({
       const { token, message, alcoState, salaryState } =
         action.payload;
 
-      state.message = message;
-      state.alcoData = alcoState;
+      // state.message = message;
+      state.message = "uh";
+      // state.alcoData.currentDate = {
+      //   day: "1",
+      //   month: "1",
+      //   year: "2020",
+      // };
+      // state.alcoData = alcoState;
       // state.salary = salaryState;
       state.isError = false;
       state.isLoading = false;
@@ -113,6 +118,6 @@ export const appReducer = createSlice({
   },
 });
 
-export default appReducer.reducer;
-export const appActions = appReducer.actions;
-export const appSlice = appReducer;
+export default userReducer.reducer;
+export const appActions = userReducer.actions;
+export const appSlice = userReducer;

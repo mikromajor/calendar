@@ -12,11 +12,11 @@ type InputProps = {
 
 export const Input = ({ payloadsKey }: InputProps) => {
   const dispatch = useAppDispatch();
-  const { salaryReducer, appReducer } = useAppSelector(
+  const { salaryReducer, userReducer } = useAppSelector(
     (state) => state
   );
 
-  const currentTheme = appReducer.currentTheme;
+  const currentTheme = userReducer.currentTheme;
   const { getSalary, changeSalaryDate } = salaryActions;
 
   const handlerInputChange = (
