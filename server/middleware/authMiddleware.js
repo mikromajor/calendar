@@ -11,7 +11,7 @@ module.exports = function (req, res, next) {
     if (!token) {
       return next(
         ApiError.unauthorized(
-          "User not authorized. Please sign in."
+          "User not authorized. Please registration first."
         )
       );
     }

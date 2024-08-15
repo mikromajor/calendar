@@ -52,9 +52,9 @@ export function Message({ isError, message }: ISnackProps) {
     <div>
       <Snackbar
         open={open}
-        // autoHideDuration={4000}
+        autoHideDuration={4000}
         onClose={handleClose}
-        message='Message:'
+        // message='Message:'
         action={action}
       />
     </div>

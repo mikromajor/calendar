@@ -23,7 +23,7 @@ export const getAlcoYear = createAsyncThunk(
       return response.data;
     } catch (error: any) {
       if (error?.response) {
-        return rejectWithValue(error.response.data.message);
+        return rejectWithValue(error.response.data);
       }
       return error;
     }

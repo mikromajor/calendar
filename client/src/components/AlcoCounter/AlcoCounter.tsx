@@ -5,18 +5,15 @@ import {
   AlcoHeader,
   Calendar,
 } from "./alcoComponents";
-import { Button } from "@mui/material";
-import { useState } from "react";
 import { useAppSelector } from "../../store/hooks/redux";
-
-import { ALCO_CONTENT } from "../../constants/alcoConstants";
+import { Message } from "../ui";
 
 export const AlcoCounter = () => {
-  const [showAlcoCalendar, setShowAlcoCalendar] =
-    useState(false);
-
-  const { currentLang, currentTheme } = useAppSelector(
+  const { currentTheme } = useAppSelector(
     (state) => state.userReducer
+  );
+  const { isError, message } = useAppSelector(
+    (state) => state.alcoReducer.service
   );
 
   return (
@@ -31,6 +28,9 @@ export const AlcoCounter = () => {
 
         <ControlPanel />
         {/* <Cleaner /> */}
+        {!!message && (
+          <Message isError={isError} message={message} />
+        )}
       </div>
     </>
   );

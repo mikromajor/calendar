@@ -87,6 +87,8 @@ export const alcoReducer = createSlice({
     // getAlcoYear
     [getAlcoYear.pending.type]: (state) => {
       state.service.isLoading = true;
+      state.service.isError = false;
+      state.service.message = "";
     },
     [getAlcoYear.fulfilled.type]: (
       state,
@@ -96,15 +98,17 @@ export const alcoReducer = createSlice({
     },
     [getAlcoYear.rejected.type]: (
       state,
-      action: PayloadAction<string>
+      action: PayloadAction<IServerRes>
     ) => {
+      state.service.message = action.payload.message;
       state.service.isLoading = false;
       state.service.isError = true;
-      state.service.message = action.payload;
     },
     //addNewDose
     [addNewDoseToDB.pending.type]: (state) => {
       state.service.isLoading = true;
+      state.service.isError = false;
+      state.service.message = "";
     },
     [addNewDoseToDB.fulfilled.type]: (
       state,
@@ -114,9 +118,9 @@ export const alcoReducer = createSlice({
     },
     [addNewDoseToDB.rejected.type]: (
       state,
-      action: PayloadAction<string>
+      action: PayloadAction<IServerRes>
     ) => {
-      state.service.message = action.payload;
+      state.service.message = action.payload.message;
       state.service.isError = true;
       state.service.isLoading = false;
     },
