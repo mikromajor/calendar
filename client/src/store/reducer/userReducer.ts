@@ -38,6 +38,7 @@ export const userReducer = createSlice({
       state.message = action.payload;
     },
     logOut: (state) => {
+      localStorage.setItem("token", "");
       state.message = "logged out successfully";
     },
     cleanMessage: (state) => {

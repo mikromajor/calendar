@@ -19,7 +19,7 @@ export default function UserAuthBar() {
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
-    !!message && setOpen("message");
+    !!message && setOpen("");
   }, [message]);
 
   const openRegistration = () => {
@@ -72,10 +72,10 @@ export default function UserAuthBar() {
         {open === "reg" && <Registration />}
         {open === "login" && <Login />}
         {open === "logout" && <Logout setOpen={setOpen} />}
-        {open === "message" && (
-          <Message isError={isError} message={message} />
-        )}
       </UserModal>
+      {!!message && (
+        <Message isError={isError} message={message} />
+      )}
     </Stack>
   );
 }

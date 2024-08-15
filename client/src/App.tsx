@@ -5,6 +5,7 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material/styles";
+import { UserThemes } from "./types/userTypes";
 
 function App() {
   const [showAlcoCalc, setShowAlcoCalc] = useState(true);
@@ -15,7 +16,21 @@ function App() {
   const theme = createTheme({
     palette: {
       mode:
-        currentTheme === "white-theme" ? "light" : "dark",
+        currentTheme === UserThemes.WHITE
+          ? "light"
+          : "dark",
+    },
+    components: {
+      MuiSnackbarContent: {
+        styleOverrides: {
+          root: {
+            backgroundColor:
+              currentTheme === UserThemes.WHITE
+                ? "rgb(140, 194 ,188)"
+                : "rgb(70,70,70)",
+          },
+        },
+      },
     },
   });
 

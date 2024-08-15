@@ -2,10 +2,6 @@ import React, { FC } from "react";
 import { Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { userActions } from "../../../store/reducer/userReducer";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "../../../store/hooks/redux";
 import { useDispatch } from "react-redux";
 import { ModalOpen } from "../../../types/userTypes";
 
@@ -14,11 +10,9 @@ interface LogoutProps {
 }
 
 export function Logout({ setOpen }: LogoutProps) {
-  //TODO add message
   const dispatch = useDispatch();
 
-  const sendLogoutRequest = () => {
-    localStorage.setItem("token", "");
+  const handleLogOut = () => {
     setOpen("");
     dispatch(userActions.logOut());
   };
@@ -32,7 +26,7 @@ export function Logout({ setOpen }: LogoutProps) {
         </div>
         <LoadingButton
           variant='outlined'
-          onClick={sendLogoutRequest}
+          onClick={handleLogOut}
         >
           Yes
         </LoadingButton>

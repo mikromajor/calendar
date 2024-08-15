@@ -32,7 +32,7 @@ export function Message({ isError, message }: ISnackProps) {
     <React.Fragment>
       <Button
         color={isError ? "error" : "success"}
-        size='small'
+        size='large'
         onClick={handleClose}
       >
         {message}
@@ -52,9 +52,9 @@ export function Message({ isError, message }: ISnackProps) {
     <div>
       <Snackbar
         open={open}
-        autoHideDuration={5000}
+        // autoHideDuration={4000}
         onClose={handleClose}
-        message='Server message:'
+        message='Message:'
         action={action}
       />
     </div>
