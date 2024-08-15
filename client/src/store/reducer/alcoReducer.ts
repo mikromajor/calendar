@@ -21,7 +21,7 @@ import {
   addNewDoseToDB,
 } from "./http/alcoActions";
 import { AlcoState } from "../../types/alcoTypes";
-import { IServerRes } from "../../types/appTypes";
+import { IServerRes } from "../../types/userTypes";
 
 // const store = tryStorageData(
 //   INIT_ALCO_STATE.currentDate.year

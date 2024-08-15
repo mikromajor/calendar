@@ -8,8 +8,8 @@ import {
   AppLanguages,
   AppThemes,
   IUser,
-} from "../../types/appTypes";
-import { IServerRes } from "../../types/appTypes";
+} from "../../types/userTypes";
+import { IServerRes } from "../../types/userTypes";
 
 import {
   fetchUserAuth,

@@ -1,6 +1,6 @@
 import { alcoActions } from "../store/reducer/alcoReducer";
 // import { ALCO_CONTENT_LABELS } from "../constants/alcoConstants";
-import { AppLanguages } from "../types/appTypes";
+import { AppLanguages } from "./userTypes";
 
 export interface DayInfo {
   totalVodka: number;

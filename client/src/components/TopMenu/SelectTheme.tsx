@@ -10,7 +10,7 @@ import {
   useAppSelector,
 } from "../../store/hooks/redux";
 import { appActions } from "../../store/reducer/userReducer";
-import { AppThemes } from "../../types/appTypes";
+import { AppThemes } from "../../types/userTypes";
 
 export function SelectTheme() {
   //---- customization

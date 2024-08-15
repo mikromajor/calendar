@@ -7,7 +7,7 @@ import {
   Service,
 } from "../types/alcoTypes";
 import { getDateMonthYear } from "../utils";
-import { AppLanguages } from "../types/appTypes";
+import { AppLanguages } from "../types/userTypes";
 
 //for calendar: new Date(year, monthIndex(0-11), day)
 const [currentDay, currentMonth, currentYear] =

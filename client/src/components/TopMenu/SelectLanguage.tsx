@@ -10,7 +10,7 @@ import {
   useAppSelector,
 } from "../../store/hooks/redux";
 import { appActions } from "../../store/reducer/userReducer";
-import { AppLanguages } from "../../types/appTypes";
+import { AppLanguages } from "../../types/userTypes";
 
 export function SelectLanguage() {
   // customization

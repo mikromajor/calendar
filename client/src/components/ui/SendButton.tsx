@@ -9,7 +9,7 @@ import {
   EmailPassword,
   IUser,
   IServerRes,
-} from "../../types/appTypes";
+} from "../../types/userTypes";
 import { fetchUserRegistration } from "../../store/reducer/http/userActions";
 
 interface ISendButtonProps {

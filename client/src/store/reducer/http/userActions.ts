@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   IServerRes,
   EmailPassword,
-} from "../../../types/appTypes";
+} from "../../../types/userTypes";
 import { $host, $authHost } from "./host";
 
 const saveTokenToLocalStorage = (token: string) => {
