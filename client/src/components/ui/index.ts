@@ -1,5 +1,5 @@
 export { Email } from "./Email";
-export { ServerMessage } from "./ServerMessage";
+export { Message } from "./Message";
 export { Password } from "./Password";
 export { SendButton } from "./SendButton";
 export { AddButton } from "./AddButton";

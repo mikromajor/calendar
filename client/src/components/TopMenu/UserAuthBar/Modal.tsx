@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { ModalOpen } from "../../../types/userTypes";
 
 const style = {
   position: "absolute" as "absolute",
@@ -16,8 +17,8 @@ const style = {
 };
 
 interface ModalProps {
-  open: "reg" | "login" | "logout" | "";
-  setOpen: React.Dispatch<"reg" | "login" | "logout" | "">;
+  open: ModalOpen;
+  setOpen: React.Dispatch<ModalOpen>;
 }
 
 export function UserModal({

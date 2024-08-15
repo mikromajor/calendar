@@ -19,7 +19,7 @@ import {
 } from "./http/userActions";
 
 export const userReducer = createSlice({
-  name: "userState",
+  name: "userSlice",
   initialState: INIT_USER_STATE,
   reducers: {
     changeLanguage: (
@@ -34,7 +34,13 @@ export const userReducer = createSlice({
     ) => {
       state.currentTheme = action.payload;
     },
-    clearMessage: (state) => {
+    addMessage: (state, action: PayloadAction<string>) => {
+      state.message = action.payload;
+    },
+    logOut: (state) => {
+      state.message = "logged out successfully";
+    },
+    cleanMessage: (state) => {
       state.message = "";
       state.isError = false;
     },
@@ -115,5 +121,5 @@ export const userReducer = createSlice({
 });
 
 export default userReducer.reducer;
-export const appActions = userReducer.actions;
-export const appSlice = userReducer;
+export const userActions = userReducer.actions;
+export const userSlice = userReducer;

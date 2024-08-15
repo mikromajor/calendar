@@ -27,5 +27,10 @@ export interface IServerRes extends IUser {
   alcoState: AlcoState;
   salaryState: SalaryInit;
 }
-
+export type ModalOpen =
+  | ""
+  | "message"
+  | "reg"
+  | "login"
+  | "logout";
 //  export type LanguagesList = keyof typeof UserLanguages;

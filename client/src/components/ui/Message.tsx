@@ -7,19 +7,16 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
 interface ISnackProps {
-  serverError: boolean;
-  serverMessage: string;
+  isError: boolean;
+  message: string;
 }
 
-export function ServerMessage({
-  serverError,
-  serverMessage,
-}: ISnackProps) {
+export function Message({ isError, message }: ISnackProps) {
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
-    setOpen(!!serverMessage ? true : false);
-  }, [serverMessage]);
+    setOpen(!!message ? true : false);
+  }, [message]);
 
   const handleClose = (
     event: React.SyntheticEvent | Event,
@@ -34,11 +31,11 @@ export function ServerMessage({
   const action = (
     <React.Fragment>
       <Button
-        color={serverError ? "error" : "success"}
+        color={isError ? "error" : "success"}
         size='small'
         onClick={handleClose}
       >
-        {serverMessage}
+        {message}
       </Button>
       <IconButton
         size='small'

@@ -9,6 +9,7 @@ import {
   EmailPassword,
   IUser,
   IServerRes,
+  ModalOpen,
 } from "../../types/userTypes";
 import { fetchUserRegistration } from "../../store/reducer/http/userActions";
 

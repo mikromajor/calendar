@@ -9,7 +9,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../store/hooks/redux";
-import { appActions } from "../../store/reducer/userReducer";
+import { userActions } from "../../store/reducer/userReducer";
 import { UserThemes } from "../../types/userTypes";
 
 export function SelectTheme() {
@@ -18,7 +18,7 @@ export function SelectTheme() {
   const { currentLang, currentTheme } = useAppSelector(
     (state) => state.userReducer
   );
-  const { changeTheme } = appActions;
+  const { changeTheme } = userActions;
 
   const themes = Object.values(UserThemes);
   //-----------------//

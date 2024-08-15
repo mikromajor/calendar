@@ -1,21 +1,11 @@
 import React from "react";
 import { Stack } from "@mui/material";
-import { useAppSelector } from "../../../store/hooks/redux";
 import { fetchUserLogin } from "../../../store/reducer/http/userActions";
 import { passwordValidator } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
-import {
-  ServerMessage,
-  Email,
-  Password,
-  SendButton,
-} from "../../ui";
+import { Email, Password, SendButton } from "../../ui";
 
 export function Login() {
-  const { isLoading, isError, message } = useAppSelector(
-    (state) => state.userReducer
-  );
-
   const { emailState, updateEmailState } = useEmail();
   const { passwordState, updatePasswordState } =
     usePassword();
@@ -79,11 +69,6 @@ export function Login() {
           sendData={{ email, password }}
         />
       </Stack>
-
-      <ServerMessage
-        serverError={isError}
-        serverMessage={message}
-      />
     </>
   );
 }

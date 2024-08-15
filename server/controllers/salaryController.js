@@ -8,8 +8,15 @@ class SalaryController {
 
     try {
       const { year, month } = req.body;
+
+      let userId = Number(req.user.id);
+      //TODO delete row bellow after tests
+      userId = userId ? userId : 0; // TODO check: can DB start with ID=0
+      const yearId = userId + "_" + year;
+      const monthId = yearId + "_" + month;
+
       let salary = await Salary.findOne({
-        where: { year, month, userId: req.user.id },
+        where: { id: monthId },
       });
       if (salary) {
         Object.assign(salary, req.body);
