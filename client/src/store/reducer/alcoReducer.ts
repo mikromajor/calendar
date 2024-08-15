@@ -20,7 +20,7 @@ import {
   getAlcoYear,
   addNewDoseToDB,
 } from "./http/alcoActions";
-import { AlcoYear } from "../../types/alcoTypes";
+import { AlcoState } from "../../types/alcoTypes";
 import { IServerRes } from "../../types/appTypes";
 
 // const store = tryStorageData(
@@ -53,10 +53,17 @@ export const alcoReducer = createSlice({
       );
       state.currentDate.month = month;
     },
-    changeYear: (state, action: PayloadAction<string>) => {
-      // state.currentDate.year = action.payload;
+    changeYear: (
+      state,
+      action: PayloadAction<AlcoState>
+    ) => {
+      // Object.assign(state, action.payload);
+      state.currentDate = action.payload.currentDate;
+      state.yearData = action.payload.yearData;
+      state.service = action.payload.service;
     },
 
+    //TODO change CLEARS func , use DB
     clearYearData: (state) => {
       const key = createKey(state.currentDate.year);
       window.localStorage.removeItem(key);
@@ -65,11 +72,11 @@ export const alcoReducer = createSlice({
     clearMonthData: (state) => {
       const currentMonth = Number(state.currentDate.month);
       //TODO add checking for the existence of a month-object
-      if (state?.yearData?.months?.[currentMonth]) {
-        const monthData =
-          state?.yearData?.months?.[currentMonth];
-        state.yearData.totalBill -= monthData.totalBill;
-        state.yearData.totalVodka -= monthData.totalVodka;
+      if (state.yearData.months?.[currentMonth]) {
+        const { totalVodka } =
+          state.yearData.months[currentMonth];
+
+        state.yearData.totalVodka -= totalVodka;
         state.yearData.months[currentMonth] = {
           ...INIT_MONTH,
         };
