@@ -100,10 +100,14 @@ export function Calendar() {
         dispatch(
           getAlcoYear({ year: newYear, month, day })
         );
-      newMonth !== month &&
-        dispatch(changeMonth(newMonth + ""));
-      newDay !== day && dispatch(changeDay(newDay + ""));
+      newMonth !== month && dispatch(changeMonth(newMonth));
+
+      newDay !== day && dispatch(changeDay(newDay));
     }
+  };
+  const handleChangeMonth = (date: Dayjs) => {
+    const newMonth = date.month() + 1 + "";
+    dispatch(changeMonth(newMonth));
   };
   return (
     <div
@@ -135,7 +139,7 @@ export function Calendar() {
             `${weekday.format("ddd")}.`
           }
           views={["year", "month", "day"]}
-          onMonthChange={(date) => changeDate(dayjs(date))}
+          onMonthChange={handleChangeMonth}
         />
       </LocalizationProvider>
     </div>
