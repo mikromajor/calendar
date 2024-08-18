@@ -56,7 +56,7 @@ export const NO_INPUTS = [
   "standardSalary",
   "extraSalary",
   "totalSalary",
-] as NoInputsKeys[];
+]; //as NoInputsKeys[];
 
 export const SALARY_CONTENT: SalaryContent = {
   [UserLanguages.UA]: {

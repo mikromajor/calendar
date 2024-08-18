@@ -1,17 +1,22 @@
-import { SALARY_CONTENT } from "../constants/salaryConstants";
+// import { SALARY_CONTENT } from "../constants/salaryConstants";
 import { UserLanguages } from "../types/userTypes";
 
-export interface SalaryInit {
+interface INoInputs {
+  nettoPerHours: number;
+  weekDays: number;
+  weekendDays: number;
+  standardWorkHours: number;
+  standardSalary: number;
+  extraSalary: number;
+  totalSalary: number;
+}
+interface IWithInputs {
   year: number;
   month: number;
   salaryRate: number;
   premiumRate: number;
   premiumUzn: number;
   taxRate: number;
-  nettoPerHours: number;
-  weekDays: number;
-  weekendDays: number;
-  standardWorkHours: number;
   extraHours_50: number;
   extraHours_100: number;
   extraHours_120: number;
@@ -20,32 +25,15 @@ export interface SalaryInit {
   holidays: number;
   usedVacation: number;
   bloodDonation: number;
-  standardSalary: number;
-  extraSalary: number;
-  totalSalary: number;
 }
-
-export type NoInputsKeys =
-  | "nettoPerHours"
-  | "weekDays"
-  | "weekendDays"
-  | "standardWorkHours"
-  | "standardSalary"
-  | "extraSalary"
-  | "totalSalary";
-
-type PartOfObject<O, DelType> = {
-  [K in keyof O as Exclude<K, DelType>]?: O[K];
-};
-
-export type IPayload = PartOfObject<
-  SalaryInit,
-  NoInputsKeys
->;
-
-export type InputsKeys = keyof IPayload;
-
+export type NoInputsKeys = keyof INoInputs;
+export type SalaryInit = INoInputs & IWithInputs;
 export type SalaryInitKeys = keyof SalaryInit;
+
+type PartOfObject<O> = {
+  [K in keyof O]?: O[K];
+};
+export type IPayload = PartOfObject<IWithInputs>;
 
 type ChangeObjValType<O, ValueNewType> = {
   [K in keyof O]: ValueNewType;
@@ -71,69 +59,15 @@ export type SalaryContent = CreateContentType<
   LangContent
 >;
 
-// export type IPayload = {
-//   month?: number;
-//   year?: number;
+// Partial is the function returning array of type
+//[[key1_,val_1],[key_2,val_2]...]
 
-//   salaryRate?: number;
-//   premiumRate?: number;
-//   premiumUzn?: number;
-//   taxRate?: number;
-
-//   extraHours_50?: number;
-//   extraHours_100?: number;
-//   extraHours_120?: number;
-
-//   sickLeaveWeekDays?: number;
-//   sickLeaveWeekendDays?: number;
-
-//   holidays?: number;
-//   usedVacation?: number;
-//   bloodDonation?: number;
-// };
-
-// Partial is the function returning type [[key,val],...]
 // type Partial<T> = {
 //   [K in keyof T]: [K, T[K]];
 // }[keyof T][];
 
-// Part is the function returning type {key?:val;}
-// type Part<O> = {
-//   [K in keyof O]?: O[K];
-// };
 // type IPayload = Part<SalaryInit>;
-// type IPayloadKeys = keyof IPayload;
-// test
-//  const payload: IPayload ={
-//   month: 8,
-//  }
 
-//  type IPayloadWithoutNextFields = Partial<Omit<SalaryInit,'totalSalary'|'extraSalary'|'standardSalary'>>;
-
-// TS PICK & OMIT EXAMPLE:
-
-// interface IExample{
-//   extraHours: number;
-//   MonthInfo: number;
-//   AlcoYear: string;
-// };
-// type KeysPayload = keyof Payload;
-// // remove written keys
-// type IExampleRemFields = Omit<IExample, "extraHours"|'MonthInfo'>;
-
-// type IExampleAddFields = Pick<
-//   IExample,
-//   keyof IExample
-// > & {
-//   newField: "2023";
-//   salary: 5 | 10;
-// };
-// const pk: IExampleAddFields = {
-//   extraHours: 0,
-//   MonthInfo: 1,
-//   newField: "2023",
-//   salary: 5,
-// };
 // type PartWithRemoveField<O> = {
 //   [K in keyof O as Exclude<
 //     K,
