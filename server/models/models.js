@@ -49,17 +49,14 @@ const AlcoDay = sequelize.define("day", {
 
 const Salary = sequelize.define("salary", {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     primaryKey: true,
-    autoIncrement: true,
   },
   year: {
-    type: DataTypes.INTEGER,
-    defaultValue: 2024,
+    type: DataTypes.STRING,
   },
   month: {
-    type: DataTypes.INTEGER,
-    defaultValue: 1,
+    type: DataTypes.STRING,
   },
   salaryRate: {
     type: DataTypes.INTEGER,
