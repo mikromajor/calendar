@@ -47,7 +47,7 @@ class SalaryController {
   async getOne(req, res) {
     //GET http://localhost:7000/api/salary/getOne?year=2020&month=1
     const { year, month } = req.query;
-    const { userId, salaryId } = createIds(
+    const { salaryId } = createIds(
       req.user.id,
       year,
       month
@@ -90,21 +90,30 @@ class SalaryController {
     //GET http://localhost:7000/api/salary/getLast_2years?year=2020
     const { year } = req.query; //string
     const userId = Number(req.user.id);
-    const prevYearId = Number(year) - 1 + "";
-
+    const prevYear = Number(year) - 1;
+    let salaries = [];
     try {
-      const salaries = await Promise.allSettled([
+      const arrPromise = await Promise.allSettled([
         Salary.findAll({
-          where: { userId, yearId: prevYearId },
+          where: { userId, year: prevYear },
         }),
         Salary.findAll({
           where: {
             userId,
-            yearId: year,
+            year: year,
           },
         }),
       ]);
-      if (salaries && salaries.length) {
+      if (arrPromise && arrPromise.length) {
+        const [prevYearPromise, yearPromise] = arrPromise;
+
+        if (prevYearPromise.status === "fulfilled") {
+          salaries = salaries.concat(prevYearPromise.value);
+        }
+        if (yearPromise.status === "fulfilled") {
+          salaries = salaries.concat(yearPromise.value);
+        }
+
         return res.json({ user: req.user, salaries });
       } else {
         return res.json({ user: req.user, salaries: [] });

@@ -53,10 +53,10 @@ const Salary = sequelize.define("salary", {
     primaryKey: true,
   },
   year: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
   },
   month: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
   },
   salaryRate: {
     type: DataTypes.INTEGER,
