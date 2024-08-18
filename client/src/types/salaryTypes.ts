@@ -48,43 +48,43 @@ export type PayloadType = {
 };
 export type PayloadsKeys = keyof PayloadType;
 
-type Entries<T> = {
+type Partial<T> = {
   [K in keyof T]: [K, T[K]];
 }[keyof T][];
-// Entries is the function returning type [[key,val],...]
 
-export type EntriesSalaryInit = Entries<SalaryInit>;
+// Partial is the function returning type [[key,val],...]
+
+//  type IPayload = Partial<SalaryInit>;
+
+//  type IPayloadWithoutNextFields = Partial<Omit<SalaryInit,'totalSalary'|'extraSalary'|'standardSalary'>>;
 
 // TS PICK & OMIT EXAMPLE:
 
-// type Payload = {
+// interface IExample{
 //   extraHours: number;
 //   MonthInfo: number;
 //   AlcoYear: string;
 // };
 // type KeysPayload = keyof Payload;
 // // remove written keys
-// type PayloadWithoutYear = Omit<Payload, "Year">;
-// const rem: removeField = {extraHours:0};
+// type IExampleRemFields = Omit<IExample, "extraHours"|'MonthInfo'>;
 
-// // save only written keys
-// type addField = Pick<
-//   PayloadWithoutYear,
-//   keyof PayloadWithoutYear
+// type IExampleAddFields = Pick<
+//   IExample,
+//   keyof IExample
 // > & {
-//   AlcoYear: "2023" | "2024";
+//   newField: "2023";
 //   salary: 5 | 10;
 // };
-// const pk: addField = {
+// const pk: IExampleAddFields = {
 //   extraHours: 0,
 //   MonthInfo: 1,
-//   Year: "2023",
+//   newField: "2023",
 //   salary: 5,
 // };
-
-// type RemoveKindField<SalaryInit> = {
-//   [Property in keyof SalaryInit as Exclude<
-//     Property,
-//     "currentLanguage"
-//   >]: number;
+// type RemoveField<O> = {
+//   [K in keyof O as Exclude<K, "year" | "month">]: string;
 // };
+
+// type SalaryWithoutYearMonthInString =
+//   RemoveField<SalaryInit>;
