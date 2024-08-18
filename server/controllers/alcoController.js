@@ -3,24 +3,15 @@ const {
   AlcoMonth,
   AlcoDay,
 } = require("../models/models");
+const {
+  INIT_ALCO_STATE,
+} = require("../constants/initStates");
 const ApiError = require("../error/ApiError");
 const {
   getDateMonthYear,
 } = require("../utils/getDateMonthYear");
 
-//creating response models for front-end equal INIT_ALCO_STATE
-const INIT_ALCO_YEAR = {
-  totalVodka: 0,
-  totalBill: 0,
-  months: [],
-};
-
-const INIT_SERVICE = {
-  isError: false,
-  isLoading: false,
-  message: "",
-};
-
+//creating response models like INIT_ALCO_STATE
 const createModelAlcoState = async (
   currentDate,
   userId,
@@ -29,25 +20,24 @@ const createModelAlcoState = async (
   const yearId = userId + "_" + currentDate.year;
 
   const alcoState = {
+    ...INIT_ALCO_STATE,
     currentDate,
-    yearData: INIT_ALCO_YEAR,
-    service: INIT_SERVICE,
   };
 
   try {
     const alcoYear = await AlcoYear.findOne({
-      where: { id: yearId, userId },
+      where: { id: yearId },
     });
     if (!alcoYear) {
       return alcoState;
     }
 
     const alcoMonths = await AlcoMonth.findAll({
-      where: { yearId, userId },
+      where: { yearId },
     });
 
     const alcoDays = await AlcoDay.findAll({
-      where: { yearId, userId },
+      where: { yearId },
     });
 
     const yearData = {

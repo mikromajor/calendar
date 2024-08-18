@@ -75,6 +75,7 @@ class UserController {
 
   //GET http://localhost:7000/api/user/auth
   async check(req, res, next) {
+    // TODO add ID validation
     const { id, email } = req.user;
     const token = generateJwt(id, email);
     return res.json({
@@ -85,3 +86,11 @@ class UserController {
 }
 
 module.exports = new UserController();
+
+// //Note: correct handle error
+//     return next(
+//       ApiError.badRequest("Request's data incorrect")
+//     );
+//     next(
+//       ApiError.internal("Server error.")
+//     );

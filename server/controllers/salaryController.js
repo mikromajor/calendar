@@ -6,17 +6,14 @@ class SalaryController {
     //POST //http://localhost:7000/api/salary/add
     // add body {} look for salary_example bellow
 
+    const { year, month } = req.body;
+
+    const userId = Number(req.user.id);
+    const salaryId = userId + "_" + year + "_" + month;
+
     try {
-      const { year, month } = req.body;
-
-      let userId = Number(req.user.id);
-      //TODO delete row bellow after tests
-      userId = userId ? userId : 0; // TODO check: can DB start with ID=0
-      const yearId = userId + "_" + year;
-      const monthId = yearId + "_" + month;
-
       let salary = await Salary.findOne({
-        where: { id: monthId },
+        where: { id: salaryId },
       });
       if (salary) {
         Object.assign(salary, req.body);
@@ -24,22 +21,35 @@ class SalaryController {
       } else {
         salary = await Salary.create({
           ...req.body,
-          userId: req.user.id,
+          userId,
+          id: salaryId,
         });
       }
       return res.json({ user: req.user, salary });
     } catch (e) {
-      ApiError.badRequest(e);
+      next(
+        ApiError.internal(
+          `Salary with id=${salaryId}, was not update ` + e
+        )
+      );
     }
   }
 
   async getOne(req, res) {
     //GET http://localhost:7000/api/salary/getOne?year=2020&month=1
     const { year, month } = req.query;
-    const salary = await Salary.findAll({
-      where: { year, month, userId: req.user.id },
-    });
-    return res.json(salary);
+    const userId = Number(req.user.id);
+    const salaryId = userId + "_" + year + "_" + month;
+
+    try {
+      let salary = await Salary.findOne({
+        where: { id: salaryId },
+      });
+      if (!salary) {
+        salary = INIT_SALARY;
+      }
+      return res.json(salary);
+    } catch (e) {}
   }
   async getAll(req, res) {
     //GET http://localhost:7000/api/salary/getAll
