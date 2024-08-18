@@ -1,6 +1,8 @@
 import {
-  KeysSalaryInit,
+  SalaryInitKeys,
   SalaryInit,
+  NoInputsKeys,
+  SalaryContent,
 } from "../types/salaryTypes";
 import { UserLanguages } from "../types/userTypes";
 
@@ -44,7 +46,7 @@ export const SOCIAL_COEFFICIENTS = {
 
 export const SALARY_KEYS = Object.keys(
   INIT_SALARY
-) as KeysSalaryInit[];
+) as SalaryInitKeys[];
 
 export const NO_INPUTS = [
   "nettoPerHours",
@@ -54,12 +56,12 @@ export const NO_INPUTS = [
   "standardSalary",
   "extraSalary",
   "totalSalary",
-];
+] as NoInputsKeys[];
 
-export const SALARY_CONTENT = {
+export const SALARY_CONTENT: SalaryContent = {
   [UserLanguages.UA]: {
     header: "Зарплата",
-
+    //newFieldName: 'string',
     year: "Рік",
     month: "Місяць",
     salaryRate: "Ставка брутто, зл/год",

@@ -5,13 +5,13 @@ import {
   determStandardSalary,
 } from ".";
 import {
-  PayloadType,
+  IPayload,
   SalaryInit,
 } from "../../../types/salaryTypes";
 
 export const calculateSalary = (
   state: SalaryInit,
-  payload: PayloadType
+  payload: IPayload
 ) => {
   const {
     salaryRate,

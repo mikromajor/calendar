@@ -4,10 +4,10 @@ import {
 } from "../../../../store/hooks/redux";
 
 import { salaryActions } from "../../../../store/reducer/salaryReducer";
-import { KeysSalaryInit } from "../../../../types/salaryTypes";
+import { SalaryInitKeys } from "../../../../types/salaryTypes";
 
 type InputProps = {
-  payloadsKey: KeysSalaryInit;
+  payloadsKey: SalaryInitKeys;
 };
 
 export const Input = ({ payloadsKey }: InputProps) => {

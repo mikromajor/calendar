@@ -33,4 +33,5 @@ export type ModalOpen =
   | "reg"
   | "login"
   | "logout";
+
 //  export type LanguagesList = keyof typeof UserLanguages;
