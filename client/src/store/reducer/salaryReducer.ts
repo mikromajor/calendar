@@ -3,7 +3,7 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { SALARY_INIT } from "../../constants/salaryConstants";
+import { INIT_SALARY } from "../../constants/salaryConstants";
 import { PayloadType } from "../../types/salaryTypes";
 import {
   changeDate,
@@ -14,7 +14,7 @@ import {
 
 export const salaryReducer = createSlice({
   name: "salaryState",
-  initialState: SALARY_INIT,
+  initialState: INIT_SALARY,
   reducers: {
     getSalary: (
       state,

@@ -7,7 +7,7 @@ import { UserLanguages } from "../types/userTypes";
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
 
-export const SALARY_INIT: SalaryInit = {
+export const INIT_SALARY: SalaryInit = {
   year: currentYear,
   month: currentMonth,
   salaryRate: 0,
@@ -43,7 +43,7 @@ export const SOCIAL_COEFFICIENTS = {
 };
 
 export const SALARY_KEYS = Object.keys(
-  SALARY_INIT
+  INIT_SALARY
 ) as KeysSalaryInit[];
 
 export const NO_INPUTS = [

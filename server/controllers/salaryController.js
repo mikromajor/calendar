@@ -1,15 +1,23 @@
 const { Salary } = require("../models/models");
 const ApiError = require("../error/ApiError");
 
+const createIds = (id, year, month) => {
+  const userId = Number(id);
+  const salaryId = userId + "_" + year + "_" + month;
+  return { userId, salaryId };
+};
+
 class SalaryController {
   async add(req, res) {
     //POST //http://localhost:7000/api/salary/add
     // add body {} look for salary_example bellow
 
     const { year, month } = req.body;
-
-    const userId = Number(req.user.id);
-    const salaryId = userId + "_" + year + "_" + month;
+    const { userId, salaryId } = createIds(
+      req.user.id,
+      year,
+      month
+    );
 
     try {
       let salary = await Salary.findOne({
@@ -29,7 +37,8 @@ class SalaryController {
     } catch (e) {
       next(
         ApiError.internal(
-          `Salary with id=${salaryId}, was not update ` + e
+          `Salary with id=${salaryId}, was not add/update ` +
+            e
         )
       );
     }
@@ -38,9 +47,11 @@ class SalaryController {
   async getOne(req, res) {
     //GET http://localhost:7000/api/salary/getOne?year=2020&month=1
     const { year, month } = req.query;
-    const userId = Number(req.user.id);
-    const salaryId = userId + "_" + year + "_" + month;
-
+    const { userId, salaryId } = createIds(
+      req.user.id,
+      year,
+      month
+    );
     try {
       let salary = await Salary.findOne({
         where: { id: salaryId },
@@ -49,32 +60,63 @@ class SalaryController {
         salary = INIT_SALARY;
       }
       return res.json(salary);
-    } catch (e) {}
+    } catch (e) {
+      next(
+        ApiError.internal(
+          "Server error fire when getOne started/ " + e
+        )
+      );
+    }
   }
+
   async getAll(req, res) {
     //GET http://localhost:7000/api/salary/getAll
-    const salaries = await Salary.findAll({
-      where: { userId: req.user.id },
-    });
-    return res.json({ user: req.user, salaries });
+    try {
+      const salaries = await Salary.findAll({
+        where: { userId: Number(req.user.id) },
+      });
+      return res.json({ user: req.user, salaries });
+    } catch (e) {
+      next(
+        ApiError.internal(
+          "Server error fire when getAll started/ " + e
+        )
+      );
+    }
   }
 
   // TODO: check it
   async getLast_2years(req, res) {
     //GET http://localhost:7000/api/salary/getLast_2years?year=2020
-    const { year } = req.query;
-    const salaries = await Promise.allSettled([
-      Salary.findAll({
-        where: { userId: req.user.id, year: year - 1 },
-      }),
-      Salary.findAll({
-        where: {
-          userId: req.user.id,
-          year,
-        },
-      }),
-    ]);
-    return res.json({ user: req.user, salaries });
+    const { year } = req.query; //string
+    const userId = Number(req.user.id);
+    const prevYearId = Number(year) - 1 + "";
+
+    try {
+      const salaries = await Promise.allSettled([
+        Salary.findAll({
+          where: { userId, yearId: prevYearId },
+        }),
+        Salary.findAll({
+          where: {
+            userId,
+            yearId: year,
+          },
+        }),
+      ]);
+      if (salaries && salaries.length) {
+        return res.json({ user: req.user, salaries });
+      } else {
+        return res.json({ user: req.user, salaries: [] });
+      }
+    } catch (e) {
+      next(
+        ApiError.internal(
+          "Server error fire when getLast_2years started /" +
+            e
+        )
+      );
+    }
   }
 }
 

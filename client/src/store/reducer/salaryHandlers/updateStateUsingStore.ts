@@ -1,5 +1,5 @@
 import { SalaryInit } from "../../../types/salaryTypes";
-import { SALARY_INIT } from "../../../constants/salaryConstants";
+import { INIT_SALARY } from "../../../constants/salaryConstants";
 import { amountWeekendsAndWeekdays, getKey } from ".";
 
 export const updateStateUsingStore = (
@@ -21,7 +21,7 @@ export const updateStateUsingStore = (
     const update = !!item
       ? (JSON.parse(item) as SalaryInit)
       : {
-          ...SALARY_INIT,
+          ...INIT_SALARY,
           weekDays: weekdays,
           weekendDays: weekends,
           year: state.year,

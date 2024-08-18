@@ -7,6 +7,24 @@ const currentDate = {
   year: currentYear,
 };
 
+const yearData = {
+  totalVodka: 0,
+  totalBill: 0,
+  months: [],
+};
+
+const service = {
+  isError: false,
+  isLoading: false,
+  message: "",
+};
+
+const INIT_ALCO_STATE = {
+  currentDate,
+  yearData,
+  service,
+};
+
 const INIT_SALARY = {
   year: currentYear,
   month: currentMonth,
@@ -31,27 +49,7 @@ const INIT_SALARY = {
   totalSalary: 0,
 };
 
-const INIT_ALCO_YEAR = {
-  totalVodka: 0,
-  totalBill: 0,
-  months: [],
-};
-
-const INIT_SERVICE = {
-  isError: false,
-  isLoading: false,
-  message: "",
-};
-
-const INIT_ALCO_STATE = {
-  currentDate,
-  yearData: INIT_ALCO_YEAR,
-  service: INIT_SERVICE,
-};
-
 module.exports = {
   INIT_SALARY,
-  INIT_ALCO_YEAR,
-  INIT_SERVICE,
   INIT_ALCO_STATE,
 };
