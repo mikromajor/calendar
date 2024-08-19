@@ -1,35 +1,12 @@
-// import {
-//   SALARY_CONTENT,
-//   SALARY_RESULTS,
-// } from "../constants/salaryConstants";
+import {
+  SALARY_RESULTS,
+  SALARY_INTRODUCTIONS,
+} from "../constants/salaryConstants";
 import { UserLanguages } from "../types/userTypes";
 
-export interface ISalaryResults {
-  nettoPerHours: number;
-  weekDays: number;
-  weekendDays: number;
-  standardWorkHours: number;
-  standardSalary: number;
-  extraSalary: number;
-  totalSalary: number;
-}
-export interface ISalaryIntroduction {
-  year: number;
-  month: number;
-  salaryRate: number;
-  premiumRate: number;
-  premiumUzn: number;
-  taxRate: number;
-  extraHours_50: number;
-  extraHours_100: number;
-  extraHours_120: number;
-  sickLeaveWeekDays: number;
-  sickLeaveWeekendDays: number;
-  holidays: number;
-  usedVacation: number;
-  bloodDonation: number;
-}
-
+export type ISalaryResults = typeof SALARY_RESULTS;
+export type ISalaryIntroduction =
+  typeof SALARY_INTRODUCTIONS;
 export type ISalaryInit = ISalaryResults &
   ISalaryIntroduction;
 
@@ -41,7 +18,7 @@ type PartOfObject<O> = {
 };
 export type IPayload = PartOfObject<ISalaryIntroduction>;
 
-//---------Start typed SalaryContent
+////---------Start typed ISalaryContent
 type ChangeObjValType<O, NewType> = {
   [K in keyof O]: NewType;
 };
@@ -58,11 +35,11 @@ interface LangContent extends ISalaryInitValString {
 type CreateContentType<IKey, IVal> = {
   [k in keyof IKey]: IVal;
 };
-export type SalaryContent = CreateContentType<
+export type ISalaryContent = CreateContentType<
   typeof UserLanguages,
   LangContent
 >;
-//---------End typed SalaryContent---//
+//---------End typed ISalaryContent---////
 
 export function createArrayObjectKeys<T extends object>(
   obj: T
@@ -71,40 +48,3 @@ export function createArrayObjectKeys<T extends object>(
     (key) => key as unknown as keyof T
   );
 }
-
-//test_1
-// const arraySalaryResultsKeys = createArrayObjectKeys<ISalaryResults>(SALARY_RESULTS)
-// const [v1,v2,v3] = arraySalaryResultsKeys
-
-//--REMEMBER--//
-// Partial is the function returning array of type
-//[[key1_,val_1],[key_2,val_2]...]
-
-// type Partial<T> = {
-//   [K in keyof T]: [K, T[K]];
-// }[keyof T][];
-
-// type IPayload = Part<ISalaryInit>;
-
-// type PartWithRemoveField<O> = {
-//   [K in keyof O as Exclude<
-//     K,
-//     | "nettoPerHours"
-//     | "weekDays"
-//     | "weekendDays"
-//     | "standardWorkHours"
-//     | "standardSalary"
-//     | "extraSalary"
-//     | "totalSalary"
-//   >]?: O[K];
-// };
-// type IPayload_2 = PartWithRemoveField<ISalaryInit>;
-// type IPayload_2_keys = keyof IPayload_2;
-//
-// const test_2: IPayload_2 = {
-//   month: 8,
-// };
-// const test_3:IPayload_2 = {}
-// const test_4:IPayload_2 = {
-//   nettoPerHours: 10
-// } // must be error

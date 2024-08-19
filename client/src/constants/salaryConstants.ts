@@ -2,7 +2,7 @@ import {
   ISalaryResults,
   ISalaryIntroduction,
   ISalaryInit,
-  SalaryContent,
+  ISalaryContent,
   createArrayObjectKeys,
 } from "../types/salaryTypes";
 import { UserLanguages } from "../types/userTypes";
@@ -19,7 +19,7 @@ export const SALARY_RESULTS = {
   extraSalary: 0,
   totalSalary: 0,
 };
-export const SALARY_INTRODUCTION = {
+export const SALARY_INTRODUCTIONS = {
   year: currentYear,
   month: currentMonth,
   salaryRate: 0,
@@ -35,8 +35,8 @@ export const SALARY_INTRODUCTION = {
   usedVacation: 0,
   bloodDonation: 0,
 };
-export const SALARY_INIT: ISalaryInit = {
-  ...SALARY_INTRODUCTION,
+export const SALARY_INIT = {
+  ...SALARY_INTRODUCTIONS,
   ...SALARY_RESULTS,
 };
 
@@ -56,12 +56,13 @@ export const SALARY_INIT_KEYS =
 export const SALARY_RESULTS_KEYS =
   createArrayObjectKeys<ISalaryResults>(SALARY_RESULTS);
 
-export const SALARY_INTRODUCTION_KEYS =
+export const SALARY_INTRODUCTIONS_KEYS =
   createArrayObjectKeys<ISalaryIntroduction>(
-    SALARY_INTRODUCTION
+    SALARY_INTRODUCTIONS
   );
-
-export const SALARY_CONTENT: SalaryContent = {
+// if you need add a new parameter in a language objects -
+// do not forget add it in LangContent
+export const SALARY_CONTENT: ISalaryContent = {
   [UserLanguages.UA]: {
     header: "Зарплата",
     //newFieldName: 'string',
