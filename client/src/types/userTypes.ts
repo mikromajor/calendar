@@ -1,5 +1,5 @@
 import { AlcoState } from "./alcoTypes";
-import { SalaryInit } from "./salaryTypes";
+import { ISalaryInit } from "./salaryTypes";
 
 export enum UserLanguages {
   UA = "UA",
@@ -25,7 +25,7 @@ export interface EmailPassword {
 export interface IServerRes extends IUser {
   message: string;
   alcoState: AlcoState;
-  salaryState: SalaryInit;
+  salaryState: ISalaryInit;
 }
 export type ModalOpen =
   | ""

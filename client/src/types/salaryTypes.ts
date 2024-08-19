@@ -1,7 +1,10 @@
-// import { SALARY_CONTENT } from "../constants/salaryConstants";
+// import {
+//   SALARY_CONTENT,
+//   SALARY_RESULTS,
+// } from "../constants/salaryConstants";
 import { UserLanguages } from "../types/userTypes";
 
-interface INoInputs {
+export interface ISalaryResults {
   nettoPerHours: number;
   weekDays: number;
   weekendDays: number;
@@ -10,7 +13,7 @@ interface INoInputs {
   extraSalary: number;
   totalSalary: number;
 }
-interface IWithInputs {
+export interface ISalaryIntroduction {
   year: number;
   month: number;
   salaryRate: number;
@@ -26,39 +29,54 @@ interface IWithInputs {
   usedVacation: number;
   bloodDonation: number;
 }
-export type NoInputsKeys = keyof INoInputs;
-export type SalaryInit = INoInputs & IWithInputs;
-export type SalaryInitKeys = keyof SalaryInit;
+
+export type ISalaryInit = ISalaryResults &
+  ISalaryIntroduction;
+
+export type ISalaryResultsKeys = keyof ISalaryResults;
+export type ISalaryInitKeys = keyof ISalaryInit;
 
 type PartOfObject<O> = {
   [K in keyof O]?: O[K];
 };
-export type IPayload = PartOfObject<IWithInputs>;
+export type IPayload = PartOfObject<ISalaryIntroduction>;
 
-type ChangeObjValType<O, ValueNewType> = {
-  [K in keyof O]: ValueNewType;
+//---------Start typed SalaryContent
+type ChangeObjValType<O, NewType> = {
+  [K in keyof O]: NewType;
 };
-
-type SalaryInitValString = ChangeObjValType<
-  SalaryInit,
+type ISalaryInitValString = ChangeObjValType<
+  ISalaryInit,
   string
 >;
 
-//add new field bellow, if you want to add new field in SALARY_CONTENT[currentLanguage].newFieldName
-interface LangContent extends SalaryInitValString {
+//Example to add a new parameter in a language object :
+interface LangContent extends ISalaryInitValString {
   header: string;
   //newFieldName: string
 }
-
 type CreateContentType<IKey, IVal> = {
   [k in keyof IKey]: IVal;
 };
-
 export type SalaryContent = CreateContentType<
   typeof UserLanguages,
   LangContent
 >;
+//---------End typed SalaryContent---//
 
+export function createArrayObjectKeys<T extends object>(
+  obj: T
+): (keyof T)[] {
+  return Object.keys(obj).map(
+    (key) => key as unknown as keyof T
+  );
+}
+
+//test_1
+// const arraySalaryResultsKeys = createArrayObjectKeys<ISalaryResults>(SALARY_RESULTS)
+// const [v1,v2,v3] = arraySalaryResultsKeys
+
+//--REMEMBER--//
 // Partial is the function returning array of type
 //[[key1_,val_1],[key_2,val_2]...]
 
@@ -66,7 +84,7 @@ export type SalaryContent = CreateContentType<
 //   [K in keyof T]: [K, T[K]];
 // }[keyof T][];
 
-// type IPayload = Part<SalaryInit>;
+// type IPayload = Part<ISalaryInit>;
 
 // type PartWithRemoveField<O> = {
 //   [K in keyof O as Exclude<
@@ -80,7 +98,7 @@ export type SalaryContent = CreateContentType<
 //     | "totalSalary"
 //   >]?: O[K];
 // };
-// type IPayload_2 = PartWithRemoveField<SalaryInit>;
+// type IPayload_2 = PartWithRemoveField<ISalaryInit>;
 // type IPayload_2_keys = keyof IPayload_2;
 //
 // const test_2: IPayload_2 = {

@@ -2,15 +2,15 @@ import { useAppSelector } from "../../store/hooks/redux";
 import { Input } from "./ui";
 import {
   SALARY_CONTENT,
-  NO_INPUTS,
-  SALARY_KEYS,
+  SALARY_RESULTS_KEYS,
+  SALARY_INIT_KEYS,
 } from "../../constants/salaryConstants";
+import { ISalaryResultsKeys } from "../../types/salaryTypes";
 
 export const Salary = () => {
   const { salaryReducer, userReducer } = useAppSelector(
     (state) => state
   );
-
   const { currentLang, currentTheme } = userReducer;
 
   const tr: JSX.Element[] = [];
@@ -18,8 +18,10 @@ export const Salary = () => {
   let th: JSX.Element;
   // add compatibility V1 & V2
 
-  SALARY_KEYS.forEach((key, i) => {
-    td = NO_INPUTS.includes(key) ? (
+  SALARY_INIT_KEYS.forEach((key, i) => {
+    td = SALARY_RESULTS_KEYS.includes(
+      key as ISalaryResultsKeys
+    ) ? (
       <td
         className={`salary__td-no-inputs salary__td-no-inputs--${currentTheme}`}
       >

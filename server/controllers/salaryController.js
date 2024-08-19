@@ -57,7 +57,7 @@ class SalaryController {
         where: { id: salaryId },
       });
       if (!salary) {
-        salary = INIT_SALARY;
+        salary = SALARY_INIT;
       }
       return res.json(salary);
     } catch (e) {

@@ -1,25 +1,31 @@
 import {
-  SalaryInitKeys,
-  SalaryInit,
-  NoInputsKeys,
+  ISalaryResults,
+  ISalaryIntroduction,
+  ISalaryInit,
   SalaryContent,
+  createArrayObjectKeys,
 } from "../types/salaryTypes";
 import { UserLanguages } from "../types/userTypes";
 
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
 
-export const INIT_SALARY: SalaryInit = {
+export const SALARY_RESULTS = {
+  nettoPerHours: 0,
+  weekDays: 0,
+  weekendDays: 0,
+  standardWorkHours: 0,
+  standardSalary: 0,
+  extraSalary: 0,
+  totalSalary: 0,
+};
+export const SALARY_INTRODUCTION = {
   year: currentYear,
   month: currentMonth,
   salaryRate: 0,
   premiumRate: 0,
   premiumUzn: 0,
-  taxRate: 27,
-  nettoPerHours: 0,
-  weekDays: 0,
-  weekendDays: 0,
-  standardWorkHours: 0,
+  taxRate: 0,
   extraHours_50: 0,
   extraHours_100: 0,
   extraHours_120: 0,
@@ -28,35 +34,32 @@ export const INIT_SALARY: SalaryInit = {
   holidays: 0,
   usedVacation: 0,
   bloodDonation: 0,
-  standardSalary: 0,
-  extraSalary: 0,
-  totalSalary: 0,
+};
+export const SALARY_INIT: ISalaryInit = {
+  ...SALARY_INTRODUCTION,
+  ...SALARY_RESULTS,
 };
 
-export const PREMIUM_COEFFICIENT = {
-  pr_50: 1.5,
-  pr_100: 2,
-  pr_120: 2.2,
+export const COEFFICIENTS = {
+  premium_50_percent: 1.5,
+  premium_100_percent: 2,
+  premium_120_percent: 2.2,
+  sickRate: 0.64,
+  bloodDonationRate: 1,
 };
 
-export const SOCIAL_COEFFICIENTS = {
-  sickCoefficient: 0.64,
-  bloodDonationCoefficient: 1,
-};
+//Arrays required for ordered line-by-line display
 
-export const SALARY_KEYS = Object.keys(
-  INIT_SALARY
-) as SalaryInitKeys[];
+export const SALARY_INIT_KEYS =
+  createArrayObjectKeys<ISalaryInit>(SALARY_INIT);
 
-export const NO_INPUTS = [
-  "nettoPerHours",
-  "weekDays",
-  "weekendDays",
-  "standardWorkHours",
-  "standardSalary",
-  "extraSalary",
-  "totalSalary",
-]; //as NoInputsKeys[];
+export const SALARY_RESULTS_KEYS =
+  createArrayObjectKeys<ISalaryResults>(SALARY_RESULTS);
+
+export const SALARY_INTRODUCTION_KEYS =
+  createArrayObjectKeys<ISalaryIntroduction>(
+    SALARY_INTRODUCTION
+  );
 
 export const SALARY_CONTENT: SalaryContent = {
   [UserLanguages.UA]: {

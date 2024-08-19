@@ -1,11 +1,11 @@
 import {
   IPayload,
-  SalaryInit,
+  ISalaryInit,
 } from "../../../types/salaryTypes";
 import { checkMonth, isNum } from ".";
 
 export const changeDate = (
-  state: SalaryInit,
+  state: ISalaryInit,
   { year, month }: IPayload
 ) => {
   checkMonth(month) && (state.month = month);

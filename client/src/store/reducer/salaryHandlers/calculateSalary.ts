@@ -6,11 +6,11 @@ import {
 } from ".";
 import {
   IPayload,
-  SalaryInit,
+  ISalaryInit,
 } from "../../../types/salaryTypes";
 
 export const calculateSalary = (
-  state: SalaryInit,
+  state: ISalaryInit,
   payload: IPayload
 ) => {
   const {

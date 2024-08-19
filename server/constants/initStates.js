@@ -25,7 +25,7 @@ const INIT_ALCO_STATE = {
   service,
 };
 
-const INIT_SALARY = {
+const SALARY_INIT = {
   year: currentYear,
   month: currentMonth,
   salaryRate: 0,
@@ -50,6 +50,6 @@ const INIT_SALARY = {
 };
 
 module.exports = {
-  INIT_SALARY,
+  SALARY_INIT,
   INIT_ALCO_STATE,
 };
