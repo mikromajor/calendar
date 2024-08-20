@@ -1,18 +1,11 @@
 import { Button } from "@mui/material";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
-import { InputDatePanel } from "./InputsPanel/InputDatePanel";
 import { InputLiquidPanel } from "./InputsPanel/InputLiquidPanel";
 import { useAppSelector } from "../../../../store/hooks/redux";
 
-type ControlPanelProps = {
-  showPanelInputDate: boolean;
-};
-
-export const ControlPanel = ({
-  showPanelInputDate,
-}: ControlPanelProps) => {
+export const ControlPanel = () => {
   const { currentLang, currentTheme } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
   return (
     <div
@@ -26,14 +19,8 @@ export const ControlPanel = ({
       </h2>
 
       <div className='control-panel__inputs-container'>
-        {!showPanelInputDate && <InputDatePanel />}
-
         <InputLiquidPanel />
       </div>
-
-      {/* <button onClick={(e) => dispatch(asyncAdder())}>
-        +50 L in 1 sec
-      </button> */}
     </div>
   );
 };

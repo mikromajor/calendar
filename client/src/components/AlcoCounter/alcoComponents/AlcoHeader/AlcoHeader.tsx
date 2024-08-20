@@ -3,7 +3,7 @@ import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 
 export const AlcoHeader = () => {
   const { currentLang, currentTheme } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
 
   return (

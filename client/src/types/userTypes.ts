@@ -1,18 +1,16 @@
-import { YearInfo } from "./alcoTypes";
-import { SalaryInit } from "./salaryTypes";
+import { AlcoState } from "./alcoTypes";
+import { ISalaryInit } from "./salaryTypes";
 
-export enum AppLanguages {
+export enum UserLanguages {
   UA = "UA",
   PL = "PL",
   EN = "EN",
 }
-export enum AppThemes {
+export enum UserThemes {
   WHITE = "white-theme",
   DARK = "dark-theme",
 }
 export interface IUser {
-  id: string;
-  email: string;
   token: string;
 }
 
@@ -26,8 +24,14 @@ export interface EmailPassword {
 }
 export interface IServerRes extends IUser {
   message: string;
-  alcoYear: YearInfo;
-  salaryData: SalaryInit;
+  alcoState: AlcoState;
+  salaryState: ISalaryInit;
 }
+export type ModalOpen =
+  | ""
+  | "message"
+  | "reg"
+  | "login"
+  | "logout";
 
-//  export type LanguagesList = keyof typeof AppLanguages;
+//  export type LanguagesList = keyof typeof UserLanguages;

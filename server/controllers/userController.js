@@ -67,7 +67,6 @@ class UserController {
 
     req.user = {
       id: user.id,
-      email,
       token,
       message: "Successful login",
     };
@@ -76,9 +75,22 @@ class UserController {
 
   //GET http://localhost:7000/api/user/auth
   async check(req, res, next) {
-    const token = generateJwt(req.user.id, req.user.email);
-    return res.json({ token, message: "Login successful" });
+    // TODO add ID validation
+    const { id, email } = req.user;
+    const token = generateJwt(id, email);
+    return res.json({
+      token,
+      message: "Authorization is ok",
+    });
   }
 }
 
 module.exports = new UserController();
+
+// //Note: correct handle error
+//     return next(
+//       ApiError.badRequest("Request's data incorrect")
+//     );
+//     next(
+//       ApiError.internal("Server error.")
+//     );

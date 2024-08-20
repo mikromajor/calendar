@@ -4,7 +4,7 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { SALARY_INIT } from "../../constants/salaryConstants";
-import { PayloadType } from "../../types/salaryTypes";
+import { IPayload } from "../../types/salaryTypes";
 import {
   changeDate,
   updateStateUsingStore,
@@ -16,16 +16,13 @@ export const salaryReducer = createSlice({
   name: "salaryState",
   initialState: SALARY_INIT,
   reducers: {
-    getSalary: (
-      state,
-      action: PayloadAction<PayloadType>
-    ) => {
+    getSalary: (state, action: PayloadAction<IPayload>) => {
       calculateSalary(state, action.payload);
       saveSalaryInStorage(state);
     },
     changeSalaryDate: (
       state,
-      action: PayloadAction<PayloadType>
+      action: PayloadAction<IPayload>
     ) => {
       changeDate(state, action.payload);
       updateStateUsingStore(state);

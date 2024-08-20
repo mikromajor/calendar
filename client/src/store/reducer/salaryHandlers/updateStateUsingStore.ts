@@ -1,9 +1,9 @@
-import { SalaryInit } from "../../../types/salaryTypes";
+import { ISalaryInit } from "../../../types/salaryTypes";
 import { SALARY_INIT } from "../../../constants/salaryConstants";
 import { amountWeekendsAndWeekdays, getKey } from ".";
 
 export const updateStateUsingStore = (
-  state: SalaryInit
+  state: ISalaryInit
 ) => {
   if (typeof window === "undefined") {
     return undefined;
@@ -19,7 +19,7 @@ export const updateStateUsingStore = (
     const item = window.localStorage.getItem(dateKey);
 
     const update = !!item
-      ? (JSON.parse(item) as SalaryInit)
+      ? (JSON.parse(item) as ISalaryInit)
       : {
           ...SALARY_INIT,
           weekDays: weekdays,

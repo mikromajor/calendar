@@ -10,21 +10,21 @@ import {
   useAppSelector,
 } from "../../store/hooks/redux";
 import { userActions } from "../../store/reducer/userReducer";
-import { UserThemes } from "../../types/userTypes";
+import { UserLanguages } from "../../types/userTypes";
 
-export function SelectTheme() {
-  //---- customization
+export function SelectLanguage() {
+  // customization
   const dispatch = useAppDispatch();
-  const { currentLang, currentTheme } = useAppSelector(
+  const { currentLang } = useAppSelector(
     (state) => state.userReducer
   );
-  const { changeTheme } = userActions;
+  const { changeLanguage } = userActions;
+  const languages = Object.values(UserLanguages);
 
-  const themes = Object.values(UserThemes);
-  //-----------------//
-
+  //-------------------------//
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
+
   const open = Boolean(anchorEl);
   const handleClickListItem = (
     event: React.MouseEvent<HTMLElement>
@@ -32,9 +32,9 @@ export function SelectTheme() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (theme: UserThemes) => {
+  const handleMenuItemClick = (language: UserLanguages) => {
     setAnchorEl(null);
-    dispatch(changeTheme(theme));
+    dispatch(changeLanguage(language));
   };
 
   const handleClose = () => {
@@ -42,14 +42,10 @@ export function SelectTheme() {
   };
 
   return (
-    <div>
-      <List
-        component='nav'
-        aria-label='Device settings'
-        // sx={{ bgcolor: "background.paper" }}
-      >
+    <>
+      <List component='nav' aria-label='Device settings'>
         <ListItemButton
-          id='lock-button-theme'
+          id='lock-button-language'
           aria-haspopup='listbox'
           aria-controls='lock-menu'
           aria-label='when device is locked'
@@ -57,15 +53,13 @@ export function SelectTheme() {
           onClick={handleClickListItem}
         >
           <ListItemText
-            primary={TOP_MENU_CONTENT[currentLang].lblTheme}
-            secondary={
-              TOP_MENU_CONTENT[currentLang][currentTheme]
-            }
+            primary={TOP_MENU_CONTENT[currentLang].lblLang}
+            secondary={currentLang}
           />
         </ListItemButton>
       </List>
       <Menu
-        id='lock-menu-theme'
+        id='lock-menu-language'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -74,16 +68,16 @@ export function SelectTheme() {
           role: "listbox",
         }}
       >
-        {themes.map((theme) => (
+        {languages.map((language) => (
           <MenuItem
-            key={theme}
-            selected={theme === currentTheme}
-            onClick={() => handleMenuItemClick(theme)}
+            key={language}
+            selected={language === currentLang}
+            onClick={() => handleMenuItemClick(language)}
           >
-            {TOP_MENU_CONTENT[currentLang][theme]}
+            {language}
           </MenuItem>
         ))}
       </Menu>
-    </div>
+    </>
   );
 }

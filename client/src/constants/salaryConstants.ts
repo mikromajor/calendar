@@ -1,23 +1,25 @@
-import {
-  KeysSalaryInit,
-  SalaryInit,
-} from "../types/salaryTypes";
-import { AppLanguages } from "../types/appTypes";
+import { ISalaryContent } from "../types/salaryTypes";
+import { UserLanguages } from "../types/userTypes";
 
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
 
-export const SALARY_INIT: SalaryInit = {
+export const SALARY_RESULTS = {
+  nettoPerHours: 0,
+  weekDays: 0,
+  weekendDays: 0,
+  standardWorkHours: 0,
+  standardSalary: 0,
+  extraSalary: 0,
+  totalSalary: 0,
+};
+export const SALARY_INTRODUCTIONS = {
   year: currentYear,
   month: currentMonth,
   salaryRate: 0,
   premiumRate: 0,
   premiumUzn: 0,
-  taxRate: 27,
-  nettoPerHours: 0,
-  weekDays: 0,
-  weekendDays: 0,
-  standardWorkHours: 0,
+  taxRate: 0,
   extraHours_50: 0,
   extraHours_100: 0,
   extraHours_120: 0,
@@ -26,40 +28,26 @@ export const SALARY_INIT: SalaryInit = {
   holidays: 0,
   usedVacation: 0,
   bloodDonation: 0,
-  standardSalary: 0,
-  extraSalary: 0,
-  totalSalary: 0,
+};
+export const SALARY_INIT = {
+  ...SALARY_INTRODUCTIONS,
+  ...SALARY_RESULTS,
 };
 
-export const PREMIUM_COEFFICIENT = {
-  pr_50: 1.5,
-  pr_100: 2,
-  pr_120: 2.2,
+export const COEFFICIENTS = {
+  premium_50_percent: 1.5,
+  premium_100_percent: 2,
+  premium_120_percent: 2.2,
+  sickRate: 0.64,
+  bloodDonationRate: 1,
 };
 
-export const SOCIAL_COEFFICIENTS = {
-  sickCoefficient: 0.64,
-  bloodDonationCoefficient: 1,
-};
-
-export const SALARY_KEYS = Object.keys(
-  SALARY_INIT
-) as KeysSalaryInit[];
-
-export const NO_INPUTS = [
-  "nettoPerHours",
-  "weekDays",
-  "weekendDays",
-  "standardWorkHours",
-  "standardSalary",
-  "extraSalary",
-  "totalSalary",
-];
-
-export const SALARY_CONTENT = {
-  [AppLanguages.UA]: {
+// if you need add a new parameter in a language objects -
+// do not forget add it in LangContent
+export const SALARY_CONTENT: ISalaryContent = {
+  [UserLanguages.UA]: {
     header: "Зарплата",
-
+    //newFieldName: 'string',
     year: "Рік",
     month: "Місяць",
     salaryRate: "Ставка брутто, зл/год",
@@ -82,7 +70,7 @@ export const SALARY_CONTENT = {
     extraSalary: "ЗП понаднормова, зл нетто",
     totalSalary: "ЗП вся, зл нетто",
   },
-  [AppLanguages.EN]: {
+  [UserLanguages.EN]: {
     header: "Salary",
 
     year: "Year",
@@ -107,7 +95,7 @@ export const SALARY_CONTENT = {
     extraSalary: "Extra salary, net zl",
     totalSalary: "Total salary, net zl",
   },
-  [AppLanguages.PL]: {
+  [UserLanguages.PL]: {
     header: "Wyplata",
 
     year: "Rok",

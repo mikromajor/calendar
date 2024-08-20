@@ -1,14 +1,20 @@
 import React, { FC } from "react";
 import { Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+import { userActions } from "../../../store/reducer/userReducer";
+import { useDispatch } from "react-redux";
+import { ModalOpen } from "../../../types/userTypes";
 
 interface LogoutProps {
-  setOpen: React.Dispatch<"" | "reg" | "login" | "logout">;
+  setOpen: React.Dispatch<ModalOpen>;
 }
 
-export const Logout: FC<LogoutProps> = ({ setOpen }) => {
-  const sendLogoutRequest = () => {
-    localStorage.setItem("token", "");
+export function Logout({ setOpen }: LogoutProps) {
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    setOpen("");
+    dispatch(userActions.logOut());
   };
   const modalClose = () => setOpen("");
 
@@ -20,7 +26,7 @@ export const Logout: FC<LogoutProps> = ({ setOpen }) => {
         </div>
         <LoadingButton
           variant='outlined'
-          onClick={sendLogoutRequest}
+          onClick={handleLogOut}
         >
           Yes
         </LoadingButton>
@@ -33,4 +39,4 @@ export const Logout: FC<LogoutProps> = ({ setOpen }) => {
       </Stack>
     </>
   );
-};
+}

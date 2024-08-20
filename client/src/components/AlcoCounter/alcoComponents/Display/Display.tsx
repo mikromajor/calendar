@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../../store/hooks/redux";
-// import { AppLanguages } from "../../../../types/appTypes";
+// import { UserLanguages } from "../../../../types/appTypes";
 import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
 import { getTotalDrankData } from "../../../../store/reducer/alcoHandlers";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ export const Display = () => {
     (state) => state.alcoReducer
   );
   const { currentTheme } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
   const { day, month, year } = alcoState.currentDate;
 
@@ -23,7 +23,7 @@ export const Display = () => {
     getTotalDrankData(alcoState);
 
   const { currentLang } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
 
   useEffect(() => {

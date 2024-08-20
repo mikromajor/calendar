@@ -11,7 +11,7 @@ module.exports = function (req, res, next) {
     if (!token) {
       return next(
         ApiError.unauthorized(
-          "User not authorized. Please sign in."
+          "User not authorized. Please registration first."
         )
       );
     }
@@ -19,12 +19,13 @@ module.exports = function (req, res, next) {
       token,
       process.env.SECRET_KEY,
       (err, user) => {
-        if (err)
+        if (err) {
           return next(
             ApiError.forbidden(
               "You have not access. Please login"
             )
           );
+        }
         req.user = user;
         next();
       }

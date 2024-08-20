@@ -23,10 +23,6 @@ const AlcoYear = sequelize.define("year", {
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },
-  totalBill: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0,
-  },
 });
 
 const AlcoMonth = sequelize.define("month", {
@@ -35,10 +31,6 @@ const AlcoMonth = sequelize.define("month", {
     primaryKey: true,
   },
   totalVodka: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0,
-  },
-  totalBill: {
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },
@@ -53,25 +45,18 @@ const AlcoDay = sequelize.define("day", {
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },
-  totalBill: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0,
-  },
 });
 
 const Salary = sequelize.define("salary", {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     primaryKey: true,
-    autoIncrement: true,
   },
   year: {
     type: DataTypes.INTEGER,
-    defaultValue: 2024,
   },
   month: {
     type: DataTypes.INTEGER,
-    defaultValue: 1,
   },
   salaryRate: {
     type: DataTypes.INTEGER,

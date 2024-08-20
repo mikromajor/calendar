@@ -5,7 +5,7 @@ import {
 import {
   INIT_ALCO_STATE,
   INIT_MONTH,
-  INIT_YEAR,
+  INIT_ALCO_YEAR,
 } from "../../constants/alcoConstants";
 import {
   tryStorageData,
@@ -16,9 +16,12 @@ import {
   minMaxDayValidation,
   minMaxMonthValidation,
 } from "./alcoHandlers";
-import { fetchAlcoYear } from "./http/alcoActions";
-import { YearInfo } from "../../types/alcoTypes";
-import { IServerRes } from "../../types/appTypes";
+import {
+  getAlcoYear,
+  addNewDoseToDB,
+} from "./http/alcoActions";
+import { AlcoState } from "../../types/alcoTypes";
+import { IServerRes } from "../../types/userTypes";
 
 // const store = tryStorageData(
 //   INIT_ALCO_STATE.currentDate.year
@@ -50,91 +53,76 @@ export const alcoReducer = createSlice({
       );
       state.currentDate.month = month;
     },
-    changeYear: (state, action: PayloadAction<string>) => {
-      const year = action.payload;
-
-      const isStoreData = tryStorageData(year);
-
-      Object.assign(
-        state,
-        !!isStoreData ? isStoreData : INIT_ALCO_STATE,
-        {
-          currentDate: {
-            ...state.currentDate,
-            year,
-          },
-        }
-      );
-    },
-
-    calculating: (
+    changeYear: (
       state,
-      action: PayloadAction<string[]>
+      action: PayloadAction<AlcoState>
     ) => {
-      const [vol, per] = action.payload.map((d) =>
-        Number(d)
-      );
-
-      if (vol && per) {
-        const vodka = setDecimal(
-          (vol * per * 2.5) / 100,
-          0
-        );
-
-        addVodkaToState(state, vodka);
-
-        saveStateInStorage(state);
-      }
+      // Object.assign(state, action.payload);
+      state.currentDate = action.payload.currentDate;
+      state.yearData = action.payload.yearData;
+      state.service = action.payload.service;
     },
+
+    //TODO change CLEARS func , use DB
     clearYearData: (state) => {
       const key = createKey(state.currentDate.year);
       window.localStorage.removeItem(key);
-      state.yearData = { ...INIT_YEAR };
+      state.yearData = { ...INIT_ALCO_YEAR };
     },
     clearMonthData: (state) => {
       const currentMonth = Number(state.currentDate.month);
       //TODO add checking for the existence of a month-object
-      if (state?.yearData?.months?.[currentMonth]) {
-        const monthData =
-          state?.yearData?.months?.[currentMonth];
-        state.yearData.totalBill -= monthData.totalBill;
-        state.yearData.totalVodka -= monthData.totalVodka;
+      if (state.yearData.months?.[currentMonth]) {
+        const { totalVodka } =
+          state.yearData.months[currentMonth];
+
+        state.yearData.totalVodka -= totalVodka;
         state.yearData.months[currentMonth] = {
           ...INIT_MONTH,
         };
       }
     },
-    clearAllStor: () => {
-      window.localStorage.clear();
-    },
-    //---handle server response
-    changeAlcoYear: (
-      state,
-      action: PayloadAction<YearInfo | null>
-    ) => {
-      const alcoYear = action.payload;
-      state.yearData = !!alcoYear
-        ? alcoYear
-        : INIT_ALCO_STATE.yearData;
-    },
   },
   extraReducers: {
-    [fetchAlcoYear.pending.type]: (state) => {
-      // state.isLoading = true; // TODO create alcoState spinner
+    // getAlcoYear
+    [getAlcoYear.pending.type]: (state) => {
+      state.service.isLoading = true;
+      state.service.isError = false;
+      state.service.message = "";
     },
-    [fetchAlcoYear.fulfilled.type]: (
+    [getAlcoYear.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      state.yearData = action.payload.alcoYear;
-      // state.isError = false;
-      // state.message = "";
-      // state.isLoading = false; // TODO create alcoState spinner
+      Object.assign(state, action.payload.alcoState);
     },
-    [fetchAlcoYear.rejected.type]: (state) => {
-      // state.isError = true;
-      // state.message = "Error. Can't fetch server data";
-      // state.isLoading = false;// TODO create alcoState spinner
+    [getAlcoYear.rejected.type]: (
+      state,
+      action: PayloadAction<IServerRes>
+    ) => {
+      state.service.message = action.payload.message;
+      state.service.isLoading = false;
+      state.service.isError = true;
+    },
+    //addNewDose
+    [addNewDoseToDB.pending.type]: (state) => {
+      state.service.isLoading = true;
+      state.service.isError = false;
+      state.service.message = "";
+    },
+    [addNewDoseToDB.fulfilled.type]: (
+      state,
+      action: PayloadAction<IServerRes>
+    ) => {
+      Object.assign(state, action.payload.alcoState);
+    },
+    [addNewDoseToDB.rejected.type]: (
+      state,
+      action: PayloadAction<IServerRes>
+    ) => {
+      state.service.message = action.payload.message;
+      state.service.isError = true;
+      state.service.isLoading = false;
     },
   },
 });

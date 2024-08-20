@@ -7,3 +7,4 @@ export { addVodkaToState } from "./addVodkaToState";
 export { getTotalDrankData } from "./getTotalDrankData";
 export { minMaxDayValidation } from "./minMaxDayValidation";
 export { minMaxMonthValidation } from "./minMaxMonthValidation";
+export { converterStringToNumb } from "./converterStringToNumb";

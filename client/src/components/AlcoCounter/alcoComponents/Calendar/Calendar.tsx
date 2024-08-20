@@ -7,53 +7,55 @@ import {
   PickersDay,
   PickersDayProps,
 } from "@mui/x-date-pickers/PickersDay";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import {
+  DateCalendar,
+  DateCalendarSlotProps,
+} from "@mui/x-date-pickers/DateCalendar";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
+
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../../../store/hooks/redux";
 import { alcoActions } from "../../../../store/reducer/alcoReducer";
+import { getAlcoYear } from "../../../../store/reducer/http/alcoActions";
 import { DayInfo } from "../../../../types/alcoTypes";
 import updateLocale from "dayjs/plugin/updateLocale";
 
 dayjs.extend(updateLocale);
 
-// Replace "en" with the name of the locale you want to update.
 dayjs.updateLocale("en", {
   // Sunday = 0, Monday = 1.
+  //"en" - if you change it, the language will not change;
   weekStart: 1,
 });
 
-function ViewInfoDay(
+function CustomDay(
   props: PickersDayProps<Dayjs> & {
-    highlightedDays?: DayInfo[];
+    days?: DayInfo[];
   }
 ) {
-  // TODO fix problem with highlightedDays
-
-  const { outsideCurrentMonth } = props;
-  const { currentDate, yearData } = useAppSelector(
-    (state) => state.alcoReducer
-  );
-  const { month } = currentDate;
-  const { months } = yearData;
-  const isMonthData = months[Number(month)];
-  const highlightedDaysInMonth = !!isMonthData
-    ? isMonthData.days
-    : [];
+  const {
+    days = [],
+    day,
+    outsideCurrentMonth,
+    ...other
+  } = props;
 
   const isSelected =
-    !outsideCurrentMonth &&
-    highlightedDaysInMonth[props.day.date()];
+    !outsideCurrentMonth && days[day.date()];
 
   return (
     <Badge
-      key={props.day.toString()}
+      key={day.toString()}
       overlap='circular'
       color='secondary'
-      max={999}
+      max={9999}
       badgeContent={
-        isSelected && isSelected.totalVodka > 0
+        isSelected &&
+        (isSelected.totalVodka > 0 ||
+          isSelected.totalVodka < 0)
           ? isSelected.totalVodka.toString()
           : undefined
       }
@@ -61,58 +63,74 @@ function ViewInfoDay(
       <PickersDay
         {...props}
         outsideCurrentMonth={outsideCurrentMonth}
-        day={props.day}
+        day={day}
       />
     </Badge>
   );
 }
 
-export function CalendarDayInfo() {
+export function Calendar() {
   // TODO: change calendar's language when app lang change
-  const { currentDate, yearData } = useAppSelector(
+  const { currentDate, yearData, service } = useAppSelector(
     (state) => state.alcoReducer
   );
-  const { currentTheme } = useAppSelector(
-    (state) => state.appReducer
+  const { currentTheme, currentLang } = useAppSelector(
+    (state) => state.userReducer
   );
   const { day, month, year } = currentDate;
 
   const dispatch = useAppDispatch();
-  const { changeDay, changeMonth, changeYear } =
-    alcoActions;
+  const { changeDay, changeMonth } = alcoActions;
 
   const { months } = yearData;
-  const isMonthData = months[Number(month)];
-  const highlightedDays = !!isMonthData
-    ? isMonthData.days
-    : [];
+
+  React.useEffect(() => {}, [yearData]);
+
+  const isMonthData = months?.[Number(month)];
+
+  const days = !!isMonthData ? isMonthData.days : [];
 
   const changeDate = (date: Dayjs) => {
-    if (date && date !== null) {
-      const newDay = date.date().toString();
-      const newMonth = (date.month() + 1).toString();
-      const newYear = date.year().toString();
+    if (!!date) {
+      const newDay = date.date() + "";
+      const newMonth = date.month() + 1 + "";
+      const newYear = date.year() + "";
 
-      newYear !== year && dispatch(changeYear(newYear));
+      newYear !== year &&
+        dispatch(
+          getAlcoYear({ year: newYear, month, day })
+        );
       newMonth !== month && dispatch(changeMonth(newMonth));
+
       newDay !== day && dispatch(changeDay(newDay));
     }
   };
-
+  const handleChangeMonth = (date: Dayjs) => {
+    const newMonth = date.month() + 1 + "";
+    dispatch(changeMonth(newMonth));
+  };
   return (
     <div
-      className={`alco-counter__calendar-day-info alco-counter__calendar-day-info--${currentTheme}`}
+      className={`alco-counter__calendar-day-info alco-counter__calendar-day-info--${currentTheme}   `}
     >
+      <div style={{ height: "10px" }}>
+        <Box
+          sx={{ width: "100%" }}
+          hidden={!service.isLoading}
+        >
+          <LinearProgress />
+        </Box>
+      </div>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
           value={dayjs(year + "-" + month + "-" + day)}
           onChange={(date) => changeDate(dayjs(date))}
           slots={{
-            day: ViewInfoDay,
+            day: CustomDay,
           }}
           slotProps={{
             day: {
-              highlightedDays,
+              days,
             } as any,
           }}
           showDaysOutsideCurrentMonth
@@ -121,11 +139,7 @@ export function CalendarDayInfo() {
             `${weekday.format("ddd")}.`
           }
           views={["year", "month", "day"]}
-          onMonthChange={(date) => {
-            dispatch(
-              changeMonth((date.month() + 1).toString())
-            );
-          }}
+          onMonthChange={handleChangeMonth}
         />
       </LocalizationProvider>
     </div>

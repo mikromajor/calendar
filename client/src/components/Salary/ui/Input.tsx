@@ -1,22 +1,22 @@
 import {
   useAppSelector,
   useAppDispatch,
-} from "../../../../store/hooks/redux";
+} from "../../../store/hooks/redux";
 
-import { salaryActions } from "../../../../store/reducer/salaryReducer";
-import { KeysSalaryInit } from "../../../../types/salaryTypes";
+import { salaryActions } from "../../../store/reducer/salaryReducer";
+import { ISalaryInitKeys } from "../../../types/salaryTypes";
 
 type InputProps = {
-  payloadsKey: KeysSalaryInit;
+  payloadsKey: ISalaryInitKeys;
 };
 
 export const Input = ({ payloadsKey }: InputProps) => {
   const dispatch = useAppDispatch();
-  const { salaryReducer, appReducer } = useAppSelector(
+  const { salaryReducer, userReducer } = useAppSelector(
     (state) => state
   );
 
-  const currentTheme = appReducer.currentTheme;
+  const currentTheme = userReducer.currentTheme;
   const { getSalary, changeSalaryDate } = salaryActions;
 
   const handlerInputChange = (

@@ -1,9 +1,11 @@
-import { SalaryInit } from "../../../types/salaryTypes";
-import { SOCIAL_COEFFICIENTS } from "../../../constants/salaryConstants";
+import { ISalaryInit } from "../../../types/salaryTypes";
+import { COEFFICIENTS } from "../../../constants/salaryConstants";
 import { determineVacationPayCoefficient } from ".";
 
-export const determStandardSalary = (state: SalaryInit) => {
-  const { sickCoefficient } = SOCIAL_COEFFICIENTS;
+export const determStandardSalary = (
+  state: ISalaryInit
+) => {
+  const { sickRate } = COEFFICIENTS;
 
   const {
     premiumRate,
@@ -34,7 +36,7 @@ export const determStandardSalary = (state: SalaryInit) => {
 
   const sickPayment =
     (sickLeaveWeekDays + sickLeaveWeekendDays) *
-    sickCoefficient *
+    sickRate *
     nettoPerHours *
     8;
 

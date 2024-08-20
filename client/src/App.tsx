@@ -5,25 +5,40 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material/styles";
+import { UserThemes } from "./types/userTypes";
 
 function App() {
-  const [switchCalc, setSwitchCalc] = useState(true);
+  const [showAlcoCalc, setShowAlcoCalc] = useState(true);
   const { currentTheme } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
 
   const theme = createTheme({
     palette: {
       mode:
-        currentTheme === "white-theme" ? "light" : "dark",
+        currentTheme === UserThemes.WHITE
+          ? "light"
+          : "dark",
+    },
+    components: {
+      MuiSnackbarContent: {
+        styleOverrides: {
+          root: {
+            backgroundColor:
+              currentTheme === UserThemes.WHITE
+                ? "rgb(140, 194 ,188)"
+                : "rgb(70,70,70)",
+          },
+        },
+      },
     },
   });
 
   return (
     <ThemeProvider theme={theme}>
       <div className={`app app--${currentTheme}`}>
-        <TopMenu setSwitchCalc={setSwitchCalc} />
-        {switchCalc ? <AlcoCounter /> : <Salary />}
+        <TopMenu setShowAlcoCalc={setShowAlcoCalc} />
+        {showAlcoCalc ? <AlcoCounter /> : <Salary />}
       </div>
     </ThemeProvider>
   );

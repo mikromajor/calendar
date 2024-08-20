@@ -3,27 +3,41 @@ const {
   AlcoMonth,
   AlcoDay,
 } = require("../models/models");
+const {
+  INIT_ALCO_STATE,
+} = require("../constants/initStates");
 const ApiError = require("../error/ApiError");
 const {
   getDateMonthYear,
 } = require("../utils/getDateMonthYear");
-//create response models for front-end equal INIT_YEAR
 
-const createModelYearData = async (year, userId, next) => {
+//creating response models like INIT_ALCO_STATE
+const createModelAlcoState = async (
+  currentDate,
+  userId,
+  next
+) => {
+  const yearId = userId + "_" + currentDate.year;
+
+  const alcoState = {
+    ...INIT_ALCO_STATE,
+    currentDate,
+  };
+
   try {
     const alcoYear = await AlcoYear.findOne({
-      where: { id: year, userId },
+      where: { id: yearId },
     });
     if (!alcoYear) {
-      return null;
+      return alcoState;
     }
 
     const alcoMonths = await AlcoMonth.findAll({
-      where: { yearId: year, userId },
+      where: { yearId },
     });
 
     const alcoDays = await AlcoDay.findAll({
-      where: { yearId: year, userId },
+      where: { yearId },
     });
 
     const yearData = {
@@ -32,7 +46,8 @@ const createModelYearData = async (year, userId, next) => {
     };
 
     alcoMonths.forEach((m) => {
-      const [yearIndex, monthIndex] = m.id.split("_");
+      const [userIndex, yearIndex, monthIndex] =
+        m.id.split("_");
       yearData.months[monthIndex] = {
         ...m.dataValues,
         days: [],
@@ -40,14 +55,16 @@ const createModelYearData = async (year, userId, next) => {
     });
 
     alcoDays.forEach((d) => {
-      const [yearIndex, monthIndex, dayIndex] =
+      const [userIndex, yearIndex, monthIndex, dayIndex] =
         d.id.split("_");
       yearData.months[monthIndex].days[dayIndex] = {
         ...d.dataValues,
       };
     });
 
-    return yearData;
+    alcoState.yearData = yearData;
+
+    return alcoState;
   } catch (error) {
     next(
       ApiError.internal("Response model was not create")
@@ -60,116 +77,144 @@ class AlcoController {
     //POST http://localhost:7000/api/alco_calendar/add
     // req.body = {"year":"2020", "month":"1", "day":"1", "additionVodka":"65"}
     try {
-      const { year, month, day, additionVodka } = req.body;
-      if (
-        year <= 0 ||
-        month <= 0 ||
-        day <= 0 ||
-        isNaN(additionVodka)
-      ) {
+      const { year, month, day } = req.body; //string
+      const additionVodka = Number(req.body.additionVodka);
+
+      const userId = Number(req.user.id);
+      const yearId = userId + "_" + year;
+      const monthId = yearId + "_" + month;
+      const dayId = monthId + "_" + day;
+
+      if (year <= 0 || month <= 0 || day <= 0) {
         return res.json(
           ApiError.badRequest("Request's data incorrect")
         );
       }
 
-      const dayId = year + "_" + month + "_" + day;
-      const monthId = year + "_" + month;
-
       const alcoYear = await AlcoYear.findOne({
-        where: { id: year, userId: req.user.id },
+        where: { userId, id: yearId },
       });
-      if (alcoYear) {
-        alcoYear.totalVodka += Number(additionVodka);
+
+      if (!!alcoYear) {
+        alcoYear.totalVodka += additionVodka;
         await alcoYear.save();
       } else {
         await AlcoYear.create({
-          id: year,
-          userId: req.user.id,
+          id: yearId,
+          userId,
           totalVodka: additionVodka,
         });
       }
-
+      let y = await AlcoYear.findOne({
+        where: { userId, id: yearId },
+      });
+      //--above tested, bellow - not ---//
       const alcoMonth = await AlcoMonth.findOne({
-        where: { id: monthId, userId: req.user.id },
+        where: { id: monthId, userId },
       });
       if (alcoMonth) {
-        alcoMonth.totalVodka += Number(additionVodka);
+        alcoMonth.totalVodka += additionVodka;
         await alcoMonth.save();
       } else {
         await AlcoMonth.create({
           id: monthId,
-          userId: req.user.id,
-          yearId: year,
+          userId,
+          yearId,
           totalVodka: additionVodka,
         });
       }
 
       const alcoDay = await AlcoDay.findOne({
-        where: { id: dayId, userId: req.user.id },
+        where: { id: dayId, userId },
       });
       if (alcoDay) {
-        alcoDay.totalVodka += Number(additionVodka);
+        alcoDay.totalVodka += additionVodka;
         await alcoDay.save();
       } else {
         await AlcoDay.create({
           id: dayId,
-          userId: req.user.id,
           monthId,
-          yearId: year,
+          yearId,
+          userId,
           totalVodka: additionVodka,
         });
       }
 
-      const modelYearData = await createModelYearData(
-        year,
-        req.user.id
+      const alcoState = await createModelAlcoState(
+        { year, month, day },
+        userId,
+        next
       );
       return res.status(200).json({
-        ...req.user,
-        alcoYear: modelYearData, // type YearData |null
+        token: req.user.token,
+        message: req.user.message,
+        alcoState,
       });
     } catch (e) {
-      return ApiError.internal(
-        "Error. The new dose wasn't add."
+      next(
+        ApiError.internal("Error. The new dose wasn't add.")
       );
     }
   }
 
   async getAlcoYear(req, res, next) {
-    //GET http://localhost:7000/api/alco_calendar/get?year=2020
+    //GET http://localhost:7000/api/alco_calendar/get?year=2020&month=1&day=1
+    //req.query.year,
+    // GET don't has req.body
+
+    const { year, month, day } = req.query;
+
     try {
-      const modelYearData = await createModelYearData(
-        req.query.year,
-        req.user.id
-      );
-      return res.status(200).json({
-        ...req.user,
-        alcoYear: modelYearData, // type YearData |null
-      });
-    } catch (error) {
-      return ApiError.internal(
-        "Server error. AlcoController.getAlcoYear has problem"
-      );
-    }
-  }
-  async login(req, res, next) {
-    try {
-      const [d, m, y] = getDateMonthYear(new Date());
-      const modelYearData = await createModelYearData(
-        y,
-        req.user.id,
+      const alcoState = await createModelAlcoState(
+        { year, month, day },
+        Number(req.user.id),
         next
       );
       return res.status(200).json({
-        ...req.user,
-        alcoYear: modelYearData, // type YearData |null
+        token: req.user.token,
+        message: req.user.message,
+        alcoState,
+      });
+    } catch (error) {
+      next(
+        ApiError.internal(
+          "Server error. AlcoController.getAlcoYear has problem"
+        )
+      );
+    }
+  }
+
+  async login(req, res, next) {
+    try {
+      const [day, month, year] = getDateMonthYear(
+        new Date()
+      );
+      const alcoState = await createModelAlcoState(
+        { day, month, year },
+        Number(req.user.id),
+        next
+      );
+      return res.status(200).json({
+        token: req.user.token,
+        message: req.user.message,
+        alcoState, // type YearData |null
       });
     } catch (e) {
-      return ApiError.internal(
-        "Error in alcoController.login"
+      next(
+        ApiError.internal("Error in alcoController.login")
       );
     }
   }
 }
 
 module.exports = new AlcoController();
+
+// //Note: correct handle error
+//     return next(
+//       ApiError.badRequest("Request's data incorrect")
+//     );
+//     next(
+//       ApiError.internal(
+//         "Server error. AlcoController.getAlcoYear has problem"
+//       )
+//     );

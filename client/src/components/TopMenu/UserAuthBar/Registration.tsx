@@ -1,21 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Stack } from "@mui/material";
-import { useAppSelector } from "../../../store/hooks/redux";
 import { passwordValidator } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
 import { fetchUserRegistration } from "../../../store/reducer/http/userActions";
-import {
-  ServerMessage,
-  Email,
-  Password,
-  SendButton,
-} from "../../ui";
+import { Email, Password, SendButton } from "../../ui";
+import { ModalOpen } from "../../../types/userTypes";
 
-export const Registration = () => {
-  const { isError, message } = useAppSelector(
-    (state) => state.appReducer
-  );
-
+export function Registration() {
   const { emailState, updateEmailState } = useEmail();
   const { passwordState, updatePasswordState } =
     usePassword();
@@ -117,10 +108,6 @@ export const Registration = () => {
           sendData={{ email, password }}
         />
       </Stack>
-      <ServerMessage
-        serverError={isError}
-        serverMessage={message}
-      />
     </>
   );
-};
+}

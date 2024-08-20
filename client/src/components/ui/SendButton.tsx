@@ -9,7 +9,8 @@ import {
   EmailPassword,
   IUser,
   IServerRes,
-} from "../../types/appTypes";
+  ModalOpen,
+} from "../../types/userTypes";
 import { fetchUserRegistration } from "../../store/reducer/http/userActions";
 
 interface ISendButtonProps {
@@ -24,7 +25,7 @@ export const SendButton = ({
   sendHandler,
 }: ISendButtonProps) => {
   const isLoading = useAppSelector(
-    (state) => state.appReducer.isLoading
+    (state) => state.userReducer.isLoading
   );
   const dispatch = useAppDispatch();
 

@@ -2,17 +2,18 @@ import {
   AlcoState,
   DayInfo,
   MonthInfo,
-  YearInfo,
+  AlcoYear,
   AlcoContent,
+  Service,
 } from "../types/alcoTypes";
 import { getDateMonthYear } from "../utils";
-import { AppLanguages } from "../types/appTypes";
+import { UserLanguages } from "../types/userTypes";
 
 //for calendar: new Date(year, monthIndex(0-11), day)
 const [currentDay, currentMonth, currentYear] =
   getDateMonthYear(new Date());
 
-const CURRENT_DATE = {
+export const CURRENT_DATE = {
   day: currentDay,
   month: currentMonth,
   year: currentYear,
@@ -27,7 +28,13 @@ export const INIT_MONTH: MonthInfo = {
   totalBill: 0,
   days: [], // 1-31 days info (exist validation max  days in a month)
 };
-export const INIT_YEAR: YearInfo = {
+export const INIT_SERVICE: Service = {
+  isError: false,
+  isLoading: false,
+  message: "",
+};
+
+export const INIT_ALCO_YEAR: AlcoYear = {
   totalVodka: 0,
   totalBill: 0,
   months: [], // 1-12 months info
@@ -35,12 +42,13 @@ export const INIT_YEAR: YearInfo = {
 
 export const INIT_ALCO_STATE: AlcoState = {
   currentDate: CURRENT_DATE,
-  yearData: INIT_YEAR,
+  yearData: INIT_ALCO_YEAR,
+  service: INIT_SERVICE,
 };
 
 export const ALCO_CONTENT: AlcoContent = {
-  [AppLanguages.PL]: {
-    alcoHeader: "Licznik spożycia alkoholu",
+  [UserLanguages.PL]: {
+    alcoHeader: "Alcokalendarz",
     controlPanelHeader: "Wprowadź dane napoju",
     lblDay: "Dzień",
     lblMonth: "Miesiąc",
@@ -53,8 +61,8 @@ export const ALCO_CONTENT: AlcoContent = {
     deleteYear: "Usunąć dane za rok",
     deleteMonth: "Usunąć dane za miesiąc",
   },
-  [AppLanguages.EN]: {
-    alcoHeader: "Alcohol consumption counter ",
+  [UserLanguages.EN]: {
+    alcoHeader: "Аlcohol calendar",
     controlPanelHeader: "Enter the drink consumed",
     lblDay: "Day",
     lblMonth: "MonthInfo",
@@ -67,8 +75,8 @@ export const ALCO_CONTENT: AlcoContent = {
     deleteYear: "Delete year's data",
     deleteMonth: "Delete month's data",
   },
-  [AppLanguages.UA]: {
-    alcoHeader: "Лічильник споживання алкоголю",
+  [UserLanguages.UA]: {
+    alcoHeader: "Алкокалендар",
     controlPanelHeader: "Введіть спожитий напій",
     lblDay: "День",
     lblMonth: "Місяць",

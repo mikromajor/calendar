@@ -1,8 +1,8 @@
 import { amountWeekendsAndWeekdays, getKey } from ".";
-import { SalaryInit } from "../../../types/salaryTypes";
+import { ISalaryInit } from "../../../types/salaryTypes";
 
 export const determineVacationPayCoefficient = (
-  state: SalaryInit
+  state: ISalaryInit
 ): number => {
   let vacationPayCoefficientPerDay = 0;
 
@@ -30,7 +30,7 @@ export const determineVacationPayCoefficient = (
     }
     const item = window.localStorage.getItem(pastsDateKey);
     const savedData =
-      !!item && (JSON.parse(item) as SalaryInit);
+      !!item && (JSON.parse(item) as ISalaryInit);
 
     vacationPayCoefficientPerDay += !!savedData
       ? savedData.totalSalary /

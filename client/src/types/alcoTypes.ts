@@ -1,21 +1,27 @@
 import { alcoActions } from "../store/reducer/alcoReducer";
 // import { ALCO_CONTENT_LABELS } from "../constants/alcoConstants";
-import { AppLanguages } from "../types/appTypes";
+import { UserLanguages } from "./userTypes";
 
 export interface DayInfo {
   totalVodka: number;
   totalBill: number;
 }
 
+export interface Service {
+  isError: boolean;
+  message: string;
+  isLoading: boolean;
+}
+
 export interface MonthInfo extends DayInfo {
   days: DayInfo[];
 }
 
-export interface YearInfo extends DayInfo {
+export interface AlcoYear extends DayInfo {
   months: MonthInfo[];
 }
 
-interface CurrentDate {
+export interface CurrentDate {
   day: string;
   month: string;
   year: string;
@@ -23,7 +29,8 @@ interface CurrentDate {
 
 export interface AlcoState {
   currentDate: CurrentDate;
-  yearData: YearInfo;
+  yearData: AlcoYear;
+  service: Service;
 }
 
 export type StateKeys = keyof AlcoState;
@@ -68,7 +75,7 @@ export enum ContentKeys {
 type ContentLabels = Record<ContentKeys, string>;
 
 export type AlcoContent = Record<
-  AppLanguages,
+  UserLanguages,
   ContentLabels
 >;
 
@@ -81,7 +88,7 @@ export type AlcoContent = Record<
 // };
 
 // export type AlcoContentType = AutoType<
-//   AppLanguages,
+//   UserLanguages,
 //   ContentLabels
 // >;
 

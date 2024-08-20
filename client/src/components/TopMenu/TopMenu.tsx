@@ -1,28 +1,22 @@
-import React, { useRef } from "react";
+import { useState } from "react";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import { APP_CONTENT } from "../../constants/appConstants";
+import { TOP_MENU_CONTENT } from "../../constants/userConstants";
 import { useAppSelector } from "../../store/hooks/redux";
-import { SelectLanguage } from "./SelectLanguage/SelectLanguage";
-import { SelectTheme } from "./SelectTheme";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
+import { SelectTheme } from "./SelectTheme";
+import { SelectLanguage } from "./SelectLanguage";
+
 interface TopMenuPops {
-  setSwitchCalc: React.Dispatch<
+  setShowAlcoCalc: React.Dispatch<
     React.SetStateAction<boolean>
   >;
 }
 
-export function TopMenu({ setSwitchCalc }: TopMenuPops) {
+export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
   const [anchorEl, setAnchorEl] =
-    React.useState<null | HTMLElement>(null);
-
-  const selectLangsRef = useRef<HTMLSelectElement | null>(
-    null
-  );
-  const selectThemeRef = useRef<HTMLSelectElement | null>(
-    null
-  );
+    useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
 
@@ -34,29 +28,24 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleChangeCalc = () => {
-    setSwitchCalc((switcher) => !switcher);
+  const switchToAlcoCalc = () => {
+    setShowAlcoCalc(true);
+    setAnchorEl(null);
+  };
+  const switchToSalary = () => {
+    setShowAlcoCalc(false);
     setAnchorEl(null);
   };
 
-  const giveFocusSelectTheme = () => {
-    selectThemeRef.current &&
-      selectThemeRef.current.focus();
-  };
-  const giveFocusSelectLangs = () => {
-    selectLangsRef.current &&
-      selectLangsRef.current.focus();
-  };
-
   const { currentLang } = useAppSelector(
-    (state) => state.appReducer
+    (state) => state.userReducer
   );
 
   return (
     <div className={`app__top-menu`}>
       <IconButton
         aria-label='more'
-        id='long-button'
+        id='long-button-top-menu'
         aria-controls={open ? "long-menu" : undefined}
         aria-expanded={open ? "true" : undefined}
         aria-haspopup='true'
@@ -65,7 +54,7 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
         <MoreVertIcon />
       </IconButton>
       <Menu
-        id='long-menu'
+        id='long-menu-top-menu'
         MenuListProps={{
           "aria-labelledby": "long-button",
         }}
@@ -73,25 +62,17 @@ export function TopMenu({ setSwitchCalc }: TopMenuPops) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={giveFocusSelectTheme}>
-          <SelectTheme
-            handleClose={handleClose}
-            ref={selectThemeRef}
-          />
+        <SelectTheme />
+
+        <MenuItem onClick={switchToAlcoCalc}>
+          {TOP_MENU_CONTENT[currentLang].goToAlcoCalc}
+        </MenuItem>
+        <MenuItem onClick={switchToSalary}>
+          {TOP_MENU_CONTENT[currentLang].goToSalary}
         </MenuItem>
 
-        <MenuItem onClick={handleChangeCalc}>
-          {APP_CONTENT[currentLang].btnChangeCalc}
-        </MenuItem>
-        <MenuItem onClick={giveFocusSelectLangs}>
-          <SelectLanguage
-            handleClose={handleClose}
-            ref={selectLangsRef}
-          />
-        </MenuItem>
-        <MenuItem>
-          <UserAuthBar />
-        </MenuItem>
+        <SelectLanguage />
+        <UserAuthBar />
       </Menu>
     </div>
   );

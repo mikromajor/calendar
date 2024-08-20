@@ -3,20 +3,17 @@ import {
   Display,
   Cleaner,
   AlcoHeader,
-  CalendarDayInfo,
+  Calendar,
 } from "./alcoComponents";
-import { Button } from "@mui/material";
-import { useState } from "react";
 import { useAppSelector } from "../../store/hooks/redux";
-
-import { ALCO_CONTENT } from "../../constants/alcoConstants";
+import { Message } from "../ui";
 
 export const AlcoCounter = () => {
-  const [showAlcoCalendar, setShowAlcoCalendar] =
-    useState(false);
-
-  const { currentLang, currentTheme } = useAppSelector(
-    (state) => state.appReducer
+  const { currentTheme } = useAppSelector(
+    (state) => state.userReducer
+  );
+  const { isError, message } = useAppSelector(
+    (state) => state.alcoReducer.service
   );
 
   return (
@@ -24,25 +21,16 @@ export const AlcoCounter = () => {
       <div className='alco-counter '>
         <AlcoHeader />
         <Display />
-        {showAlcoCalendar && <CalendarDayInfo />}
+        <Calendar />
         <div
           className={`alco-counter__show-calendar-btn alco-counter__show-calendar-btn--${currentTheme}`}
-        >
-          <Button
-            id='btnShowAlcoCalendar'
-            variant='contained'
-            onClick={() =>
-              setShowAlcoCalendar((show) => !show)
-            }
-          >
-            {ALCO_CONTENT[currentLang].btnShowAlcoCalendar}
-          </Button>
-        </div>
+        ></div>
 
-        <ControlPanel
-          showPanelInputDate={showAlcoCalendar}
-        />
-        <Cleaner />
+        <ControlPanel />
+        {/* <Cleaner /> */}
+        {!!message && (
+          <Message isError={isError} message={message} />
+        )}
       </div>
     </>
   );

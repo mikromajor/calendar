@@ -1,28 +1,16 @@
-import {
-  createAsyncThunk,
-  Dispatch,
-} from "@reduxjs/toolkit";
-import { appActions } from "../appReducer";
-import { alcoActions } from "../alcoReducer";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   IServerRes,
   EmailPassword,
-} from "../../../types/appTypes";
-import { YearInfo } from "../../../types/alcoTypes";
+} from "../../../types/userTypes";
 import { $host, $authHost } from "./host";
-import { AxiosError, AxiosResponse } from "axios";
+import { alcoActions } from "../../reducer/alcoReducer";
 
 const saveTokenToLocalStorage = (token: string) => {
   !!token && localStorage.setItem("token", token);
 };
-export const cleanMessageWithDelay =
-  () => (dispatch: Dispatch) => {
-    setTimeout(() => {
-      dispatch(appActions.clearMessage());
-    }, 10000);
-  };
-
-export const fetchUserRegistration = createAsyncThunk(
+//REGISTRATION
+const fetchUserRegistration = createAsyncThunk(
   "user/fetchUserRegistration",
   async (
     emailPassword: EmailPassword,
@@ -43,33 +31,41 @@ export const fetchUserRegistration = createAsyncThunk(
     }
   }
 );
-
-export const fetchUserLogin = createAsyncThunk(
+//LOGIN
+const fetchUserLogin = createAsyncThunk(
   "user/fetchUserLogin",
   async (
     emailPassword: EmailPassword,
     { rejectWithValue, dispatch, getState }
   ) => {
+    let response;
     try {
-      const response = await $host.post<IServerRes>(
+      response = await $host.post<IServerRes>(
         "api/user/login",
         emailPassword
       );
-      dispatch(
-        alcoActions.changeAlcoYear(response.data.alcoYear)
-      ); // TODO not work
       saveTokenToLocalStorage(response.data?.token);
-      return response.data;
     } catch (error: any) {
       if (!error.response) {
         throw error;
       }
       return rejectWithValue(error.response.data);
     }
+
+    try {
+      dispatch(
+        alcoActions.changeYear(response.data.alcoState)
+      );
+    } catch (error) {
+      response.data.message =
+        "ERROR. Problem with dispatch in fetchUserLogin";
+    }
+
+    return response.data;
   }
 );
-
-export const fetchUserAuth = createAsyncThunk(
+//AUTH
+const fetchUserAuth = createAsyncThunk(
   "user/fetchUserAuth",
   async (_, thunkAPI) => {
     try {
@@ -86,3 +82,8 @@ export const fetchUserAuth = createAsyncThunk(
     }
   }
 );
+export {
+  fetchUserAuth,
+  fetchUserLogin,
+  fetchUserRegistration,
+};
