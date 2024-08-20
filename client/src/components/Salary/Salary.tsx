@@ -3,6 +3,8 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
+import Introduction from "./Introduction";
+import Results from "./Results";
 
 export function Salary() {
   return (
@@ -12,16 +14,8 @@ export function Salary() {
         aria-label='customized table'
       >
         <TableBody>
-          {/* {rows.map((row) => (
-            <StyledTableRow key={row.year}>
-              <StyledTableCell component='th' scope='row'>
-                {row.year}
-              </StyledTableCell>
-              <StyledTableCell align='right'>
-                {row.month}
-              </StyledTableCell>
-            </StyledTableRow>
-          ))} */}
+          <Introduction />
+          <Results />
         </TableBody>
       </Table>
     </TableContainer>
