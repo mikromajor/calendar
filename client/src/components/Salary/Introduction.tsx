@@ -6,7 +6,7 @@ import {
 } from "./tableElementsTheme";
 import { arrObjectKeys } from "./handlers/converters";
 import {
-  SALARY_RESULTS,
+  SALARY_CONTENT,
   SALARY_INTRODUCTIONS,
 } from "../../constants/salaryConstants";
 import {
@@ -22,11 +22,14 @@ export default function Introduction() {
   );
   // const {} = salaryReducer;
   const { currentLang, currentTheme } = userReducer;
+  const content = SALARY_CONTENT[currentLang];
   const dispatch = useAppDispatch();
   const introductionRows =
     arrObjectKeys<ISalaryIntroduction>(
       SALARY_INTRODUCTIONS
     );
+
+  //TODO
   const handleClick = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement
@@ -37,7 +40,7 @@ export default function Introduction() {
       {introductionRows.map((key, i) => (
         <StyledTableRow key={key + i}>
           <StyledTableCell component='th' scope='row'>
-            {key}
+            {content[key]}
           </StyledTableCell>
 
           <StyledTableCell align='right'>

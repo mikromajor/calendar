@@ -5,7 +5,10 @@ import {
   StyledTableRow,
 } from "./tableElementsTheme";
 import { arrObjectKeys } from "./handlers/converters";
-import { SALARY_RESULTS } from "../../constants/salaryConstants";
+import {
+  SALARY_RESULTS,
+  SALARY_CONTENT,
+} from "../../constants/salaryConstants";
 import { useAppSelector } from "../../store/hooks/redux";
 import { ISalaryResults } from "../../types/salaryTypes";
 import {} from "../../store/reducer/http/salaryActions";
@@ -15,7 +18,7 @@ export default function Results() {
     (store) => store
   );
   const { currentLang, currentTheme } = userReducer;
-
+  const content = SALARY_CONTENT[currentLang];
   const rows =
     arrObjectKeys<ISalaryResults>(SALARY_RESULTS);
   return (
@@ -23,7 +26,7 @@ export default function Results() {
       {rows.map((key, i) => (
         <StyledTableRow key={key + i}>
           <StyledTableCell component='th' scope='row'>
-            {key}
+            {content[key]}
           </StyledTableCell>
 
           <StyledTableCell align='right'>

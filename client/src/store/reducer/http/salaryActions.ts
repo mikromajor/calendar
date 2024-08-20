@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host, $authHost } from "./host";
-import { AlcoYear } from "../../../types/alcoTypes";
+import { ISalaryInit } from "../../../types/salaryTypes";
 import { IServerRes } from "../../../types/userTypes";
 import { IDose } from "../../../types/alcoTypes";
 import {
