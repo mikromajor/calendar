@@ -1,10 +1,4 @@
-import {
-  ISalaryResults,
-  ISalaryIntroduction,
-  ISalaryInit,
-  ISalaryContent,
-  createArrayObjectKeys,
-} from "../types/salaryTypes";
+import { ISalaryContent } from "../types/salaryTypes";
 import { UserLanguages } from "../types/userTypes";
 
 const currentYear = new Date().getFullYear();
@@ -48,18 +42,6 @@ export const COEFFICIENTS = {
   bloodDonationRate: 1,
 };
 
-//Arrays required for ordered line-by-line display
-
-export const SALARY_INIT_KEYS =
-  createArrayObjectKeys<ISalaryInit>(SALARY_INIT);
-
-export const SALARY_RESULTS_KEYS =
-  createArrayObjectKeys<ISalaryResults>(SALARY_RESULTS);
-
-export const SALARY_INTRODUCTIONS_KEYS =
-  createArrayObjectKeys<ISalaryIntroduction>(
-    SALARY_INTRODUCTIONS
-  );
 // if you need add a new parameter in a language objects -
 // do not forget add it in LangContent
 export const SALARY_CONTENT: ISalaryContent = {

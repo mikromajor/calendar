@@ -1,70 +1,29 @@
-import { useAppSelector } from "../../store/hooks/redux";
-import { Input } from "./ui";
-import {
-  SALARY_CONTENT,
-  SALARY_RESULTS_KEYS,
-  SALARY_INIT_KEYS,
-} from "../../constants/salaryConstants";
-import { ISalaryResultsKeys } from "../../types/salaryTypes";
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableContainer from "@mui/material/TableContainer";
+import Paper from "@mui/material/Paper";
 
-export const Salary = () => {
-  const { salaryReducer, userReducer } = useAppSelector(
-    (state) => state
-  );
-  const { currentLang, currentTheme } = userReducer;
-
-  const tr: JSX.Element[] = [];
-  let td: JSX.Element;
-  let th: JSX.Element;
-  // add compatibility V1 & V2
-
-  SALARY_INIT_KEYS.forEach((key, i) => {
-    td = SALARY_RESULTS_KEYS.includes(
-      key as ISalaryResultsKeys
-    ) ? (
-      <td
-        className={`salary__td-no-inputs salary__td-no-inputs--${currentTheme}`}
-      >
-        {salaryReducer[key]}
-      </td>
-    ) : (
-      <td
-        className={`salary__td salary__td--${currentTheme}`}
-      >
-        <Input payloadsKey={key} />
-      </td>
-    );
-    th = (
-      <th
-        className={`salary__th salary__th--${currentTheme}`}
-      >
-        {SALARY_CONTENT?.[currentLang]?.[key]}
-      </th>
-    );
-
-    tr.push(
-      <tr
-        className={`salary__tr salary__tr--${currentTheme}`}
-        key={String(i) + key}
-      >
-        {th}
-        {td}
-      </tr>
-    );
-  });
-
+export function Salary() {
   return (
-    <div className='salary'>
-      <table
-        className={`salary__tabel salary__tabel--${currentTheme}`}
+    <TableContainer component={Paper}>
+      <Table
+        sx={{ minWidth: 700 }}
+        aria-label='customized table'
       >
-        <caption
-          className={`salary__header salary__header--${currentTheme}`}
-        >
-          {SALARY_CONTENT[currentLang].header}
-        </caption>
-        <tbody>{tr}</tbody>
-      </table>
-    </div>
+        <TableBody>
+          {/* {rows.map((row) => (
+            <StyledTableRow key={row.year}>
+              <StyledTableCell component='th' scope='row'>
+                {row.year}
+              </StyledTableCell>
+              <StyledTableCell align='right'>
+                {row.month}
+              </StyledTableCell>
+            </StyledTableRow>
+          ))} */}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
-};
+}

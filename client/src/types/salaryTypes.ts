@@ -7,28 +7,26 @@ import { UserLanguages } from "../types/userTypes";
 export type ISalaryResults = typeof SALARY_RESULTS;
 export type ISalaryIntroduction =
   typeof SALARY_INTRODUCTIONS;
+
 export type ISalaryInit = ISalaryResults &
   ISalaryIntroduction;
-
-export type ISalaryResultsKeys = keyof ISalaryResults;
-export type ISalaryInitKeys = keyof ISalaryInit;
 
 type PartOfObject<O> = {
   [K in keyof O]?: O[K];
 };
 export type IPayload = PartOfObject<ISalaryIntroduction>;
 
-////---------Start typed ISalaryContent
-type ChangeObjValType<O, NewType> = {
+////---------Start typing ISalaryContent
+type ConvertObjValType<O, NewType> = {
   [K in keyof O]: NewType;
 };
-type ISalaryInitValString = ChangeObjValType<
+type ConvertedISalaryInit = ConvertObjValType<
   ISalaryInit,
   string
 >;
 
 //Example to add a new parameter in a language object :
-interface LangContent extends ISalaryInitValString {
+interface LangContent extends ConvertedISalaryInit {
   header: string;
   //newFieldName: string
 }
@@ -39,12 +37,4 @@ export type ISalaryContent = CreateContentType<
   typeof UserLanguages,
   LangContent
 >;
-//---------End typed ISalaryContent---////
-
-export function createArrayObjectKeys<T extends object>(
-  obj: T
-): (keyof T)[] {
-  return Object.keys(obj).map(
-    (key) => key as unknown as keyof T
-  );
-}
+//---------End typing ISalaryContent---////
