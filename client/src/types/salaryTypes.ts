@@ -11,6 +11,10 @@ export type ISalaryIntroduction =
 export type ISalaryInit = ISalaryResults &
   ISalaryIntroduction;
 
+export type ISalaryResultsKeys = keyof ISalaryResults;
+export type ISalaryIntroductionKeys =
+  keyof ISalaryIntroduction;
+
 type PartOfObject<O> = {
   [K in keyof O]?: O[K];
 };

@@ -4,19 +4,28 @@ import {
   StyledTableCell,
   StyledTableRow,
 } from "./tableElementsTheme";
-import { arrObjectKeys } from "./handlers/converters";
-import {
-  SALARY_CONTENT,
-  SALARY_INTRODUCTIONS,
-} from "../../constants/salaryConstants";
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../store/hooks/redux";
-import { ISalaryIntroduction } from "../../types/salaryTypes";
+import {
+  ISalaryResultsKeys,
+  ISalaryIntroductionKeys,
+} from "../../types/salaryTypes";
+import { SALARY_CONTENT } from "../../constants/salaryConstants";
 import {} from "../../store/reducer/http/salaryActions";
 
-export default function Introduction() {
+interface IRowsProps {
+  salaryKeys:
+    | ISalaryResultsKeys[]
+    | ISalaryIntroductionKeys[];
+  isInput: boolean;
+}
+
+export default function Rows({
+  salaryKeys,
+  isInput,
+}: IRowsProps) {
   const { salaryReducer, userReducer } = useAppSelector(
     (store) => store
   );
@@ -24,31 +33,33 @@ export default function Introduction() {
   const { currentLang, currentTheme } = userReducer;
   const content = SALARY_CONTENT[currentLang];
   const dispatch = useAppDispatch();
-  const introductionRows =
-    arrObjectKeys<ISalaryIntroduction>(
-      SALARY_INTRODUCTIONS
-    );
 
   //TODO
   const handleClick = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement
     >
-  ) => {};
+  ) => {
+    console.log("click fire");
+  };
   return (
     <>
-      {introductionRows.map((key, i) => (
+      {salaryKeys.map((key, i) => (
         <StyledTableRow key={key + i}>
           <StyledTableCell component='th' scope='row'>
             {content[key]}
           </StyledTableCell>
 
           <StyledTableCell align='right'>
-            <TextField
-              variant='filled'
-              value={salaryReducer[key]}
-              onChange={handleClick}
-            />
+            {isInput ? (
+              <TextField
+                variant='filled'
+                value={salaryReducer[key]}
+                onChange={handleClick}
+              />
+            ) : (
+              salaryReducer[key]
+            )}
           </StyledTableCell>
         </StyledTableRow>
       ))}

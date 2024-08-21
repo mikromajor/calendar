@@ -7,28 +7,28 @@ import {
   CurrentDate,
   AlcoState,
 } from "../../../types/alcoTypes";
-//TODO create Salary actions
-// export const getAlcoYear = createAsyncThunk(
-//   "alcoCalc/getAlcoYear",
-//   async (
-//     date: CurrentDate,
-//     { rejectWithValue, dispatch, getState }
-//   ) => {
-//     const { year, month, day } = date;
-//     try {
-//       const response = await $authHost.get<IServerRes>(
-//         `api/alco_calendar/get?year=${year}&month=${month}&day=${day}`
-//       );
 
-//       return response.data;
-//     } catch (error: any) {
-//       if (error?.response) {
-//         return rejectWithValue(error.response.data);
-//       }
-//       return error;
-//     }
-//   }
-// );
+export const getSalary = createAsyncThunk(
+  "salary/getOne",
+  async (
+    date: CurrentDate,
+    { rejectWithValue, dispatch, getState }
+  ) => {
+    const { year, month } = date;
+    try {
+      const response = await $authHost.get<IServerRes>(
+        `api/salary/getOne?year=${year}&month=${month}`
+      );
+
+      return response.data;
+    } catch (error: any) {
+      if (error?.response) {
+        return rejectWithValue(error.response.data);
+      }
+      return error;
+    }
+  }
+);
 
 // export const addNewDoseToDB = createAsyncThunk(
 //   "alcoCalc/addNewDoseToDB",

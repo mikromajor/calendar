@@ -4,7 +4,7 @@ import {
   EmailPassword,
 } from "../../../types/userTypes";
 import { $host, $authHost } from "./host";
-import { alcoActions } from "../../reducer/alcoReducer";
+import { alcoActions } from "../alcoReducer";
 
 const saveTokenToLocalStorage = (token: string) => {
   !!token && localStorage.setItem("token", token);

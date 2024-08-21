@@ -3,7 +3,11 @@ import { Menu, MenuItem, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { TOP_MENU_CONTENT } from "../../constants/userConstants";
-import { useAppSelector } from "../../store/hooks/redux";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../store/hooks/redux";
+import { getSalary } from "../../store/reducer/http/salaryActions";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
 import { SelectTheme } from "./SelectTheme";
 import { SelectLanguage } from "./SelectLanguage";
@@ -15,6 +19,9 @@ interface TopMenuPops {
 }
 
 export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
+  const dispatch = useAppDispatch();
+  const { userReducer, salaryReducer, alcoReducer } =
+    useAppSelector((state) => state);
   const [anchorEl, setAnchorEl] =
     useState<null | HTMLElement>(null);
 
@@ -35,12 +42,10 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
   const switchToSalary = () => {
     setShowAlcoCalc(false);
     setAnchorEl(null);
+    dispatch(getSalary(alcoReducer.currentDate));
   };
 
-  const { currentLang } = useAppSelector(
-    (state) => state.userReducer
-  );
-
+  const content = TOP_MENU_CONTENT[userReducer.currentLang];
   return (
     <div className={`app__top-menu`}>
       <IconButton
@@ -65,10 +70,10 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
         <SelectTheme />
 
         <MenuItem onClick={switchToAlcoCalc}>
-          {TOP_MENU_CONTENT[currentLang].goToAlcoCalc}
+          {content.goToAlcoCalc}
         </MenuItem>
         <MenuItem onClick={switchToSalary}>
-          {TOP_MENU_CONTENT[currentLang].goToSalary}
+          {content.goToSalary}
         </MenuItem>
 
         <SelectLanguage />

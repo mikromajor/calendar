@@ -11,6 +11,7 @@ import {
   calculateSalary,
   saveSalaryInStorage,
 } from "./salaryHandlers";
+import { getSalary } from "./http/salaryActions";
 
 export const salaryReducer = createSlice({
   name: "salaryState",
@@ -27,6 +28,22 @@ export const salaryReducer = createSlice({
       changeDate(state, action.payload);
       updateStateUsingStore(state);
     },
+  },
+  extraReducers: {
+    //getOne
+    [getSalary.pending.type]: (state) => {},
+    [getSalary.fulfilled.type]: (state) => {},
+    [getSalary.rejected.type]: (state) => {},
+    //
+    // [getSalary.pending.type]: (state)=>{
+
+    // },
+    // [getSalary.fulfilled.type]: (state)=>{
+
+    // },
+    // [getSalary.rejected.type]: (state)=>{
+
+    // },
   },
 });
 
