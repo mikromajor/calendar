@@ -6,11 +6,14 @@ import {
 } from "../../store/hooks/redux";
 import { salaryActions } from "../../store/reducer/salaryReducer";
 
-const { changeSalaryDate } = salaryActions;
+const { changeSalaryDate, getSalary } = salaryActions;
 
 interface ITableInputProps {
   salaryKey: keyof ISalaryInit;
 }
+type E = React.ChangeEvent<
+  HTMLInputElement | HTMLTextAreaElement
+>;
 
 export const TableInput = ({
   salaryKey,
@@ -20,18 +23,24 @@ export const TableInput = ({
   );
   const dispatch = useAppDispatch();
 
+  const handleOnChange = (e: E) => {
+    const val = Number(e.currentTarget.value);
+    dispatch(
+      salaryKey === "year" || salaryKey === "month"
+        ? changeSalaryDate({
+            [salaryKey]: val,
+          })
+        : getSalary({
+            [salaryKey]: val,
+          })
+    );
+    console.log(salaryKey, val, salaryReducer[salaryKey]);
+  };
   return (
     <TextField
       variant='filled'
       value={salaryReducer[salaryKey]}
-      onChange={(e) => {
-        const val = e.currentTarget.value;
-        dispatch(
-          changeSalaryDate({
-            [salaryKey]: val,
-          })
-        );
-      }}
+      onChange={handleOnChange}
     />
   );
 };
