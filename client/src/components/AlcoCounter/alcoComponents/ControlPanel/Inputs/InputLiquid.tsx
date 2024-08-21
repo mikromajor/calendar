@@ -19,10 +19,11 @@ export const InputLiquid = ({
   const { currentLang, currentTheme } = useAppSelector(
     (state) => state.userReducer
   );
+  const content = ALCO_CONTENT[currentLang];
   const label =
     role === "percent"
-      ? ALCO_CONTENT[currentLang].lblPercent
-      : ALCO_CONTENT[currentLang].lblVolume;
+      ? content.lblPercent
+      : content.lblVolume;
 
   const variantButton =
     currentTheme === "white-theme"

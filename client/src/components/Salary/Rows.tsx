@@ -1,19 +1,14 @@
-import React from "react";
-import TextField from "@mui/material/TextField";
 import {
   StyledTableCell,
   StyledTableRow,
 } from "./tableElementsTheme";
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../store/hooks/redux";
+import { useAppSelector } from "../../store/hooks/redux";
 import {
   ISalaryResultsKeys,
   ISalaryIntroductionKeys,
 } from "../../types/salaryTypes";
 import { SALARY_CONTENT } from "../../constants/salaryConstants";
-import {} from "../../store/reducer/http/salaryActions";
+import { TableInput } from "../ui";
 
 interface IRowsProps {
   salaryKeys:
@@ -29,19 +24,9 @@ export default function Rows({
   const { salaryReducer, userReducer } = useAppSelector(
     (store) => store
   );
-  // const {} = salaryReducer;
-  const { currentLang, currentTheme } = userReducer;
+  const { currentLang } = userReducer;
   const content = SALARY_CONTENT[currentLang];
-  const dispatch = useAppDispatch();
 
-  //TODO
-  const handleClick = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >
-  ) => {
-    console.log("click fire");
-  };
   return (
     <>
       {salaryKeys.map((key, i) => (
@@ -50,13 +35,9 @@ export default function Rows({
             {content[key]}
           </StyledTableCell>
 
-          <StyledTableCell align='right'>
+          <StyledTableCell align='center'>
             {isInput ? (
-              <TextField
-                variant='filled'
-                value={salaryReducer[key]}
-                onChange={handleClick}
-              />
+              <TableInput salaryKey={key} />
             ) : (
               salaryReducer[key]
             )}

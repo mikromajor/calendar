@@ -22,6 +22,7 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
   const dispatch = useAppDispatch();
   const { userReducer, salaryReducer, alcoReducer } =
     useAppSelector((state) => state);
+  const { currentLang } = userReducer;
   const [anchorEl, setAnchorEl] =
     useState<null | HTMLElement>(null);
 
@@ -45,7 +46,7 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
     dispatch(getSalary(alcoReducer.currentDate));
   };
 
-  const content = TOP_MENU_CONTENT[userReducer.currentLang];
+  const content = TOP_MENU_CONTENT[currentLang];
   return (
     <div className={`app__top-menu`}>
       <IconButton
