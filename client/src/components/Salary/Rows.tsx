@@ -39,6 +39,7 @@ export default function Rows({
             {isInput ? (
               <TableInput salaryKey={key} />
             ) : (
+              //TODO must be as html element
               salaryReducer[key]
             )}
           </StyledTableCell>
