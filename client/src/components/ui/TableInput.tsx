@@ -1,46 +1,53 @@
 import TextField from "@mui/material/TextField";
+import { StyledTableCell } from "../Salary/tableElementsTheme";
 import { ISalaryInit } from "../../types/salaryTypes";
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { salaryActions } from "../../store/reducer/salaryReducer";
+import { getSalary } from "../../store/reducer/http/salaryActions";
 
-const { changeSalaryDate, getSalary } = salaryActions;
+const { changeSalaryDate, calcSalary } = salaryActions;
 
 interface ITableInputProps {
-  salaryKey: keyof ISalaryInit;
+  keyWord: keyof ISalaryInit;
 }
 type E = React.ChangeEvent<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
 export const TableInput = ({
-  salaryKey,
+  keyWord,
 }: ITableInputProps) => {
-  const { salaryReducer } = useAppSelector(
+  const { salaryReducer, alcoReducer } = useAppSelector(
     (store) => store
   );
+  const { year, month } = salaryReducer;
   const dispatch = useAppDispatch();
+
+  const currentDate = { ...alcoReducer.currentDate };
+  currentDate.year = year + "";
+  currentDate.month = month + "";
 
   const handleOnChange = (e: E) => {
     const val = Number(e.currentTarget.value);
     dispatch(
-      salaryKey === "year" || salaryKey === "month"
-        ? changeSalaryDate({
-            [salaryKey]: val,
-          })
-        : getSalary({
-            [salaryKey]: val,
+      keyWord === "year" || keyWord === "month"
+        ? getSalary({ ...currentDate, [keyWord]: val })
+        : calcSalary({
+            [keyWord]: val,
           })
     );
-    console.log(salaryKey, val, salaryReducer[salaryKey]);
+    console.log(keyWord, val, salaryReducer[keyWord]);
   };
   return (
-    <TextField
-      variant='filled'
-      value={salaryReducer[salaryKey]}
-      onChange={handleOnChange}
-    />
+    <StyledTableCell align='center'>
+      <TextField
+        variant='filled'
+        value={salaryReducer[keyWord]}
+        onChange={handleOnChange}
+      />
+    </StyledTableCell>
   );
 };

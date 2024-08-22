@@ -25,7 +25,9 @@ export const getSalary = createAsyncThunk(
       if (error?.response) {
         return rejectWithValue(error.response.data);
       }
-      return error;
+      return rejectWithValue(
+        "Server not responding. Salary data not received"
+      );
     }
   }
 );
@@ -47,7 +49,9 @@ export const getSalary = createAsyncThunk(
 //       if (!error.response) {
 //         throw error;
 //       }
-//       return rejectWithValue(error.response.data);
+//       return rejectWithValue(
+// "Server not responding. Salary data not update"
+// );
 //     }
 //   }
 // );

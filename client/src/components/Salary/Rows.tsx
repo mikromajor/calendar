@@ -8,7 +8,7 @@ import {
   ISalaryIntroductionKeys,
 } from "../../types/salaryTypes";
 import { SALARY_CONTENT } from "../../constants/salaryConstants";
-import { TableInput } from "../ui";
+import { TableInput, TableResultVal } from "../ui";
 
 interface IRowsProps {
   salaryKeys:
@@ -35,14 +35,11 @@ export default function Rows({
             {content[key]}
           </StyledTableCell>
 
-          <StyledTableCell align='center'>
-            {isInput ? (
-              <TableInput salaryKey={key} />
-            ) : (
-              //TODO must be as html element
-              salaryReducer[key]
-            )}
-          </StyledTableCell>
+          {isInput ? (
+            <TableInput keyWord={key} />
+          ) : (
+            <TableResultVal keyWord={key} />
+          )}
         </StyledTableRow>
       ))}
     </>

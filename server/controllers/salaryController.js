@@ -43,7 +43,6 @@ class SalaryController {
       );
     }
   }
-
   async getOne(req, res) {
     //GET http://localhost:7000/api/salary/getOne?year=2020&month=1
     const { year, month } = req.query;
