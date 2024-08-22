@@ -1,7 +1,7 @@
 import {
   StyledTableCell,
   StyledTableRow,
-} from "./tableElementsTheme";
+} from "./StyledElements";
 import { useAppSelector } from "../../store/hooks/redux";
 import {
   ISalaryResultsKeys,

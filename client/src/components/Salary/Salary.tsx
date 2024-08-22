@@ -12,20 +12,19 @@ import {
   ISalaryResults,
   ISalaryIntroduction,
 } from "../../types/salaryTypes";
-import { arrObjectKeys } from "./handlers/converters";
+import { getObjKeys } from "./handlers/converters";
 
 export function Salary() {
-  const introductionsKeys =
-    arrObjectKeys<ISalaryIntroduction>(
-      SALARY_INTRODUCTIONS
-    );
+  const introductionsKeys = getObjKeys<ISalaryIntroduction>(
+    SALARY_INTRODUCTIONS
+  );
   const resultsKeys =
-    arrObjectKeys<ISalaryResults>(SALARY_RESULTS);
+    getObjKeys<ISalaryResults>(SALARY_RESULTS);
 
   return (
     <TableContainer component={Paper}>
       <Table
-        sx={{ minWidth: 700 }}
+        sx={{ minWidth: 400, maxWidth: 900 }}
         aria-label='customized table'
       >
         <TableBody>

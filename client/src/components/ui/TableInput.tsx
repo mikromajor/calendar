@@ -1,5 +1,5 @@
 import TextField from "@mui/material/TextField";
-import { StyledTableCell } from "../Salary/tableElementsTheme";
+import { StyledTableCell } from "../Salary/StyledElements";
 import { ISalaryInit } from "../../types/salaryTypes";
 import {
   useAppSelector,
@@ -39,12 +39,10 @@ export const TableInput = ({
             [keyWord]: val,
           })
     );
-    console.log(keyWord, val, salaryReducer[keyWord]);
   };
   return (
     <StyledTableCell align='center'>
       <TextField
-        variant='filled'
         value={salaryReducer[keyWord]}
         onChange={handleOnChange}
       />

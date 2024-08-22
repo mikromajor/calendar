@@ -1,4 +1,4 @@
-import { StyledTableCell } from "../Salary/tableElementsTheme";
+import { StyledTableCell } from "../Salary/StyledElements";
 import { ISalaryInit } from "../../types/salaryTypes";
 import { useAppSelector } from "../../store/hooks/redux";
 

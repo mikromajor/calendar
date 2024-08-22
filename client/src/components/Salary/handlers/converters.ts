@@ -1,4 +1,4 @@
-export function arrObjectKeys<T extends object>(
+export function getObjKeys<T extends object>(
   obj: T
 ): (keyof T)[] {
   return Object.keys(obj).map(
