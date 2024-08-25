@@ -32,6 +32,7 @@ type ConvertedISalaryInit = ConvertObjValType<
 //Example to add a new parameter in a language object :
 interface LangContent extends ConvertedISalaryInit {
   header: string;
+  date: string;
   //newFieldName: string
 }
 type CreateContentType<IKey, IVal> = {

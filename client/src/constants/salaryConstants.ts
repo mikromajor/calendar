@@ -47,6 +47,7 @@ export const COEFFICIENTS = {
 export const SALARY_CONTENT: ISalaryContent = {
   [UserLanguages.UA]: {
     header: "Зарплата",
+    date: "Зміни дату",
     //newFieldName: 'string',
     year: "Рік",
     month: "Місяць",
@@ -72,6 +73,7 @@ export const SALARY_CONTENT: ISalaryContent = {
   },
   [UserLanguages.EN]: {
     header: "Salary",
+    date: "Change date",
 
     year: "Year",
     month: "Month",
@@ -97,6 +99,7 @@ export const SALARY_CONTENT: ISalaryContent = {
   },
   [UserLanguages.PL]: {
     header: "Wyplata",
+    date: "Zmień date",
 
     year: "Rok",
     month: "Miesiąc",
