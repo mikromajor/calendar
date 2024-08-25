@@ -13,6 +13,7 @@ import {
   ISalaryIntroduction,
 } from "../../types/salaryTypes";
 import { getObjKeys } from "./handlers/converters";
+import { DateRow } from "./DateRow";
 
 export function Salary() {
   const introductionsKeys = getObjKeys<ISalaryIntroduction>(
@@ -28,6 +29,7 @@ export function Salary() {
         aria-label='customized table'
       >
         <TableBody>
+          <DateRow />
           <Rows
             salaryKeys={introductionsKeys}
             isInput={true}
