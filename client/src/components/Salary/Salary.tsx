@@ -3,22 +3,22 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
-import Rows from "./Rows";
+import { InputRows } from "./InputRows";
 import {
-  SALARY_INTRODUCTIONS,
+  SALARY_INPUTS,
   SALARY_RESULTS,
 } from "../../constants/salaryConstants";
 import {
   ISalaryResults,
-  ISalaryIntroduction,
+  ISalaryInputs,
 } from "../../types/salaryTypes";
 import { getObjKeys } from "./handlers/converters";
 import { DateRow } from "./DateRow";
+import { ResultsRows } from "./ResultsRows";
 
 export function Salary() {
-  const introductionsKeys = getObjKeys<ISalaryIntroduction>(
-    SALARY_INTRODUCTIONS
-  );
+  const introductionsKeys =
+    getObjKeys<ISalaryInputs>(SALARY_INPUTS);
   const resultsKeys =
     getObjKeys<ISalaryResults>(SALARY_RESULTS);
 
@@ -30,11 +30,8 @@ export function Salary() {
       >
         <TableBody>
           <DateRow />
-          <Rows
-            salaryKeys={introductionsKeys}
-            isInput={true}
-          />
-          <Rows salaryKeys={resultsKeys} isInput={false} />
+          <InputRows />
+          <ResultsRows />
         </TableBody>
       </Table>
     </TableContainer>

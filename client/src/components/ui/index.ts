@@ -4,5 +4,4 @@ export { Password } from "./Password";
 export { SendButton } from "./SendButton";
 export { AddButton } from "./AddButton";
 export { TableInput } from "./TableInput";
-export { TableResultVal } from "./TableResultVal";
 export { MobileCalendar } from "./MobileCalendar";

@@ -13,7 +13,7 @@ export const SALARY_RESULTS = {
   extraSalary: 0,
   totalSalary: 0,
 };
-export const SALARY_INTRODUCTIONS = {
+export const SALARY_INPUTS = {
   salaryRate: 0,
   premiumRate: 0,
   premiumUzn: 0,
@@ -33,7 +33,7 @@ export const SALARY_DATE = {
 };
 
 export const SALARY_INIT = {
-  ...SALARY_INTRODUCTIONS,
+  ...SALARY_INPUTS,
   ...SALARY_RESULTS,
   ...SALARY_DATE,
 };

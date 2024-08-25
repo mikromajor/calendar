@@ -20,7 +20,7 @@ type E = React.ChangeEvent<
 export const TableInput = ({
   keyWord,
 }: ITableInputProps) => {
-  const { salaryReducer, alcoReducer } = useAppSelector(
+  const { salaryReducer } = useAppSelector(
     (store) => store
   );
   const { year, month } = salaryReducer;
@@ -37,7 +37,7 @@ export const TableInput = ({
     );
   };
   return (
-    <StyledTableCell align='center'>
+    <StyledTableCell align='right'>
       <TextField
         value={salaryReducer[keyWord]}
         onChange={handleOnChange}

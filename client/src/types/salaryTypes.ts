@@ -1,28 +1,26 @@
 import {
   SALARY_RESULTS,
-  SALARY_INTRODUCTIONS,
+  SALARY_INPUTS,
   SALARY_DATE,
 } from "../constants/salaryConstants";
 import { UserLanguages } from "../types/userTypes";
 
 export type ISalaryResults = typeof SALARY_RESULTS;
-export type ISalaryIntroduction =
-  typeof SALARY_INTRODUCTIONS;
+export type ISalaryInputs = typeof SALARY_INPUTS;
 export type ISalaryDate = typeof SALARY_DATE;
 
 export type ISalaryInit = ISalaryResults &
-  ISalaryIntroduction &
+  ISalaryInputs &
   ISalaryDate;
 
 export type ISalaryResultsKeys = keyof ISalaryResults;
-export type ISalaryIntroductionKeys =
-  keyof ISalaryIntroduction;
+export type ISalaryInputsKeys = keyof ISalaryInputs;
 
 type PartOfObject<O> = {
   [K in keyof O]?: O[K];
 };
 export type IPayload = PartOfObject<
-  ISalaryIntroduction & ISalaryDate
+  ISalaryInputs & ISalaryDate
 >;
 
 ////---------Start typing ISalaryContent
@@ -30,7 +28,7 @@ type ConvertObjValType<O, NewType> = {
   [K in keyof O]: NewType;
 };
 type ConvertedISalaryInit = ConvertObjValType<
-  ISalaryResults & ISalaryIntroduction,
+  ISalaryResults & ISalaryInputs,
   string
 >;
 
