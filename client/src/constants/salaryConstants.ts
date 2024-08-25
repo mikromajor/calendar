@@ -14,8 +14,6 @@ export const SALARY_RESULTS = {
   totalSalary: 0,
 };
 export const SALARY_INTRODUCTIONS = {
-  year: currentYear,
-  month: currentMonth,
   salaryRate: 0,
   premiumRate: 0,
   premiumUzn: 0,
@@ -29,9 +27,15 @@ export const SALARY_INTRODUCTIONS = {
   usedVacation: 0,
   bloodDonation: 0,
 };
+export const SALARY_DATE = {
+  year: currentYear,
+  month: currentMonth,
+};
+
 export const SALARY_INIT = {
   ...SALARY_INTRODUCTIONS,
   ...SALARY_RESULTS,
+  ...SALARY_DATE,
 };
 
 export const COEFFICIENTS = {
@@ -49,8 +53,6 @@ export const SALARY_CONTENT: ISalaryContent = {
     header: "Зарплата",
     date: "Зміни дату",
     //newFieldName: 'string',
-    year: "Рік",
-    month: "Місяць",
     salaryRate: "Ставка брутто, зл/год",
     nettoPerHours: "Ставка нетто, зл/год",
     taxRate: "Податкові та соціальні відрахування, %",
@@ -75,8 +77,6 @@ export const SALARY_CONTENT: ISalaryContent = {
     header: "Salary",
     date: "Change date",
 
-    year: "Year",
-    month: "Month",
     salaryRate: "Salary rate, gross zl/h",
     nettoPerHours: "Salary rate, net zl/h",
     taxRate: "Tax rate, %",
@@ -101,8 +101,6 @@ export const SALARY_CONTENT: ISalaryContent = {
     header: "Wyplata",
     date: "Zmień date",
 
-    year: "Rok",
-    month: "Miesiąc",
     salaryRate: "Stawka brutto zł/g",
     nettoPerHours: "Stawka netto zł/g",
     taxRate: "Potrąncenia składkowe i podatkowe, %",
