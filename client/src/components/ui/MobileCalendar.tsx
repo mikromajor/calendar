@@ -1,34 +1,35 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import dayjs, { Dayjs } from "dayjs";
-import {
-  DemoContainer,
-  DemoItem,
-} from "@mui/x-date-pickers/internals/demo";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../store/hooks/redux";
+import { getSalary } from "../../store/reducer/http/salaryActions";
+import { useAppDispatch } from "../../store/hooks/redux";
 
 export function MobileCalendar() {
-  const [value, setValue] = React.useState<Dayjs | null>(
+  const [value, setValue] = useState<Dayjs | null>(
     dayjs(Date())
   );
-  function handleOnChange(e: any) {
-    console.log("handleOnChange e=> ", e);
-  }
+  const dispatch = useAppDispatch();
+
+  const changeDate = (date: Dayjs | null) => {
+    if (!date) return;
+    const month = date.month() + 1 + "";
+    const year = date.year() + "";
+    setValue(date);
+    dispatch(getSalary({ year, month }));
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar
+      <DatePicker
+        label='Date'
         views={["month", "year"]}
         openTo='month'
         value={value}
-        onChange={handleOnChange}
+        onChange={changeDate}
       />
     </LocalizationProvider>
   );

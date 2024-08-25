@@ -11,7 +11,7 @@ import {
 export const getSalary = createAsyncThunk(
   "salary/getOne",
   async (
-    date: CurrentDate,
+    date: Omit<CurrentDate, "day">,
     { rejectWithValue, dispatch, getState }
   ) => {
     const { year, month } = date;
