@@ -11,7 +11,7 @@ import {
   calculateSalary,
   saveSalaryInStorage,
 } from "./salaryHandlers";
-import { getSalary } from "./http/salaryActions";
+import { getOne } from "./http/salaryActions";
 import { AlcoState } from "../../types/alcoTypes";
 import { IServerRes } from "../../types/userTypes";
 
@@ -35,22 +35,22 @@ export const salaryReducer = createSlice({
   },
   extraReducers: {
     //getOne
-    [getSalary.pending.type]: (state) => {},
-    [getSalary.fulfilled.type]: (
+    [getOne.pending.type]: (state) => {},
+    [getOne.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
       Object.assign(state, action.payload.salaryState);
     },
-    [getSalary.rejected.type]: (state) => {},
+    [getOne.rejected.type]: (state) => {},
     //
-    // [getSalary.pending.type]: (state)=>{
+    // [getOne.pending.type]: (state)=>{
 
     // },
-    // [getSalary.fulfilled.type]: (state)=>{
+    // [getOne.fulfilled.type]: (state)=>{
 
     // },
-    // [getSalary.rejected.type]: (state)=>{
+    // [getOne.rejected.type]: (state)=>{
 
     // },
   },

@@ -6,7 +6,7 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { salaryActions } from "../../store/reducer/salaryReducer";
-import { getSalary } from "../../store/reducer/http/salaryActions";
+// import { getOne } from "../../store/reducer/http/salaryActions";
 
 const { changeSalaryDate, calcSalary } = salaryActions;
 

@@ -3,7 +3,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
-import { getSalary } from "../../store/reducer/http/salaryActions";
+import { getOne } from "../../store/reducer/http/salaryActions";
 import { useAppDispatch } from "../../store/hooks/redux";
 
 export function MobileCalendar() {
@@ -14,7 +14,8 @@ export function MobileCalendar() {
     const month = date.month() + 1;
     const year = date.year();
 
-    dispatch(getSalary({ year, month }));
+    dispatch(getOne({ year, month }));
+    console.log({ year, month });
   };
 
   return (

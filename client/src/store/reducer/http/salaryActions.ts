@@ -7,7 +7,7 @@ import {
 import { IServerRes } from "../../../types/userTypes";
 import { IDose } from "../../../types/alcoTypes";
 
-export const getSalary = createAsyncThunk(
+export const getOne = createAsyncThunk(
   "salary/getOne",
   async (
     date: ISalaryDate,

@@ -1,5 +1,6 @@
 const { Salary } = require("../models/models");
 const ApiError = require("../error/ApiError");
+const { SALARY_INIT } = require("../constants/initStates");
 
 const createIds = (id, year, month) => {
   const userId = Number(id);
@@ -43,15 +44,17 @@ class SalaryController {
       );
     }
   }
+
   async getOne(req, res) {
     //GET http://localhost:7000/api/salary/getOne?year=2020&month=1
-    const { year, month } = req.query;
-    const { salaryId } = createIds(
-      req.user.id,
-      year,
-      month
-    );
     try {
+      const { year, month } = req.query;
+      const { salaryId } = createIds(
+        req.user.id,
+        year,
+        month
+      );
+
       let salary = await Salary.findOne({
         where: { id: salaryId },
       });

@@ -7,7 +7,7 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "../../store/hooks/redux";
-import { getSalary } from "../../store/reducer/http/salaryActions";
+import { getOne } from "../../store/reducer/http/salaryActions";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
 import { SelectTheme } from "./SelectTheme";
 import { SelectLanguage } from "./SelectLanguage";
@@ -45,7 +45,7 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
   const switchToSalary = () => {
     setShowAlcoCalc(false);
     setAnchorEl(null);
-    dispatch(getSalary({ year, month }));
+    dispatch(getOne({ year, month }));
   };
 
   const content = TOP_MENU_CONTENT[currentLang];
