@@ -16,8 +16,8 @@ export function MobileCalendar() {
 
   const changeDate = (date: Dayjs | null) => {
     if (!date) return;
-    const month = date.month() + 1 + "";
-    const year = date.year() + "";
+    const month = date.month() + 1;
+    const year = date.year();
     setValue(date);
     dispatch(getSalary({ year, month }));
   };

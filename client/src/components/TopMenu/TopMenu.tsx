@@ -20,12 +20,14 @@ interface TopMenuPops {
 
 export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
   const dispatch = useAppDispatch();
-  const { userReducer, salaryReducer, alcoReducer } =
-    useAppSelector((state) => state);
+  const { userReducer, salaryReducer } = useAppSelector(
+    (state) => state
+  );
   const { currentLang } = userReducer;
   const [anchorEl, setAnchorEl] =
     useState<null | HTMLElement>(null);
 
+  const { year, month } = salaryReducer;
   const open = Boolean(anchorEl);
 
   const handleClick = (
@@ -43,7 +45,7 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
   const switchToSalary = () => {
     setShowAlcoCalc(false);
     setAnchorEl(null);
-    dispatch(getSalary(alcoReducer.currentDate));
+    dispatch(getSalary({ year, month }));
   };
 
   const content = TOP_MENU_CONTENT[currentLang];

@@ -21,7 +21,9 @@ export type ISalaryIntroductionKeys =
 type PartOfObject<O> = {
   [K in keyof O]?: O[K];
 };
-export type IPayload = PartOfObject<ISalaryIntroduction>;
+export type IPayload = PartOfObject<
+  ISalaryIntroduction & ISalaryDate
+>;
 
 ////---------Start typing ISalaryContent
 type ConvertObjValType<O, NewType> = {

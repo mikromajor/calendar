@@ -1,17 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host, $authHost } from "./host";
-import { ISalaryInit } from "../../../types/salaryTypes";
+import {
+  ISalaryInit,
+  ISalaryDate,
+} from "../../../types/salaryTypes";
 import { IServerRes } from "../../../types/userTypes";
 import { IDose } from "../../../types/alcoTypes";
-import {
-  CurrentDate,
-  AlcoState,
-} from "../../../types/alcoTypes";
 
 export const getSalary = createAsyncThunk(
   "salary/getOne",
   async (
-    date: Omit<CurrentDate, "day">,
+    date: ISalaryDate,
     { rejectWithValue, dispatch, getState }
   ) => {
     const { year, month } = date;

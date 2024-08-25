@@ -51,7 +51,7 @@ export const COEFFICIENTS = {
 export const SALARY_CONTENT: ISalaryContent = {
   [UserLanguages.UA]: {
     header: "Зарплата",
-    date: "Зміни дату",
+    date: "Змінити дату",
     //newFieldName: 'string',
     salaryRate: "Ставка брутто, зл/год",
     nettoPerHours: "Ставка нетто, зл/год",
@@ -99,7 +99,7 @@ export const SALARY_CONTENT: ISalaryContent = {
   },
   [UserLanguages.PL]: {
     header: "Wyplata",
-    date: "Zmień date",
+    date: "Zmienić date",
 
     salaryRate: "Stawka brutto zł/g",
     nettoPerHours: "Stawka netto zł/g",

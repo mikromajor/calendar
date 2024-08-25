@@ -26,18 +26,14 @@ export const TableInput = ({
   const { year, month } = salaryReducer;
   const dispatch = useAppDispatch();
 
-  const currentDate = { ...alcoReducer.currentDate };
-  currentDate.year = year + "";
-  currentDate.month = month + "";
+  const currentDate = { year, month };
 
   const handleOnChange = (e: E) => {
     const val = Number(e.currentTarget.value);
     dispatch(
-      keyWord === "year" || keyWord === "month"
-        ? getSalary({ ...currentDate, [keyWord]: val })
-        : calcSalary({
-            [keyWord]: val,
-          })
+      calcSalary({
+        [keyWord]: val,
+      })
     );
   };
   return (
