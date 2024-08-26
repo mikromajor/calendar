@@ -9,6 +9,7 @@ const errorHandler = require("./middleware/ErrorHandlingMiddleware");
 
 const PORT = process.env.PORT || 5000;
 
+//TODO use typescript
 const app = express();
 app.use(cors()); // allows to send requests from browser
 app.use(express.json()); //allows app to parse .json

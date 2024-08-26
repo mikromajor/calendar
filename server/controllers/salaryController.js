@@ -9,8 +9,8 @@ const createIds = (id, year, month) => {
 };
 
 class SalaryController {
-  async add(req, res) {
-    //POST //http://localhost:7000/api/salary/add
+  async save(req, res) {
+    //POST //http://localhost:7000/api/salary/save
     // add body {} look for salary_example bellow
 
     const { year, month } = req.body;

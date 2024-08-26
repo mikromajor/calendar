@@ -3,6 +3,7 @@ import { $host, $authHost } from "./host";
 import {
   ISalaryInit,
   ISalaryDate,
+  ISalaryInputs,
 } from "../../../types/salaryTypes";
 import { IServerRes } from "../../../types/userTypes";
 import { IDose } from "../../../types/alcoTypes";
@@ -31,26 +32,31 @@ export const getOne = createAsyncThunk(
   }
 );
 
-// export const addNewDoseToDB = createAsyncThunk(
-//   "alcoCalc/addNewDoseToDB",
-//   async (
-//     newDose: IDose,
-//     { rejectWithValue, dispatch, getState }
-//   ) => {
-//     try {
-//       const response = await $authHost.post<IServerRes>(
-//         "api/alco_calendar/add",
-//         newDose
-//       );
+export const calculateSalary = createAsyncThunk(
+  "salary/calculateSalary",
+  async (
+    newSalaryData: ISalaryInputs,
+    { rejectWithValue, dispatch, getState }
+  ) => {
+    const oldSalaryState = getState() as ISalaryInit;
+    const needCalculate = {
+      ...oldSalaryState,
+      ...newSalaryData,
+    };
+    try {
+      const response = await $authHost.post<IServerRes>(
+        "api/salary/calculate",
+        needCalculate
+      );
 
-//       return response.data;
-//     } catch (error: any) {
-//       if (!error.response) {
-//         throw error;
-//       }
-//       return rejectWithValue(
-// "Server not responding. Salary data not update"
-// );
-//     }
-//   }
-// );
+      return response.data;
+    } catch (error: any) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(
+        "Server not responding. Salary data not update"
+      );
+    }
+  }
+);

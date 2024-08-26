@@ -15,7 +15,6 @@ export function MobileCalendar() {
     const year = date.year();
 
     dispatch(getOne({ year, month }));
-    console.log({ year, month });
   };
 
   return (

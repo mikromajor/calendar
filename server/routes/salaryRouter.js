@@ -3,7 +3,7 @@ const router = new Router();
 const salaryController = require("../controllers/salaryController");
 const authMiddleware = require("../middleware/authMiddleware");
 
-router.post("/add", authMiddleware, salaryController.add);
+router.post("/save", authMiddleware, salaryController.save);
 router.get(
   "/getOne",
   authMiddleware,
