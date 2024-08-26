@@ -6,9 +6,9 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { salaryActions } from "../../store/reducer/salaryReducer";
-// import { getOne } from "../../store/reducer/http/salaryActions";
+import { saveSalaryToDB } from "../../store/reducer/http/salaryActions";
 
-const { changeSalaryDate, calcSalary } = salaryActions;
+const { changeInputData } = salaryActions;
 
 interface ITableInputProps {
   keyWord: keyof ISalaryInit;
@@ -30,11 +30,27 @@ export const TableInput = ({
 
   const handleOnChange = (e: E) => {
     const val = Number(e.currentTarget.value);
-    dispatch(
-      calcSalary({
-        [keyWord]: val,
-      })
-    );
+    if (keyWord === "usedVacation") {
+      // dispatch(calculateVacation({
+      //   [keyWord]: val
+      // }))
+    }
+    if (
+      keyWord === "sickLeaveWeekDays" ||
+      keyWord === "sickLeaveWeekendDays"
+    ) {
+      // dispatch(calculateSickLeave({
+      //   [keyWord]: val
+      // }))
+    }
+    if (
+      keyWord !== "sickLeaveWeekDays" &&
+      keyWord !== "sickLeaveWeekendDays" &&
+      keyWord !== "usedVacation"
+    ) {
+      dispatch(changeInputData({ [keyWord]: val }));
+      // dispatch(saveSalaryToDB(salaryReducer));
+    }
   };
   return (
     <StyledTableCell align='right'>

@@ -35,19 +35,13 @@ export const getOne = createAsyncThunk(
 export const saveSalaryToDB = createAsyncThunk(
   "salary/saveSalaryToDB",
   async (
-    payload: IPayload,
+    salary: ISalaryInit,
     { rejectWithValue, dispatch, getState }
   ) => {
-    const oldSalary = getState() as ISalaryInit;
-    const updatedSalary = calculateSalary(
-      oldSalary,
-      payload
-    );
-
     try {
       const response = await $authHost.post<IServerRes>(
         "api/salary/save",
-        updatedSalary
+        salary
       );
 
       return response.data;

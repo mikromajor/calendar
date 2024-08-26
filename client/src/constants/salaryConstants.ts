@@ -17,7 +17,7 @@ export const SALARY_INPUTS = {
   salaryRate: 0,
   premiumRate: 0,
   premiumUzn: 0,
-  taxRate: 0,
+  taxRate: 27,
   extraHours_50: 0,
   extraHours_100: 0,
   extraHours_120: 0,

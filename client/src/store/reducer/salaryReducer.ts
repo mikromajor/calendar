@@ -19,18 +19,11 @@ export const salaryReducer = createSlice({
   name: "salaryState",
   initialState: SALARY_INIT,
   reducers: {
-    calcSalary: (
+    changeInputData: (
       state,
       action: PayloadAction<IPayload>
     ) => {
       calculateSalary(state, action.payload);
-    },
-    changeSalaryDate: (
-      state,
-      action: PayloadAction<IPayload>
-    ) => {
-      changeDate(state, action.payload);
-      updateStateUsingStore(state);
     },
   },
   extraReducers: {
