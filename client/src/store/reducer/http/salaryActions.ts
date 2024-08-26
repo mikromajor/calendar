@@ -3,10 +3,10 @@ import { $host, $authHost } from "./host";
 import {
   ISalaryInit,
   ISalaryDate,
-  ISalaryInputs,
+  IPayload,
 } from "../../../types/salaryTypes";
 import { IServerRes } from "../../../types/userTypes";
-import { IDose } from "../../../types/alcoTypes";
+import { calculateSalary } from "../salaryHandlers";
 
 export const getOne = createAsyncThunk(
   "salary/getOne",
@@ -32,21 +32,22 @@ export const getOne = createAsyncThunk(
   }
 );
 
-export const calculateSalary = createAsyncThunk(
-  "salary/calculateSalary",
+export const saveSalaryToDB = createAsyncThunk(
+  "salary/saveSalaryToDB",
   async (
-    newSalaryData: ISalaryInputs,
+    payload: IPayload,
     { rejectWithValue, dispatch, getState }
   ) => {
-    const oldSalaryState = getState() as ISalaryInit;
-    const needCalculate = {
-      ...oldSalaryState,
-      ...newSalaryData,
-    };
+    const oldSalary = getState() as ISalaryInit;
+    const updatedSalary = calculateSalary(
+      oldSalary,
+      payload
+    );
+
     try {
       const response = await $authHost.post<IServerRes>(
-        "api/salary/calculate",
-        needCalculate
+        "api/salary/save",
+        updatedSalary
       );
 
       return response.data;

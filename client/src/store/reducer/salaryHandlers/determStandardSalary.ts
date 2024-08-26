@@ -3,7 +3,7 @@ import { COEFFICIENTS } from "../../../constants/salaryConstants";
 import { determineVacationPayCoefficient } from ".";
 
 export const determStandardSalary = (
-  state: ISalaryInit
+  salary: ISalaryInit
 ) => {
   const { sickRate } = COEFFICIENTS;
 
@@ -17,10 +17,10 @@ export const determStandardSalary = (
     bloodDonation,
     sickLeaveWeekDays,
     sickLeaveWeekendDays,
-  } = state;
+  } = salary;
 
   const averageVacationPayPerDay =
-    determineVacationPayCoefficient(state);
+    determineVacationPayCoefficient(salary);
 
   const premiumConstPayment =
     premiumUzn * (1 - taxRate / 100);
