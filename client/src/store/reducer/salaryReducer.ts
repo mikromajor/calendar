@@ -1,25 +1,21 @@
 import {
-  // createAsyncThunk,
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { SALARY_INIT } from "../../constants/salaryConstants";
 import { IPayload } from "../../types/salaryTypes";
+import { calculateSalary } from "./salaryHandlers";
 import {
-  changeDate,
-  updateStateUsingStore,
-  calculateSalary,
-  saveSalaryInStorage,
-} from "./salaryHandlers";
-import { getOne } from "./http/salaryActions";
-import { AlcoState } from "../../types/alcoTypes";
+  getSalary,
+  saveSalaryToDB,
+} from "./http/salaryActions";
 import { IServerRes } from "../../types/userTypes";
 
 export const salaryReducer = createSlice({
   name: "salaryState",
   initialState: SALARY_INIT,
   reducers: {
-    changeInputData: (
+    handleChangeInputData: (
       state,
       action: PayloadAction<IPayload>
     ) => {
@@ -27,25 +23,19 @@ export const salaryReducer = createSlice({
     },
   },
   extraReducers: {
-    //getOne
-    [getOne.pending.type]: (state) => {},
-    [getOne.fulfilled.type]: (
+    //getSalary
+    [getSalary.pending.type]: (state) => {},
+    [getSalary.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
       Object.assign(state, action.payload.salaryState);
     },
-    [getOne.rejected.type]: (state) => {},
-    //
-    // [getOne.pending.type]: (state)=>{
-
-    // },
-    // [getOne.fulfilled.type]: (state)=>{
-
-    // },
-    // [getOne.rejected.type]: (state)=>{
-
-    // },
+    [getSalary.rejected.type]: (state) => {},
+    //saveSalary
+    [saveSalaryToDB.pending.type]: (state) => {},
+    [saveSalaryToDB.fulfilled.type]: (state) => {},
+    [saveSalaryToDB.rejected.type]: (state) => {},
   },
 });
 

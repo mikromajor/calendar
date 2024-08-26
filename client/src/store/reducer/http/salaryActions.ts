@@ -3,13 +3,11 @@ import { $host, $authHost } from "./host";
 import {
   ISalaryInit,
   ISalaryDate,
-  IPayload,
 } from "../../../types/salaryTypes";
 import { IServerRes } from "../../../types/userTypes";
-import { calculateSalary } from "../salaryHandlers";
 
-export const getOne = createAsyncThunk(
-  "salary/getOne",
+export const getSalary = createAsyncThunk(
+  "salary/getSalary",
   async (
     date: ISalaryDate,
     { rejectWithValue, dispatch, getState }
@@ -17,7 +15,7 @@ export const getOne = createAsyncThunk(
     const { year, month } = date;
     try {
       const response = await $authHost.get<IServerRes>(
-        `api/salary/getOne?year=${year}&month=${month}`
+        `api/salary/getSalary?year=${year}&month=${month}`
       );
 
       return response.data;

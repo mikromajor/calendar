@@ -8,7 +8,7 @@ import {
 import { salaryActions } from "../../store/reducer/salaryReducer";
 import { saveSalaryToDB } from "../../store/reducer/http/salaryActions";
 
-const { changeInputData } = salaryActions;
+const { handleChangeInputData } = salaryActions;
 
 interface ITableInputProps {
   keyWord: keyof ISalaryInit;
@@ -48,7 +48,7 @@ export const TableInput = ({
       keyWord !== "sickLeaveWeekendDays" &&
       keyWord !== "usedVacation"
     ) {
-      dispatch(changeInputData({ [keyWord]: val }));
+      dispatch(handleChangeInputData({ [keyWord]: val }));
       // dispatch(saveSalaryToDB(salaryReducer));
     }
   };
