@@ -4,8 +4,35 @@ const { SALARY_INIT } = require("../constants/initStates");
 
 const createIds = (id, year, month) => {
   const userId = Number(id);
-  const salaryId = userId + "_" + year + "_" + month;
+  const salaryId = id + "_" + year + "_" + month;
   return { userId, salaryId };
+};
+
+const createLastThreeSalaryId = (id, year, month) => {
+  //Create 3 last salaries before current month
+  //It's need for calculate vacation
+  const userId = Number(id);
+  let oneMonthAgoId =
+    id + "_" + year + "_" + (Number(month) - 1);
+  let twoMonthAgoId =
+    id + "_" + year + "_" + (Number(month) - 2);
+  let threeMonthAgoId =
+    id + "_" + year + "_" + (Number(month) - 3);
+  if (month === "1") {
+    oneMonthAgoId =
+      id + "_" + (Number(year) - 1) + "_" + "12";
+    twoMonthAgoId =
+      id + "_" + (Number(year) - 1) + "_" + "11";
+    threeMonthAgoId =
+      id + "_" + (Number(year) - 1) + "_" + "10";
+  }
+  if (month === "2") {
+    twoMonthAgoId =
+      id + "_" + (Number(year) - 1) + "_" + "12";
+    threeMonthAgoId =
+      id + "_" + (Number(year) - 1) + "_" + "11";
+  }
+  return { oneMonthAgoId, twoMonthAgoId, threeMonthAgoId };
 };
 
 class SalaryController {
@@ -92,6 +119,51 @@ class SalaryController {
     //GET http://localhost:7000/api/salary/getLast_2years?year=2020
     const { year } = req.query; //string
     const userId = Number(req.user.id);
+    const prevYear = Number(year) - 1;
+    let salaries = [];
+    try {
+      const arrPromise = await Promise.allSettled([
+        Salary.findAll({
+          where: { userId, year: prevYear },
+        }),
+        Salary.findAll({
+          where: {
+            userId,
+            year: year,
+          },
+        }),
+      ]);
+      if (arrPromise && arrPromise.length) {
+        const [prevYearPromise, yearPromise] = arrPromise;
+
+        if (prevYearPromise.status === "fulfilled") {
+          salaries = salaries.concat(prevYearPromise.value);
+        }
+        if (yearPromise.status === "fulfilled") {
+          salaries = salaries.concat(yearPromise.value);
+        }
+
+        return res.json({ user: req.user, salaries });
+      } else {
+        return res.json({ user: req.user, salaries: [] });
+      }
+    } catch (e) {
+      next(
+        ApiError.internal(
+          "Server error fire when getLast_2years started /" +
+            e
+        )
+      );
+    }
+  }
+  async changeVacation(req, res) {
+    //POST http://localhost:7000/api/salary/changeVacation
+    const { year, month } = req.query; //salaryInit
+    const { userId, salaryId } = createIds(
+      req.user.id,
+      year,
+      month
+    );
     const prevYear = Number(year) - 1;
     let salaries = [];
     try {
