@@ -1,7 +1,14 @@
-const createLastThreeSalaryId = (id, year, month) => {
+const createCurrentSalaryId = (id, year, month) => {
+  const userId = Number(id);
+  const salaryId = id + "_" + year + "_" + month;
+  return { userId, salaryId };
+};
+
+const createArrLastFourSalaryId = (id, year, month) => {
   //Create 3 last salaries before current month
   //It's need for calculate vacation
   const userId = Number(id);
+  const currentId = id + "_" + year + "_" + month;
   let oneMonthAgoId =
     id + "_" + year + "_" + (Number(month) - 1);
   let twoMonthAgoId =
@@ -22,6 +29,14 @@ const createLastThreeSalaryId = (id, year, month) => {
     threeMonthAgoId =
       id + "_" + (Number(year) - 1) + "_" + "11";
   }
-  return { oneMonthAgoId, twoMonthAgoId, threeMonthAgoId };
+  return [
+    currentId,
+    oneMonthAgoId,
+    twoMonthAgoId,
+    threeMonthAgoId,
+  ];
 };
-module.exports = { createLastThreeSalaryId };
+module.exports = {
+  createArrLastFourSalaryId,
+  createCurrentSalaryId,
+};

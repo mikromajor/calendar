@@ -1,39 +1,17 @@
 const { Salary } = require("../models/models");
 const ApiError = require("../error/ApiError");
 const { SALARY_INIT } = require("../constants/initStates");
+const {
+  createCurrentSalaryId,
+  createArrLastFourSalaryId,
+} = require("../utils/salaryHandlers/idCreators");
 
-const createIds = (id, year, month) => {
-  const userId = Number(id);
-  const salaryId = id + "_" + year + "_" + month;
-  return { userId, salaryId };
-};
-
-const createLastThreeSalaryId = (id, year, month) => {
-  //Create 3 last salaries before current month
-  //It's need for calculate vacation
-  const userId = Number(id);
-  let oneMonthAgoId =
-    id + "_" + year + "_" + (Number(month) - 1);
-  let twoMonthAgoId =
-    id + "_" + year + "_" + (Number(month) - 2);
-  let threeMonthAgoId =
-    id + "_" + year + "_" + (Number(month) - 3);
-  if (month === "1") {
-    oneMonthAgoId =
-      id + "_" + (Number(year) - 1) + "_" + "12";
-    twoMonthAgoId =
-      id + "_" + (Number(year) - 1) + "_" + "11";
-    threeMonthAgoId =
-      id + "_" + (Number(year) - 1) + "_" + "10";
-  }
-  if (month === "2") {
-    twoMonthAgoId =
-      id + "_" + (Number(year) - 1) + "_" + "12";
-    threeMonthAgoId =
-      id + "_" + (Number(year) - 1) + "_" + "11";
-  }
-  return { oneMonthAgoId, twoMonthAgoId, threeMonthAgoId };
-};
+// model ServerRes {
+//   token: string;
+//   message: string;
+//   alcoState: AlcoState;
+//   salaryState: ISalaryInit;
+// }
 
 class SalaryController {
   async save(req, res) {
@@ -41,7 +19,7 @@ class SalaryController {
     // add body {} look for salary_example bellow
 
     const { year, month } = req.body;
-    const { userId, salaryId } = createIds(
+    const { userId, salaryId } = createCurrentSalaryId(
       req.user.id,
       year,
       month
@@ -76,7 +54,7 @@ class SalaryController {
     //GET http://localhost:7000/api/salary/getOne?year=2020&month=1
     try {
       const { year, month } = req.query;
-      const { salaryId } = createIds(
+      const { salaryId } = createCurrentSalaryId(
         req.user.id,
         year,
         month
@@ -122,7 +100,7 @@ class SalaryController {
     const prevYear = Number(year) - 1;
     let salaries = [];
     try {
-      const arrPromise = await Promise.allSettled([
+      const arrPromises = await Promise.allSettled([
         Salary.findAll({
           where: { userId, year: prevYear },
         }),
@@ -133,8 +111,8 @@ class SalaryController {
           },
         }),
       ]);
-      if (arrPromise && arrPromise.length) {
-        const [prevYearPromise, yearPromise] = arrPromise;
+      if (arrPromises && arrPromises.length) {
+        const [prevYearPromise, yearPromise] = arrPromises;
 
         if (prevYearPromise.status === "fulfilled") {
           salaries = salaries.concat(prevYearPromise.value);
@@ -158,30 +136,52 @@ class SalaryController {
   }
   async changeVacation(req, res) {
     //POST http://localhost:7000/api/salary/changeVacation
-    const { year, month } = req.query; //salaryInit
-    const { userId, salaryId } = createIds(
+    //salaryInit
+    //TODO add changeVacation to routes
+    const salaryBeforeCalc = req.query;
+    const { year, month } = salaryBeforeCalc;
+
+    // lastFourId: [currentMonth, 1MonthAgo, 2MonthsAgo,3MonthsAgo]
+    const lastFourId = createArrLastFourSalaryId(
       req.user.id,
       year,
       month
     );
-    const prevYear = Number(year) - 1;
+
     let salaries = [];
     try {
-      const arrPromise = await Promise.allSettled([
-        Salary.findAll({
-          where: { userId, year: prevYear },
-        }),
-        Salary.findAll({
-          where: {
-            userId,
-            year: year,
-          },
-        }),
-      ]);
-      if (arrPromise && arrPromise.length) {
-        const [prevYearPromise, yearPromise] = arrPromise;
+      //create arr: [currentSalary, oneMonthAgoSalary,...]
+      const arrPromises = await Promise.allSettled(
+        lastFourId.map((id) =>
+          Salary.findOne({
+            where: { id },
+          })
+        )
+      );
 
-        if (prevYearPromise.status === "fulfilled") {
+      if (arrPromises && arrPromises.length) {
+        const isAllFourSalaries = arrPromises.every(
+          (salaryPromise) =>
+            salaryPromise.status === "fulfilled"
+        );
+
+        if (!isAllFourSalaries) {
+          //TODO add checker for exist current salary, update it and return
+          return res.json({
+            user: req.user,
+            salary: salaryBeforeCalc,
+          });
+        }
+
+        const [
+          currentSalary,
+          monthAgoSalary,
+          twoMonthsAgoSalary,
+          threeMonthsAgoSalary,
+        ] = arrPromises;
+        const [prevYearPromise, yearPromise] = arrPromises;
+
+        if (currentSalary.status === "fulfilled") {
           salaries = salaries.concat(prevYearPromise.value);
         }
         if (yearPromise.status === "fulfilled") {
