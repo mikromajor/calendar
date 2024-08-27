@@ -8,9 +8,9 @@ const {
 
 // model ServerRes {
 //   token: string;
-//   message: string;
-//   alcoState: AlcoState;
-//   salaryState: ISalaryInit;
+//   message?: string;
+//   alcoState?: AlcoState;
+//   salaryState?: ISalaryInit;
 // }
 
 class SalaryController {
@@ -134,6 +134,8 @@ class SalaryController {
       );
     }
   }
+
+  //TODO changeVacation not complete
   async changeVacation(req, res) {
     //POST http://localhost:7000/api/salary/changeVacation
     //salaryInit
@@ -160,16 +162,20 @@ class SalaryController {
       );
 
       if (arrPromises && arrPromises.length) {
-        const isAllFourSalaries = arrPromises.every(
-          (salaryPromise) =>
-            salaryPromise.status === "fulfilled"
-        );
+        const isAllFourSalaries = arrPromises
+          .slice(1)
+          .every(
+            (salaryPromise) =>
+              salaryPromise.status === "fulfilled"
+          );
 
         if (!isAllFourSalaries) {
-          //TODO add checker for exist current salary, update it and return
+          //TODO add checker for exist current salary, create/update it and return
           return res.json({
             user: req.user,
             salary: salaryBeforeCalc,
+            message:
+              "Before inputting vacation days you must have 3 salaries with zero vacation.",
           });
         }
 
@@ -179,17 +185,18 @@ class SalaryController {
           twoMonthsAgoSalary,
           threeMonthsAgoSalary,
         ] = arrPromises;
-        const [prevYearPromise, yearPromise] = arrPromises;
 
-        if (currentSalary.status === "fulfilled") {
-          salaries = salaries.concat(prevYearPromise.value);
-        }
-        if (yearPromise.status === "fulfilled") {
-          salaries = salaries.concat(yearPromise.value);
-        }
+        //   const [prevYearPromise, yearPromise] = arrPromises;
 
-        return res.json({ user: req.user, salaries });
-      } else {
+        //   if (currentSalary.status === "fulfilled") {
+        //     salaries = salaries.concat(prevYearPromise.value);
+        //   }
+        //   if (yearPromise.status === "fulfilled") {
+        //     salaries = salaries.concat(yearPromise.value);
+        //   }
+
+        //   return res.json({ user: req.user, salaries });
+        // } else {
         return res.json({ user: req.user, salaries: [] });
       }
     } catch (e) {
@@ -204,27 +211,3 @@ class SalaryController {
 }
 
 module.exports = new SalaryController();
-
-// const salary_example = {
-// "month": "1",
-// "year": "2020",
-// "salaryRate": "20",
-// "premiumRate": "30",
-// "premiumUzn": "0",
-// "taxRate": "27",
-// "nettoPerHours": "14",
-// "weekDays": "22",
-// "weekendDays": "9",
-// "standardWorkHours": "176",
-// "extraHours_50": "0",
-// "extraHours_100": "0",
-// "extraHours_120": "0",
-// "sickLeaveWeekDays": "0",
-// "sickLeaveWeekendDays": "0",
-// "holidays": "0",
-// "usedVacation": "0",
-// "bloodDonation": "0",
-// "standardSalary": "3200",
-// "extraSalary": "1200",
-// "totalSalary": "4400"
-// }
