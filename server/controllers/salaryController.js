@@ -139,7 +139,6 @@ class SalaryController {
   async changeVacation(req, res) {
     //POST http://localhost:7000/api/salary/changeVacation
     //salaryInit
-    //TODO add changeVacation to routes
     const salaryBeforeCalc = req.query;
     const { year, month } = salaryBeforeCalc;
 

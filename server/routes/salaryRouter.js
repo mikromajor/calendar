@@ -19,5 +19,10 @@ router.get(
   authMiddleware,
   salaryController.getLast_2years
 );
+router.post(
+  "/changeVacation",
+  authMiddleware,
+  salaryController.changeVacation
+);
 
 module.exports = router;
