@@ -1,4 +1,8 @@
-const calcSalary = (payload, vacationCoef, salary) => {
+const {
+  amountWeekendsAndWeekdays,
+} = require("./amountWeekendsAndWeekdays");
+
+const calcSalary = (salary, vacationCoef) => {
   const {
     salaryRate,
     premiumUzn,
@@ -12,31 +16,14 @@ const calcSalary = (payload, vacationCoef, salary) => {
     sickLeaveWeekendDays,
     usedVacation,
     bloodDonation,
-  } = payload;
+    year,
+    month,
+  } = salary;
 
   const { weekends, weekdays } = amountWeekendsAndWeekdays(
-    salary.year,
-    salary.month
+    year,
+    month
   );
-
-  isNum(salaryRate) && (salary.salaryRate = salaryRate);
-
-  isNum(premiumRate) && (salary.premiumRate = premiumRate);
-
-  isNum(premiumUzn) && (salary.premiumUzn = premiumUzn);
-
-  isNum(taxRate) && (salary.taxRate = taxRate);
-
-  isNum(sickLeaveWeekDays) &&
-    (salary.sickLeaveWeekDays = sickLeaveWeekDays);
-  isNum(sickLeaveWeekendDays) &&
-    (salary.sickLeaveWeekendDays = sickLeaveWeekendDays);
-
-  isNum(usedVacation) &&
-    (salary.usedVacation = usedVacation);
-  isNum(bloodDonation) &&
-    (salary.bloodDonation = bloodDonation);
-  isNum(holidays) && (salary.holidays = holidays);
 
   salary.weekDays =
     weekdays -
@@ -47,23 +34,21 @@ const calcSalary = (payload, vacationCoef, salary) => {
 
   salary.weekendDays = weekends;
 
-  isNum(extraHours_50) &&
-    (salary.extraHours_50 = extraHours_50);
-
-  isNum(extraHours_100) &&
-    (salary.extraHours_100 = extraHours_100);
-
-  isNum(extraHours_120) &&
-    (salary.extraHours_120 = extraHours_120);
-
   salary.nettoPerHours =
     Math.round(
       salary.salaryRate * (1 - salary.taxRate / 100) * 100
     ) / 100;
 
+  const bloodDonationPayment =
+    bloodDonation * 8 * nettoPerHours;
+
+  vacationCoef && (vacationCoef = 8 * salary.nettoPerHours);
+
   salary.standardWorkHours = salary.weekDays * 8;
 
-  salary.standardSalary = determStandardSalary(salary);
+  salary.standardSalary =
+    standardWorkHours * nettoPerHours +
+    vacationCoef * usedVacation;
 
   salary.extraSalary = determExtraSalary(salary);
 

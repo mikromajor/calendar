@@ -11,6 +11,10 @@ const {
 const {
   calcSalary,
 } = require("../utils/salaryHandlers/calcSalary");
+const {
+  convertObjValToNumber,
+} = require("../utils/convertObjValToNumber");
+
 // model ServerRes {
 //   token: string;
 //   message?: string;
@@ -144,15 +148,9 @@ class SalaryController {
   async changeVacation(req, res, next) {
     //POST http://localhost:7000/api/salary/changeVacation
     //salaryInit
+    const payload = convertObjValToNumber(req.body);
+    const { year, month } = payload;
 
-    const { year, month } = req.body;
-
-    // lastFourId: [currentMonth, 1MonthAgo, 2MonthsAgo,3MonthsAgo]
-    const lastThreeId = createArrLastThreeSalaryId(
-      req.user.id,
-      year,
-      month
-    );
     const { currentId, userId } = createCurrentSalaryId(
       req.user.id,
       year,
@@ -160,6 +158,23 @@ class SalaryController {
     );
 
     try {
+      let salary = await Salary.findOne({
+        where: { id: currentId },
+      });
+      if (!salary) {
+        salary = await Salary.create({
+          ...payload,
+          userId,
+          id: currentId,
+        });
+      }
+      // lastFourId: [currentMonth, 1MonthAgo, 2MonthsAgo,3MonthsAgo]
+      const lastThreeId = createArrLastThreeSalaryId(
+        req.user.id,
+        year,
+        month
+      );
+
       const promiseLastThreeSalaries =
         await Promise.allSettled(
           lastThreeId.map(
@@ -169,16 +184,6 @@ class SalaryController {
               })
           )
         );
-      let salary = await Salary.findOne({
-        where: { id: currentId },
-      });
-      if (!salary) {
-        salary = await Salary.create({
-          ...req.body,
-          userId,
-          id: currentId,
-        });
-      }
 
       const isLastThreeSalaries =
         promiseLastThreeSalaries.every(
@@ -205,7 +210,7 @@ class SalaryController {
       );
 
       //TODO  calculate salary
-      calcSalary(req.body, vacationCoef, salary);
+      calcSalary(salary, vacationCoef);
       await salary.save();
       return res.json({ vacationCoef });
       // return res.json({ user: req.user, salaries: [] });
