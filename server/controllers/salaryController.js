@@ -108,7 +108,7 @@ class SalaryController {
     const payload = convertObjValToNumber(req.body);
     const { year, month } = payload;
 
-    const { currentId, userId } = createCurrentSalaryId(
+    const { salaryId, userId } = createCurrentSalaryId(
       req.user.id,
       year,
       month
@@ -117,13 +117,14 @@ class SalaryController {
 
     try {
       salary = await Salary.findOne({
-        where: { id: currentId },
+        where: { id: salaryId },
       });
+      Object.assign(salary, payload);
       if (!salary) {
         salary = await Salary.create({
           ...payload,
           userId,
-          id: currentId,
+          id: salaryId,
         });
       }
     } catch (e) {
@@ -186,8 +187,9 @@ class SalaryController {
         pastThreeSalaries
       );
 
-      //TODO  calculate salary
       calcSalary(salary, vacationCoef);
+      //test
+      return res.json({ salary });
       await salary.save();
       return res.json({ user: req.user, salary });
     } catch (e) {

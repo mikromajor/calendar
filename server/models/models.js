@@ -59,11 +59,11 @@ const Salary = sequelize.define("salary", {
     type: DataTypes.INTEGER,
   },
   salaryRate: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     defaultValue: 28,
   },
   premiumRate: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     defaultValue: 0,
   },
   premiumUzn: {
@@ -71,11 +71,11 @@ const Salary = sequelize.define("salary", {
     defaultValue: 0,
   },
   taxRate: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     defaultValue: 27,
   },
   nettoPerHours: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     defaultValue: 0,
   },
   weekDays: {
@@ -123,15 +123,15 @@ const Salary = sequelize.define("salary", {
     defaultValue: 0,
   },
   standardSalary: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     defaultValue: 0,
   },
   extraSalary: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     defaultValue: 0,
   },
   totalSalary: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     defaultValue: 0,
   },
 });
