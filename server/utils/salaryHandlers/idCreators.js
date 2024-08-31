@@ -4,39 +4,40 @@ const createCurrentSalaryId = (id, year, month) => {
   return { userId, salaryId };
 };
 
-const createArrLastFourSalaryId = (id, year, month) => {
-  //Create 3 last salaries before current month
-  //It's need for calculate vacation
-  const userId = Number(id);
-  const currentId = id + "_" + year + "_" + month;
-  let oneMonthAgoId =
-    id + "_" + year + "_" + (Number(month) - 1);
-  let twoMonthAgoId =
-    id + "_" + year + "_" + (Number(month) - 2);
-  let threeMonthAgoId =
-    id + "_" + year + "_" + (Number(month) - 3);
-  if (month === "1") {
-    oneMonthAgoId =
-      id + "_" + (Number(year) - 1) + "_" + "12";
-    twoMonthAgoId =
-      id + "_" + (Number(year) - 1) + "_" + "11";
-    threeMonthAgoId =
-      id + "_" + (Number(year) - 1) + "_" + "10";
+const createArrLastThreeSalaryId = (id, year, month) => {
+  //Create 3 last salaries before current month,
+  year = Number(year);
+  month = Number(month);
+
+  let oneMonthAgoId = "";
+  let twoMonthAgoId = "";
+  let threeMonthAgoId = "";
+
+  if (month >= 4) {
+    oneMonthAgoId = id + "_" + year + "_" + (month - 1);
+    twoMonthAgoId = id + "_" + year + "_" + (month - 2);
+    threeMonthAgoId = id + "_" + year + "_" + (month - 3);
   }
-  if (month === "2") {
-    twoMonthAgoId =
-      id + "_" + (Number(year) - 1) + "_" + "12";
-    threeMonthAgoId =
-      id + "_" + (Number(year) - 1) + "_" + "11";
+
+  if (month === 3) {
+    oneMonthAgoId = id + "_" + year + "_" + (month - 1);
+    twoMonthAgoId = id + "_" + year + "_" + (month - 2);
+    threeMonthAgoId = id + "_" + (year - 1) + "_" + "12";
   }
-  return [
-    currentId,
-    oneMonthAgoId,
-    twoMonthAgoId,
-    threeMonthAgoId,
-  ];
+  if (month === 2) {
+    oneMonthAgoId = id + "_" + year + "_" + (month - 1);
+    twoMonthAgoId = id + "_" + (year - 1) + "_" + "12";
+    threeMonthAgoId = id + "_" + (year - 1) + "_" + "11";
+  }
+  if (month === 1) {
+    oneMonthAgoId = id + "_" + (year - 1) + "_" + "12";
+    twoMonthAgoId = id + "_" + (year - 1) + "_" + "11";
+    threeMonthAgoId = id + "_" + (year - 1) + "_" + "10";
+  }
+
+  return [oneMonthAgoId, twoMonthAgoId, threeMonthAgoId];
 };
 module.exports = {
-  createArrLastFourSalaryId,
+  createArrLastThreeSalaryId,
   createCurrentSalaryId,
 };

@@ -8,7 +8,9 @@ const {
 const {
   calcVacationCoef,
 } = require("../utils/salaryHandlers/calcVacationCoef");
-
+const {
+  calcSalary,
+} = require("../utils/salaryHandlers/calcSalary");
 // model ServerRes {
 //   token: string;
 //   message?: string;
@@ -142,11 +144,16 @@ class SalaryController {
   async changeVacation(req, res, next) {
     //POST http://localhost:7000/api/salary/changeVacation
     //salaryInit
-    const salaryBeforeCalc = req.body;
-    const { year, month } = salaryBeforeCalc;
+
+    const { year, month } = req.body;
 
     // lastFourId: [currentMonth, 1MonthAgo, 2MonthsAgo,3MonthsAgo]
     const lastThreeId = createArrLastThreeSalaryId(
+      req.user.id,
+      year,
+      month
+    );
+    const { currentId, userId } = createCurrentSalaryId(
       req.user.id,
       year,
       month
@@ -162,6 +169,16 @@ class SalaryController {
               })
           )
         );
+      let salary = await Salary.findOne({
+        where: { id: currentId },
+      });
+      if (!salary) {
+        salary = await Salary.create({
+          ...req.body,
+          userId,
+          id: currentId,
+        });
+      }
 
       const isLastThreeSalaries =
         promiseLastThreeSalaries.every(
@@ -170,9 +187,10 @@ class SalaryController {
         );
 
       if (!isLastThreeSalaries) {
+        //TODO return standard salary (vacation = workDay)
         return res.json({
           user: req.user,
-          salary: salaryBeforeCalc,
+          salary: req.body,
           message:
             "Before inputting vacation days you must have 3 salaries with zero vacation.",
         });
@@ -180,16 +198,16 @@ class SalaryController {
 
       const pastThreeSalaries =
         promiseLastThreeSalaries.map((prom) => prom.value);
-      //determineVacationPayCoefficient  (zl/workDay)
-      const vacationPayCoefficient = calcVacationCoef(
+
+      // vacationCoef : (zl/workDay)
+      const vacationCoef = calcVacationCoef(
         pastThreeSalaries
       );
 
-      //test
-      return res.json({ vacationPayCoefficient });
-
-      // calculate salary
-      return res.json({ vacationPayCoefficient });
+      //TODO  calculate salary
+      calcSalary(req.body, vacationCoef, salary);
+      await salary.save();
+      return res.json({ vacationCoef });
       // return res.json({ user: req.user, salaries: [] });
     } catch (e) {
       return next(
