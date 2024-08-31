@@ -27,8 +27,8 @@ const INIT_ALCO_STATE = {
 };
 
 const SALARY_INIT = {
-  year: currentYear,
-  month: currentMonth,
+  year: Number(currentYear),
+  month: Number(currentMonth),
   salaryRate: 30,
   premiumRate: 0,
   premiumUzn: 0,
@@ -50,7 +50,16 @@ const SALARY_INIT = {
   totalSalary: 0,
 };
 
+const SALARY_COEFFICIENTS = {
+  premium_50_percent: 1.5,
+  premium_100_percent: 2,
+  premium_120_percent: 2.2,
+  sickRate: 0.64,
+  bloodDonationRate: 1,
+};
+
 module.exports = {
   SALARY_INIT,
   INIT_ALCO_STATE,
+  SALARY_COEFFICIENTS,
 };

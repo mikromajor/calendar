@@ -26,8 +26,8 @@ class SalaryController {
   async save(req, res, next) {
     //POST //http://localhost:7000/api/salary/save
     // add body {} look for salary_example bellow
-
-    const { year, month } = req.body;
+    const payload = convertObjValToNumber(req.body);
+    const { year, month } = payload;
     const { userId, salaryId } = createCurrentSalaryId(
       req.user.id,
       year,
@@ -39,11 +39,11 @@ class SalaryController {
         where: { id: salaryId },
       });
       if (salary) {
-        Object.assign(salary, req.body);
+        Object.assign(salary, payload);
         await salary.save();
       } else {
         salary = await Salary.create({
-          ...req.body,
+          ...payload,
           userId,
           id: salaryId,
         });
@@ -101,49 +101,6 @@ class SalaryController {
     }
   }
 
-  // TODO: check it
-  async getLast_2years(req, res, next) {
-    //GET http://localhost:7000/api/salary/getLast_2years?year=2020
-    const { year } = req.query; //string
-    const userId = Number(req.user.id);
-    const prevYear = Number(year) - 1;
-    let salaries = [];
-    try {
-      const arrPromises = await Promise.allSettled([
-        Salary.findAll({
-          where: { userId, year: prevYear },
-        }),
-        Salary.findAll({
-          where: {
-            userId,
-            year: year,
-          },
-        }),
-      ]);
-      if (arrPromises && arrPromises.length) {
-        const [prevYearPromise, yearPromise] = arrPromises;
-
-        if (prevYearPromise.status === "fulfilled") {
-          salaries = salaries.concat(prevYearPromise.value);
-        }
-        if (yearPromise.status === "fulfilled") {
-          salaries = salaries.concat(yearPromise.value);
-        }
-
-        return res.json({ user: req.user, salaries });
-      } else {
-        return res.json({ user: req.user, salaries: [] });
-      }
-    } catch (e) {
-      next(
-        ApiError.internal(
-          "Server error fire when getLast_2years started /" +
-            e
-        )
-      );
-    }
-  }
-
   //TODO changeVacation not complete
   async changeVacation(req, res, next) {
     //POST http://localhost:7000/api/salary/changeVacation
@@ -192,12 +149,13 @@ class SalaryController {
         );
 
       if (!isLastThreeSalaries) {
-        //TODO return standard salary (vacation = workDay)
+        calcSalary(salary, 0);
+        await salary.save();
         return res.json({
           user: req.user,
-          salary: req.body,
+          salary,
           message:
-            "Before inputting vacation days you must have 3 salaries with zero vacation.",
+            "You must have 3 salaries with zero used vacation before this salary for a true result.",
         });
       }
 
@@ -212,8 +170,7 @@ class SalaryController {
       //TODO  calculate salary
       calcSalary(salary, vacationCoef);
       await salary.save();
-      return res.json({ vacationCoef });
-      // return res.json({ user: req.user, salaries: [] });
+      return res.json({ user: req.user, salary });
     } catch (e) {
       return next(
         ApiError.internal(
