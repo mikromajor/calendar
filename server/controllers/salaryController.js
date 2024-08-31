@@ -3,8 +3,11 @@ const ApiError = require("../error/ApiError");
 const { SALARY_INIT } = require("../constants/initStates");
 const {
   createCurrentSalaryId,
-  createArrLastFourSalaryId,
+  createArrLastThreeSalaryId,
 } = require("../utils/salaryHandlers/idCreators");
+const {
+  calcVacationCoef,
+} = require("../utils/salaryHandlers/calcVacationCoef");
 
 // model ServerRes {
 //   token: string;
@@ -14,7 +17,7 @@ const {
 // }
 
 class SalaryController {
-  async save(req, res) {
+  async save(req, res, next) {
     //POST //http://localhost:7000/api/salary/save
     // add body {} look for salary_example bellow
 
@@ -50,7 +53,7 @@ class SalaryController {
     }
   }
 
-  async getOne(req, res) {
+  async getOne(req, res, next) {
     //GET http://localhost:7000/api/salary/getOne?year=2020&month=1
     try {
       const { year, month } = req.query;
@@ -76,7 +79,7 @@ class SalaryController {
     }
   }
 
-  async getAll(req, res) {
+  async getAll(req, res, next) {
     //GET http://localhost:7000/api/salary/getAll
     try {
       const salaries = await Salary.findAll({
@@ -93,7 +96,7 @@ class SalaryController {
   }
 
   // TODO: check it
-  async getLast_2years(req, res) {
+  async getLast_2years(req, res, next) {
     //GET http://localhost:7000/api/salary/getLast_2years?year=2020
     const { year } = req.query; //string
     const userId = Number(req.user.id);
@@ -136,73 +139,62 @@ class SalaryController {
   }
 
   //TODO changeVacation not complete
-  async changeVacation(req, res) {
+  async changeVacation(req, res, next) {
     //POST http://localhost:7000/api/salary/changeVacation
     //salaryInit
-    const salaryBeforeCalc = req.query;
+    const salaryBeforeCalc = req.body;
     const { year, month } = salaryBeforeCalc;
 
     // lastFourId: [currentMonth, 1MonthAgo, 2MonthsAgo,3MonthsAgo]
-    const lastFourId = createArrLastFourSalaryId(
+    const lastThreeId = createArrLastThreeSalaryId(
       req.user.id,
       year,
       month
     );
 
-    let salaries = [];
     try {
-      //create arr: [currentSalary, oneMonthAgoSalary,...]
-      const arrPromises = await Promise.allSettled(
-        lastFourId.map((id) =>
-          Salary.findOne({
-            where: { id },
-          })
-        )
+      const promiseLastThreeSalaries =
+        await Promise.allSettled(
+          lastThreeId.map(
+            async (pastId) =>
+              await Salary.findOne({
+                where: { id: pastId },
+              })
+          )
+        );
+
+      const isLastThreeSalaries =
+        promiseLastThreeSalaries.every(
+          (promise) =>
+            promise.status === "fulfilled" && promise.value
+        );
+
+      if (!isLastThreeSalaries) {
+        return res.json({
+          user: req.user,
+          salary: salaryBeforeCalc,
+          message:
+            "Before inputting vacation days you must have 3 salaries with zero vacation.",
+        });
+      }
+
+      const pastThreeSalaries =
+        promiseLastThreeSalaries.map((prom) => prom.value);
+      //determineVacationPayCoefficient  (zl/workDay)
+      const vacationPayCoefficient = calcVacationCoef(
+        pastThreeSalaries
       );
 
-      if (arrPromises && arrPromises.length) {
-        const isAllFourSalaries = arrPromises
-          .slice(1)
-          .every(
-            (salaryPromise) =>
-              salaryPromise.status === "fulfilled"
-          );
+      //test
+      return res.json({ vacationPayCoefficient });
 
-        if (!isAllFourSalaries) {
-          //TODO add checker for exist current salary, create/update it and return
-          return res.json({
-            user: req.user,
-            salary: salaryBeforeCalc,
-            message:
-              "Before inputting vacation days you must have 3 salaries with zero vacation.",
-          });
-        }
-
-        const [
-          currentSalary,
-          monthAgoSalary,
-          twoMonthsAgoSalary,
-          threeMonthsAgoSalary,
-        ] = arrPromises;
-
-        //   const [prevYearPromise, yearPromise] = arrPromises;
-
-        //   if (currentSalary.status === "fulfilled") {
-        //     salaries = salaries.concat(prevYearPromise.value);
-        //   }
-        //   if (yearPromise.status === "fulfilled") {
-        //     salaries = salaries.concat(yearPromise.value);
-        //   }
-
-        //   return res.json({ user: req.user, salaries });
-        // } else {
-        return res.json({ user: req.user, salaries: [] });
-      }
+      // calculate salary
+      return res.json({ vacationPayCoefficient });
+      // return res.json({ user: req.user, salaries: [] });
     } catch (e) {
-      next(
+      return next(
         ApiError.internal(
-          "Server error fire when getLast_2years started /" +
-            e
+          "Server error  when changeVacation fire /" + e
         )
       );
     }
