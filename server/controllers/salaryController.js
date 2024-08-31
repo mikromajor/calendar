@@ -113,9 +113,10 @@ class SalaryController {
       year,
       month
     );
+    let salary;
 
     try {
-      let salary = await Salary.findOne({
+      salary = await Salary.findOne({
         where: { id: currentId },
       });
       if (!salary) {
@@ -125,29 +126,47 @@ class SalaryController {
           id: currentId,
         });
       }
-      // lastFourId: [currentMonth, 1MonthAgo, 2MonthsAgo,3MonthsAgo]
-      const lastThreeId = createArrLastThreeSalaryId(
-        req.user.id,
-        year,
-        month
+    } catch (e) {
+      return next(
+        ApiError.internal(
+          "Server error  when changeVacation try get/handle currentSalary. Details:" +
+            e
+        )
+      );
+    }
+
+    // lastFourId: [currentMonth, 1MonthAgo, 2MonthsAgo,3MonthsAgo]
+    const lastThreeId = createArrLastThreeSalaryId(
+      req.user.id,
+      year,
+      month
+    );
+
+    let promiseLastThreeSalaries;
+    try {
+      promiseLastThreeSalaries = await Promise.allSettled(
+        lastThreeId.map(
+          async (pastId) =>
+            await Salary.findOne({
+              where: { id: pastId },
+            })
+        )
+      );
+    } catch (e) {
+      return next(
+        ApiError.internal(
+          "Server error  when changeVacation try get 3 last salaries. Details:" +
+            e
+        )
+      );
+    }
+    const isLastThreeSalaries =
+      promiseLastThreeSalaries.every(
+        (promise) =>
+          promise.status === "fulfilled" && promise.value
       );
 
-      const promiseLastThreeSalaries =
-        await Promise.allSettled(
-          lastThreeId.map(
-            async (pastId) =>
-              await Salary.findOne({
-                where: { id: pastId },
-              })
-          )
-        );
-
-      const isLastThreeSalaries =
-        promiseLastThreeSalaries.every(
-          (promise) =>
-            promise.status === "fulfilled" && promise.value
-        );
-
+    try {
       if (!isLastThreeSalaries) {
         calcSalary(salary, 0);
         await salary.save();
@@ -155,7 +174,7 @@ class SalaryController {
           user: req.user,
           salary,
           message:
-            "You must have 3 salaries with zero used vacation before this salary for a true result.",
+            "You must have 3 salaries with zero used vacation before current salary for a true result.",
         });
       }
 
@@ -174,7 +193,8 @@ class SalaryController {
     } catch (e) {
       return next(
         ApiError.internal(
-          "Server error  when changeVacation fire /" + e
+          "Server error  when changeVacation try calculate/save salary to db. Details: " +
+            e
         )
       );
     }

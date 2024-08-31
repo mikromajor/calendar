@@ -14,11 +14,6 @@ router.get(
   authMiddleware,
   salaryController.getAll
 );
-router.get(
-  "/getLast_2years",
-  authMiddleware,
-  salaryController.getLast_2years
-);
 router.post(
   "/changeVacation",
   authMiddleware,

@@ -1,6 +1,7 @@
 const {
   amountWeekendsAndWeekdays,
 } = require("./amountWeekendsAndWeekdays");
+
 const {
   SALARY_COEFFICIENTS,
 } = require("../../constants/initStates");

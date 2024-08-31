@@ -3,7 +3,7 @@ const dayOfWeek = (y, m, d) =>
 
 const daysInMonth = (y, m) => new Date(y, m, 0).getDate();
 
-export const amountWeekendsAndWeekdays = (year, month) => {
+const amountWeekendsAndWeekdays = (year, month) => {
   let weekends = 0,
     weekdays,
     iterDay;
