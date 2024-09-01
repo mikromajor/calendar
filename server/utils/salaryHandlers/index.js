@@ -8,6 +8,9 @@ const {
   createArrLastThreeSalaryId,
   createCurrentSalaryId,
 } = require("./idCreators");
+const {
+  updateSalaryInputs,
+} = require("./updateSalaryInputs");
 
 module.exports = {
   amountWeekendsAndWeekdays,
@@ -16,4 +19,5 @@ module.exports = {
   getArrSalaries,
   createArrLastThreeSalaryId,
   createCurrentSalaryId,
+  updateSalaryInputs,
 };

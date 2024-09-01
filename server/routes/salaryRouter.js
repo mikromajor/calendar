@@ -3,21 +3,15 @@ const router = new Router();
 const salaryController = require("../controllers/salaryController");
 const authMiddleware = require("../middleware/authMiddleware");
 
-router.post("/save", authMiddleware, salaryController.save);
 router.get(
   "/getOne",
   authMiddleware,
   salaryController.getOne
 );
-router.get(
-  "/getAll",
-  authMiddleware,
-  salaryController.getAll
-);
 router.post(
-  "/changeVacation",
+  "/calculate",
   authMiddleware,
-  salaryController.changeVacation
+  salaryController.calculate
 );
 
 module.exports = router;

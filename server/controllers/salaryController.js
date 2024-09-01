@@ -7,6 +7,7 @@ const {
   getArrSalaries,
   createArrLastThreeSalaryId,
   createCurrentSalaryId,
+  updateSalaryInputs,
 } = require("../utils/salaryHandlers/index");
 const {
   convertObjValToNumber,
@@ -20,42 +21,6 @@ const {
 // }
 
 class SalaryController {
-  async save(req, res, next) {
-    //POST //http://localhost:7000/api/salary/save
-    // add body {} look for salary_example bellow
-    const payload = convertObjValToNumber(req.body);
-    const { year, month } = payload;
-    const { userId, salaryId } = createCurrentSalaryId(
-      req.user.id,
-      year,
-      month
-    );
-
-    try {
-      let salary = await Salary.findOne({
-        where: { id: salaryId },
-      });
-      if (salary) {
-        Object.assign(salary, payload);
-        await salary.save();
-      } else {
-        salary = await Salary.create({
-          ...payload,
-          userId,
-          id: salaryId,
-        });
-      }
-      return res.json({ user: req.user, salary });
-    } catch (e) {
-      next(
-        ApiError.internal(
-          `Salary with id=${salaryId}, was not add/update ` +
-            e
-        )
-      );
-    }
-  }
-
   async getOne(req, res, next) {
     //GET http://localhost:7000/api/salary/getOne?year=2020&month=1
     try {
@@ -82,23 +47,7 @@ class SalaryController {
     }
   }
 
-  async getAll(req, res, next) {
-    //GET http://localhost:7000/api/salary/getAll
-    try {
-      const salaries = await Salary.findAll({
-        where: { userId: Number(req.user.id) },
-      });
-      return res.json({ user: req.user, salaries });
-    } catch (e) {
-      next(
-        ApiError.internal(
-          "Server error fire when getAll started/ " + e
-        )
-      );
-    }
-  }
-
-  async changeVacation(req, res, next) {
+  async calculate(req, res, next) {
     //POST http://localhost:7000/api/salary/changeVacation
     //salaryInit
     const payload = convertObjValToNumber(req.body);
