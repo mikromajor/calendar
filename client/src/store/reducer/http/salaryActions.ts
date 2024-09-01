@@ -3,6 +3,7 @@ import { $host, $authHost } from "./host";
 import {
   ISalaryInit,
   ISalaryDate,
+  IPayload,
 } from "../../../types/salaryTypes";
 import { IServerRes } from "../../../types/userTypes";
 
@@ -57,13 +58,13 @@ export const saveSalaryToDB = createAsyncThunk(
 export const changeVacation = createAsyncThunk(
   "salary/changeVacation",
   async (
-    salary: ISalaryInit,
+    payload: IPayload,
     { rejectWithValue, dispatch, getState }
   ) => {
     try {
       const response = await $authHost.post<IServerRes>(
         "api/salary/changeVacation",
-        salary
+        payload
       );
 
       return response.data;

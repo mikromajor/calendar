@@ -13,6 +13,7 @@ const calcSalary = (salary, vacationCoef = 0) => {
     premium_100_percent,
     premium_120_percent,
   } = SALARY_COEFFICIENTS;
+
   const {
     salaryRate,
     premiumUzn,

@@ -2,15 +2,12 @@ const { Salary } = require("../models/models");
 const ApiError = require("../error/ApiError");
 const { SALARY_INIT } = require("../constants/initStates");
 const {
-  createCurrentSalaryId,
-  createArrLastThreeSalaryId,
-} = require("../utils/salaryHandlers/idCreators");
-const {
-  calcVacationCoef,
-} = require("../utils/salaryHandlers/calcVacationCoef");
-const {
   calcSalary,
-} = require("../utils/salaryHandlers/calcSalary");
+  calcVacationCoef,
+  getArrSalaries,
+  createArrLastThreeSalaryId,
+  createCurrentSalaryId,
+} = require("../utils/salaryHandlers/index");
 const {
   convertObjValToNumber,
 } = require("../utils/convertObjValToNumber");
@@ -101,7 +98,6 @@ class SalaryController {
     }
   }
 
-  //TODO changeVacation not complete
   async changeVacation(req, res, next) {
     //POST http://localhost:7000/api/salary/changeVacation
     //salaryInit
@@ -136,39 +132,16 @@ class SalaryController {
       );
     }
 
-    // lastFourId: [currentMonth, 1MonthAgo, 2MonthsAgo,3MonthsAgo]
-    const lastThreeId = createArrLastThreeSalaryId(
+    const arrThreeId = createArrLastThreeSalaryId(
       req.user.id,
       year,
       month
     );
-
-    let promiseLastThreeSalaries;
-    try {
-      promiseLastThreeSalaries = await Promise.allSettled(
-        lastThreeId.map(
-          async (pastId) =>
-            await Salary.findOne({
-              where: { id: pastId },
-            })
-        )
-      );
-    } catch (e) {
-      return next(
-        ApiError.internal(
-          "Server error  when changeVacation try get 3 last salaries. Details:" +
-            e
-        )
-      );
-    }
-    const isLastThreeSalaries =
-      promiseLastThreeSalaries.every(
-        (promise) =>
-          promise.status === "fulfilled" && promise.value
-      );
+    const { isAllSalaries, salaries } =
+      await getArrSalaries(arrThreeId, next);
 
     try {
-      if (!isLastThreeSalaries) {
+      if (!isAllSalaries) {
         calcSalary(salary, 0);
         await salary.save();
         return res.json({
@@ -179,17 +152,10 @@ class SalaryController {
         });
       }
 
-      const pastThreeSalaries =
-        promiseLastThreeSalaries.map((prom) => prom.value);
-
       // vacationCoef : (zl/workDay)
-      const vacationCoef = calcVacationCoef(
-        pastThreeSalaries
-      );
+      const vacationCoef = calcVacationCoef(salaries);
 
       calcSalary(salary, vacationCoef);
-      //test
-      return res.json({ salary });
       await salary.save();
       return res.json({ user: req.user, salary });
     } catch (e) {
