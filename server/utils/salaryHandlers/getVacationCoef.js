@@ -23,6 +23,7 @@ const getVacationCoef = async (
   let vacationCoef = isAllSalaries
     ? calcVacationCoef(salaries)
     : 0;
+
   return vacationCoef;
 };
 

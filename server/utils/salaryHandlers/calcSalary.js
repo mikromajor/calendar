@@ -7,7 +7,7 @@ const {
   SALARY_COEFFICIENTS,
 } = require("../../constants/initStates");
 
-const calcSalary = (salary, next) => {
+const calcSalary = async (salary, next) => {
   const {
     sickRate,
     premium_50_percent,
@@ -33,7 +33,7 @@ const calcSalary = (salary, next) => {
     userId,
   } = salary;
 
-  let vacationCoef = getVacationCoef(
+  let vacationCoef = await getVacationCoef(
     userId,
     year,
     month,

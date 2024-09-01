@@ -11,7 +11,7 @@ const {
 } = require("../utils/convertObjValToNumber");
 
 // model ServerRes {
-//   token: string;
+// user: {id:string ; email:string, message?:string};
 //   message?: string;
 //   alcoState?: AlcoState;
 //   salaryState?: ISalaryInit;
@@ -28,7 +28,10 @@ class SalaryController {
       let salary = await Salary.findOne({
         where: { id: salaryId },
       });
-      return res.json(salary ? salary : SALARY_INIT);
+      return res.json({
+        salary: salary ? salary : SALARY_INIT,
+        user: req.user,
+      });
     } catch (e) {
       next(
         ApiError.internal(
@@ -51,8 +54,11 @@ class SalaryController {
     );
 
     try {
-      let salary = calcSalary(notCalculatedSalary, next);
-      await salary.save();
+      let salary = await calcSalary(
+        notCalculatedSalary,
+        next
+      );
+      // await salary.save();
       return res.json({ user: req.user, salary });
     } catch (e) {
       return next(
