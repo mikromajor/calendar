@@ -25,7 +25,7 @@ export interface EmailPassword {
 export interface IServerRes extends IUser {
   message: string;
   alcoState: AlcoState;
-  salaryState: ISalaryInit;
+  salary: ISalaryInit;
 }
 export type ModalOpen =
   | ""

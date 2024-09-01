@@ -14,30 +14,54 @@ import { IServerRes } from "../../types/userTypes";
 export const salaryReducer = createSlice({
   name: "salaryState",
   initialState: SALARY_INIT,
-  reducers: {
-    handleChangeInputData: (
-      state,
-      action: PayloadAction<IPayload>
-    ) => {
-      calculateSalary(state, action.payload);
-    },
-  },
+  reducers: {},
   extraReducers: {
     //getSalary
-    [getSalary.pending.type]: (state) => {},
+    [getSalary.pending.type]: (state) => {
+      state.service.isLoading = true;
+      state.service.isError = false;
+      state.service.message = "";
+    },
     [getSalary.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      Object.assign(state, action.payload.salaryState);
+      const { salary, message } = action.payload;
+      Object.assign(state, salary);
+      state.service.isLoading = false;
+      state.service.message = message ? message : "";
     },
-    [getSalary.rejected.type]: (state) => {
-      state.service.isLoading = true;
+    [getSalary.rejected.type]: (
+      state,
+      action: PayloadAction<IServerRes>
+    ) => {
+      state.service.isLoading = false;
+      state.service.isError = true;
+      state.service.message = action.payload.message; //TODO check it
     },
     //serverSalaryCalculate
-    [serverSalaryCalculate.pending.type]: (state) => {},
-    [serverSalaryCalculate.fulfilled.type]: (state) => {},
-    [serverSalaryCalculate.rejected.type]: (state) => {},
+    [serverSalaryCalculate.pending.type]: (state) => {
+      state.service.isLoading = true;
+      state.service.isError = false;
+      state.service.message = "";
+    },
+    [serverSalaryCalculate.fulfilled.type]: (
+      state,
+      action: PayloadAction<IServerRes>
+    ) => {
+      const { salary, message } = action.payload;
+      Object.assign(state, salary);
+      state.service.isLoading = false;
+      state.service.message = message ? message : "";
+    },
+    [serverSalaryCalculate.rejected.type]: (
+      state,
+      action: PayloadAction<IServerRes>
+    ) => {
+      state.service.isLoading = false;
+      state.service.isError = true;
+      state.service.message = action.payload.message; //TODO check it
+    },
   },
 });
 

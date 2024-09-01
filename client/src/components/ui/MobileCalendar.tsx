@@ -4,7 +4,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import { getSalary } from "../../store/reducer/http/salaryActions";
-import { useAppDispatch } from "../../store/hooks/redux";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../store/hooks/redux";
 
 export function MobileCalendar() {
   const dispatch = useAppDispatch();
@@ -16,7 +19,9 @@ export function MobileCalendar() {
 
     dispatch(getSalary({ year, month }));
   };
-
+  const { isLoading } = useAppSelector(
+    (store) => store.salaryReducer.service
+  );
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
@@ -25,6 +30,7 @@ export function MobileCalendar() {
         openTo='month'
         defaultValue={dayjs(new Date())}
         onChange={changeDate}
+        disabled={isLoading}
       />
     </LocalizationProvider>
   );

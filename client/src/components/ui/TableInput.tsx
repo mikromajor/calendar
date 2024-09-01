@@ -5,9 +5,7 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "../../store/hooks/redux";
-import { salaryActions } from "../../store/reducer/salaryReducer";
-
-const { handleChangeInputData } = salaryActions;
+import { serverSalaryCalculate } from "../../store/reducer/http/salaryActions";
 
 interface ITableInputProps {
   keyWord: keyof ISalaryInit;
@@ -22,39 +20,22 @@ export const TableInput = ({
   const { salaryReducer } = useAppSelector(
     (store) => store
   );
-  const { year, month } = salaryReducer;
+  const { year, month, service } = salaryReducer;
   const dispatch = useAppDispatch();
-
-  const currentDate = { year, month };
 
   const handleOnChange = (e: E) => {
     const val = Number(e.currentTarget.value);
-    if (keyWord === "usedVacation") {
-      // dispatch(calculateVacation({
-      //   [keyWord]: val
-      // }))
-    }
-    if (
-      keyWord === "sickLeaveWeekDays" ||
-      keyWord === "sickLeaveWeekendDays"
-    ) {
-      // dispatch(calculateSickLeave({
-      //   [keyWord]: val
-      // }))
-    }
-    if (
-      keyWord !== "sickLeaveWeekDays" &&
-      keyWord !== "sickLeaveWeekendDays" &&
-      keyWord !== "usedVacation"
-    ) {
-      dispatch(handleChangeInputData({ [keyWord]: val }));
-    }
+
+    dispatch(
+      serverSalaryCalculate({ year, month, [keyWord]: val })
+    );
   };
   return (
     <StyledTableCell align='right'>
       <TextField
         value={salaryReducer[keyWord]}
         onChange={handleOnChange}
+        disabled={service.isLoading}
       />
     </StyledTableCell>
   );
