@@ -10,67 +10,16 @@ const ApiError = require("../error/ApiError");
 const {
   getDateMonthYear,
 } = require("../utils/getDateMonthYear");
+const {
+  createModelAlcoState,
+} = require("../utils/alcoHandlers/createModelAlcoState");
 
-//creating response models like INIT_ALCO_STATE
-const createModelAlcoState = async (
-  currentDate,
-  userId,
-  next
-) => {
-  const yearId = userId + "_" + currentDate.year;
-
-  const alcoState = {
-    ...INIT_ALCO_STATE,
-    currentDate,
-  };
-
-  try {
-    const alcoYear = await AlcoYear.findOne({
-      where: { id: yearId },
-    });
-    if (!alcoYear) {
-      return alcoState;
-    }
-
-    const alcoMonths = await AlcoMonth.findAll({
-      where: { yearId },
-    });
-
-    const alcoDays = await AlcoDay.findAll({
-      where: { yearId },
-    });
-
-    const yearData = {
-      ...alcoYear.dataValues,
-      months: [],
-    };
-
-    alcoMonths.forEach((m) => {
-      const [userIndex, yearIndex, monthIndex] =
-        m.id.split("_");
-      yearData.months[monthIndex] = {
-        ...m.dataValues,
-        days: [],
-      };
-    });
-
-    alcoDays.forEach((d) => {
-      const [userIndex, yearIndex, monthIndex, dayIndex] =
-        d.id.split("_");
-      yearData.months[monthIndex].days[dayIndex] = {
-        ...d.dataValues,
-      };
-    });
-
-    alcoState.yearData = yearData;
-
-    return alcoState;
-  } catch (error) {
-    next(
-      ApiError.internal("Response model was not create")
-    );
-  }
-};
+// model ServerRes {
+//   user?:{token:string; message:string // for userInfo};
+//   message?: string; //for error
+//   alcoState?: AlcoState;
+//   salary?: ISalaryInit;
+// }
 
 class AlcoController {
   async addNewDose(req, res, next) {
@@ -146,8 +95,6 @@ class AlcoController {
         next
       );
       return res.status(200).json({
-        // token: req.user.token,
-        // message: req.user.message,
         alcoState,
       });
     } catch (e) {
@@ -160,7 +107,7 @@ class AlcoController {
   async getAlcoYear(req, res, next) {
     //GET http://localhost:7000/api/alco_calendar/get?year=2020&month=1&day=1
     //req.query.year,
-    // GET don't has req.body
+    // GET doesn't have req.body
 
     const { year, month, day } = req.query;
 
@@ -171,8 +118,6 @@ class AlcoController {
         next
       );
       return res.status(200).json({
-        // token: req.user.token,
-        // message: req.user.message,
         alcoState,
       });
     } catch (error) {
@@ -195,8 +140,7 @@ class AlcoController {
         next
       );
       return res.status(200).json({
-        // token: req.user.token,
-        // message: req.user.message,
+        user: req.user,
         alcoState, // type YearData |null
       });
     } catch (e) {
