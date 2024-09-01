@@ -1,7 +1,7 @@
 const {
   amountWeekendsAndWeekdays,
-  getVacationCoef,
-} = require("./index");
+} = require("./amountWeekendsAndWeekdays");
+const { getVacationCoef } = require("./getVacationCoef");
 
 const {
   SALARY_COEFFICIENTS,

@@ -3,7 +3,7 @@ const ApiError = require("../../error/ApiError");
 const {
   SALARY_INIT,
 } = require("../../constants/initStates");
-const { createCurrentSalaryId } = require("./.");
+const { createCurrentSalaryId } = require("./idCreators");
 
 const updateSalaryInputs = async (
   salaryInputs,

@@ -1,8 +1,8 @@
+const { calcVacationCoef } = require("./calcVacationCoef");
+const { getArrSalaries } = require("./getArrSalaries");
 const {
-  calcVacationCoef,
-  getArrSalaries,
   createArrLastThreeSalaryId,
-} = require("./index");
+} = require("./idCreators");
 
 const getVacationCoef = async (
   userId,
