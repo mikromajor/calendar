@@ -4,10 +4,10 @@ import {
   MonthInfo,
   AlcoYear,
   AlcoContent,
-  Service,
 } from "../types/alcoTypes";
 import { getDateMonthYear } from "../utils";
 import { UserLanguages } from "../types/userTypes";
+import SERVICE from "./service";
 
 //for calendar: new Date(year, monthIndex(0-11), day)
 const [currentDay, currentMonth, currentYear] =
@@ -28,11 +28,6 @@ export const INIT_MONTH: MonthInfo = {
   totalBill: 0,
   days: [], // 1-31 days info (exist validation max  days in a month)
 };
-export const INIT_SERVICE: Service = {
-  isError: false,
-  isLoading: false,
-  message: "",
-};
 
 export const INIT_ALCO_YEAR: AlcoYear = {
   totalVodka: 0,
@@ -43,7 +38,7 @@ export const INIT_ALCO_YEAR: AlcoYear = {
 export const INIT_ALCO_STATE: AlcoState = {
   currentDate: CURRENT_DATE,
   yearData: INIT_ALCO_YEAR,
-  service: INIT_SERVICE,
+  service: SERVICE,
 };
 
 export const ALCO_CONTENT: AlcoContent = {

@@ -15,7 +15,7 @@ import { Message } from "../../ui";
 export default function UserAuthBar() {
   const [open, setOpen] = useState<ModalOpen>("");
   const { message, isError } = useAppSelector(
-    (store) => store.userReducer
+    (store) => store.userReducer.service
   );
   const dispatch = useAppDispatch();
   useEffect(() => {

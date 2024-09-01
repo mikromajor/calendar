@@ -6,7 +6,6 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { salaryActions } from "../../store/reducer/salaryReducer";
-import { saveSalaryToDB } from "../../store/reducer/http/salaryActions";
 
 const { handleChangeInputData } = salaryActions;
 
@@ -49,7 +48,6 @@ export const TableInput = ({
       keyWord !== "usedVacation"
     ) {
       dispatch(handleChangeInputData({ [keyWord]: val }));
-      // dispatch(saveSalaryToDB(salaryReducer));
     }
   };
   return (

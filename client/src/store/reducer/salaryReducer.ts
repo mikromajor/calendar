@@ -7,7 +7,7 @@ import { IPayload } from "../../types/salaryTypes";
 import { calculateSalary } from "./salaryHandlers";
 import {
   getSalary,
-  saveSalaryToDB,
+  serverSalaryCalculate,
 } from "./http/salaryActions";
 import { IServerRes } from "../../types/userTypes";
 
@@ -31,13 +31,20 @@ export const salaryReducer = createSlice({
     ) => {
       Object.assign(state, action.payload.salaryState);
     },
-    [getSalary.rejected.type]: (state) => {},
-    //saveSalary
-    [saveSalaryToDB.pending.type]: (state) => {},
-    [saveSalaryToDB.fulfilled.type]: (state) => {},
-    [saveSalaryToDB.rejected.type]: (state) => {},
+    [getSalary.rejected.type]: (state) => {
+      state.service.isLoading = true;
+    },
+    //serverSalaryCalculate
+    [serverSalaryCalculate.pending.type]: (state) => {},
+    [serverSalaryCalculate.fulfilled.type]: (state) => {},
+    [serverSalaryCalculate.rejected.type]: (state) => {},
   },
 });
 
 export default salaryReducer.reducer;
 export const salaryActions = salaryReducer.actions;
+
+// model ServerRes {
+//   message?: string; //for error
+//   salary?: ISalaryInit;
+// }

@@ -26,7 +26,7 @@ class AlcoController {
     //POST http://localhost:7000/api/alco_calendar/add
     // req.body = {"year":"2020", "month":"1", "day":"1", "additionVodka":"65"}
     try {
-      const { year, month, day } = req.body; //string
+      const { year, month, day } = req.body;
       const additionVodka = Number(req.body.additionVodka);
 
       const userId = Number(req.user.id);
@@ -39,12 +39,12 @@ class AlcoController {
           ApiError.badRequest("Request's data incorrect")
         );
       }
-
+      // TODO use cycle to check/create DB
       const alcoYear = await AlcoYear.findOne({
-        where: { userId, id: yearId },
+        where: { id: yearId },
       });
 
-      if (!!alcoYear) {
+      if (alcoYear) {
         alcoYear.totalVodka += additionVodka;
         await alcoYear.save();
       } else {
@@ -54,12 +54,9 @@ class AlcoController {
           totalVodka: additionVodka,
         });
       }
-      let y = await AlcoYear.findOne({
-        where: { userId, id: yearId },
-      });
-      //--above tested, bellow - not ---//
+
       const alcoMonth = await AlcoMonth.findOne({
-        where: { id: monthId, userId },
+        where: { id: monthId },
       });
       if (alcoMonth) {
         alcoMonth.totalVodka += additionVodka;
@@ -74,7 +71,7 @@ class AlcoController {
       }
 
       const alcoDay = await AlcoDay.findOne({
-        where: { id: dayId, userId },
+        where: { id: dayId },
       });
       if (alcoDay) {
         alcoDay.totalVodka += additionVodka;
@@ -94,7 +91,7 @@ class AlcoController {
         userId,
         next
       );
-      return res.status(200).json({
+      return res.json({
         alcoState,
       });
     } catch (e) {

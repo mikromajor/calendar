@@ -34,31 +34,31 @@ export const userReducer = createSlice({
     ) => {
       state.currentTheme = action.payload;
     },
-    addMessage: (state, action: PayloadAction<string>) => {
-      state.message = action.payload;
-    },
+    // addMessage: (state, action: PayloadAction<string>) => {
+    //   state.service.message = action.payload;
+    // },
     logOut: (state) => {
       localStorage.setItem("token", "");
-      state.message = "logged out successfully";
+      state.service.message = "logged out successfully";
     },
     cleanMessage: (state) => {
-      state.message = "";
-      state.isError = false;
+      state.service.message = "";
+      state.service.isError = false;
     },
   },
   extraReducers: {
     //Registration
     [fetchUserRegistration.pending.type]: (state) => {
-      state.isLoading = true;
+      state.service.isLoading = true;
     },
     [fetchUserRegistration.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
       const { token, message } = action.payload;
-      state.message = message;
-      state.isLoading = false;
-      state.isError = false;
+      state.service.message = message;
+      state.service.isLoading = false;
+      state.service.isError = false;
     },
 
     [fetchUserRegistration.rejected.type]: (
@@ -67,16 +67,16 @@ export const userReducer = createSlice({
     ) => {
       const message = action.payload.message;
 
-      state.message = message
+      state.service.message = message
         ? message
         : MESSAGES.unexpectedError;
-      state.isLoading = false;
-      state.isError = true;
+      state.service.isLoading = false;
+      state.service.isError = true;
     },
 
     //Login
     [fetchUserLogin.pending.type]: (state) => {
-      state.isLoading = true;
+      state.service.isLoading = true;
     },
     [fetchUserLogin.fulfilled.type]: (
       state,
@@ -84,9 +84,9 @@ export const userReducer = createSlice({
     ) => {
       const { message } = action.payload;
 
-      state.message = message;
-      state.isError = false;
-      state.isLoading = false;
+      state.service.message = message;
+      state.service.isError = false;
+      state.service.isLoading = false;
     },
 
     [fetchUserLogin.rejected.type]: (
@@ -94,29 +94,29 @@ export const userReducer = createSlice({
       action: PayloadAction<IServerRes>
     ) => {
       const message = action.payload?.message;
-      state.message = message
+      state.service.message = message
         ? message
         : MESSAGES.unexpectedError;
-      state.isLoading = false;
-      state.isError = true;
+      state.service.isLoading = false;
+      state.service.isError = true;
     },
     //Auth
     [fetchUserAuth.pending.type]: (state) => {
-      state.isLoading = true;
+      state.service.isLoading = true;
     },
     [fetchUserAuth.fulfilled.type]: (
       state,
       action: PayloadAction<IUser>
     ) => {
       state.user = action.payload;
-      state.isLoading = false;
-      state.isError = false;
+      state.service.isLoading = false;
+      state.service.isError = false;
     },
 
     [fetchUserAuth.rejected.type]: (state) => {
-      state.isLoading = false;
-      state.isError = true;
-      state.message = MESSAGES.authRefused;
+      state.service.isLoading = false;
+      state.service.isError = true;
+      state.service.message = MESSAGES.authRefused;
     },
   },
 });

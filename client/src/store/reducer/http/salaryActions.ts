@@ -1,11 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host, $authHost } from "./host";
 import {
-  ISalaryInit,
   ISalaryDate,
   IPayload,
 } from "../../../types/salaryTypes";
 import { IServerRes } from "../../../types/userTypes";
+
+// model ServerRes {
+//   user?:{token:string; message:string // for userInfo};
+//   message?: string; //for error
+//   alcoState?: AlcoState;
+//   salary?: ISalaryInit;
+// }
 
 export const getSalary = createAsyncThunk(
   "salary/getSalary",
@@ -31,39 +37,15 @@ export const getSalary = createAsyncThunk(
   }
 );
 
-export const saveSalaryToDB = createAsyncThunk(
-  "salary/saveSalaryToDB",
-  async (
-    salary: ISalaryInit,
-    { rejectWithValue, dispatch, getState }
-  ) => {
-    try {
-      const response = await $authHost.post<IServerRes>(
-        "api/salary/save",
-        salary
-      );
-
-      return response.data;
-    } catch (error: any) {
-      if (!error.response) {
-        throw error;
-      }
-      return rejectWithValue(
-        "Server not responding. Salary data not update"
-      );
-    }
-  }
-);
-
-export const changeVacation = createAsyncThunk(
-  "salary/changeVacation",
+export const serverSalaryCalculate = createAsyncThunk(
+  "salary/serverSalaryCalculate",
   async (
     payload: IPayload,
     { rejectWithValue, dispatch, getState }
   ) => {
     try {
       const response = await $authHost.post<IServerRes>(
-        "api/salary/changeVacation",
+        "api/salary/calculate",
         payload
       );
 

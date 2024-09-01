@@ -1,5 +1,6 @@
 import { ISalaryContent } from "../types/salaryTypes";
 import { UserLanguages } from "../types/userTypes";
+import SERVICE from "./service";
 
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
@@ -36,6 +37,7 @@ export const SALARY_INIT = {
   ...SALARY_INPUTS,
   ...SALARY_RESULTS,
   ...SALARY_DATE,
+  service: SERVICE,
 };
 
 export const COEFFICIENTS = {

@@ -8,11 +8,7 @@ import {
   INIT_ALCO_YEAR,
 } from "../../constants/alcoConstants";
 import {
-  tryStorageData,
-  saveStateInStorage,
-  setDecimal,
   createKey,
-  addVodkaToState,
   minMaxDayValidation,
   minMaxMonthValidation,
 } from "./alcoHandlers";
@@ -22,10 +18,6 @@ import {
 } from "./http/alcoActions";
 import { AlcoState } from "../../types/alcoTypes";
 import { IServerRes } from "../../types/userTypes";
-
-// const store = tryStorageData(
-//   INIT_ALCO_STATE.currentDate.year
-// );
 
 export const alcoReducer = createSlice({
   name: "alcoState",

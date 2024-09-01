@@ -8,7 +8,7 @@ import {
   IPayload,
   ISalaryInit,
 } from "../../../types/salaryTypes";
-//TODO план такий: якщо в пайлоад не має хворобових і урлопових, то  розрахунок зп відбувається на стороні клієнта після чого зберігається на сервер; якщо хворобові/урлопові є то летить запит на сервер де розраховується їх середня вартість
+
 export const calculateSalary = (
   salary: ISalaryInit,
   payload: IPayload
