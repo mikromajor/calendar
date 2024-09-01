@@ -10,11 +10,11 @@ const {
   convertObjValToNumber,
 } = require("../utils/convertObjValToNumber");
 
+// TODO create one response model for all Controllers
 // model ServerRes {
-// user: {id:string ; email:string, message?:string};
 //   message?: string;
 //   alcoState?: AlcoState;
-//   salaryState?: ISalaryInit;
+//   salary?: ISalaryInit;
 // }
 
 class SalaryController {
@@ -30,7 +30,6 @@ class SalaryController {
       });
       return res.json({
         salary: salary ? salary : SALARY_INIT,
-        user: req.user,
       });
     } catch (e) {
       next(
@@ -59,7 +58,7 @@ class SalaryController {
         next
       );
       // await salary.save();
-      return res.json({ user: req.user, salary });
+      return res.json({ salary });
     } catch (e) {
       return next(
         ApiError.internal(

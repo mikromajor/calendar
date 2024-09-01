@@ -146,8 +146,8 @@ class AlcoController {
         next
       );
       return res.status(200).json({
-        token: req.user.token,
-        message: req.user.message,
+        // token: req.user.token,
+        // message: req.user.message,
         alcoState,
       });
     } catch (e) {
@@ -171,8 +171,8 @@ class AlcoController {
         next
       );
       return res.status(200).json({
-        token: req.user.token,
-        message: req.user.message,
+        // token: req.user.token,
+        // message: req.user.message,
         alcoState,
       });
     } catch (error) {
@@ -195,8 +195,8 @@ class AlcoController {
         next
       );
       return res.status(200).json({
-        token: req.user.token,
-        message: req.user.message,
+        // token: req.user.token,
+        // message: req.user.message,
         alcoState, // type YearData |null
       });
     } catch (e) {
