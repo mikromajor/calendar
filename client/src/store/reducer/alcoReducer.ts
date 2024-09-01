@@ -2,79 +2,17 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import {
-  INIT_ALCO_STATE,
-  INIT_MONTH,
-  INIT_ALCO_YEAR,
-} from "../../constants/alcoConstants";
-import {
-  createKey,
-  minMaxDayValidation,
-  minMaxMonthValidation,
-} from "./alcoHandlers";
+import { INIT_ALCO_STATE } from "../../constants/alcoConstants";
 import {
   getAlcoYear,
   addNewDoseToDB,
 } from "./http/alcoActions";
-import { AlcoState } from "../../types/alcoTypes";
 import { IServerRes } from "../../types/userTypes";
 
 export const alcoReducer = createSlice({
   name: "alcoState",
   initialState: INIT_ALCO_STATE,
-  reducers: {
-    changeDay: (state, action: PayloadAction<string>) => {
-      const day = action.payload;
-      const { month, year } = state.currentDate;
-
-      state.currentDate.day = minMaxDayValidation(
-        day,
-        month,
-        year
-      );
-    },
-
-    changeMonth: (state, action: PayloadAction<string>) => {
-      let month = minMaxMonthValidation(action.payload);
-      const { day, year } = state.currentDate;
-
-      state.currentDate.day = minMaxDayValidation(
-        day,
-        month,
-        year
-      );
-      state.currentDate.month = month;
-    },
-    changeYear: (
-      state,
-      action: PayloadAction<AlcoState>
-    ) => {
-      // Object.assign(state, action.payload);
-      state.currentDate = action.payload.currentDate;
-      state.yearData = action.payload.yearData;
-      state.service = action.payload.service;
-    },
-
-    //TODO change CLEARS func , use DB
-    clearYearData: (state) => {
-      const key = createKey(state.currentDate.year);
-      window.localStorage.removeItem(key);
-      state.yearData = { ...INIT_ALCO_YEAR };
-    },
-    clearMonthData: (state) => {
-      const currentMonth = Number(state.currentDate.month);
-      //TODO add checking for the existence of a month-object
-      if (state.yearData.months?.[currentMonth]) {
-        const { totalVodka } =
-          state.yearData.months[currentMonth];
-
-        state.yearData.totalVodka -= totalVodka;
-        state.yearData.months[currentMonth] = {
-          ...INIT_MONTH,
-        };
-      }
-    },
-  },
+  reducers: {},
   extraReducers: {
     // getAlcoYear
     [getAlcoYear.pending.type]: (state) => {

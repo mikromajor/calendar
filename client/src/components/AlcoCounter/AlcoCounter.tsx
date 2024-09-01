@@ -27,7 +27,6 @@ export const AlcoCounter = () => {
         ></div>
 
         <ControlPanel />
-        {/* <Cleaner /> */}
         {!!message && (
           <Message isError={isError} message={message} />
         )}

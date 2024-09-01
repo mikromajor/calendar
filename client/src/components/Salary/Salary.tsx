@@ -15,12 +15,17 @@ import {
 import { getObjKeys } from "./handlers/converters";
 import { DateRow } from "./DateRow";
 import { ResultsRows } from "./ResultsRows";
+import { Message } from "../ui";
+import { useAppSelector } from "../../store/hooks/redux";
 
 export function Salary() {
   const introductionsKeys =
     getObjKeys<ISalaryInputs>(SALARY_INPUTS);
   const resultsKeys =
     getObjKeys<ISalaryResults>(SALARY_RESULTS);
+  const { isError, message } = useAppSelector(
+    (state) => state.salaryReducer.service
+  );
 
   return (
     <TableContainer component={Paper}>
@@ -34,6 +39,9 @@ export function Salary() {
           <ResultsRows />
         </TableBody>
       </Table>
+      {!!message && (
+        <Message isError={isError} message={message} />
+      )}
     </TableContainer>
   );
 }
