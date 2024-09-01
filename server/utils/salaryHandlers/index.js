@@ -11,6 +11,7 @@ const {
 const {
   updateSalaryInputs,
 } = require("./updateSalaryInputs");
+const { getVacationCoef } = require("./getVacationCoef");
 
 module.exports = {
   amountWeekendsAndWeekdays,
@@ -20,4 +21,5 @@ module.exports = {
   createArrLastThreeSalaryId,
   createCurrentSalaryId,
   updateSalaryInputs,
+  getVacationCoef,
 };

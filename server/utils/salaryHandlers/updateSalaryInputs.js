@@ -5,15 +5,22 @@ const {
 } = require("../../constants/initStates");
 const { createCurrentSalaryId } = require("./.");
 
-const updateSalaryInputs = async (salaryInputs) => {
-  const userId = Number(salaryId.split("_")[0]);
+const updateSalaryInputs = async (
+  salaryInputs,
+  reqUserId,
+  next
+) => {
+  const { userId, salaryId } = createCurrentSalaryId(
+    reqUserId,
+    salaryInputs
+  );
   try {
     let salary = await Salary.findOne({
       where: { id: salaryId },
     });
     if (salary) {
       Object.assign(salary, salaryInputs);
-      await salary.save();
+      // await salary.save();
     } else {
       salary = await Salary.create({
         ...SALARY_INIT,

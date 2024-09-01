@@ -1,6 +1,7 @@
-const createCurrentSalaryId = (id, year, month) => {
-  const userId = Number(id);
-  const salaryId = id + "_" + year + "_" + month;
+const createCurrentSalaryId = (reqUserId, salaryInputs) => {
+  const { year, month } = salaryInputs;
+  const userId = Number(reqUserId);
+  const salaryId = reqUserId + "_" + year + "_" + month;
   return { userId, salaryId };
 };
 

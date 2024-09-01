@@ -1,12 +1,13 @@
 const {
   amountWeekendsAndWeekdays,
-} = require("./amountWeekendsAndWeekdays");
+  getVacationCoef,
+} = require("./index");
 
 const {
   SALARY_COEFFICIENTS,
 } = require("../../constants/initStates");
 
-const calcSalary = (salary, vacationCoef = 0) => {
+const calcSalary = (salary, next) => {
   const {
     sickRate,
     premium_50_percent,
@@ -29,7 +30,15 @@ const calcSalary = (salary, vacationCoef = 0) => {
     bloodDonation,
     year,
     month,
+    userId,
   } = salary;
+
+  let vacationCoef = getVacationCoef(
+    userId,
+    year,
+    month,
+    next
+  );
 
   const { weekends, weekdays } = amountWeekendsAndWeekdays(
     year,
@@ -89,5 +98,6 @@ const calcSalary = (salary, vacationCoef = 0) => {
 
   salary.totalSalary =
     salary.standardSalary + salary.extraSalary;
+  return salary;
 };
 module.exports = { calcSalary };

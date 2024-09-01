@@ -3,12 +3,8 @@ const ApiError = require("../error/ApiError");
 const { SALARY_INIT } = require("../constants/initStates");
 const {
   calcSalary,
-  calcVacationCoef,
-  getArrSalaries,
-  createArrLastThreeSalaryId,
   createCurrentSalaryId,
   updateSalaryInputs,
-  getVacationCoef,
 } = require("../utils/salaryHandlers/index");
 const {
   convertObjValToNumber,
@@ -46,7 +42,6 @@ class SalaryController {
   async calculate(req, res, next) {
     //POST http://localhost:7000/api/salary/calculate
     //salaryInit
-    let salary;
     const payload = convertObjValToNumber(req.body);
 
     const notCalculatedSalary = await updateSalaryInputs(
@@ -56,7 +51,7 @@ class SalaryController {
     );
 
     try {
-      salary = calcSalary(notCalculatedSalary, next);
+      let salary = calcSalary(notCalculatedSalary, next);
       await salary.save();
       return res.json({ user: req.user, salary });
     } catch (e) {
