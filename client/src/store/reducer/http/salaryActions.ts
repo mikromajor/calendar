@@ -22,7 +22,7 @@ export const getSalary = createAsyncThunk(
     const { year, month } = salaryDate;
     try {
       const response = await $authHost.get<IServerRes>(
-        `api/salary/getSalary?year=${year}&month=${month}`
+        `api/salary/getOne?year=${year}&month=${month}`
       );
 
       return response.data;
