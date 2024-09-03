@@ -1,7 +1,6 @@
 import {
   ControlPanel,
   Display,
-  Cleaner,
   AlcoHeader,
   Calendar,
 } from "./alcoComponents";

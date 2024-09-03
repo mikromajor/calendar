@@ -37,13 +37,6 @@ export type StateKeys = keyof AlcoState;
 
 export type AlcoActionsType = typeof alcoActions;
 export type AlcoActionsKeys = keyof AlcoActionsType;
-
-const { changeYear, clearMonthData } = alcoActions;
-
-export type ActionsChangeData =
-  | typeof changeYear
-  | typeof clearMonthData;
-
 export interface AdditiveDayData {
   additiveVodka?: number;
   additiveBill?: number;

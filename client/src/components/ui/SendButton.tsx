@@ -24,8 +24,8 @@ export const SendButton = ({
   sendData,
   sendHandler,
 }: ISendButtonProps) => {
-  const isLoading = useAppSelector(
-    (state) => state.userReducer.isLoading
+  const { isLoading } = useAppSelector(
+    (state) => state.userReducer.service
   );
   const dispatch = useAppDispatch();
 
