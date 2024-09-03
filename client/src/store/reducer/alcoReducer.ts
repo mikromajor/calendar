@@ -8,45 +8,23 @@ import {
   addNewDoseToDB,
 } from "./http/alcoActions";
 import { IServerRes } from "../../types/userTypes";
-import {
-  minMaxDayValidation,
-  minMaxMonthValidation,
-} from "./alcoHandlers";
 import { AlcoState } from "../../types/alcoTypes";
 
 export const alcoReducer = createSlice({
   name: "alcoState",
   initialState: INIT_ALCO_STATE,
   reducers: {
+    //synchronous change date in calendar
     changeDay: (state, action: PayloadAction<string>) => {
-      const day = action.payload;
-      const { month, year } = state.currentDate;
-      state.currentDate.day = minMaxDayValidation(
-        day,
-        month,
-        year
-      );
+      state.currentDate.day = action.payload;
     },
 
     changeMonth: (state, action: PayloadAction<string>) => {
-      let month = minMaxMonthValidation(action.payload);
-      const { day, year } = state.currentDate;
-
-      state.currentDate.day = minMaxDayValidation(
-        day,
-        month,
-        year
-      );
-      state.currentDate.month = month;
+      state.currentDate.month = action.payload;
     },
-    changeYear: (
-      state,
-      action: PayloadAction<AlcoState>
-    ) => {
+    changeYear: (state, action: PayloadAction<string>) => {
       // Object.assign(state, action.payload);
-      state.currentDate = action.payload.currentDate;
-      state.yearData = action.payload.yearData;
-      state.service = action.payload.service;
+      state.currentDate.year = action.payload;
     },
   },
   extraReducers: {

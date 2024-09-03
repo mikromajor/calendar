@@ -52,7 +52,6 @@ export function AddButton({
       );
     }
   };
-  //TODO add message from server
   return (
     <Box
       sx={{
