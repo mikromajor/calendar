@@ -7,6 +7,7 @@ import SERVICE from "./service";
 
 const INIT_USER: IUser = {
   token: "",
+  message: "",
 };
 
 export const INIT_USER_STATE = {

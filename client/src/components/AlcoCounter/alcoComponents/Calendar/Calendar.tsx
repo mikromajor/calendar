@@ -97,11 +97,14 @@ export function Calendar() {
       const newMonth = date.month() + 1 + "";
       const newYear = date.year() + "";
 
-      newYear !== year &&
-        (dispatch(changeYear(newYear)),
+      if (newYear !== year) {
+        dispatch(changeYear(newYear));
+
         dispatch(
           getAlcoYear({ year: newYear, month, day })
-        ));
+        );
+      }
+
       newMonth !== month && dispatch(changeMonth(newMonth));
 
       newDay !== day && dispatch(changeDay(newDay));

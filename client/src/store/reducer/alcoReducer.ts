@@ -26,6 +26,15 @@ export const alcoReducer = createSlice({
       // Object.assign(state, action.payload);
       state.currentDate.year = action.payload;
     },
+    updateAlcoSliceAfterLogin: (
+      state,
+      action: PayloadAction<AlcoState>
+    ) => {
+      // Object.assign(state, action.payload);
+      state.currentDate = action.payload.currentDate;
+      state.yearData = action.payload.yearData;
+      state.service = action.payload.service;
+    },
   },
   extraReducers: {
     // getAlcoYear

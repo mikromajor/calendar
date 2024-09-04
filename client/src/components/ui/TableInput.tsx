@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { StyledTableCell } from "../Salary/StyledElements";
 import { ISalaryInit } from "../../types/salaryTypes";
@@ -20,20 +21,31 @@ export const TableInput = ({
   const { salaryReducer } = useAppSelector(
     (store) => store
   );
+  const [inputVal, setInputVal] = useState(
+    salaryReducer[keyWord]
+  );
   const { year, month, service } = salaryReducer;
   const dispatch = useAppDispatch();
 
   const handleOnChange = (e: E) => {
     const val = Number(e.currentTarget.value);
-
-    dispatch(
-      serverSalaryCalculate({ year, month, [keyWord]: val })
+    setInputVal(val);
+    setTimeout(
+      () =>
+        dispatch(
+          serverSalaryCalculate({
+            year,
+            month,
+            [keyWord]: inputVal,
+          })
+        ),
+      2000 //delay for server response
     );
   };
   return (
     <StyledTableCell align='right'>
       <TextField
-        value={salaryReducer[keyWord]}
+        value={inputVal}
         onChange={handleOnChange}
         disabled={service.isLoading}
       />

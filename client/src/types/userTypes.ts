@@ -12,6 +12,7 @@ export enum UserThemes {
 }
 export interface IUser {
   token: string;
+  message: string;
 }
 
 export interface IUserResReject {
@@ -22,10 +23,11 @@ export interface EmailPassword {
   email: string;
   password: string;
 }
-export interface IServerRes extends IUser {
+export interface IServerRes {
   message: string;
   alcoState: AlcoState;
   salary: ISalaryInit;
+  user: IUser;
 }
 export type ModalOpen =
   | ""

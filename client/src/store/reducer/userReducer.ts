@@ -55,8 +55,7 @@ export const userReducer = createSlice({
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      const { token, message } = action.payload;
-      state.service.message = message;
+      state.service.message = action.payload.message;
       state.service.isLoading = false;
       state.service.isError = false;
     },

@@ -6,9 +6,9 @@ import {
 import { $host, $authHost } from "./host";
 import { alcoActions } from "../alcoReducer";
 
-const saveTokenToLocalStorage = (token: string) => {
-  !!token && localStorage.setItem("token", token);
-};
+const saveTokenToLocalStorage = (token: string) =>
+  token && localStorage.setItem("token", token);
+
 //REGISTRATION
 const fetchUserRegistration = createAsyncThunk(
   "user/fetchUserRegistration",
@@ -21,7 +21,7 @@ const fetchUserRegistration = createAsyncThunk(
         "api/user/registration",
         emailPassword
       );
-      saveTokenToLocalStorage(res.data?.token);
+      saveTokenToLocalStorage(res.data.user?.token);
       return res.data;
     } catch (error: any) {
       if (!error.response) {
@@ -44,23 +44,18 @@ const fetchUserLogin = createAsyncThunk(
         "api/user/login",
         emailPassword
       );
-      saveTokenToLocalStorage(response.data?.token);
+      saveTokenToLocalStorage(response.data.user?.token);
+      dispatch(
+        alcoActions.updateAlcoSliceAfterLogin(
+          response.data?.alcoState
+        )
+      );
     } catch (error: any) {
       if (!error.response) {
         throw error;
       }
       return rejectWithValue(error.response.data);
     }
-
-    try {
-      dispatch(
-        alcoActions.changeYear(response.data.alcoState)
-      );
-    } catch (error) {
-      response.data.message =
-        "ERROR. Problem with dispatch in fetchUserLogin";
-    }
-
     return response.data;
   }
 );
@@ -72,7 +67,10 @@ const fetchUserAuth = createAsyncThunk(
       const response = await $authHost.get<IServerRes>(
         "api/user/auth"
       );
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem(
+        "token",
+        response.data.user?.token
+      );
       return response.data;
     } catch (error: any) {
       if (!error.response) {
