@@ -10,7 +10,7 @@ interface ISnackProps {
   isError: boolean;
   message: string;
 }
-
+// todo remove Message from Top to AlcoCalc
 export function Message({ isError, message }: ISnackProps) {
   const [open, setOpen] = React.useState(false);
 

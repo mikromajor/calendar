@@ -14,7 +14,7 @@ import { Message } from "../../ui";
 
 export default function UserAuthBar() {
   const [open, setOpen] = useState<ModalOpen>("");
-  const { message, isError } = useAppSelector(
+  const { message } = useAppSelector(
     (store) => store.userReducer.service
   );
   const dispatch = useAppDispatch();
@@ -37,10 +37,7 @@ export default function UserAuthBar() {
     setOpen("logout");
   };
 
-  const buttonClick = (callback: () => void) => {
-    message && dispatch(userActions.cleanMessage());
-    callback();
-  };
+  const buttonClick = (callback: () => void) => callback();
 
   return (
     <Stack direction='row'>
@@ -78,9 +75,6 @@ export default function UserAuthBar() {
         {open === "login" && <Login />}
         {open === "logout" && <Logout setOpen={setOpen} />}
       </UserModal>
-      {!!message && (
-        <Message isError={isError} message={message} />
-      )}
     </Stack>
   );
 }

@@ -11,18 +11,22 @@ import { getSalary } from "../../store/reducer/http/salaryActions";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
 import { SelectTheme } from "./SelectTheme";
 import { SelectLanguage } from "./SelectLanguage";
+import { Message } from "../ui";
+
 interface TopMenuPops {
-  setShowAlcoCalc: React.Dispatch<
+  setSwitchCalcs: React.Dispatch<
     React.SetStateAction<boolean>
   >;
 }
 
-export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
+export function TopMenu({ setSwitchCalcs }: TopMenuPops) {
   const dispatch = useAppDispatch();
   const { userReducer, salaryReducer } = useAppSelector(
     (state) => state
   );
-  const { currentLang } = userReducer;
+  const { currentLang, service } = userReducer;
+  const { isError, message } = service;
+
   const [anchorEl, setAnchorEl] =
     useState<null | HTMLElement>(null);
 
@@ -38,11 +42,11 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
     setAnchorEl(null);
   };
   const switchToAlcoCalc = () => {
-    setShowAlcoCalc(true);
+    setSwitchCalcs(true);
     setAnchorEl(null);
   };
   const switchToSalary = () => {
-    setShowAlcoCalc(false);
+    setSwitchCalcs(false);
     setAnchorEl(null);
     dispatch(getSalary({ year, month }));
   };
@@ -81,6 +85,9 @@ export function TopMenu({ setShowAlcoCalc }: TopMenuPops) {
         <SelectLanguage />
         <UserAuthBar />
       </Menu>
+      {message && (
+        <Message isError={isError} message={message} />
+      )}
     </div>
   );
 }

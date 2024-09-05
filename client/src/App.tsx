@@ -8,7 +8,7 @@ import {
 import { UserThemes } from "./types/userTypes";
 
 function App() {
-  const [showAlcoCalc, setShowAlcoCalc] = useState(true);
+  const [switchCalcs, setSwitchCalcs] = useState(true);
   const { currentTheme } = useAppSelector(
     (state) => state.userReducer
   );
@@ -37,8 +37,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className={`app app--${currentTheme}`}>
-        <TopMenu setShowAlcoCalc={setShowAlcoCalc} />
-        {showAlcoCalc ? <AlcoCounter /> : <Salary />}
+        <TopMenu setSwitchCalcs={setSwitchCalcs} />
+        {switchCalcs ? <AlcoCounter /> : <Salary />}
       </div>
     </ThemeProvider>
   );

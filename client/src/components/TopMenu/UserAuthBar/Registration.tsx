@@ -37,9 +37,7 @@ export function Registration() {
     updatePasswordState({
       password: passwordVal,
       passwordError:
-        !!validMessage || !isPasswordMachining
-          ? true
-          : false,
+        validMessage || !isPasswordMachining ? true : false,
       passwordMessage: validMessage ? validMessage : "",
       repeatPasswordMessage: isPasswordMachining
         ? ""
