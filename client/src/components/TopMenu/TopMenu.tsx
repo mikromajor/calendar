@@ -11,7 +11,6 @@ import { getSalary } from "../../store/reducer/http/salaryActions";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
 import { SelectTheme } from "./SelectTheme";
 import { SelectLanguage } from "./SelectLanguage";
-
 interface TopMenuPops {
   setShowAlcoCalc: React.Dispatch<
     React.SetStateAction<boolean>

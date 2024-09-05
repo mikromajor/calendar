@@ -19,7 +19,12 @@ export default function UserAuthBar() {
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
-    !!message && setOpen("");
+    if (message) {
+      setOpen("");
+      setTimeout(() => {
+        dispatch(userActions.cleanMessage());
+      }, 3000); // show message duration
+    }
   }, [message]);
 
   const openRegistration = () => {
@@ -33,7 +38,7 @@ export default function UserAuthBar() {
   };
 
   const buttonClick = (callback: () => void) => {
-    !!message && dispatch(userActions.cleanMessage());
+    message && dispatch(userActions.cleanMessage());
     callback();
   };
 

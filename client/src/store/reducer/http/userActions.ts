@@ -4,7 +4,8 @@ import {
   EmailPassword,
 } from "../../../types/userTypes";
 import { $host, $authHost } from "./host";
-import { alcoActions } from "../alcoReducer";
+import alcoReducer, { alcoActions } from "../alcoReducer";
+import { userActions } from "../userReducer";
 
 const saveTokenToLocalStorage = (token: string) =>
   token && localStorage.setItem("token", token);
@@ -21,7 +22,6 @@ const fetchUserRegistration = createAsyncThunk(
         "api/user/registration",
         emailPassword
       );
-      saveTokenToLocalStorage(res.data.user?.token);
       return res.data;
     } catch (error: any) {
       if (!error.response) {
@@ -50,13 +50,13 @@ const fetchUserLogin = createAsyncThunk(
           response.data?.alcoState
         )
       );
+      return response.data;
     } catch (error: any) {
       if (!error.response) {
         throw error;
       }
       return rejectWithValue(error.response.data);
     }
-    return response.data;
   }
 );
 //AUTH

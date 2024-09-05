@@ -81,7 +81,7 @@ export const userReducer = createSlice({
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      const { message } = action.payload;
+      const { message } = action.payload.user;
 
       state.service.message = message;
       state.service.isError = false;

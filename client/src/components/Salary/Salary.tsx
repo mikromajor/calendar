@@ -39,7 +39,7 @@ export function Salary() {
           <ResultsRows />
         </TableBody>
       </Table>
-      {!!message && (
+      {message && (
         <Message isError={isError} message={message} />
       )}
     </TableContainer>

@@ -30,6 +30,7 @@ export const alcoReducer = createSlice({
       state,
       action: PayloadAction<AlcoState>
     ) => {
+      //TODO after changed changeYear - login message gone
       // Object.assign(state, action.payload);
       state.currentDate = action.payload.currentDate;
       state.yearData = action.payload.yearData;
