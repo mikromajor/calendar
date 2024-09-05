@@ -18,14 +18,14 @@ export default function UserAuthBar() {
     (store) => store.userReducer.service
   );
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    if (message) {
-      setOpen("");
-      setTimeout(() => {
-        dispatch(userActions.cleanMessage());
-      }, 3000); // show message duration
-    }
-  }, [message]);
+  // useEffect(() => {
+  //   if (message) {
+  //     setOpen("");
+  //     setTimeout(() => {
+  //       dispatch(userActions.resetMessage());
+  //     }, 3000); // show message duration
+  //   }
+  // }, [message]);
 
   const openRegistration = () => {
     setOpen("reg");

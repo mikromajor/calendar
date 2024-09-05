@@ -6,6 +6,7 @@ import {
 } from "./alcoComponents";
 import { useAppSelector } from "../../store/hooks/redux";
 import { Message } from "../ui";
+import { alcoActions } from "../../store/reducer/alcoReducer";
 
 export const AlcoCounter = () => {
   const { currentTheme } = useAppSelector(
@@ -26,9 +27,11 @@ export const AlcoCounter = () => {
         ></div>
 
         <ControlPanel />
-        {!!message && (
-          <Message isError={isError} message={message} />
-        )}
+        <Message
+          isError={isError}
+          message={message}
+          resetMessage={alcoActions.resetMessage}
+        />
       </div>
     </>
   );

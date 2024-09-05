@@ -14,7 +14,12 @@ import { IServerRes } from "../../types/userTypes";
 export const salaryReducer = createSlice({
   name: "salaryState",
   initialState: SALARY_INIT,
-  reducers: {},
+  reducers: {
+    resetMessage: (state) => {
+      state.service.message = "";
+      state.service.isError = false;
+    },
+  },
   extraReducers: {
     //getSalary
     [getSalary.pending.type]: (state) => {

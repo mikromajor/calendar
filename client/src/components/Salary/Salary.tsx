@@ -17,6 +17,7 @@ import { DateRow } from "./DateRow";
 import { ResultsRows } from "./ResultsRows";
 import { Message } from "../ui";
 import { useAppSelector } from "../../store/hooks/redux";
+import { salaryActions } from "../../store/reducer/salaryReducer";
 
 export function Salary() {
   const introductionsKeys =
@@ -39,9 +40,11 @@ export function Salary() {
           <ResultsRows />
         </TableBody>
       </Table>
-      {message && (
-        <Message isError={isError} message={message} />
-      )}
+      <Message
+        isError={isError}
+        message={message}
+        resetMessage={salaryActions.resetMessage}
+      />
     </TableContainer>
   );
 }

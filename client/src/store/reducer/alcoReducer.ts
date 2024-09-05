@@ -30,11 +30,13 @@ export const alcoReducer = createSlice({
       state,
       action: PayloadAction<AlcoState>
     ) => {
-      //TODO after changed changeYear - login message gone
-      // Object.assign(state, action.payload);
-      state.currentDate = action.payload.currentDate;
-      state.yearData = action.payload.yearData;
-      state.service = action.payload.service;
+      Object.assign(state, action.payload);
+    },
+
+    resetMessage: (state) => {
+      // TODO change duplicate code in all slices
+      state.service.message = "";
+      state.service.isError = false;
     },
   },
   extraReducers: {

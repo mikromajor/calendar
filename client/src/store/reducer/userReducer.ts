@@ -41,7 +41,7 @@ export const userReducer = createSlice({
       localStorage.setItem("token", "");
       state.service.message = "logged out successfully";
     },
-    cleanMessage: (state) => {
+    resetMessage: (state) => {
       state.service.message = "";
       state.service.isError = false;
     },

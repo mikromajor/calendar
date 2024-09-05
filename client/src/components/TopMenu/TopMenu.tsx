@@ -8,6 +8,7 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { getSalary } from "../../store/reducer/http/salaryActions";
+import { userActions } from "../../store/reducer/userReducer";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
 import { SelectTheme } from "./SelectTheme";
 import { SelectLanguage } from "./SelectLanguage";
@@ -85,9 +86,12 @@ export function TopMenu({ setSwitchCalcs }: TopMenuPops) {
         <SelectLanguage />
         <UserAuthBar />
       </Menu>
-      {message && (
-        <Message isError={isError} message={message} />
-      )}
+
+      <Message
+        isError={isError}
+        message={message}
+        resetMessage={userActions.resetMessage}
+      />
     </div>
   );
 }
