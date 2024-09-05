@@ -141,8 +141,13 @@ class AlcoController {
         alcoState, // type YearData |null
       });
     } catch (e) {
+      //crutches
       next(
-        ApiError.internal("Error in alcoController.login")
+        res.status(200).json({
+          user: req.user,
+          message: "Error in alcoController.login",
+        })
+        // ApiError.internal("Error in alcoController.login")
       );
     }
   }
