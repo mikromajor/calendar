@@ -27,7 +27,7 @@ export interface IServerRes {
   message: string;
   alcoState: AlcoState;
   salary: ISalaryInit;
-  user: IUser;
+  token: string;
 }
 export type ModalOpen =
   | ""

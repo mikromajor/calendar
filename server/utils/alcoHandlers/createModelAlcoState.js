@@ -12,8 +12,7 @@ const { getDateMonthYear } = require("../getDateMonthYear");
 //creating response models like INIT_ALCO_STATE
 const createModelAlcoState = async (
   currentDate,
-  userId,
-  next
+  userId
 ) => {
   const yearId = userId + "_" + currentDate.year;
 
@@ -62,11 +61,13 @@ const createModelAlcoState = async (
 
     alcoState.yearData = yearData;
 
-    return alcoState;
+    return { alcoState, errorMessage: "" };
   } catch (error) {
-    next(
-      ApiError.internal("Response model was not create")
-    );
+    return {
+      alcoState,
+      errorMessage:
+        "Response model created with error. Details: " + e,
+    };
   }
 };
 module.exports = { createModelAlcoState };

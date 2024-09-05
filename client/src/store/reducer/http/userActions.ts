@@ -44,7 +44,7 @@ const fetchUserLogin = createAsyncThunk(
         "api/user/login",
         emailPassword
       );
-      saveTokenToLocalStorage(response.data.user?.token);
+      saveTokenToLocalStorage(response.data?.token);
       dispatch(
         alcoActions.updateAlcoSliceAfterLogin(
           response.data?.alcoState
@@ -67,11 +67,7 @@ const fetchUserAuth = createAsyncThunk(
       const response = await $authHost.get<IServerRes>(
         "api/user/auth"
       );
-      localStorage.setItem(
-        "token",
-        response.data.user?.token
-      );
-      return response.data;
+      localStorage.setItem("token", response.data?.token);
     } catch (error: any) {
       if (!error.response) {
         throw error;

@@ -15,7 +15,7 @@ const {
 } = require("../utils/alcoHandlers/createModelAlcoState");
 
 // model ServerRes {
-//   user?:{token:string; message:string // for userInfo};
+//   token?:string;
 //   message?: string; //for error
 //   alcoState?: AlcoState;
 //   salary?: ISalaryInit;
@@ -127,29 +127,24 @@ class AlcoController {
   }
 
   async login(req, res, next) {
-    try {
-      const [day, month, year] = getDateMonthYear(
-        new Date()
-      );
-      const alcoState = await createModelAlcoState(
+    const [day, month, year] = getDateMonthYear(new Date());
+    const { alcoState, errorMessage } =
+      await createModelAlcoState(
         { day, month, year },
         Number(req.user.id),
         next
       );
-      return res.status(200).json({
-        user: req.user,
-        alcoState, // type YearData |null
-      });
-    } catch (e) {
-      //crutches
-      next(
-        res.status(200).json({
+    return !errorMessage
+      ? res.status(200).json({
           user: req.user,
-          message: "Error in alcoController.login",
+          message: req.user.message,
+          alcoState, // type YearData |null
         })
-        // ApiError.internal("Error in alcoController.login")
-      );
-    }
+      : res.status(200).json({
+          user: req.user,
+          message: req.user.message + errorMessage,
+          alcoState: INIT_ALCO_STATE,
+        });
   }
 }
 

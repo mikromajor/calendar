@@ -81,9 +81,7 @@ export const userReducer = createSlice({
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      const { message } = action.payload.user;
-
-      state.service.message = message;
+      state.service.message = action.payload.message;
       state.service.isError = false;
       state.service.isLoading = false;
     },
@@ -93,9 +91,11 @@ export const userReducer = createSlice({
       action: PayloadAction<IServerRes>
     ) => {
       const message = action.payload?.message;
+
       state.service.message = message
         ? message
         : MESSAGES.unexpectedError;
+
       state.service.isLoading = false;
       state.service.isError = true;
     },
@@ -103,11 +103,7 @@ export const userReducer = createSlice({
     [fetchUserAuth.pending.type]: (state) => {
       state.service.isLoading = true;
     },
-    [fetchUserAuth.fulfilled.type]: (
-      state,
-      action: PayloadAction<IUser>
-    ) => {
-      state.user = action.payload;
+    [fetchUserAuth.fulfilled.type]: (state) => {
       state.service.isLoading = false;
       state.service.isError = false;
     },
