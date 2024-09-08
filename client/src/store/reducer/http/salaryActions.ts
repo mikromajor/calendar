@@ -5,6 +5,7 @@ import {
   IPayload,
 } from "../../../types/salaryTypes";
 import { IServerRes } from "../../../types/userTypes";
+import { serviceActions } from "../serviceSlice";
 
 // model ServerRes {
 //   user?:{token:string; message:string // for userInfo};
@@ -21,17 +22,20 @@ export const getSalary = createAsyncThunk(
   ) => {
     const { year, month } = salaryDate;
     try {
-      const response = await $authHost.get<IServerRes>(
+      const res = await $authHost.get<IServerRes>(
         `api/salary/getOne?year=${year}&month=${month}`
       );
-
-      return response.data;
+      let message = res.data?.message;
+      dispatch(
+        serviceActions.responseOk(message ? message : "")
+      );
+      return res.data;
     } catch (error: any) {
-      if (error?.response) {
-        return rejectWithValue(error.response.data);
-      }
-      return rejectWithValue(
-        "Server not responding. Salary data not received"
+      let eRespons = error?.respons;
+      dispatch(
+        serviceActions.responseReject(
+          eRespons ? eRespons.data : error
+        )
       );
     }
   }
@@ -44,19 +48,28 @@ export const serverSalaryCalculate = createAsyncThunk(
     { rejectWithValue, dispatch, getState }
   ) => {
     try {
-      const response = await $authHost.post<IServerRes>(
+      const res = await $authHost.post<IServerRes>(
         "api/salary/calculate",
         payload
       );
-
-      return response.data;
-    } catch (error: any) {
-      if (!error.response) {
-        throw error;
-      }
-      return rejectWithValue(
-        "Server not responding. Salary vacation data not update"
+      let message = res.data?.message;
+      dispatch(
+        serviceActions.responseOk(message ? message : "")
       );
+      return res.data;
+    } catch (error: any) {
+      let eRespons = error?.respons;
+      dispatch(
+        serviceActions.responseReject(
+          eRespons ? eRespons.data : error
+        )
+      );
+      // if (!error.res) {
+      //   throw error;
+      // }
+      // return rejectWithValue(
+      //   "Server not responding. Salary vacation data not update"
+      // );
     }
   }
 );

@@ -6,7 +6,7 @@ import {
 } from "./alcoComponents";
 import { useAppSelector } from "../../store/hooks/redux";
 import { Message } from "../ui";
-import { alcoActions } from "../../store/reducer/alcoReducer";
+import { alcoActions } from "../../store/reducer/alcoSlice";
 
 export const AlcoCounter = () => {
   const { currentTheme } = useAppSelector(

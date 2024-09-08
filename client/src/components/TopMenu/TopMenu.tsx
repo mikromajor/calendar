@@ -8,7 +8,7 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { getSalary } from "../../store/reducer/http/salaryActions";
-import { userActions } from "../../store/reducer/userReducer";
+import { userActions } from "../../store/reducer/userSlice";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
 import { SelectTheme } from "./SelectTheme";
 import { SelectLanguage } from "./SelectLanguage";

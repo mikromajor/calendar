@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Stack } from "@mui/material";
 import { passwordValidator } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
-import { fetchUserRegistration } from "../../../store/reducer/http/userActions";
+import { fetchUserRegistration } from "../../../store/reducer/http/authActions";
 import { Email, Password, SendButton } from "../../ui";
 import { ModalOpen } from "../../../types/userTypes";
 

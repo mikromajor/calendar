@@ -4,10 +4,6 @@ import {
 } from "@reduxjs/toolkit";
 
 import SERVICE_INIT from "../../constants/serviceConstants";
-import {
-  IServerRes,
-  IUserResReject,
-} from "../../types/userTypes";
 import { MESSAGES } from "../../constants/userConstants";
 
 export const serviceSlice = createSlice({
@@ -23,19 +19,19 @@ export const serviceSlice = createSlice({
     },
     responseOk: (
       serviceState,
-      action: PayloadAction<IServerRes>
+      action: PayloadAction<string>
     ) => {
       serviceState.isLoading = false;
       serviceState.isError = false;
-      serviceState.message = action.payload.message;
+      serviceState.message = action.payload;
     },
     responseReject: (
       serviceState,
-      action: PayloadAction<IUserResReject>
+      action: PayloadAction<string>
     ) => {
       serviceState.isLoading = false;
       serviceState.isError = true;
-      serviceState.message = action.payload.message;
+      serviceState.message = action.payload;
     },
     logOut: (serviceState) => {
       localStorage.setItem("token", "");
@@ -44,6 +40,12 @@ export const serviceSlice = createSlice({
     resetMessage: (serviceState) => {
       serviceState.message = "";
       serviceState.isError = false;
+    },
+    addMessage: (
+      serviceState,
+      action: PayloadAction<string>
+    ) => {
+      serviceState.message = action.payload;
     },
   },
 });

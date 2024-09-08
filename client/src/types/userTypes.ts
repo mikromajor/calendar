@@ -10,24 +10,16 @@ export enum UserThemes {
   WHITE = "white-theme",
   DARK = "dark-theme",
 }
-export interface IUser {
-  token: string;
-  message: string;
-}
 
-export interface IUserResReject {
-  message: string;
-  status: string;
-}
 export interface EmailPassword {
   email: string;
   password: string;
 }
 export interface IServerRes {
-  message: string;
-  alcoState: AlcoState;
-  salary: ISalaryInit;
-  token: string;
+  message?: string;
+  alcoState?: AlcoState;
+  salary?: ISalaryInit;
+  token?: string;
 }
 export type ModalOpen =
   | ""

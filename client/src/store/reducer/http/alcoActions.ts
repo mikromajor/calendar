@@ -5,6 +5,7 @@ import {
   IDose,
   CurrentDate,
 } from "../../../types/alcoTypes";
+import { serviceActions } from "../serviceSlice";
 
 export const getAlcoYear = createAsyncThunk(
   "alcoCalc/getAlcoYear",
@@ -14,11 +15,15 @@ export const getAlcoYear = createAsyncThunk(
   ) => {
     const { year, month, day } = date;
     try {
-      const response = await $authHost.get<IServerRes>(
+      const res = await $authHost.get<IServerRes>(
         `api/alco_calendar/get?year=${year}&month=${month}&day=${day}`
       );
+      let message = res.data?.message;
+      dispatch(
+        serviceActions.responseOk(message ? message : "")
+      );
 
-      return response.data;
+      return res.data;
     } catch (error: any) {
       if (error?.response) {
         return rejectWithValue(error.response.data);

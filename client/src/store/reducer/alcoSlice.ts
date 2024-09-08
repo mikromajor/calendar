@@ -10,7 +10,7 @@ import {
 import { IServerRes } from "../../types/userTypes";
 import { AlcoState } from "../../types/alcoTypes";
 
-export const alcoReducer = createSlice({
+export const alcoSlice = createSlice({
   name: "alcoState",
   initialState: INIT_ALCO_STATE,
   reducers: {
@@ -41,48 +41,49 @@ export const alcoReducer = createSlice({
   },
   extraReducers: {
     // getAlcoYear
-    [getAlcoYear.pending.type]: (state) => {
-      state.service.isLoading = true;
-      state.service.isError = false;
-      state.service.message = "";
-    },
+    // [getAlcoYear.pending.type]: (state) => {
+    //   state.service.isLoading = true;
+    //   state.service.isError = false;
+    //   state.service.message = "";
+    // },
     [getAlcoYear.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      Object.assign(state, action.payload.alcoState);
+      let alcoState = action.payload?.alcoState;
+      alcoState && Object.assign(state, alcoState);
     },
-    [getAlcoYear.rejected.type]: (
-      state,
-      action: PayloadAction<IServerRes>
-    ) => {
-      state.service.message = action.payload.message;
-      state.service.isLoading = false;
-      state.service.isError = true;
-    },
+    // [getAlcoYear.rejected.type]: (
+    //   state,
+    //   action: PayloadAction<IServerRes>
+    // ) => {
+    //   state.service.message = action.payload.message;
+    //   state.service.isLoading = false;
+    //   state.service.isError = true;
+    // },
     //addNewDose
-    [addNewDoseToDB.pending.type]: (state) => {
-      state.service.isLoading = true;
-      state.service.isError = false;
-      state.service.message = "";
-    },
+    // [addNewDoseToDB.pending.type]: (state) => {
+    //   state.service.isLoading = true;
+    //   state.service.isError = false;
+    //   state.service.message = "";
+    // },
     [addNewDoseToDB.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      Object.assign(state, action.payload.alcoState);
+      let alcoState = action.payload?.alcoState;
+      alcoState && Object.assign(state, alcoState);
     },
-    [addNewDoseToDB.rejected.type]: (
-      state,
-      action: PayloadAction<IServerRes>
-    ) => {
-      state.service.message = action.payload.message;
-      state.service.isError = true;
-      state.service.isLoading = false;
-    },
+    // [addNewDoseToDB.rejected.type]: (
+    //   state,
+    //   action: PayloadAction<IServerRes>
+    // ) => {
+    //   state.service.message = action.payload.message;
+    //   state.service.isError = true;
+    //   state.service.isLoading = false;
+    // },
   },
 });
 
-export default alcoReducer.reducer;
-export const alcoActions = alcoReducer.actions;
-export const alcoSlice = alcoReducer;
+export default alcoSlice.reducer;
+export const alcoActions = alcoSlice.actions;

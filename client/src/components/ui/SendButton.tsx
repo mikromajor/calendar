@@ -7,11 +7,10 @@ import {
 import { AsyncThunk } from "@reduxjs/toolkit";
 import {
   EmailPassword,
-  IUser,
   IServerRes,
   ModalOpen,
 } from "../../types/userTypes";
-import { fetchUserRegistration } from "../../store/reducer/http/userActions";
+import { fetchUserRegistration } from "../../store/reducer/http/authActions";
 
 interface ISendButtonProps {
   sendProtector: boolean;

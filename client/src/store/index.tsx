@@ -4,9 +4,9 @@ import {
   Action,
   combineReducers,
 } from "@reduxjs/toolkit";
-import alcoReducer from "./reducer/alcoReducer";
-import salaryReducer from "./reducer/salaryReducer";
-import userReducer from "./reducer/userReducer";
+import alcoReducer from "./reducer/alcoSlice";
+import salaryReducer from "./reducer/salarySlice";
+import userReducer from "./reducer/userSlice";
 import serviceReducer from "./reducer/serviceSlice";
 
 const rootReducer = combineReducers({

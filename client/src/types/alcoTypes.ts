@@ -1,4 +1,4 @@
-import { alcoActions } from "../store/reducer/alcoReducer";
+import { alcoActions } from "../store/reducer/alcoSlice";
 // import { ALCO_CONTENT_LABELS } from "../constants/alcoConstants";
 import { UserLanguages } from "./userTypes";
 
