@@ -73,11 +73,12 @@ const calcSalary = async (salary, next) => {
 
   salary.standardWorkHours = salary.weekDays * 8;
 
-  salary.standardSalary =
+  salary.standardSalary = Math.round(
     salary.standardWorkHours * salary.nettoPerHours +
-    bloodDonationProfit +
-    vacationProfit +
-    seekLeaveProfit;
+      bloodDonationProfit +
+      vacationProfit +
+      seekLeaveProfit
+  );
 
   const premiumConstProfit =
     premiumUzn * (1 - taxRate / 100);
@@ -96,8 +97,9 @@ const calcSalary = async (salary, next) => {
       premiumRateProfit
   );
 
-  salary.totalSalary =
-    salary.standardSalary + salary.extraSalary;
+  salary.totalSalary = Math.round(
+    salary.standardSalary + salary.extraSalary
+  );
   return salary;
 };
 module.exports = { calcSalary };

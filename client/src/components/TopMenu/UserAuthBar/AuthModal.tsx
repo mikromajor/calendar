@@ -21,7 +21,7 @@ interface ModalProps {
   setOpen: React.Dispatch<ModalOpen>;
 }
 
-export function UserModal({
+export function AuthModal({
   open,
   setOpen,
   children,

@@ -1,25 +1,12 @@
 import React, { useState } from "react";
 import { Button, Stack, ButtonGroup } from "@mui/material";
-import { UserModal } from "./Modal";
+import { AuthModal } from "./AuthModal";
 import { Registration } from "./Registration";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
 import { ModalOpen } from "../../../types/userTypes";
-
 export default function UserAuthBar() {
   const [open, setOpen] = useState<ModalOpen>("");
-
-  const openRegistration = () => {
-    setOpen("reg");
-  };
-  const openLogin = () => {
-    setOpen("login");
-  };
-  const openLogOut = () => {
-    setOpen("logout");
-  };
-
-  const buttonClick = (callback: () => void) => callback();
 
   return (
     <Stack direction='row'>
@@ -30,33 +17,21 @@ export default function UserAuthBar() {
         color='secondary'
         aria-label='alignment button group'
       >
-        <Button
-          onClick={() => {
-            buttonClick(openRegistration);
-          }}
-        >
+        <Button onClick={() => setOpen("reg")}>
           Registration
         </Button>
-        <Button
-          onClick={() => {
-            buttonClick(openLogin);
-          }}
-        >
+        <Button onClick={() => setOpen("login")}>
           Login
         </Button>
-        <Button
-          onClick={() => {
-            buttonClick(openLogOut);
-          }}
-        >
+        <Button onClick={() => setOpen("logout")}>
           Logout
         </Button>
       </ButtonGroup>
-      <UserModal open={open} setOpen={setOpen}>
+      <AuthModal open={open} setOpen={setOpen}>
         {open === "reg" && <Registration />}
         {open === "login" && <Login />}
         {open === "logout" && <Logout setOpen={setOpen} />}
-      </UserModal>
+      </AuthModal>
     </Stack>
   );
 }

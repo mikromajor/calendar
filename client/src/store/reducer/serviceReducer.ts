@@ -4,7 +4,6 @@ import {
 } from "@reduxjs/toolkit";
 
 import SERVICE_INIT from "../../constants/serviceConstants";
-import { MESSAGES } from "../../constants/userConstants";
 
 export const serviceSlice = createSlice({
   name: "serviceSlice",

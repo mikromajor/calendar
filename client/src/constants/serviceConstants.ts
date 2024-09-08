@@ -3,4 +3,5 @@ const SERVICE_INIT = {
   isError: false,
   message: "",
 };
+
 export default SERVICE_INIT;

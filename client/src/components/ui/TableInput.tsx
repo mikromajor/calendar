@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TextField from "@mui/material/TextField";
 import { StyledTableCell } from "../Salary/StyledElements";
 import { ISalaryInit } from "../../types/salaryTypes";
@@ -7,7 +7,7 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { serverSalaryCalculate } from "../../store/reducer/http/salaryActions";
-
+import { inputsValidation } from "../Salary/handlers/inputsValidation";
 interface ITableInputProps {
   keyWord: keyof ISalaryInit;
 }
@@ -21,34 +21,29 @@ export const TableInput = ({
   const { salaryReducer, serviceReducer } = useAppSelector(
     (store) => store
   );
-  const [inputVal, setInputVal] = useState(
-    salaryReducer[keyWord]
-  );
+  const inpVal = salaryReducer[keyWord];
+  const isInputValValid = inputsValidation(keyWord, inpVal);
   const { year, month } = salaryReducer;
   const { isLoading } = serviceReducer;
   const dispatch = useAppDispatch();
 
   const handleOnChange = (e: E) => {
     const val = Number(e.currentTarget.value);
-    setInputVal(val);
-    setTimeout(
-      () =>
-        dispatch(
-          serverSalaryCalculate({
-            year,
-            month,
-            [keyWord]: inputVal,
-          })
-        ),
-      2000 //delay for server response
+    dispatch(
+      serverSalaryCalculate({
+        year,
+        month,
+        [keyWord]: val,
+      })
     );
   };
   return (
     <StyledTableCell align='right'>
       <TextField
-        value={inputVal}
+        value={inpVal}
         onChange={handleOnChange}
         disabled={isLoading}
+        error={!isInputValValid}
       />
     </StyledTableCell>
   );

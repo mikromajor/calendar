@@ -35,11 +35,6 @@ export const TOP_MENU_CONTENT = {
   },
 };
 
-export const MESSAGES = {
-  unexpectedError: "Unexpected error",
-  authRefused: "Authentication refused",
-};
-
 export const LANGUAGES_LIST = Object.keys(
   TOP_MENU_CONTENT
 ) as (keyof typeof UserLanguages)[];
