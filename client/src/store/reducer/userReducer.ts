@@ -25,6 +25,9 @@ export const userSlice = createSlice({
     ) => {
       state.currentTheme = action.payload;
     },
+    logOut: (serviceState) => {
+      localStorage.setItem("token", "");
+    },
   },
 });
 

@@ -88,8 +88,7 @@ class AlcoController {
 
       const alcoState = await createModelAlcoState(
         { year, month, day },
-        userId,
-        next
+        userId
       );
       return res.json({
         alcoState,
@@ -134,16 +133,16 @@ class AlcoController {
         Number(req.user.id),
         next
       );
-    return !errorMessage
+    return errorMessage
       ? res.status(200).json({
-          user: req.user,
-          message: req.user.message,
-          alcoState, // type YearData |null
+          message: req.user.message + "//" + errorMessage,
+          alcoState: INIT_ALCO_STATE,
+          token: req.user.token,
         })
       : res.status(200).json({
-          user: req.user,
-          message: req.user.message + errorMessage,
-          alcoState: INIT_ALCO_STATE,
+          token: req.user.token,
+          message: req.user.message,
+          alcoState, // type YearData |null
         });
   }
 }

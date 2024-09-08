@@ -1,31 +1,27 @@
-import React, { useEffect } from "react";
-import Button from "@mui/material/Button";
-import Snackbar, {
-  SnackbarCloseReason,
-} from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
+import React from "react";
+import {
+  Button,
+  IconButton,
+  Snackbar,
+} from "@mui/material";
+import { SnackbarCloseReason } from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
-import { ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
 import { useAppDispatch } from "../../store/hooks/redux";
+import { serviceActions } from "../../store/reducer/serviceReducer";
 
 interface ISnackProps {
   isError: boolean;
   message: string;
-  resetMessage: ActionCreatorWithoutPayload<string>;
 }
 // todo remove Message from Top to AlcoCalc
-export function Message({
-  isError,
-  message,
-  resetMessage,
-}: ISnackProps) {
+export function Message({ isError, message }: ISnackProps) {
   const dispatch = useAppDispatch();
   const handleClose = (
     event: React.SyntheticEvent | Event,
     reason?: SnackbarCloseReason
   ) => {
     if (reason === "clickaway") return;
-    dispatch(resetMessage());
+    dispatch(serviceActions.resetMessage());
   };
 
   const action = (

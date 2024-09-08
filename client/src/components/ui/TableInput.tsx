@@ -18,13 +18,14 @@ type E = React.ChangeEvent<
 export const TableInput = ({
   keyWord,
 }: ITableInputProps) => {
-  const { salaryReducer } = useAppSelector(
+  const { salaryReducer, serviceReducer } = useAppSelector(
     (store) => store
   );
   const [inputVal, setInputVal] = useState(
     salaryReducer[keyWord]
   );
-  const { year, month, service } = salaryReducer;
+  const { year, month } = salaryReducer;
+  const { isLoading } = serviceReducer;
   const dispatch = useAppDispatch();
 
   const handleOnChange = (e: E) => {
@@ -47,7 +48,7 @@ export const TableInput = ({
       <TextField
         value={inputVal}
         onChange={handleOnChange}
-        disabled={service.isLoading}
+        disabled={isLoading}
       />
     </StyledTableCell>
   );

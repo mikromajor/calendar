@@ -8,11 +8,9 @@ import {
   useAppDispatch,
 } from "../../store/hooks/redux";
 import { getSalary } from "../../store/reducer/http/salaryActions";
-import { userActions } from "../../store/reducer/userReducer";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
 import { SelectTheme } from "./SelectTheme";
 import { SelectLanguage } from "./SelectLanguage";
-import { Message } from "../ui";
 
 interface TopMenuPops {
   setSwitchCalcs: React.Dispatch<
@@ -22,11 +20,10 @@ interface TopMenuPops {
 
 export function TopMenu({ setSwitchCalcs }: TopMenuPops) {
   const dispatch = useAppDispatch();
-  const { userReducer, salaryReducer } = useAppSelector(
-    (state) => state
-  );
-  const { currentLang, service } = userReducer;
-  const { isError, message } = service;
+  const { userReducer, salaryReducer, serviceReducer } =
+    useAppSelector((state) => state);
+
+  const { currentLang } = userReducer;
 
   const [anchorEl, setAnchorEl] =
     useState<null | HTMLElement>(null);
@@ -86,12 +83,6 @@ export function TopMenu({ setSwitchCalcs }: TopMenuPops) {
         <SelectLanguage />
         <UserAuthBar />
       </Menu>
-
-      <Message
-        isError={isError}
-        message={message}
-        resetMessage={userActions.resetMessage}
-      />
     </div>
   );
 }

@@ -21,11 +21,6 @@ export interface IServerRes {
   salary?: ISalaryInit;
   token?: string;
 }
-export type ModalOpen =
-  | ""
-  | "message"
-  | "reg"
-  | "login"
-  | "logout";
+export type ModalOpen = "" | "reg" | "login" | "logout";
 
 //  export type LanguagesList = keyof typeof UserLanguages;

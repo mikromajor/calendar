@@ -20,7 +20,7 @@ export function MobileCalendar() {
     dispatch(getSalary({ year, month }));
   };
   const { isLoading } = useAppSelector(
-    (store) => store.salaryReducer.service
+    (store) => store.serviceReducer
   );
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

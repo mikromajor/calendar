@@ -32,12 +32,6 @@ export const alcoSlice = createSlice({
     ) => {
       Object.assign(state, action.payload);
     },
-
-    resetMessage: (state) => {
-      // TODO change duplicate code in all slices
-      state.service.message = "";
-      state.service.isError = false;
-    },
   },
   extraReducers: {
     // getAlcoYear

@@ -71,10 +71,14 @@ function CustomDay(
 
 export function Calendar() {
   // TODO: change calendar's language when app lang change
-  const { currentDate, yearData, service } = useAppSelector(
+  const { currentDate, yearData } = useAppSelector(
     (state) => state.alcoReducer
   );
-  const { currentTheme, currentLang } = useAppSelector(
+  const { isLoading } = useAppSelector(
+    (state) => state.serviceReducer
+  );
+
+  const { currentTheme } = useAppSelector(
     (state) => state.userReducer
   );
   const { day, month, year } = currentDate;
@@ -84,8 +88,6 @@ export function Calendar() {
     alcoActions;
 
   const { months } = yearData;
-
-  React.useEffect(() => {}, [yearData]);
 
   const isMonthData = months?.[Number(month)];
 
@@ -119,10 +121,7 @@ export function Calendar() {
       className={`alco-counter__calendar-day-info alco-counter__calendar-day-info--${currentTheme}   `}
     >
       <div style={{ height: "10px" }}>
-        <Box
-          sx={{ width: "100%" }}
-          hidden={!service.isLoading}
-        >
+        <Box sx={{ width: "100%" }} hidden={!isLoading}>
           <LinearProgress />
         </Box>
       </div>

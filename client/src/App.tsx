@@ -6,11 +6,15 @@ import {
   createTheme,
 } from "@mui/material/styles";
 import { UserThemes } from "./types/userTypes";
+import { Message } from "./components/ui";
 
 function App() {
   const [switchCalcs, setSwitchCalcs] = useState(true);
   const { currentTheme } = useAppSelector(
     (state) => state.userReducer
+  );
+  const { isError, message } = useAppSelector(
+    (state) => state.serviceReducer
   );
 
   const theme = createTheme({
@@ -39,6 +43,7 @@ function App() {
       <div className={`app app--${currentTheme}`}>
         <TopMenu setSwitchCalcs={setSwitchCalcs} />
         {switchCalcs ? <AlcoCounter /> : <Salary />}
+        <Message isError={isError} message={message} />
       </div>
     </ThemeProvider>
   );

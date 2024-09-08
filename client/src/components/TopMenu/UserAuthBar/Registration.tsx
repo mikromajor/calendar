@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Stack } from "@mui/material";
 import { passwordValidator } from "./handlers";
 import { usePassword, useEmail } from "./hooks";

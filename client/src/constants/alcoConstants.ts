@@ -38,7 +38,6 @@ export const INIT_ALCO_YEAR: AlcoYear = {
 export const INIT_ALCO_STATE: AlcoState = {
   currentDate: CURRENT_DATE,
   yearData: INIT_ALCO_YEAR,
-  service: SERVICE_INIT,
 };
 
 export const ALCO_CONTENT: AlcoContent = {

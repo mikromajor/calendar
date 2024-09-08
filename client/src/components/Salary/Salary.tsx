@@ -1,8 +1,11 @@
 import * as React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import Paper from "@mui/material/Paper";
+import {
+  Table,
+  TableBody,
+  TableContainer,
+  Paper,
+} from "@mui/material";
+
 import { InputRows } from "./InputRows";
 import {
   SALARY_INPUTS,
@@ -17,7 +20,6 @@ import { DateRow } from "./DateRow";
 import { ResultsRows } from "./ResultsRows";
 import { Message } from "../ui";
 import { useAppSelector } from "../../store/hooks/redux";
-import { salaryActions } from "../../store/reducer/salaryReducer";
 
 export function Salary() {
   const introductionsKeys =
@@ -25,7 +27,7 @@ export function Salary() {
   const resultsKeys =
     getObjKeys<ISalaryResults>(SALARY_RESULTS);
   const { isError, message } = useAppSelector(
-    (state) => state.salaryReducer.service
+    (state) => state.serviceReducer
   );
 
   return (
@@ -40,11 +42,7 @@ export function Salary() {
           <ResultsRows />
         </TableBody>
       </Table>
-      <Message
-        isError={isError}
-        message={message}
-        resetMessage={salaryActions.resetMessage}
-      />
+      <Message isError={isError} message={message} />
     </TableContainer>
   );
 }

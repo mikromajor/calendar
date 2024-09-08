@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { userActions } from "../../../store/reducer/userReducer";
+import { serviceActions } from "../../../store/reducer/serviceReducer";
 import { useDispatch } from "react-redux";
 import { ModalOpen } from "../../../types/userTypes";
 
@@ -15,6 +16,9 @@ export function Logout({ setOpen }: LogoutProps) {
   const handleLogOut = () => {
     setOpen("");
     dispatch(userActions.logOut());
+    dispatch(
+      serviceActions.addMessage("Logged out successfully")
+    );
   };
   const modalClose = () => setOpen("");
 

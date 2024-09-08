@@ -3,8 +3,6 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { SALARY_INIT } from "../../constants/salaryConstants";
-import { IPayload } from "../../types/salaryTypes";
-import { calculateSalary } from "./salaryHandlers";
 import {
   getSalary,
   serverSalaryCalculate,
@@ -14,12 +12,7 @@ import { IServerRes } from "../../types/userTypes";
 export const salarySlice = createSlice({
   name: "salaryState",
   initialState: SALARY_INIT,
-  reducers: {
-    resetMessage: (state) => {
-      state.service.message = "";
-      state.service.isError = false;
-    },
-  },
+  reducers: {},
   extraReducers: {
     //getSalary
     // [getSalary.pending.type]: (state) => {

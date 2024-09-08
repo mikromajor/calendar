@@ -33,10 +33,6 @@ export const serviceSlice = createSlice({
       serviceState.isError = true;
       serviceState.message = action.payload;
     },
-    logOut: (serviceState) => {
-      localStorage.setItem("token", "");
-      serviceState.message = "logged out successfully";
-    },
     resetMessage: (serviceState) => {
       serviceState.message = "";
       serviceState.isError = false;

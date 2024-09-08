@@ -14,16 +14,9 @@ const yearData = {
   months: [],
 };
 
-const service = {
-  isError: false,
-  isLoading: false,
-  message: "",
-};
-
 const INIT_ALCO_STATE = {
   currentDate,
   yearData,
-  service,
 };
 
 const SALARY_INIT = {

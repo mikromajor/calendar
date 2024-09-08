@@ -1,31 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Stack, ButtonGroup } from "@mui/material";
 import { UserModal } from "./Modal";
 import { Registration } from "./Registration";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
 import { ModalOpen } from "../../../types/userTypes";
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../../store/hooks/redux";
-import { userActions } from "../../../store/reducer/userReducer";
-import { Message } from "../../ui";
 
 export default function UserAuthBar() {
   const [open, setOpen] = useState<ModalOpen>("");
-  const { message } = useAppSelector(
-    (store) => store.userReducer.service
-  );
-  const dispatch = useAppDispatch();
-  // useEffect(() => {
-  //   if (message) {
-  //     setOpen("");
-  //     setTimeout(() => {
-  //       dispatch(userActions.resetMessage());
-  //     }, 3000); // show message duration
-  //   }
-  // }, [message]);
 
   const openRegistration = () => {
     setOpen("reg");
