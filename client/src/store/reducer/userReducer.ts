@@ -7,18 +7,9 @@ import { INIT_USER_STATE } from "../../constants/userConstants";
 import {
   UserLanguages,
   UserThemes,
-  IUser,
 } from "../../types/userTypes";
-import { IServerRes } from "../../types/userTypes";
-import { MESSAGES } from "../../constants/userConstants";
 
-import {
-  fetchUserAuth,
-  fetchUserLogin,
-  fetchUserRegistration,
-} from "./http/userActions";
-
-export const userReducer = createSlice({
+export const userSlice = createSlice({
   name: "userSlice",
   initialState: INIT_USER_STATE,
   reducers: {
@@ -34,88 +25,8 @@ export const userReducer = createSlice({
     ) => {
       state.currentTheme = action.payload;
     },
-    // addMessage: (state, action: PayloadAction<string>) => {
-    //   state.service.message = action.payload;
-    // },
-    logOut: (state) => {
-      localStorage.setItem("token", "");
-      state.service.message = "logged out successfully";
-    },
-    resetMessage: (state) => {
-      state.service.message = "";
-      state.service.isError = false;
-    },
-  },
-  extraReducers: {
-    //Registration
-    [fetchUserRegistration.pending.type]: (state) => {
-      state.service.isLoading = true;
-    },
-    [fetchUserRegistration.fulfilled.type]: (
-      state,
-      action: PayloadAction<IServerRes>
-    ) => {
-      state.service.message = action.payload.message;
-      state.service.isLoading = false;
-      state.service.isError = false;
-    },
-
-    [fetchUserRegistration.rejected.type]: (
-      state,
-      action: PayloadAction<IServerRes>
-    ) => {
-      const message = action.payload.message;
-
-      state.service.message = message
-        ? message
-        : MESSAGES.unexpectedError;
-      state.service.isLoading = false;
-      state.service.isError = true;
-    },
-
-    //Login
-    [fetchUserLogin.pending.type]: (state) => {
-      state.service.isLoading = true;
-    },
-    [fetchUserLogin.fulfilled.type]: (
-      state,
-      action: PayloadAction<IServerRes>
-    ) => {
-      state.service.message = action.payload.message;
-      state.service.isError = false;
-      state.service.isLoading = false;
-    },
-
-    [fetchUserLogin.rejected.type]: (
-      state,
-      action: PayloadAction<IServerRes>
-    ) => {
-      const message = action.payload?.message;
-
-      state.service.message = message
-        ? message
-        : MESSAGES.unexpectedError;
-
-      state.service.isLoading = false;
-      state.service.isError = true;
-    },
-    //Auth
-    [fetchUserAuth.pending.type]: (state) => {
-      state.service.isLoading = true;
-    },
-    [fetchUserAuth.fulfilled.type]: (state) => {
-      state.service.isLoading = false;
-      state.service.isError = false;
-    },
-
-    [fetchUserAuth.rejected.type]: (state) => {
-      state.service.isLoading = false;
-      state.service.isError = true;
-      state.service.message = MESSAGES.authRefused;
-    },
   },
 });
 
-export default userReducer.reducer;
-export const userActions = userReducer.actions;
-export const userSlice = userReducer;
+export default userSlice.reducer;
+export const userActions = userSlice.actions;

@@ -1,20 +1,11 @@
 import {
   UserThemes,
   UserLanguages,
-  IUser,
 } from "../types/userTypes";
-import SERVICE_INIT from "./serviceConstants";
-
-const INIT_USER: IUser = {
-  token: "",
-  message: "",
-};
 
 export const INIT_USER_STATE = {
   currentLang: UserLanguages.UA,
   currentTheme: UserThemes.WHITE,
-  service: SERVICE_INIT,
-  user: INIT_USER,
 };
 
 export const TOP_MENU_CONTENT = {
