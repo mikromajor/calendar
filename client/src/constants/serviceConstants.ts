@@ -1,6 +1,6 @@
-const SERVICE = {
+const SERVICE_INIT = {
   isLoading: false,
   isError: false,
   message: "",
 };
-export default SERVICE;
+export default SERVICE_INIT;

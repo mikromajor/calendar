@@ -3,13 +3,13 @@ import {
   SALARY_INPUTS,
   SALARY_DATE,
 } from "../constants/salaryConstants";
-import SERVICE from "../constants/service";
+import SERVICE_INIT from "../constants/serviceConstants";
 import { UserLanguages } from "../types/userTypes";
 
 export type ISalaryResults = typeof SALARY_RESULTS;
 export type ISalaryInputs = typeof SALARY_INPUTS;
 export type ISalaryDate = typeof SALARY_DATE;
-type IService = typeof SERVICE;
+type IService = typeof SERVICE_INIT;
 
 export type ISalaryInit = ISalaryResults &
   ISalaryInputs &

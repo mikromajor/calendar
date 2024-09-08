@@ -7,7 +7,7 @@ import {
 } from "../types/alcoTypes";
 import { getDateMonthYear } from "../utils";
 import { UserLanguages } from "../types/userTypes";
-import SERVICE from "./service";
+import SERVICE_INIT from "./serviceConstants";
 
 //for calendar: new Date(year, monthIndex(0-11), day)
 const [currentDay, currentMonth, currentYear] =
@@ -38,7 +38,7 @@ export const INIT_ALCO_YEAR: AlcoYear = {
 export const INIT_ALCO_STATE: AlcoState = {
   currentDate: CURRENT_DATE,
   yearData: INIT_ALCO_YEAR,
-  service: SERVICE,
+  service: SERVICE_INIT,
 };
 
 export const ALCO_CONTENT: AlcoContent = {
