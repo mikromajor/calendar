@@ -5,7 +5,7 @@ import {
   IDose,
   CurrentDate,
 } from "../../../types/alcoTypes";
-import { serviceActions } from "../serviceSlice";
+import { serviceActions } from "../serviceReducer";
 
 export const getAlcoYear = createAsyncThunk(
   "alcoCalc/getAlcoYear",

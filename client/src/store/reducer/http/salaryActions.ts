@@ -5,7 +5,7 @@ import {
   IPayload,
 } from "../../../types/salaryTypes";
 import { IServerRes } from "../../../types/userTypes";
-import { serviceActions } from "../serviceSlice";
+import { serviceActions } from "../serviceReducer";
 
 // model ServerRes {
 //   user?:{token:string; message:string // for userInfo};

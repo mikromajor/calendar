@@ -17,7 +17,7 @@ import { DateRow } from "./DateRow";
 import { ResultsRows } from "./ResultsRows";
 import { Message } from "../ui";
 import { useAppSelector } from "../../store/hooks/redux";
-import { salaryActions } from "../../store/reducer/salarySlice";
+import { salaryActions } from "../../store/reducer/salaryReducer";
 
 export function Salary() {
   const introductionsKeys =

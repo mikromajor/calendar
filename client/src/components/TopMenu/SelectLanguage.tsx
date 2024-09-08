@@ -9,7 +9,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../store/hooks/redux";
-import { userActions } from "../../store/reducer/userSlice";
+import { userActions } from "../../store/reducer/userReducer";
 import { UserLanguages } from "../../types/userTypes";
 
 export function SelectLanguage() {
