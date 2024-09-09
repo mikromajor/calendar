@@ -1,8 +1,7 @@
 import dayjs, { Dayjs } from "dayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { MobileDatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-
 import { getSalary } from "../../store/reducer/http/salaryActions";
 import {
   useAppDispatch,
@@ -22,9 +21,10 @@ export function MobileCalendar() {
   const { isLoading } = useAppSelector(
     (store) => store.serviceReducer
   );
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker
+      <MobileDatePicker
         label='Date'
         views={["month", "year"]}
         openTo='month'
