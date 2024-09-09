@@ -5,8 +5,15 @@ import { Registration } from "./Registration";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
 import { ModalOpen } from "../../../types/userTypes";
+import { useAppSelector } from "../../../store/hooks/redux";
+import { TOP_MENU_CONTENT } from "../../../constants/userConstants";
+
 export default function UserAuthBar() {
   const [open, setOpen] = useState<ModalOpen>("");
+  const { currentLang } = useAppSelector(
+    (state) => state.userReducer
+  );
+  const content = TOP_MENU_CONTENT[currentLang];
 
   return (
     <Stack direction='row'>
@@ -18,13 +25,13 @@ export default function UserAuthBar() {
         aria-label='alignment button group'
       >
         <Button onClick={() => setOpen("reg")}>
-          Registration
+          {content.registration}
         </Button>
         <Button onClick={() => setOpen("login")}>
-          Login
+          {content.login}
         </Button>
         <Button onClick={() => setOpen("logout")}>
-          Logout
+          {content.logout}
         </Button>
       </ButtonGroup>
       <AuthModal open={open} setOpen={setOpen}>

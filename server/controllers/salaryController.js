@@ -24,12 +24,15 @@ class SalaryController {
       req.user.id,
       req.query
     );
+    const { year, month } = req.query;
     try {
       let salary = await Salary.findOne({
         where: { id: salaryId },
       });
       return res.json({
-        salary: salary ? salary : SALARY_INIT,
+        salary: salary
+          ? salary
+          : { ...SALARY_INIT, year, month },
       });
     } catch (e) {
       next(

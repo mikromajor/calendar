@@ -20,7 +20,6 @@ const updateSalaryInputs = async (
     });
     if (salary) {
       Object.assign(salary, salaryInputs);
-      // await salary.save();
     } else {
       salary = await Salary.create({
         ...SALARY_INIT,

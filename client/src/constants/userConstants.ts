@@ -16,6 +16,9 @@ export const TOP_MENU_CONTENT = {
     lblLang: "Change language:",
     [UserThemes.DARK]: "Black",
     [UserThemes.WHITE]: "White",
+    registration: "Registration",
+    login: "Login",
+    logout: "Logout",
   },
   [UserLanguages.PL]: {
     lblTheme: "Theme",
@@ -24,6 +27,9 @@ export const TOP_MENU_CONTENT = {
     lblLang: "Zmień język",
     [UserThemes.DARK]: "Ciemna",
     [UserThemes.WHITE]: "Światła",
+    registration: "Zarejestruj sie",
+    login: "Login",
+    logout: "Logout",
   },
   [UserLanguages.UA]: {
     lblTheme: "Tема",
@@ -32,6 +38,9 @@ export const TOP_MENU_CONTENT = {
     lblLang: "Змінити мову",
     [UserThemes.DARK]: "Темна",
     [UserThemes.WHITE]: "Світла",
+    registration: "Реєстрація",
+    login: "Логін",
+    logout: "Вихід",
   },
 };
 
