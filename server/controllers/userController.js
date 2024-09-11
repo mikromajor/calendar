@@ -1,9 +1,7 @@
 const ApiError = require("../error/ApiError");
 const bcrypt = require("bcrypt");
 const { User, Salary } = require("../models/models");
-const {
-  getCurrentDateMonthYear,
-} = require("../utils/getCurrentDateMonthYear");
+const getCurrentDate = require("../utils/getCurrentDate");
 const { generateJwt } = require("../utils/useToken");
 
 class UserController {
