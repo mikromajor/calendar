@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { trimFirstZero } from "../../../../../store/reducer/alcoHandlers";
 import { useAppSelector } from "../../../../../store/hooks/redux";
 import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
+import { UserThemes } from "../../../../../types/userTypes";
 
 type InputLiquidProps = {
   val: string;
@@ -26,7 +27,7 @@ export const InputLiquid = ({
       : content.lblVolume;
 
   const variantButton =
-    currentTheme === "white-theme"
+    currentTheme === UserThemes.WHITE
       ? "outlined"
       : "contained";
 

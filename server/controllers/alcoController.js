@@ -13,6 +13,9 @@ const {
 const {
   createModelAlcoState,
 } = require("../utils/alcoHandlers/createModelAlcoState");
+const {
+  updateAlcoDB,
+} = require("../utils/alcoHandlers/updateAlcoDB");
 
 // model ServerRes {
 //   token?:string;
@@ -39,52 +42,25 @@ class AlcoController {
           ApiError.badRequest("Request's data incorrect")
         );
       }
-      // TODO use cycle to check/create DB
-      const alcoYear = await AlcoYear.findOne({
-        where: { id: yearId },
-      });
 
-      if (alcoYear) {
-        alcoYear.totalVodka += additionVodka;
-        await alcoYear.save();
-      } else {
-        await AlcoYear.create({
-          id: yearId,
-          userId,
-          totalVodka: additionVodka,
-        });
-      }
-
-      const alcoMonth = await AlcoMonth.findOne({
-        where: { id: monthId },
+      await updateAlcoDB(AlcoYear, {
+        id: yearId,
+        userId,
+        totalVodka: additionVodka,
       });
-      if (alcoMonth) {
-        alcoMonth.totalVodka += additionVodka;
-        await alcoMonth.save();
-      } else {
-        await AlcoMonth.create({
-          id: monthId,
-          userId,
-          yearId,
-          totalVodka: additionVodka,
-        });
-      }
-
-      const alcoDay = await AlcoDay.findOne({
-        where: { id: dayId },
+      await updateAlcoDB(AlcoMonth, {
+        id: monthId,
+        userId,
+        yearId,
+        totalVodka: additionVodka,
       });
-      if (alcoDay) {
-        alcoDay.totalVodka += additionVodka;
-        await alcoDay.save();
-      } else {
-        await AlcoDay.create({
-          id: dayId,
-          monthId,
-          yearId,
-          userId,
-          totalVodka: additionVodka,
-        });
-      }
+      await updateAlcoDB(AlcoDay, {
+        id: dayId,
+        monthId,
+        yearId,
+        userId,
+        totalVodka: additionVodka,
+      });
 
       const alcoState = await createModelAlcoState(
         { year, month, day },
@@ -104,10 +80,8 @@ class AlcoController {
     //GET http://localhost:7000/api/alco_calendar/get?year=2020&month=1&day=1
     //req.query.year,
     // GET doesn't have req.body
-
-    const { year, month, day } = req.query;
-
     try {
+      const { year, month, day } = req.query;
       const alcoState = await createModelAlcoState(
         { year, month, day },
         Number(req.user.id),
