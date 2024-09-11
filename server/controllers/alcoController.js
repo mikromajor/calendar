@@ -16,6 +16,9 @@ const {
 const {
   updateAlcoDB,
 } = require("../utils/alcoHandlers/updateAlcoDB");
+const {
+  getAlcoIds,
+} = require("../utils/alcoHandlers/getAlcoIds");
 
 // model ServerRes {
 //   token?:string;
@@ -32,10 +35,12 @@ class AlcoController {
       const { year, month, day } = req.body;
       const additionVodka = Number(req.body.additionVodka);
 
-      const userId = Number(req.user.id);
-      const yearId = userId + "_" + year;
-      const monthId = yearId + "_" + month;
-      const dayId = monthId + "_" + day;
+      const { userId, dayId, monthId, yearId } = getAlcoIds(
+        req.user.id,
+        year,
+        month,
+        day
+      );
 
       if (year <= 0 || month <= 0 || day <= 0) {
         return res.json(
@@ -79,7 +84,6 @@ class AlcoController {
   async getAlcoYear(req, res, next) {
     //GET http://localhost:7000/api/alco_calendar/get?year=2020&month=1&day=1
     //req.query.year,
-    // GET doesn't have req.body
     try {
       const { year, month, day } = req.query;
       const alcoState = await createModelAlcoState(
@@ -120,15 +124,4 @@ class AlcoController {
         });
   }
 }
-
 module.exports = new AlcoController();
-
-// //Note: correct handle error
-//     return next(
-//       ApiError.badRequest("Request's data incorrect")
-//     );
-//     next(
-//       ApiError.internal(
-//         "Server error. AlcoController.getAlcoYear has problem"
-//       )
-//     );
