@@ -7,7 +7,9 @@ const {
   INIT_ALCO_STATE,
 } = require("../../constants/initStates");
 const ApiError = require("../../error/ApiError");
-const { getDateMonthYear } = require("../getDateMonthYear");
+const {
+  getCurrentDateMonthYear,
+} = require("../getCurrentDateMonthYear");
 
 //creating response models like INIT_ALCO_STATE
 const createModelAlcoState = async (

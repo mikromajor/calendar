@@ -8,8 +8,8 @@ const {
 } = require("../constants/initStates");
 const ApiError = require("../error/ApiError");
 const {
-  getDateMonthYear,
-} = require("../utils/getDateMonthYear");
+  getCurrentDateMonthYear,
+} = require("../utils/getCurrentDateMonthYear");
 const {
   createModelAlcoState,
 } = require("../utils/alcoHandlers/createModelAlcoState");
@@ -26,6 +26,8 @@ const {
 //   alcoState?: AlcoState;
 //   salary?: ISalaryInit;
 // }
+
+const postRequestDateValidation = (req, res, next) => {};
 
 class AlcoController {
   async addNewDose(req, res, next) {
@@ -104,7 +106,9 @@ class AlcoController {
   }
 
   async login(req, res, next) {
-    const [day, month, year] = getDateMonthYear(new Date());
+    const [day, month, year] = getCurrentDateMonthYear(
+      new Date()
+    );
     const { alcoState, errorMessage } =
       await createModelAlcoState(
         { day, month, year },
