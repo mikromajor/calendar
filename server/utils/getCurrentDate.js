@@ -1,6 +1,6 @@
 module.exports = (date = new Date()) => {
-  const newDay = date.getDate() + "";
-  const newMonth = date.getMonth() + 1 + "";
-  const newYear = date.getFullYear() + "";
-  return [newDay, newMonth, newYear];
+  const day = date.getDate() + "";
+  const month = date.getMonth() + 1 + "";
+  const year = date.getFullYear() + "";
+  return { day, month, year };
 };

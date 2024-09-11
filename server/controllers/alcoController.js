@@ -8,9 +8,7 @@ const {
 } = require("../constants/initStates");
 const ApiError = require("../error/ApiError");
 const getCurrentDate = require("../utils/getCurrentDate");
-const {
-  createModelAlcoState,
-} = require("../utils/alcoHandlers/createModelAlcoState");
+const createModelAlcoState = require("../utils/alcoHandlers/createModelAlcoState");
 const {
   updateAlcoDB,
 } = require("../utils/alcoHandlers/updateAlcoDB");
@@ -65,10 +63,11 @@ class AlcoController {
         totalVodka: additionVodka,
       });
 
-      const alcoState = await createModelAlcoState(
-        { year, month, day },
-        userId
-      );
+      const alcoState = await createModelAlcoState(userId, {
+        year,
+        month,
+        day,
+      });
       return res.json({
         alcoState,
       });
@@ -85,9 +84,8 @@ class AlcoController {
     try {
       const { year, month, day } = req.query;
       const alcoState = await createModelAlcoState(
-        { year, month, day },
-        Number(req.user.id),
-        next
+        req.user.id,
+        { year, month, day }
       );
       return res.status(200).json({
         alcoState,
@@ -102,13 +100,8 @@ class AlcoController {
   }
 
   async login(req, res, next) {
-    const [day, month, year] = getCurrentDate(new Date());
     const { alcoState, errorMessage } =
-      await createModelAlcoState(
-        { day, month, year },
-        Number(req.user.id),
-        next
-      );
+      await createModelAlcoState(req.user.id);
     return errorMessage
       ? res.status(200).json({
           message: req.user.message + "//" + errorMessage,

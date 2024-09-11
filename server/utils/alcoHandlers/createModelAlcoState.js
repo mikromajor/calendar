@@ -6,13 +6,12 @@ const {
 const {
   INIT_ALCO_STATE,
 } = require("../../constants/initStates");
-const ApiError = require("../../error/ApiError");
 const getCurrentDate = require("../getCurrentDate");
 
 //creating response models like INIT_ALCO_STATE
-const createModelAlcoState = async (
-  currentDate,
-  userId
+module.exports = async (
+  userId,
+  currentDate = getCurrentDate()
 ) => {
   const yearId = userId + "_" + currentDate.year;
 
@@ -70,4 +69,3 @@ const createModelAlcoState = async (
     };
   }
 };
-module.exports = { createModelAlcoState };
