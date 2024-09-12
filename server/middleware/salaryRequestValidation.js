@@ -5,15 +5,8 @@ module.exports = (req, res, next) => {
     next();
   }
   let checkingDate = req.body?.year ? req.body : req.query;
-  const { year, month, day } = checkingDate;
-  if (
-    !year ||
-    !month ||
-    !day ||
-    year <= 0 ||
-    month <= 0 ||
-    day <= 0
-  ) {
+  const { year, month } = checkingDate;
+  if (!year || !month || year <= 0 || month <= 0) {
     return res.json(
       ApiError.badRequest("Request's data incorrect")
     );

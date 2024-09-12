@@ -11,4 +11,4 @@ const updateAlcoDB = async (DB, createAlcoDB_Data) => {
 
   await alcoDB.save();
 };
-modules.exports = { updateAlcoDB };
+module.exports = { updateAlcoDB };

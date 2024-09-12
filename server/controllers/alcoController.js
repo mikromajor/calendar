@@ -38,12 +38,6 @@ class AlcoController {
         day
       );
 
-      if (year <= 0 || month <= 0 || day <= 0) {
-        return res.json(
-          ApiError.badRequest("Request's data incorrect")
-        );
-      }
-
       await updateAlcoDB(AlcoYear, {
         id: yearId,
         userId,
