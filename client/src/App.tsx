@@ -16,6 +16,7 @@ import {
 } from "./types/userTypes";
 import { Message } from "./components/ui";
 
+//TODO use cookie and localStorage
 function App() {
   const [switchCalcs, setSwitchCalcs] = useState(true);
   const { currentTheme, currentLang } = useAppSelector(
