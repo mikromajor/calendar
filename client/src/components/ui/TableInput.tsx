@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import TextField from "@mui/material/TextField";
 import { StyledTableCell } from "../Salary/StyledElements";
 import { ISalaryInit } from "../../types/salaryTypes";
@@ -8,7 +8,6 @@ import {
 } from "../../store/hooks/redux";
 import { serverSalaryCalculate } from "../../store/reducer/http/salaryActions";
 import { inputsValidation } from "../Salary/handlers/inputsValidation";
-import { debounce } from "lodash";
 import { salaryActions } from "../../store/reducer/salaryReducer";
 interface ITableInputProps {
   keyWord: keyof ISalaryInit;
@@ -17,32 +16,46 @@ type E = React.ChangeEvent<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
+//-
 export const TableInput = ({
   keyWord,
 }: ITableInputProps) => {
   const { salaryReducer, serviceReducer } = useAppSelector(
     (store) => store
   );
+  const timerID = useRef<NodeJS.Timeout | null>(null);
   const inpVal = salaryReducer[keyWord];
-  const isInputValValid = inputsValidation(keyWord, inpVal);
+  const isInputValueValid = inputsValidation(
+    keyWord,
+    inpVal
+  );
   const { year, month } = salaryReducer;
   const { isLoading } = serviceReducer;
   const dispatch = useAppDispatch();
 
-  const sentServerRequest = (e: E) => {
-    const val = Number(e.currentTarget.value);
+  const sentServerRequest = (inputValue: number) => {
+    if (isNaN(inputValue)) {
+      throw new Error("Invalid input");
+    }
     dispatch(
       serverSalaryCalculate({
         year,
         month,
-        [keyWord]: val,
+        [keyWord]: inputValue,
       })
     );
   };
+
+  const debounce = (func: () => void, delay = 300) => {
+    if (timerID.current) clearTimeout(timerID.current);
+    timerID.current = setTimeout(() => func(), delay);
+  };
+
   const processChange = (e: E) => {
     const val = Number(e.currentTarget.value);
     dispatch(salaryActions.updateInput({ [keyWord]: val }));
-    debounce(sentServerRequest, 500);
+
+    debounce(() => sentServerRequest(val));
   };
 
   return (
@@ -51,7 +64,7 @@ export const TableInput = ({
         value={inpVal}
         onChange={processChange}
         disabled={isLoading}
-        error={!isInputValValid}
+        error={!isInputValueValid}
       />
     </StyledTableCell>
   );
