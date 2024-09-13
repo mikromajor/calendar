@@ -1,6 +1,7 @@
 const currentYear = new Date().getFullYear() + "";
 const currentMonth = new Date().getMonth() + 1 + "";
 const currentDay = new Date().getDay() + "";
+
 const currentDate = {
   day: currentDay,
   month: currentMonth,
@@ -13,22 +14,15 @@ const yearData = {
   months: [],
 };
 
-const service = {
-  isError: false,
-  isLoading: false,
-  message: "",
-};
-
 const INIT_ALCO_STATE = {
   currentDate,
   yearData,
-  service,
 };
 
 const SALARY_INIT = {
-  year: currentYear,
-  month: currentMonth,
-  salaryRate: 0,
+  year: Number(currentYear),
+  month: Number(currentMonth),
+  salaryRate: 30,
   premiumRate: 0,
   premiumUzn: 0,
   taxRate: 27,
@@ -49,7 +43,16 @@ const SALARY_INIT = {
   totalSalary: 0,
 };
 
+const SALARY_COEFFICIENTS = {
+  premium_50_percent: 1.5,
+  premium_100_percent: 2,
+  premium_120_percent: 2.2,
+  sickRate: 0.64,
+  bloodDonationRate: 1,
+};
+
 module.exports = {
   SALARY_INIT,
   INIT_ALCO_STATE,
+  SALARY_COEFFICIENTS,
 };

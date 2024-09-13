@@ -1,22 +1,11 @@
 import {
   UserThemes,
   UserLanguages,
-  IUser,
 } from "../types/userTypes";
-import { SALARY_INIT } from "./salaryConstants";
-import { INIT_ALCO_STATE } from "./alcoConstants";
-
-const INIT_USER: IUser = {
-  token: "",
-};
 
 export const INIT_USER_STATE = {
   currentLang: UserLanguages.UA,
   currentTheme: UserThemes.WHITE,
-  isLoading: false,
-  isError: false,
-  message: "",
-  user: INIT_USER,
 };
 
 export const TOP_MENU_CONTENT = {
@@ -27,6 +16,9 @@ export const TOP_MENU_CONTENT = {
     lblLang: "Change language:",
     [UserThemes.DARK]: "Black",
     [UserThemes.WHITE]: "White",
+    registration: "Registration",
+    login: "Login",
+    logout: "Logout",
   },
   [UserLanguages.PL]: {
     lblTheme: "Theme",
@@ -35,6 +27,9 @@ export const TOP_MENU_CONTENT = {
     lblLang: "Zmień język",
     [UserThemes.DARK]: "Ciemna",
     [UserThemes.WHITE]: "Światła",
+    registration: "Zarejestruj sie",
+    login: "Login",
+    logout: "Logout",
   },
   [UserLanguages.UA]: {
     lblTheme: "Tема",
@@ -43,12 +38,10 @@ export const TOP_MENU_CONTENT = {
     lblLang: "Змінити мову",
     [UserThemes.DARK]: "Темна",
     [UserThemes.WHITE]: "Світла",
+    registration: "Реєстрація",
+    login: "Логін",
+    logout: "Вихід",
   },
-};
-
-export const MESSAGES = {
-  unexpectedError: "Unexpected error",
-  authRefused: "Authentication refused",
 };
 
 export const LANGUAGES_LIST = Object.keys(

@@ -19,10 +19,12 @@ export function AddButton({
   volume,
   percent,
 }: IAddButtonProps) {
-  const { service, currentDate } = useAppSelector(
+  const { currentDate } = useAppSelector(
     (state) => state.alcoReducer
   );
-  const { isError, isLoading } = service;
+  const { isError, isLoading } = useAppSelector(
+    (state) => state.serviceReducer
+  );
   const { currentLang } = useAppSelector(
     (state) => state.userReducer
   );
@@ -52,7 +54,6 @@ export function AddButton({
       );
     }
   };
-  //TODO add message from server
   return (
     <Box
       sx={{

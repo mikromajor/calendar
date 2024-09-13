@@ -1,40 +1,49 @@
 import {
   SALARY_RESULTS,
-  SALARY_INTRODUCTIONS,
+  SALARY_INPUTS,
+  SALARY_DATE,
 } from "../constants/salaryConstants";
 import { UserLanguages } from "../types/userTypes";
 
 export type ISalaryResults = typeof SALARY_RESULTS;
-export type ISalaryIntroduction =
-  typeof SALARY_INTRODUCTIONS;
+export type ISalaryInputs = typeof SALARY_INPUTS;
+export type ISalaryDate = typeof SALARY_DATE;
 
 export type ISalaryInit = ISalaryResults &
-  ISalaryIntroduction;
+  ISalaryInputs &
+  ISalaryDate;
+
+export type ISalaryResultsKeys = keyof ISalaryResults;
+export type ISalaryInputsKeys = keyof ISalaryInputs;
 
 type PartOfObject<O> = {
   [K in keyof O]?: O[K];
 };
-export type IPayload = PartOfObject<ISalaryIntroduction>;
+export type IPayload = PartOfObject<
+  ISalaryInputs & ISalaryDate
+>;
 
 ////---------Start typing ISalaryContent
 type ConvertObjValType<O, NewType> = {
   [K in keyof O]: NewType;
 };
 type ConvertedISalaryInit = ConvertObjValType<
-  ISalaryInit,
+  ISalaryResults & ISalaryInputs,
   string
 >;
 
 //Example to add a new parameter in a language object :
-interface LangContent extends ConvertedISalaryInit {
+interface AddContent extends ConvertedISalaryInit {
   header: string;
+  date: string;
   //newFieldName: string
 }
+
 type CreateContentType<IKey, IVal> = {
   [k in keyof IKey]: IVal;
 };
 export type ISalaryContent = CreateContentType<
   typeof UserLanguages,
-  LangContent
+  AddContent
 >;
 //---------End typing ISalaryContent---////

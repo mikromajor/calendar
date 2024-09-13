@@ -7,16 +7,15 @@ import {
 import { AsyncThunk } from "@reduxjs/toolkit";
 import {
   EmailPassword,
-  IUser,
   IServerRes,
   ModalOpen,
 } from "../../types/userTypes";
-import { fetchUserRegistration } from "../../store/reducer/http/userActions";
+import { fetchUserRegistration } from "../../store/reducer/http/authActions";
 
 interface ISendButtonProps {
   sendProtector: boolean;
   sendData: EmailPassword;
-  sendHandler: AsyncThunk<IServerRes, EmailPassword, {}>;
+  sendHandler: AsyncThunk<void, EmailPassword, {}>;
 }
 
 export const SendButton = ({
@@ -24,8 +23,8 @@ export const SendButton = ({
   sendData,
   sendHandler,
 }: ISendButtonProps) => {
-  const isLoading = useAppSelector(
-    (state) => state.userReducer.isLoading
+  const { isLoading } = useAppSelector(
+    (state) => state.serviceReducer
   );
   const dispatch = useAppDispatch();
 

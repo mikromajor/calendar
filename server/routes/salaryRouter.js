@@ -2,22 +2,19 @@ const Router = require("express");
 const router = new Router();
 const salaryController = require("../controllers/salaryController");
 const authMiddleware = require("../middleware/authMiddleware");
+const salaryRequestValidation = require("../middleware/salaryRequestValidation");
 
-router.post("/add", authMiddleware, salaryController.add);
 router.get(
   "/getOne",
   authMiddleware,
+  salaryRequestValidation,
   salaryController.getOne
 );
-router.get(
-  "/getAll",
+router.post(
+  "/calculate",
   authMiddleware,
-  salaryController.getAll
-);
-router.get(
-  "/getLast_2years",
-  authMiddleware,
-  salaryController.getLast_2years
+  salaryRequestValidation,
+  salaryController.calculate
 );
 
 module.exports = router;

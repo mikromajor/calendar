@@ -7,12 +7,6 @@ export interface DayInfo {
   totalBill: number;
 }
 
-export interface Service {
-  isError: boolean;
-  message: string;
-  isLoading: boolean;
-}
-
 export interface MonthInfo extends DayInfo {
   days: DayInfo[];
 }
@@ -30,20 +24,12 @@ export interface CurrentDate {
 export interface AlcoState {
   currentDate: CurrentDate;
   yearData: AlcoYear;
-  service: Service;
 }
 
 export type StateKeys = keyof AlcoState;
 
 export type AlcoActionsType = typeof alcoActions;
 export type AlcoActionsKeys = keyof AlcoActionsType;
-
-const { changeYear, clearMonthData } = alcoActions;
-
-export type ActionsChangeData =
-  | typeof changeYear
-  | typeof clearMonthData;
-
 export interface AdditiveDayData {
   additiveVodka?: number;
   additiveBill?: number;

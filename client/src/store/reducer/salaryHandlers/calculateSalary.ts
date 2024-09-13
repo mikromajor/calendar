@@ -10,7 +10,7 @@ import {
 } from "../../../types/salaryTypes";
 
 export const calculateSalary = (
-  state: ISalaryInit,
+  salary: ISalaryInit,
   payload: IPayload
 ) => {
   const {
@@ -29,58 +29,59 @@ export const calculateSalary = (
   } = payload;
 
   const { weekends, weekdays } = amountWeekendsAndWeekdays(
-    state.year,
-    state.month
+    salary.year,
+    salary.month
   );
 
-  isNum(salaryRate) && (state.salaryRate = salaryRate);
+  isNum(salaryRate) && (salary.salaryRate = salaryRate);
 
-  isNum(premiumRate) && (state.premiumRate = premiumRate);
+  isNum(premiumRate) && (salary.premiumRate = premiumRate);
 
-  isNum(premiumUzn) && (state.premiumUzn = premiumUzn);
+  isNum(premiumUzn) && (salary.premiumUzn = premiumUzn);
 
-  isNum(taxRate) && (state.taxRate = taxRate);
+  isNum(taxRate) && (salary.taxRate = taxRate);
 
   isNum(sickLeaveWeekDays) &&
-    (state.sickLeaveWeekDays = sickLeaveWeekDays);
+    (salary.sickLeaveWeekDays = sickLeaveWeekDays);
   isNum(sickLeaveWeekendDays) &&
-    (state.sickLeaveWeekendDays = sickLeaveWeekendDays);
+    (salary.sickLeaveWeekendDays = sickLeaveWeekendDays);
 
   isNum(usedVacation) &&
-    (state.usedVacation = usedVacation);
+    (salary.usedVacation = usedVacation);
   isNum(bloodDonation) &&
-    (state.bloodDonation = bloodDonation);
-  isNum(holidays) && (state.holidays = holidays);
+    (salary.bloodDonation = bloodDonation);
+  isNum(holidays) && (salary.holidays = holidays);
 
-  state.weekDays =
+  salary.weekDays =
     weekdays -
-    state.sickLeaveWeekDays -
-    state.holidays -
-    state.usedVacation -
-    state.bloodDonation;
+    salary.sickLeaveWeekDays -
+    salary.holidays -
+    salary.usedVacation -
+    salary.bloodDonation;
 
-  state.weekendDays = weekends;
+  salary.weekendDays = weekends;
 
   isNum(extraHours_50) &&
-    (state.extraHours_50 = extraHours_50);
+    (salary.extraHours_50 = extraHours_50);
 
   isNum(extraHours_100) &&
-    (state.extraHours_100 = extraHours_100);
+    (salary.extraHours_100 = extraHours_100);
 
   isNum(extraHours_120) &&
-    (state.extraHours_120 = extraHours_120);
+    (salary.extraHours_120 = extraHours_120);
 
-  state.nettoPerHours =
+  salary.nettoPerHours =
     Math.round(
-      state.salaryRate * (1 - state.taxRate / 100) * 100
+      salary.salaryRate * (1 - salary.taxRate / 100) * 100
     ) / 100;
 
-  state.standardWorkHours = state.weekDays * 8;
+  salary.standardWorkHours = salary.weekDays * 8;
 
-  state.standardSalary = determStandardSalary(state);
+  salary.standardSalary = determStandardSalary(salary);
 
-  state.extraSalary = determExtraSalary(state);
+  salary.extraSalary = determExtraSalary(salary);
 
-  state.totalSalary =
-    state.standardSalary + state.extraSalary;
+  salary.totalSalary =
+    salary.standardSalary + salary.extraSalary;
+  return salary;
 };

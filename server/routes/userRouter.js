@@ -10,6 +10,6 @@ router.post(
   userController.login,
   alcoController.login
 );
-router.get("/auth", authMiddleware, userController.check);
+// router.get("/auth", authMiddleware, userController.check);
 
 module.exports = router;

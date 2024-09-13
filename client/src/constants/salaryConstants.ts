@@ -1,5 +1,6 @@
 import { ISalaryContent } from "../types/salaryTypes";
 import { UserLanguages } from "../types/userTypes";
+import SERVICE_INIT from "./serviceConstants";
 
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
@@ -13,13 +14,11 @@ export const SALARY_RESULTS = {
   extraSalary: 0,
   totalSalary: 0,
 };
-export const SALARY_INTRODUCTIONS = {
-  year: currentYear,
-  month: currentMonth,
+export const SALARY_INPUTS = {
   salaryRate: 0,
   premiumRate: 0,
   premiumUzn: 0,
-  taxRate: 0,
+  taxRate: 27,
   extraHours_50: 0,
   extraHours_100: 0,
   extraHours_120: 0,
@@ -29,9 +28,16 @@ export const SALARY_INTRODUCTIONS = {
   usedVacation: 0,
   bloodDonation: 0,
 };
+export const SALARY_DATE = {
+  year: currentYear,
+  month: currentMonth,
+};
+
 export const SALARY_INIT = {
-  ...SALARY_INTRODUCTIONS,
+  ...SALARY_INPUTS,
   ...SALARY_RESULTS,
+  ...SALARY_DATE,
+  service: SERVICE_INIT,
 };
 
 export const COEFFICIENTS = {
@@ -47,9 +53,8 @@ export const COEFFICIENTS = {
 export const SALARY_CONTENT: ISalaryContent = {
   [UserLanguages.UA]: {
     header: "Зарплата",
+    date: "Змінити дату",
     //newFieldName: 'string',
-    year: "Рік",
-    month: "Місяць",
     salaryRate: "Ставка брутто, зл/год",
     nettoPerHours: "Ставка нетто, зл/год",
     taxRate: "Податкові та соціальні відрахування, %",
@@ -72,9 +77,8 @@ export const SALARY_CONTENT: ISalaryContent = {
   },
   [UserLanguages.EN]: {
     header: "Salary",
+    date: "Change date",
 
-    year: "Year",
-    month: "Month",
     salaryRate: "Salary rate, gross zl/h",
     nettoPerHours: "Salary rate, net zl/h",
     taxRate: "Tax rate, %",
@@ -97,9 +101,8 @@ export const SALARY_CONTENT: ISalaryContent = {
   },
   [UserLanguages.PL]: {
     header: "Wyplata",
+    date: "Zmienić date",
 
-    year: "Rok",
-    month: "Miesiąc",
     salaryRate: "Stawka brutto zł/g",
     nettoPerHours: "Stawka netto zł/g",
     taxRate: "Potrąncenia składkowe i podatkowe, %",

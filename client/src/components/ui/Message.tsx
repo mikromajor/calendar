@@ -1,31 +1,27 @@
-import React, { useEffect } from "react";
-import Button from "@mui/material/Button";
-import Snackbar, {
-  SnackbarCloseReason,
-} from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
+import React from "react";
+import {
+  Button,
+  IconButton,
+  Snackbar,
+} from "@mui/material";
+import { SnackbarCloseReason } from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
+import { useAppDispatch } from "../../store/hooks/redux";
+import { serviceActions } from "../../store/reducer/serviceReducer";
 
 interface ISnackProps {
   isError: boolean;
   message: string;
 }
-
+// todo remove Message from Top to AlcoCalc
 export function Message({ isError, message }: ISnackProps) {
-  const [open, setOpen] = React.useState(false);
-
-  useEffect(() => {
-    setOpen(!!message ? true : false);
-  }, [message]);
-
+  const dispatch = useAppDispatch();
   const handleClose = (
     event: React.SyntheticEvent | Event,
     reason?: SnackbarCloseReason
   ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpen(false);
+    if (reason === "clickaway") return;
+    dispatch(serviceActions.resetMessage());
   };
 
   const action = (
@@ -51,8 +47,8 @@ export function Message({ isError, message }: ISnackProps) {
   return (
     <div>
       <Snackbar
-        open={open}
-        autoHideDuration={4000}
+        open={!!message}
+        // autoHideDuration={4000}
         onClose={handleClose}
         // message='Message:'
         action={action}

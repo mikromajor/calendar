@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { trimFirstZero } from "../../../../../store/reducer/alcoHandlers";
 import { useAppSelector } from "../../../../../store/hooks/redux";
 import { ALCO_CONTENT } from "../../../../../constants/alcoConstants";
+import { UserThemes } from "../../../../../types/userTypes";
 
 type InputLiquidProps = {
   val: string;
@@ -19,13 +20,14 @@ export const InputLiquid = ({
   const { currentLang, currentTheme } = useAppSelector(
     (state) => state.userReducer
   );
+  const content = ALCO_CONTENT[currentLang];
   const label =
     role === "percent"
-      ? ALCO_CONTENT[currentLang].lblPercent
-      : ALCO_CONTENT[currentLang].lblVolume;
+      ? content.lblPercent
+      : content.lblVolume;
 
   const variantButton =
-    currentTheme === "white-theme"
+    currentTheme === UserThemes.WHITE
       ? "outlined"
       : "contained";
 

@@ -4,10 +4,10 @@ import {
   MonthInfo,
   AlcoYear,
   AlcoContent,
-  Service,
 } from "../types/alcoTypes";
 import { getDateMonthYear } from "../utils";
 import { UserLanguages } from "../types/userTypes";
+import SERVICE_INIT from "./serviceConstants";
 
 //for calendar: new Date(year, monthIndex(0-11), day)
 const [currentDay, currentMonth, currentYear] =
@@ -26,12 +26,7 @@ export const INIT_DAY: DayInfo = {
 export const INIT_MONTH: MonthInfo = {
   totalVodka: 0,
   totalBill: 0,
-  days: [], // 1-31 days info (exist validation max  days in a month)
-};
-export const INIT_SERVICE: Service = {
-  isError: false,
-  isLoading: false,
-  message: "",
+  days: [], // 1-31 days info
 };
 
 export const INIT_ALCO_YEAR: AlcoYear = {
@@ -43,7 +38,6 @@ export const INIT_ALCO_YEAR: AlcoYear = {
 export const INIT_ALCO_STATE: AlcoState = {
   currentDate: CURRENT_DATE,
   yearData: INIT_ALCO_YEAR,
-  service: INIT_SERVICE,
 };
 
 export const ALCO_CONTENT: AlcoContent = {
@@ -91,59 +85,31 @@ export const ALCO_CONTENT: AlcoContent = {
   },
 };
 
-//created new structure for keeping year data
-//TODO replace object INIT_DAY to class INIT_DAY...
-// туфта с конструкторами - продумай
-// class CLASS_DAY{
-//   totalVodka=0;
-//   totalBill=0;
-//   constructor(additionVodka:number=0,additionBill: number=0){
-//     this.totalVodka += additionVodka;
-//     this.totalBill += additionBill;
-//   }
-// }
-
-// class CLASS_MONTH extends CLASS_DAY{
-// days: DayInfo[] =[];
-// constructor(day: DayInfo, i:number){
-// super(day.totalVodka, day.totalBill);
-// this.days[i] = day;
-// }
-// }
-
-// class CLASS_YEAR extends CLASS_DAY{
-//   months: MonthInfo[]=[];
-//   constructor(month: MonthInfo, indexMonth:number){
-//     super();
-//   }
-
-// }
-
 //---response_model-----|
 
-const d = {
-  totalBill: 0,
-  id: "2024_9_2",
-  monthId: "2024_9",
-  yearId: "2024",
-  totalVodka: 126,
-  updatedAt: "2024-07-14T10:13:04.789Z",
-  createdAt: "2024-07-14T10:13:04.789Z",
-};
+// const d = {
+//   totalBill: 0,
+//   id: "2024_9_2",
+//   monthId: "2024_9",
+//   yearId: "2024",
+//   totalVodka: 126,
+//   updatedAt: "2024-07-14T10:13:04.789Z",
+//   createdAt: "2024-07-14T10:13:04.789Z",
+// };
 
-const m = {
-  id: "2024_9",
-  totalVodka: 882,
-  totalBill: 0,
-  createdAt: "2024-07-14T09:47:42.575Z",
-  updatedAt: "2024-07-14T10:13:04.781Z",
-  days: [d],
-};
-const respons = {
-  id: "2024",
-  totalVodka: 2268,
-  totalBill: 0,
-  createdAt: "2024-07-14T09:35:29.269Z",
-  updatedAt: "2024-07-14T10:13:04.761Z",
-  months: [m],
-};
+// const m = {
+//   id: "2024_9",
+//   totalVodka: 882,
+//   totalBill: 0,
+//   createdAt: "2024-07-14T09:47:42.575Z",
+//   updatedAt: "2024-07-14T10:13:04.781Z",
+//   days: [d],
+// };
+// const respons = {
+//   id: "2024",
+//   totalVodka: 2268,
+//   totalBill: 0,
+//   createdAt: "2024-07-14T09:35:29.269Z",
+//   updatedAt: "2024-07-14T10:13:04.761Z",
+//   months: [m],
+// };

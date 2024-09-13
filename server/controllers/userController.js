@@ -1,9 +1,6 @@
 const ApiError = require("../error/ApiError");
 const bcrypt = require("bcrypt");
 const { User, Salary } = require("../models/models");
-const {
-  getDateMonthYear,
-} = require("../utils/getDateMonthYear");
 const { generateJwt } = require("../utils/useToken");
 
 class UserController {
@@ -74,15 +71,15 @@ class UserController {
   }
 
   //GET http://localhost:7000/api/user/auth
-  async check(req, res, next) {
-    // TODO add ID validation
-    const { id, email } = req.user;
-    const token = generateJwt(id, email);
-    return res.json({
-      token,
-      message: "Authorization is ok",
-    });
-  }
+  // async check(req, res, next) {
+  //   // TODO add ID validation
+  //   const { id, email } = req.user;
+  //   const token = generateJwt(id, email);
+  //   return res.json({
+  //     token,
+  //     message: "Authorization is ok",
+  //   });
+  // }
 }
 
 module.exports = new UserController();

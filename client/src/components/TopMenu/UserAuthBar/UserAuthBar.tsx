@@ -1,41 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Stack, ButtonGroup } from "@mui/material";
-import { UserModal } from "./Modal";
+import { AuthModal } from "./AuthModal";
 import { Registration } from "./Registration";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
 import { ModalOpen } from "../../../types/userTypes";
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../../store/hooks/redux";
-import { userActions } from "../../../store/reducer/userReducer";
-import { Message } from "../../ui";
+import { useAppSelector } from "../../../store/hooks/redux";
+import { TOP_MENU_CONTENT } from "../../../constants/userConstants";
 
 export default function UserAuthBar() {
   const [open, setOpen] = useState<ModalOpen>("");
-  const { message, isError } = useAppSelector(
-    (store) => store.userReducer
+  const { currentLang } = useAppSelector(
+    (state) => state.userReducer
   );
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    !!message && setOpen("");
-  }, [message]);
-
-  const openRegistration = () => {
-    setOpen("reg");
-  };
-  const openLogin = () => {
-    setOpen("login");
-  };
-  const openLogOut = () => {
-    setOpen("logout");
-  };
-
-  const buttonClick = (callback: () => void) => {
-    !!message && dispatch(userActions.cleanMessage());
-    callback();
-  };
+  const content = TOP_MENU_CONTENT[currentLang];
 
   return (
     <Stack direction='row'>
@@ -46,36 +24,21 @@ export default function UserAuthBar() {
         color='secondary'
         aria-label='alignment button group'
       >
-        <Button
-          onClick={() => {
-            buttonClick(openRegistration);
-          }}
-        >
-          Registration
+        <Button onClick={() => setOpen("reg")}>
+          {content.registration}
         </Button>
-        <Button
-          onClick={() => {
-            buttonClick(openLogin);
-          }}
-        >
-          Login
+        <Button onClick={() => setOpen("login")}>
+          {content.login}
         </Button>
-        <Button
-          onClick={() => {
-            buttonClick(openLogOut);
-          }}
-        >
-          Logout
+        <Button onClick={() => setOpen("logout")}>
+          {content.logout}
         </Button>
       </ButtonGroup>
-      <UserModal open={open} setOpen={setOpen}>
+      <AuthModal open={open} setOpen={setOpen}>
         {open === "reg" && <Registration />}
         {open === "login" && <Login />}
         {open === "logout" && <Logout setOpen={setOpen} />}
-      </UserModal>
-      {!!message && (
-        <Message isError={isError} message={message} />
-      )}
+      </AuthModal>
     </Stack>
   );
 }

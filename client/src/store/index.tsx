@@ -7,9 +7,11 @@ import {
 import alcoReducer from "./reducer/alcoReducer";
 import salaryReducer from "./reducer/salaryReducer";
 import userReducer from "./reducer/userReducer";
+import serviceReducer from "./reducer/serviceReducer";
 
 const rootReducer = combineReducers({
   userReducer,
+  serviceReducer,
   alcoReducer,
   salaryReducer,
 });

@@ -2,131 +2,82 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import {
-  INIT_ALCO_STATE,
-  INIT_MONTH,
-  INIT_ALCO_YEAR,
-} from "../../constants/alcoConstants";
-import {
-  tryStorageData,
-  saveStateInStorage,
-  setDecimal,
-  createKey,
-  addVodkaToState,
-  minMaxDayValidation,
-  minMaxMonthValidation,
-} from "./alcoHandlers";
+import { INIT_ALCO_STATE } from "../../constants/alcoConstants";
 import {
   getAlcoYear,
   addNewDoseToDB,
 } from "./http/alcoActions";
-import { AlcoState } from "../../types/alcoTypes";
 import { IServerRes } from "../../types/userTypes";
+import { AlcoState } from "../../types/alcoTypes";
 
-// const store = tryStorageData(
-//   INIT_ALCO_STATE.currentDate.year
-// );
-
-export const alcoReducer = createSlice({
+export const alcoSlice = createSlice({
   name: "alcoState",
   initialState: INIT_ALCO_STATE,
   reducers: {
+    //synchronous change date in calendar
     changeDay: (state, action: PayloadAction<string>) => {
-      const day = action.payload;
-      const { month, year } = state.currentDate;
-
-      state.currentDate.day = minMaxDayValidation(
-        day,
-        month,
-        year
-      );
+      state.currentDate.day = action.payload;
     },
 
     changeMonth: (state, action: PayloadAction<string>) => {
-      let month = minMaxMonthValidation(action.payload);
-      const { day, year } = state.currentDate;
-
-      state.currentDate.day = minMaxDayValidation(
-        day,
-        month,
-        year
-      );
-      state.currentDate.month = month;
+      state.currentDate.month = action.payload;
     },
-    changeYear: (
+    changeYear: (state, action: PayloadAction<string>) => {
+      // Object.assign(state, action.payload);
+      state.currentDate.year = action.payload;
+    },
+    updateAlcoSliceAfterLogin: (
       state,
       action: PayloadAction<AlcoState>
     ) => {
-      // Object.assign(state, action.payload);
-      state.currentDate = action.payload.currentDate;
-      state.yearData = action.payload.yearData;
-      state.service = action.payload.service;
-    },
-
-    //TODO change CLEARS func , use DB
-    clearYearData: (state) => {
-      const key = createKey(state.currentDate.year);
-      window.localStorage.removeItem(key);
-      state.yearData = { ...INIT_ALCO_YEAR };
-    },
-    clearMonthData: (state) => {
-      const currentMonth = Number(state.currentDate.month);
-      //TODO add checking for the existence of a month-object
-      if (state.yearData.months?.[currentMonth]) {
-        const { totalVodka } =
-          state.yearData.months[currentMonth];
-
-        state.yearData.totalVodka -= totalVodka;
-        state.yearData.months[currentMonth] = {
-          ...INIT_MONTH,
-        };
-      }
+      Object.assign(state, action.payload);
     },
   },
   extraReducers: {
     // getAlcoYear
-    [getAlcoYear.pending.type]: (state) => {
-      state.service.isLoading = true;
-      state.service.isError = false;
-      state.service.message = "";
-    },
+    // [getAlcoYear.pending.type]: (state) => {
+    //   state.service.isLoading = true;
+    //   state.service.isError = false;
+    //   state.service.message = "";
+    // },
     [getAlcoYear.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      Object.assign(state, action.payload.alcoState);
+      let alcoState = action.payload?.alcoState;
+      alcoState && Object.assign(state, alcoState);
     },
-    [getAlcoYear.rejected.type]: (
-      state,
-      action: PayloadAction<IServerRes>
-    ) => {
-      state.service.message = action.payload.message;
-      state.service.isLoading = false;
-      state.service.isError = true;
-    },
+    // [getAlcoYear.rejected.type]: (
+    //   state,
+    //   action: PayloadAction<IServerRes>
+    // ) => {
+    //   state.service.message = action.payload.message;
+    //   state.service.isLoading = false;
+    //   state.service.isError = true;
+    // },
     //addNewDose
-    [addNewDoseToDB.pending.type]: (state) => {
-      state.service.isLoading = true;
-      state.service.isError = false;
-      state.service.message = "";
-    },
+    // [addNewDoseToDB.pending.type]: (state) => {
+    //   state.service.isLoading = true;
+    //   state.service.isError = false;
+    //   state.service.message = "";
+    // },
     [addNewDoseToDB.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      Object.assign(state, action.payload.alcoState);
+      let alcoState = action.payload?.alcoState;
+      alcoState && Object.assign(state, alcoState);
     },
-    [addNewDoseToDB.rejected.type]: (
-      state,
-      action: PayloadAction<IServerRes>
-    ) => {
-      state.service.message = action.payload.message;
-      state.service.isError = true;
-      state.service.isLoading = false;
-    },
+    // [addNewDoseToDB.rejected.type]: (
+    //   state,
+    //   action: PayloadAction<IServerRes>
+    // ) => {
+    //   state.service.message = action.payload.message;
+    //   state.service.isError = true;
+    //   state.service.isLoading = false;
+    // },
   },
 });
 
-export default alcoReducer.reducer;
-export const alcoActions = alcoReducer.actions;
-export const alcoSlice = alcoReducer;
+export default alcoSlice.reducer;
+export const alcoActions = alcoSlice.actions;

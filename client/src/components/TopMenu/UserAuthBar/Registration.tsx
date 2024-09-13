@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Stack } from "@mui/material";
 import { passwordValidator } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
-import { fetchUserRegistration } from "../../../store/reducer/http/userActions";
+import { fetchUserRegistration } from "../../../store/reducer/http/authActions";
 import { Email, Password, SendButton } from "../../ui";
 import { ModalOpen } from "../../../types/userTypes";
 
@@ -37,9 +37,7 @@ export function Registration() {
     updatePasswordState({
       password: passwordVal,
       passwordError:
-        !!validMessage || !isPasswordMachining
-          ? true
-          : false,
+        validMessage || !isPasswordMachining ? true : false,
       passwordMessage: validMessage ? validMessage : "",
       repeatPasswordMessage: isPasswordMachining
         ? ""

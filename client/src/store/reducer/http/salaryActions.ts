@@ -1,53 +1,75 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host, $authHost } from "./host";
-import { ISalaryInit } from "../../../types/salaryTypes";
-import { IServerRes } from "../../../types/userTypes";
-import { IDose } from "../../../types/alcoTypes";
 import {
-  CurrentDate,
-  AlcoState,
-} from "../../../types/alcoTypes";
-//TODO create Salary actions
-// export const getAlcoYear = createAsyncThunk(
-//   "alcoCalc/getAlcoYear",
-//   async (
-//     date: CurrentDate,
-//     { rejectWithValue, dispatch, getState }
-//   ) => {
-//     const { year, month, day } = date;
-//     try {
-//       const response = await $authHost.get<IServerRes>(
-//         `api/alco_calendar/get?year=${year}&month=${month}&day=${day}`
-//       );
+  ISalaryDate,
+  IPayload,
+} from "../../../types/salaryTypes";
+import { IServerRes } from "../../../types/userTypes";
+import { serviceActions } from "../serviceReducer";
 
-//       return response.data;
-//     } catch (error: any) {
-//       if (error?.response) {
-//         return rejectWithValue(error.response.data);
-//       }
-//       return error;
-//     }
-//   }
-// );
+// model ServerRes {
+//   user?:{token:string; message:string // for userInfo};
+//   message?: string; //for error
+//   alcoState?: AlcoState;
+//   salary?: ISalaryInit;
+// }
 
-// export const addNewDoseToDB = createAsyncThunk(
-//   "alcoCalc/addNewDoseToDB",
-//   async (
-//     newDose: IDose,
-//     { rejectWithValue, dispatch, getState }
-//   ) => {
-//     try {
-//       const response = await $authHost.post<IServerRes>(
-//         "api/alco_calendar/add",
-//         newDose
-//       );
+export const getSalary = createAsyncThunk(
+  "salary/getSalary",
+  async (
+    salaryDate: ISalaryDate,
+    { rejectWithValue, dispatch, getState }
+  ) => {
+    const { year, month } = salaryDate;
+    try {
+      const res = await $authHost.get<IServerRes>(
+        `api/salary/getOne?year=${year}&month=${month}`
+      );
+      let message = res.data?.message;
+      dispatch(
+        serviceActions.responseOk(message ? message : "")
+      );
+      return res.data;
+    } catch (error: any) {
+      let eRespons = error?.respons;
+      dispatch(
+        serviceActions.responseReject(
+          eRespons ? eRespons.data : error
+        )
+      );
+    }
+  }
+);
 
-//       return response.data;
-//     } catch (error: any) {
-//       if (!error.response) {
-//         throw error;
-//       }
-//       return rejectWithValue(error.response.data);
-//     }
-//   }
-// );
+export const serverSalaryCalculate = createAsyncThunk(
+  "salary/serverSalaryCalculate",
+  async (
+    payload: IPayload,
+    { rejectWithValue, dispatch, getState }
+  ) => {
+    try {
+      const res = await $authHost.post<IServerRes>(
+        "api/salary/calculate",
+        payload
+      );
+      let message = res.data?.message;
+      dispatch(
+        serviceActions.responseOk(message ? message : "")
+      );
+      return res.data;
+    } catch (error: any) {
+      let eRespons = error?.respons;
+      dispatch(
+        serviceActions.responseReject(
+          eRespons ? eRespons.data : error
+        )
+      );
+      // if (!error.res) {
+      //   throw error;
+      // }
+      // return rejectWithValue(
+      //   "Server not responding. Salary vacation data not update"
+      // );
+    }
+  }
+);
