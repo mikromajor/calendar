@@ -16,7 +16,7 @@ import {
 } from "./types/userTypes";
 import { Message } from "./components/ui";
 
-//TODO use cookie and localStorage
+//TODO use cookie for users identifications ( send jwt token in cookies)
 function App() {
   const [switchCalcs, setSwitchCalcs] = useState(true);
   const { currentTheme, currentLang } = useAppSelector(

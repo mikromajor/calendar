@@ -8,6 +8,8 @@ import {
 } from "../../store/hooks/redux";
 import { serverSalaryCalculate } from "../../store/reducer/http/salaryActions";
 import { inputsValidation } from "../Salary/handlers/inputsValidation";
+import { debounce } from "lodash";
+import { salaryActions } from "../../store/reducer/salaryReducer";
 interface ITableInputProps {
   keyWord: keyof ISalaryInit;
 }
@@ -27,7 +29,7 @@ export const TableInput = ({
   const { isLoading } = serviceReducer;
   const dispatch = useAppDispatch();
 
-  const handleOnChange = (e: E) => {
+  const sentServerRequest = (e: E) => {
     const val = Number(e.currentTarget.value);
     dispatch(
       serverSalaryCalculate({
@@ -37,11 +39,17 @@ export const TableInput = ({
       })
     );
   };
+  const processChange = (e: E) => {
+    const val = Number(e.currentTarget.value);
+    dispatch(salaryActions.updateInput({ [keyWord]: val }));
+    debounce(sentServerRequest, 500);
+  };
+
   return (
     <StyledTableCell align='right'>
       <TextField
         value={inpVal}
-        onChange={handleOnChange}
+        onChange={processChange}
         disabled={isLoading}
         error={!isInputValValid}
       />

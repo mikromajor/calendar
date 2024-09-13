@@ -8,11 +8,19 @@ import {
   serverSalaryCalculate,
 } from "./http/salaryActions";
 import { IServerRes } from "../../types/userTypes";
+import { IPayload } from "../../types/salaryTypes";
 
 export const salarySlice = createSlice({
   name: "salaryState",
   initialState: SALARY_INIT,
-  reducers: {},
+  reducers: {
+    updateInput: (
+      salary,
+      action: PayloadAction<IPayload>
+    ) => {
+      Object.assign(salary, action.payload);
+    },
+  },
   extraReducers: {
     //getSalary
     // [getSalary.pending.type]: (state) => {
