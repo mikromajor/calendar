@@ -1,6 +1,6 @@
 {
   "name": "useful_calculators",
-  "version": "0.3.6",
+  "version": "0.4.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -67,6 +67,5 @@
     "@types/react-redux": "^7.1.24",
     "@types/redux-saga": "^0.10.5",
     "babel-plugin-module-resolver": "^5.0.0"
-  },
-  "proxy": "http://localhost:7000"
+  }
 }

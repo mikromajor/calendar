@@ -1,7 +1,7 @@
-const https = require("https");
-const fs = require("fs");
-var privateKey = fs.readFileSync("key.pem", "utf8");
-var certificate = fs.readFileSync("cert.pem", "utf8");
+// const https = require("https");
+// const fs = require("fs");
+// var privateKey = fs.readFileSync("key.pem", "utf8");
+// var certificate = fs.readFileSync("cert.pem", "utf8");
 
 const express = require("express");
 const cors = require("cors");
@@ -23,38 +23,44 @@ app.use("/api", router);
 // });// testing example
 app.use(errorHandler);
 
-// const start = async () => {
-//   try {
-//     await sequelize.authenticate();
-//     await sequelize.sync();
-//     app.listen(PORT, () =>
-//       console.log(`Server started on port ${PORT}`)
-//     );
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
-
-// start();
-var credentials = { key: privateKey, cert: certificate };
-
-const startHTTPS = async () => {
+const start = async () => {
   try {
     await sequelize.authenticate();
     await sequelize.sync();
-
-    https
-      .createServer(credentials, app)
-      .listen(PORT, () => {
-        console.log(`Server started on port ${PORT}`);
-      });
+    app.listen(PORT, () =>
+      console.log(`Server started on port ${PORT}`)
+    );
   } catch (e) {
     console.log(e);
   }
 };
-startHTTPS();
+
+start();
+// const credentials = { key: privateKey, cert: certificate };
+
+// const startHTTPS = async () => {
+//   try {
+//     await sequelize.authenticate();
+//     await sequelize.sync();
+
+//     https
+//       .createServer(credentials, app)
+//       .listen(PORT, () => {
+//         console.log(`Server started on port ${PORT}`);
+//       });
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };
+// startHTTPS();
+
+//https://www.ssl.com/article/what-is-a-certificate-authority-ca/
+// https://www.ssl.com/basicssl/  // 36$/year
 
 //openssl genrsa -out key.pem
 //openssl req -new -key key.pem -out csr.pem  //Get error //=> fix: create openssl.cnf  by hand in c:\Program Files\PostgreSQL\psqlODBC\etc\openssl.cnf
 
-//openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
+//openssl x509 -req -days 1827 -in csr.pem -signkey key.pem -out cert.pem
+
+// add to client packege.json :
+//  ,"proxy": "http://localhost:7000"
