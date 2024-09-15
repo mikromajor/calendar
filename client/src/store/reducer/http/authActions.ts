@@ -6,6 +6,7 @@ import {
 import { $host, $authHost } from "./host";
 import alcoReducer, { alcoActions } from "../alcoReducer";
 import { serviceActions } from "../serviceReducer";
+import { ERROR } from "../../../constants/serviceConstants";
 
 const saveToken = (token: string) =>
   localStorage.setItem("token", token);
@@ -29,12 +30,13 @@ const fetchUserRegistration = createAsyncThunk(
         serviceActions.responseOk(message ? message : "")
       );
     } catch (error: any) {
-      let eRespons = error?.respons;
+      let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          eRespons ? eRespons.data : error
+          message ? message : ERROR.noResponse
         )
       );
+      console.log("Server error: ", error);
     }
   }
 );
@@ -66,12 +68,13 @@ const fetchUserLogin = createAsyncThunk(
           alcoActions.updateAlcoSliceAfterLogin(alcoState)
         );
     } catch (error: any) {
-      let eRespons = error?.respons;
+      let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          eRespons ? eRespons.data : error
+          message ? message : ERROR.noResponse
         )
       );
+      console.log("Server error: ", error);
     }
   }
 );
@@ -92,12 +95,13 @@ const fetchUserAuth = createAsyncThunk(
         serviceActions.responseOk(message ? message : "")
       );
     } catch (error: any) {
-      let eRespons = error?.respons;
+      let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          eRespons ? eRespons.data : error
+          message ? message : ERROR.noResponse
         )
       );
+      console.log("Server error: ", error);
     }
   }
 );

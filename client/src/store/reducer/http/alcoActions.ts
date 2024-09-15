@@ -6,6 +6,7 @@ import {
   CurrentDate,
 } from "../../../types/alcoTypes";
 import { serviceActions } from "../serviceReducer";
+import { ERROR } from "../../../constants/serviceConstants";
 
 export const getAlcoYear = createAsyncThunk(
   "alcoCalc/getAlcoYear",
@@ -25,10 +26,13 @@ export const getAlcoYear = createAsyncThunk(
 
       return res.data;
     } catch (error: any) {
-      if (error?.response) {
-        return rejectWithValue(error.response.data);
-      }
-      return error;
+      let message = error?.response?.data?.message;
+      dispatch(
+        serviceActions.responseReject(
+          message ? message : ERROR.noResponse
+        )
+      );
+      console.log("Server error: ", error);
     }
   }
 );
@@ -47,10 +51,13 @@ export const addNewDoseToDB = createAsyncThunk(
 
       return response.data;
     } catch (error: any) {
-      if (!error.response) {
-        throw error;
-      }
-      return rejectWithValue(error.response.data);
+      let message = error?.response?.data?.message;
+      dispatch(
+        serviceActions.responseReject(
+          message ? message : ERROR.noResponse
+        )
+      );
+      console.log("Server error: ", error);
     }
   }
 );

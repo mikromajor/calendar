@@ -62,5 +62,6 @@ start();
 
 //openssl x509 -req -days 1827 -in csr.pem -signkey key.pem -out cert.pem
 
+// if you want to run app behind proxy server:
 // add to client packege.json :
 //  ,"proxy": "http://localhost:7000"

@@ -6,6 +6,7 @@ import {
 } from "../../../types/salaryTypes";
 import { IServerRes } from "../../../types/userTypes";
 import { serviceActions } from "../serviceReducer";
+import { ERROR } from "../../../constants/serviceConstants";
 
 // model ServerRes {
 //   user?:{token:string; message:string // for userInfo};
@@ -31,12 +32,13 @@ export const getSalary = createAsyncThunk(
       );
       return res.data;
     } catch (error: any) {
-      let eRespons = error?.respons;
+      let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          eRespons ? eRespons.data : error
+          message ? message : ERROR.noResponse
         )
       );
+      console.log("Server error: ", error);
     }
   }
 );
@@ -58,18 +60,13 @@ export const serverSalaryCalculate = createAsyncThunk(
       );
       return res.data;
     } catch (error: any) {
-      let eRespons = error?.respons;
+      let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          eRespons ? eRespons.data : error
+          message ? message : ERROR.noResponse
         )
       );
-      // if (!error.res) {
-      //   throw error;
-      // }
-      // return rejectWithValue(
-      //   "Server not responding. Salary vacation data not update"
-      // );
+      console.log("Server error: ", error);
     }
   }
 );
