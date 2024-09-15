@@ -48,3 +48,7 @@ const startHTTPS = async () => {
   }
 };
 startHTTPS();
+
+//openssl genrsa -out key.pem
+//openssl req -new -key key.pem -out csr.pem  //=> fix error y create openssl.cnf in c:\Program Files\PostgreSQL\psqlODBC\etc\openssl.cnf
+//openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
