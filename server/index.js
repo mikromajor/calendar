@@ -1,10 +1,12 @@
 const https = require("https");
+const fs = require("fs");
+var privateKey = fs.readFileSync("key.pem", "utf8");
+var certificate = fs.readFileSync("cert.pem", "utf8");
+
 const express = require("express");
 const cors = require("cors");
-// const path = require("path");
 require("dotenv").config();
 const sequelize = require("./db");
-// const models = require("./models/models");
 const router = require("./routes/index");
 const errorHandler = require("./middleware/ErrorHandlingMiddleware");
 
@@ -34,15 +36,18 @@ app.use(errorHandler);
 // };
 
 // start();
+var credentials = { key: privateKey, cert: certificate };
 
 const startHTTPS = async () => {
   try {
     await sequelize.authenticate();
     await sequelize.sync();
 
-    https.createServer(app).listen(PORT, () => {
-      console.log(`Server started on port ${PORT}`);
-    });
+    https
+      .createServer(credentials, app)
+      .listen(PORT, () => {
+        console.log(`Server started on port ${PORT}`);
+      });
   } catch (e) {
     console.log(e);
   }
@@ -50,5 +55,6 @@ const startHTTPS = async () => {
 startHTTPS();
 
 //openssl genrsa -out key.pem
-//openssl req -new -key key.pem -out csr.pem  //=> fix error y create openssl.cnf in c:\Program Files\PostgreSQL\psqlODBC\etc\openssl.cnf
+//openssl req -new -key key.pem -out csr.pem  //Get error //=> fix: create openssl.cnf  by hand in c:\Program Files\PostgreSQL\psqlODBC\etc\openssl.cnf
+
 //openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
