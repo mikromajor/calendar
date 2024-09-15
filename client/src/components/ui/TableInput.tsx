@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import TextField from "@mui/material/TextField";
 import { StyledTableCell } from "../Salary/StyledElements";
 import { ISalaryInit } from "../../types/salaryTypes";
@@ -16,7 +16,6 @@ type E = React.ChangeEvent<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
-//-
 export const TableInput = ({
   keyWord,
 }: ITableInputProps) => {
@@ -54,7 +53,6 @@ export const TableInput = ({
   const processChange = (e: E) => {
     const val = Number(e.currentTarget.value);
     dispatch(salaryActions.updateInput({ [keyWord]: val }));
-
     debounce(() => sentServerRequest(val));
   };
 
