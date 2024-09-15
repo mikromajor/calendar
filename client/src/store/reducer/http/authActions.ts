@@ -82,6 +82,12 @@ const fetchUserLogin = createAsyncThunk(
 const fetchUserAuth = createAsyncThunk(
   "user/fetchUserAuth",
   async (_, { rejectWithValue, dispatch, getState }) => {
+    let savedToken = localStorage.getItem("token");
+    if (!savedToken)
+      return dispatch(
+        serviceActions.responseReject(ERROR.noAuth)
+      );
+
     try {
       const res = await $authHost.get<IServerRes>(
         "api/user/auth"

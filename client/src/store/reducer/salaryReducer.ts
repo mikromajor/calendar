@@ -22,52 +22,19 @@ export const salarySlice = createSlice({
     },
   },
   extraReducers: {
-    //getSalary
-    // [getSalary.pending.type]: (state) => {
-    //   state.service.isLoading = true;
-    //   state.service.isError = false;
-    //   state.service.message = "";
-    // },
     [getSalary.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      // const { salary, message } = action.payload;
-      Object.assign(state, action.payload.salary);
-      // state.service.isLoading = false;
-      // state.service.message = message ? message : "";
+      Object.assign(state, action.payload);
     },
-    // [getSalary.rejected.type]: (
-    //   state,
-    //   action: PayloadAction<IServerRes>
-    // ) => {
-    //   state.service.isLoading = false;
-    //   state.service.isError = true;
-    //   state.service.message = action.payload.message; //TODO check it
-    // },
-    //serverSalaryCalculate
-    // [serverSalaryCalculate.pending.type]: (state) => {
-    //   state.service.isLoading = true;
-    //   state.service.isError = false;
-    //   state.service.message = "";
-    // },
+
     [serverSalaryCalculate.fulfilled.type]: (
       state,
       action: PayloadAction<IServerRes>
     ) => {
-      // const { salary, message } = action.payload;
-      Object.assign(state, action.payload.salary);
-      // state.service.isLoading = false;
-      // state.service.message = message ? message : "";
+      Object.assign(state, action.payload);
     },
-    // [serverSalaryCalculate.rejected.type]: (
-    //   state,
-    //   action: PayloadAction<IServerRes>
-    // ) => {
-    //   state.service.isLoading = false;
-    //   state.service.isError = true;
-    //   state.service.message = action.payload.message; //TODO check it
-    // },
   },
 });
 
