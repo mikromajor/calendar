@@ -17,7 +17,11 @@ export const DateRow = () => {
       <StyledTableCell component='th' scope='row'>
         {content.date}
       </StyledTableCell>
-      <StyledTableCell>
+      <StyledTableCell
+        component='td'
+        scope='row'
+        align='right'
+      >
         <MobileCalendar />
       </StyledTableCell>
     </StyledTableRow>

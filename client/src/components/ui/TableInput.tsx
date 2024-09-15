@@ -57,7 +57,11 @@ export const TableInput = ({
   };
 
   return (
-    <StyledTableCell align='right'>
+    <StyledTableCell
+      component='td'
+      scope='row'
+      align='right'
+    >
       <TextField
         value={inpVal}
         onChange={processChange}
