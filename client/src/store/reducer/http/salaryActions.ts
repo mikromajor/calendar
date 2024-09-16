@@ -30,10 +30,6 @@ export const getSalary = createAsyncThunk(
       dispatch(
         serviceActions.responseOk(message ? message : "")
       );
-      console.log(
-        "Salary fetched successfully ==> ",
-        res.data
-      );
       return res.data.salary;
     } catch (error: any) {
       let message = error?.response?.data?.message;

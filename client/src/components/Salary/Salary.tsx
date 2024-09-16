@@ -25,11 +25,11 @@ import { useAppSelector } from "../../store/hooks/redux";
 const useStyles = makeStyles({
   tableContainer: {
     margin: "auto",
-    maxWidth: "90%",
+    maxWidth: "800px",
   },
 });
 export function Salary() {
-  const classes = useStyles(); //+
+  const classes = useStyles();
   const introductionsKeys =
     getObjKeys<ISalaryInputs>(SALARY_INPUTS);
   const resultsKeys =
@@ -43,7 +43,6 @@ export function Salary() {
       className={classes.tableContainer}
       component={Paper}
     >
-      //+
       <Table
         sx={{ minWidth: 400, maxWidth: 900 }}
         aria-label='customized table'
