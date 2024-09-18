@@ -9,6 +9,7 @@ import {
 import { serverSalaryCalculate } from "../../store/reducer/http/salaryActions";
 import { inputsValidation } from "../Salary/handlers/inputsValidation";
 import { salaryActions } from "../../store/reducer/salaryReducer";
+import { Skeleton } from "@mui/material";
 interface ITableInputProps {
   keyWord: keyof ISalaryInit;
 }
@@ -62,12 +63,16 @@ export const TableInput = ({
       scope='row'
       align='right'
     >
-      <TextField
-        value={inpVal}
-        onChange={processChange}
-        disabled={isLoading}
-        error={!isInputValueValid}
-      />
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        <TextField
+          value={inpVal}
+          onChange={processChange}
+          disabled={isLoading}
+          error={!isInputValueValid}
+        />
+      )}
     </StyledTableCell>
   );
 };
