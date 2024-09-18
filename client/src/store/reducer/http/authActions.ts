@@ -6,7 +6,7 @@ import {
 import { $host, $authHost } from "./host";
 import alcoReducer, { alcoActions } from "../alcoReducer";
 import { serviceActions } from "../serviceReducer";
-import { ERROR } from "../../../constants/serviceConstants";
+import { ERROR_MESSAGE } from "../../../constants/serviceConstants";
 
 const saveToken = (token: string) =>
   localStorage.setItem("token", token);
@@ -33,7 +33,7 @@ const fetchUserRegistration = createAsyncThunk(
       let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          message ? message : ERROR.noResponse
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
       console.log("Server error: ", error);
@@ -71,7 +71,7 @@ const fetchUserLogin = createAsyncThunk(
       let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          message ? message : ERROR.noResponse
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
       console.log("Server error: ", error);
@@ -85,7 +85,7 @@ const fetchUserAuth = createAsyncThunk(
     let savedToken = localStorage.getItem("token");
     if (!savedToken)
       return dispatch(
-        serviceActions.responseReject(ERROR.noAuth)
+        serviceActions.responseReject(ERROR_MESSAGE.noAuth)
       );
 
     try {
@@ -104,7 +104,7 @@ const fetchUserAuth = createAsyncThunk(
       let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          message ? message : ERROR.noResponse
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
       console.log("Server error: ", error);

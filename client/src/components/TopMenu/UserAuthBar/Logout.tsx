@@ -5,6 +5,7 @@ import { userActions } from "../../../store/reducer/userReducer";
 import { serviceActions } from "../../../store/reducer/serviceReducer";
 import { useDispatch } from "react-redux";
 import { ModalOpen } from "../../../types/userTypes";
+import { SUCCESS_MESSAGE } from "../../../constants/serviceConstants";
 
 interface LogoutProps {
   setOpen: React.Dispatch<ModalOpen>;
@@ -17,7 +18,7 @@ export function Logout({ setOpen }: LogoutProps) {
     setOpen("");
     dispatch(userActions.logOut());
     dispatch(
-      serviceActions.addMessage("Logged out successfully")
+      serviceActions.addMessage(SUCCESS_MESSAGE.loggedOut)
     );
   };
   const modalClose = () => setOpen("");

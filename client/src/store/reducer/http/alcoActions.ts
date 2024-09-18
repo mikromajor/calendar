@@ -6,7 +6,7 @@ import {
   CurrentDate,
 } from "../../../types/alcoTypes";
 import { serviceActions } from "../serviceReducer";
-import { ERROR } from "../../../constants/serviceConstants";
+import { ERROR_MESSAGE } from "../../../constants/serviceConstants";
 
 export const getAlcoYear = createAsyncThunk(
   "alcoCalc/getAlcoYear",
@@ -29,7 +29,7 @@ export const getAlcoYear = createAsyncThunk(
       let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          message ? message : ERROR.noResponse
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
       console.log("Server error: ", error);
@@ -54,7 +54,7 @@ export const addNewDoseToDB = createAsyncThunk(
       let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          message ? message : ERROR.noResponse
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
       console.log("Server error: ", error);

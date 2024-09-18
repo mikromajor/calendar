@@ -3,7 +3,7 @@ const SERVICE_INIT = {
   isError: false,
   message: "",
 };
-export const ERROR = {
+export const ERROR_MESSAGE = {
   serverError: "Server error",
   clientError: "Client error",
   invalidData: "Invalid data",
@@ -11,6 +11,9 @@ export const ERROR = {
   notFound: "Not found",
   expiredToken: "Expired token",
   noResponse: "No response from server",
+};
+export const SUCCESS_MESSAGE = {
+  loggedOut: "Logged out successfully",
 };
 
 export default SERVICE_INIT;

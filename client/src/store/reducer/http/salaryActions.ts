@@ -6,7 +6,7 @@ import {
 } from "../../../types/salaryTypes";
 import { IServerRes } from "../../../types/userTypes";
 import { serviceActions } from "../serviceReducer";
-import { ERROR } from "../../../constants/serviceConstants";
+import { ERROR_MESSAGE } from "../../../constants/serviceConstants";
 
 // model ServerRes {
 //   user?:{token:string; message:string // for userInfo};
@@ -35,7 +35,7 @@ export const getSalary = createAsyncThunk(
       let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          message ? message : ERROR.noResponse
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
       console.log("Server error: ", error);
@@ -63,7 +63,7 @@ export const serverSalaryCalculate = createAsyncThunk(
       let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          message ? message : ERROR.noResponse
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
       console.log("Server error: ", error);

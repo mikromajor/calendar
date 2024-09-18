@@ -41,6 +41,13 @@ export const serviceSlice = createSlice({
       action: PayloadAction<string>
     ) => {
       serviceState.message = action.payload;
+      serviceState.isError = false;
+    },
+    addErrorMessage: (
+      serviceState,
+      action: PayloadAction<string>
+    ) => {
+      serviceState.message = action.payload;
     },
   },
 });
