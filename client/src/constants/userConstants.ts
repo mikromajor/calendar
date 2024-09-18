@@ -19,6 +19,9 @@ export const TOP_MENU_CONTENT = {
     registration: "Registration",
     login: "Login",
     logout: "Logout",
+    confirfLogout: "You really want to log out?",
+    logoutYes: "YES",
+    logoutNo: "NO",
   },
   [UserLanguages.PL]: {
     lblTheme: "Theme",
@@ -30,6 +33,9 @@ export const TOP_MENU_CONTENT = {
     registration: "Zarejestruj sie",
     login: "Login",
     logout: "Logout",
+    confirfLogout: "Napewno chcesz wylogowac się?",
+    logoutYes: "TAK",
+    logoutNo: "NIE",
   },
   [UserLanguages.UA]: {
     lblTheme: "Tема",
@@ -41,6 +47,9 @@ export const TOP_MENU_CONTENT = {
     registration: "Реєстрація",
     login: "Логін",
     logout: "Вихід",
+    confirfLogout: "Чи насправді хочеш вийти?",
+    logoutYes: "ТАК",
+    logoutNo: "НІ",
   },
 };
 
