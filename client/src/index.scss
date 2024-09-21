@@ -3,11 +3,11 @@
 @import "./App";
 
 @import "./components/AlcoCounter/AlcoCounter.scss";
-@import "./components/AlcoCounter/alcoComponents/Calendar/Calendar.scss";
+@import "./components/AlcoCounter/Calendar/Calendar.scss";
 
-@import "./components/AlcoCounter/alcoComponents/Display/Display";
-@import "./components//AlcoCounter/alcoComponents/ControlPanel/ControlPanel";
-@import "./components/AlcoCounter/alcoComponents/ControlPanel/Inputs/Input";
+@import "./components/AlcoCounter/Display/Display";
+@import "./components//AlcoCounter/ControlPanel/ControlPanel";
+@import "./components/AlcoCounter/ControlPanel/InputsPanel/Input";
 
 //TODO:
 //+1. check and correct all separated files

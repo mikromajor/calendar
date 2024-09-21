@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { InputLiquid } from "../Inputs/InputLiquid";
-import { AddButton } from "../../../../ui";
+import { InputLiquid } from "./InputLiquid";
+import { AddButton } from "../../../ui";
 
 export const InputLiquidPanel = () => {
   const [volume, setVolumeDrank] = useState("500");

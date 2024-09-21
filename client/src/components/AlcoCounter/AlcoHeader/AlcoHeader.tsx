@@ -1,5 +1,5 @@
-import { useAppSelector } from "../../../../store/hooks/redux";
-import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
+import { useAppSelector } from "../../../store/hooks/redux";
+import { ALCO_CONTENT } from "../../../constants/alcoConstants";
 
 export const AlcoHeader = () => {
   const { currentLang, currentTheme } = useAppSelector(

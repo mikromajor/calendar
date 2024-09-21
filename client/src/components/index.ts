@@ -1,3 +1,3 @@
-export { AlcoCounter } from "./AlcoCounter/AlcoCounter";
+export { AlcoCounter } from "./AlcoCounter";
 export { Salary } from "./Salary/Salary";
 export { TopMenu } from "./TopMenu/TopMenu";

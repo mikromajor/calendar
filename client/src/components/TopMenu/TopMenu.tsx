@@ -51,7 +51,7 @@ export function TopMenu({ setSwitchCalcs }: TopMenuPops) {
 
   const content = TOP_MENU_CONTENT[currentLang];
   return (
-    <div className={`app__top-menu`}>
+    <section className={`app__top-menu`}>
       <IconButton
         aria-label='more'
         id='long-button-top-menu'
@@ -83,6 +83,6 @@ export function TopMenu({ setSwitchCalcs }: TopMenuPops) {
         <SelectLanguage />
         <UserAuthBar />
       </Menu>
-    </div>
+    </section>
   );
 }

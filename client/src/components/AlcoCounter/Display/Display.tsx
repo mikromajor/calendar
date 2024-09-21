@@ -1,7 +1,7 @@
-import { useAppSelector } from "../../../../store/hooks/redux";
+import { useAppSelector } from "../../../store/hooks/redux";
 // import { UserLanguages } from "../../../../types/appTypes";
-import { ALCO_CONTENT } from "../../../../constants/alcoConstants";
-import { getTotalDrankData } from "../../../../store/reducer/alcoHandlers";
+import { ALCO_CONTENT } from "../../../constants/alcoConstants";
+import { getTotalDrankData } from "../../../store/reducer/alcoHandlers";
 import { useEffect, useState } from "react";
 
 export const Display = () => {
