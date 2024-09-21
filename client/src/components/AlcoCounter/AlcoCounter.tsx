@@ -17,9 +17,6 @@ export const AlcoCounter = () => {
         <AlcoHeader />
         <Display />
         <Calendar />
-        <div
-          className={`alco-counter__show-calendar-btn alco-counter__show-calendar-btn--${currentTheme}`}
-        ></div>
         <ControlPanel />
       </div>
     </>
