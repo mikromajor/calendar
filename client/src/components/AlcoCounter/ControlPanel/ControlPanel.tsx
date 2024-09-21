@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { ALCO_CONTENT } from "../../../constants/alcoConstants";
-import { InputLiquidPanel } from "./InputsPanel/InputLiquidPanel";
+import { AlcoInputsBlock } from "./AlcoInputsBlock";
 import { useAppSelector } from "../../../store/hooks/redux";
 
 export const ControlPanel = () => {
@@ -9,7 +9,7 @@ export const ControlPanel = () => {
   );
   const content = ALCO_CONTENT[currentLang];
   return (
-    <div
+    <section
       className={`control-panel control-panel--${currentTheme}`}
       data-testid='control-panel'
     >
@@ -19,9 +19,7 @@ export const ControlPanel = () => {
         {content.controlPanelHeader}
       </h2>
 
-      <div className='control-panel__inputs-container'>
-        <InputLiquidPanel />
-      </div>
-    </div>
+      <AlcoInputsBlock />
+    </section>
   );
 };

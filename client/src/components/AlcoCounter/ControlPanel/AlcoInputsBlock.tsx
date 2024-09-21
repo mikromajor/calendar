@@ -1,21 +1,21 @@
 import { useState } from "react";
-import { InputLiquid } from "./InputLiquid";
-import { AddButton } from "../../../ui";
+import { AlcoInput } from "./AlcoInput";
+import { AddButton } from "../../ui";
 
-export const InputLiquidPanel = () => {
+export const AlcoInputsBlock = () => {
   const [volume, setVolumeDrank] = useState("500");
   const [percent, setPercent] = useState("5");
 
   return (
-    <div className='control-panel__inputs-panel control-panel__inputs-panel--direction-column'>
-      <InputLiquid
+    <div className='control-panel__alco-inputs-block control-panel__alco-inputs-block--direction-column'>
+      <AlcoInput
         role='volume'
         val={volume}
         step={100}
         setVal={setVolumeDrank}
       />
 
-      <InputLiquid
+      <AlcoInput
         role='percent'
         val={percent}
         step={1}
