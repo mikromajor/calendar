@@ -65,11 +65,11 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={`app app--${currentTheme}`}>
+      <main className={`app app--${currentTheme}`}>
         <TopMenu setSwitchCalcs={setSwitchCalcs} />
         {switchCalcs ? <AlcoCounter /> : <Salary />}
         <Message isError={isError} message={message} />
-      </div>
+      </main>
     </ThemeProvider>
   );
 }

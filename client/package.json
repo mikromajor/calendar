@@ -69,6 +69,7 @@
     "@types/redux-saga": "^0.10.5",
     "babel-plugin-module-resolver": "^5.0.2"
   },
+  "TODO": "",
   "plugins": [
     [
       "module-resolver",
@@ -84,7 +85,8 @@
           "^components": "./components",
           "^hooks": "./stor/hooks",
           "^reducer": "./stor/reducer",
-          "^http": "./stor/reducer/http"
+          "^http": "./stor/reducer/http",
+          "^constants": "./constants"
         }
       }
     ]

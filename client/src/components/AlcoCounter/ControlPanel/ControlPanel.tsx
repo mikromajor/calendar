@@ -9,7 +9,7 @@ export const ControlPanel = () => {
   );
   const content = ALCO_CONTENT[currentLang];
   return (
-    <section
+    <div
       className={`control-panel control-panel--${currentTheme}`}
       data-testid='control-panel'
     >
@@ -20,6 +20,6 @@ export const ControlPanel = () => {
       </h2>
 
       <AlcoInputsBlock />
-    </section>
+    </div>
   );
 };
