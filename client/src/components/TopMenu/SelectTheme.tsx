@@ -4,13 +4,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { TOP_MENU_CONTENT } from "../../constants/userConstants";
+import { TOP_MENU_CONTENT } from "constants/userConstants";
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../store/hooks/redux";
-import { userActions } from "../../store/reducer/userReducer";
-import { UserThemes } from "../../types/userTypes";
+} from "store/hooks/redux";
+import { userActions } from "store/reducer/userReducer";
+import { UserThemes } from "types/userTypes";
 
 export function SelectTheme() {
   //---- customization

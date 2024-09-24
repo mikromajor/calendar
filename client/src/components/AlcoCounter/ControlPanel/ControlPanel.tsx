@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { ALCO_CONTENT } from "constants/alcoConstants";
 import { AlcoInputsBlock } from "./AlcoInputsBlock";
-import { useAppSelector } from "../../../store/hooks/redux";
+import { useAppSelector } from "store/hooks/redux";
 
 export const ControlPanel = () => {
   const { currentLang, currentTheme } = useAppSelector(

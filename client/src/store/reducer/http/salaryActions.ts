@@ -1,12 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host, $authHost } from "./host";
-import {
-  ISalaryDate,
-  IPayload,
-} from "../../../types/salaryTypes";
-import { IServerRes } from "../../../types/userTypes";
+import { ISalaryDate, IPayload } from "types/salaryTypes";
+import { IServerRes } from "types/userTypes";
 import { serviceActions } from "../serviceReducer";
-import { ERROR_MESSAGE } from "../../../constants/serviceConstants";
+import { ERROR_MESSAGE } from "constants/serviceConstants";
 
 // model ServerRes {
 //   user?:{token:string; message:string // for userInfo};

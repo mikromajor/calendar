@@ -5,10 +5,10 @@ import Button from "@mui/material/Button";
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../store/hooks/redux";
-import { ALCO_CONTENT } from "../../constants/alcoConstants";
-import { setDecimal } from "../../store/reducer/alcoHandlers";
-import { addNewDoseToDB } from "../../store/reducer/http/alcoActions";
+} from "store/hooks/redux";
+import { ALCO_CONTENT } from "constants/alcoConstants";
+import { setDecimal } from "store/reducer/alcoHandlers";
+import { addNewDoseToDB } from "store/reducer/http/alcoActions";
 
 interface IAddButtonProps {
   volume: string;

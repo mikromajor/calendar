@@ -1,4 +1,4 @@
-import { CURRENT_DATE } from "../../../constants/alcoConstants";
+import { CURRENT_DATE } from "constants/alcoConstants";
 
 type Auto<O extends object, V> = {
   [keys in keyof O]: V;

@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { ModalOpen } from "../../../types/userTypes";
+import { ModalOpen } from "types/userTypes";
 
 const style = {
   position: "absolute" as "absolute",

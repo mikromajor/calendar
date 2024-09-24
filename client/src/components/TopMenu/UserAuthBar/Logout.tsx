@@ -1,15 +1,15 @@
 import React, { FC } from "react";
 import { Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { userActions } from "../../../store/reducer/userReducer";
-import { serviceActions } from "../../../store/reducer/serviceReducer";
+import { userActions } from "store/reducer/userReducer";
+import { serviceActions } from "store/reducer/serviceReducer";
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../../store/hooks/redux";
-import { ModalOpen } from "../../../types/userTypes";
-import { SUCCESS_MESSAGE } from "../../../constants/serviceConstants";
-import { TOP_MENU_CONTENT } from "../../../constants/userConstants";
+} from "store/hooks/redux";
+import { ModalOpen } from "types/userTypes";
+import { SUCCESS_MESSAGE } from "constants/serviceConstants";
+import { TOP_MENU_CONTENT } from "constants/userConstants";
 
 interface LogoutProps {
   setOpen: React.Dispatch<ModalOpen>;

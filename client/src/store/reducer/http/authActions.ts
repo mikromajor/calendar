@@ -1,12 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  IServerRes,
-  EmailPassword,
-} from "../../../types/userTypes";
+import { IServerRes, EmailPassword } from "types/userTypes";
 import { $host, $authHost } from "./host";
 import alcoReducer, { alcoActions } from "../alcoReducer";
 import { serviceActions } from "../serviceReducer";
-import { ERROR_MESSAGE } from "../../../constants/serviceConstants";
+import { ERROR_MESSAGE } from "constants/serviceConstants";
 
 const saveToken = (token: string) =>
   localStorage.setItem("token", token);

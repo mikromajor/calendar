@@ -2,12 +2,12 @@ import {
   StyledTableCell,
   StyledTableRow,
 } from "./StyledElements";
-import { useAppSelector } from "../../store/hooks/redux";
-import { ISalaryResultsKeys } from "../../types/salaryTypes";
+import { useAppSelector } from "store/hooks/redux";
+import { ISalaryResultsKeys } from "types/salaryTypes";
 import {
   SALARY_CONTENT,
   SALARY_RESULTS,
-} from "../../constants/salaryConstants";
+} from "constants/salaryConstants";
 import { Skeleton } from "@mui/material";
 
 export function ResultsRows() {

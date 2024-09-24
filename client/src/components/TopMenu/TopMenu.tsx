@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import { TOP_MENU_CONTENT } from "../../constants/userConstants";
+import { TOP_MENU_CONTENT } from "constants/userConstants";
 import {
   useAppSelector,
   useAppDispatch,
-} from "../../store/hooks/redux";
-import { getSalary } from "../../store/reducer/http/salaryActions";
+} from "store/hooks/redux";
+import { getSalary } from "store/reducer/http/salaryActions";
 import UserAuthBar from "./UserAuthBar/UserAuthBar";
 import { SelectTheme } from "./SelectTheme";
 import { SelectLanguage } from "./SelectLanguage";

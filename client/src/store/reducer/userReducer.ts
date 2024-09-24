@@ -3,11 +3,8 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 
-import { INIT_USER_STATE } from "../../constants/userConstants";
-import {
-  UserLanguages,
-  UserThemes,
-} from "../../types/userTypes";
+import { INIT_USER_STATE } from "constants/userConstants";
+import { UserLanguages, UserThemes } from "types/userTypes";
 
 export const userSlice = createSlice({
   name: "userSlice",

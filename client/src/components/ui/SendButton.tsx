@@ -3,14 +3,14 @@ import { LoadingButton } from "@mui/lab";
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../store/hooks/redux";
+} from "store/hooks/redux";
 import { AsyncThunk } from "@reduxjs/toolkit";
 import {
   EmailPassword,
   IServerRes,
   ModalOpen,
-} from "../../types/userTypes";
-import { fetchUserRegistration } from "../../store/reducer/http/authActions";
+} from "types/userTypes";
+import { fetchUserRegistration } from "store/reducer/http/authActions";
 
 interface ISendButtonProps {
   sendProtector: boolean;

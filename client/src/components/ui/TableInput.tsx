@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import TextField from "@mui/material/TextField";
 import { StyledTableCell } from "../Salary/StyledElements";
-import { ISalaryInit } from "../../types/salaryTypes";
+import { ISalaryInit } from "types/salaryTypes";
 import {
   useAppSelector,
   useAppDispatch,
-} from "../../store/hooks/redux";
-import { serverSalaryCalculate } from "../../store/reducer/http/salaryActions";
+} from "store/hooks/redux";
+import { serverSalaryCalculate } from "store/reducer/http/salaryActions";
 import { inputsValidation } from "../Salary/handlers/inputsValidation";
-import { salaryActions } from "../../store/reducer/salaryReducer";
+import { salaryActions } from "store/reducer/salaryReducer";
 import { Skeleton } from "@mui/material";
 interface ITableInputProps {
   keyWord: keyof ISalaryInit;

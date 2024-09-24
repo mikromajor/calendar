@@ -11,16 +11,16 @@ import { InputRows } from "./InputRows";
 import {
   SALARY_INPUTS,
   SALARY_RESULTS,
-} from "../../constants/salaryConstants";
+} from "constants/salaryConstants";
 import {
   ISalaryResults,
   ISalaryInputs,
-} from "../../types/salaryTypes";
+} from "types/salaryTypes";
 import { getObjKeys } from "./handlers/converters";
 import { DateRow } from "./DateRow";
 import { ResultsRows } from "./ResultsRows";
 import { Message } from "../ui";
-import { useAppSelector } from "../../store/hooks/redux";
+import { useAppSelector } from "store/hooks/redux";
 
 const useStyles = makeStyles({
   tableContainer: {

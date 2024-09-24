@@ -1,5 +1,5 @@
-import { ISalaryInit } from "../../../types/salaryTypes";
-import { COEFFICIENTS } from "../../../constants/salaryConstants";
+import { ISalaryInit } from "types/salaryTypes";
+import { COEFFICIENTS } from "constants/salaryConstants";
 
 export const determExtraSalary = (salary: ISalaryInit) => {
   const {

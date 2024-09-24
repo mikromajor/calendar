@@ -3,7 +3,7 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 
-import SERVICE_INIT from "../../constants/serviceConstants";
+import SERVICE_INIT from "constants/serviceConstants";
 
 export const serviceSlice = createSlice({
   name: "serviceSlice",

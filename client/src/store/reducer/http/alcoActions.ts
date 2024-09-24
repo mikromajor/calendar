@@ -1,12 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host, $authHost } from "./host";
-import { IServerRes } from "../../../types/userTypes";
-import {
-  IDose,
-  CurrentDate,
-} from "../../../types/alcoTypes";
+import { IServerRes } from "types/userTypes";
+import { IDose, CurrentDate } from "types/alcoTypes";
 import { serviceActions } from "../serviceReducer";
-import { ERROR_MESSAGE } from "../../../constants/serviceConstants";
+import { ERROR_MESSAGE } from "constants/serviceConstants";
 
 export const getAlcoYear = createAsyncThunk(
   "alcoCalc/getAlcoYear",

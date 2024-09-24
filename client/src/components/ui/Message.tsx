@@ -6,8 +6,8 @@ import {
 } from "@mui/material";
 import { SnackbarCloseReason } from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
-import { useAppDispatch } from "../../store/hooks/redux";
-import { serviceActions } from "../../store/reducer/serviceReducer";
+import { useAppDispatch } from "store/hooks/redux";
+import { serviceActions } from "store/reducer/serviceReducer";
 
 interface ISnackProps {
   isError: boolean;

@@ -2,11 +2,11 @@ import dayjs, { Dayjs } from "dayjs";
 import { MobileDatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { getSalary } from "../../store/reducer/http/salaryActions";
+import { getSalary } from "store/reducer/http/salaryActions";
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../store/hooks/redux";
+} from "store/hooks/redux";
 
 export function MobileCalendar() {
   const dispatch = useAppDispatch();
