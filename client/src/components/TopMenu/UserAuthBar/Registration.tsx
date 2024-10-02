@@ -3,7 +3,7 @@ import { Stack } from "@mui/material";
 import { passwordValidator } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
 import { fetchUserRegistration } from "store/reducer/http/authActions";
-import { Email, Password, SendButton } from "ui";
+import { Email, Password, SendButton } from "components/ui";
 import { ModalOpen } from "types/userTypes";
 
 export function Registration() {

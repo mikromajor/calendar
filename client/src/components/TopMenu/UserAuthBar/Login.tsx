@@ -3,7 +3,7 @@ import { Stack } from "@mui/material";
 import { fetchUserLogin } from "store/reducer/http/authActions";
 import { passwordValidator } from "./handlers";
 import { usePassword, useEmail } from "./hooks";
-import { Email, Password, SendButton } from "ui";
+import { Email, Password, SendButton } from "components/ui";
 
 export function Login() {
   const { emailState, updateEmailState } = useEmail();

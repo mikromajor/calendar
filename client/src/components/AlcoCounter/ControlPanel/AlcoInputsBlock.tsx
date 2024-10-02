@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AlcoInput } from "./AlcoInput";
-import { AddButton } from "ui";
+import { AddButton } from "components/ui";
 
 export const AlcoInputsBlock = () => {
   const [volume, setVolumeDrank] = useState("500");
