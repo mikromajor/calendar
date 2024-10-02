@@ -1,4 +1,4 @@
-import { useAppSelector } from "hooks/redux";
+import { useAppSelector } from "store/hooks/redux";
 import { AlcoState } from "types/alcoTypes";
 import { converterStringToNumb } from "./converterStringToNumb";
 
