@@ -1,11 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host, $authHost } from "./host";
-import { IServerRes } from "../../../types/userTypes";
-import {
-  IDose,
-  CurrentDate,
-} from "../../../types/alcoTypes";
+import { IServerRes } from "types/userTypes";
+import { IDose, CurrentDate } from "types/alcoTypes";
 import { serviceActions } from "../serviceReducer";
+import { ERROR_MESSAGE } from "constants/serviceConstants";
 
 export const getAlcoYear = createAsyncThunk(
   "alcoCalc/getAlcoYear",
@@ -25,10 +23,13 @@ export const getAlcoYear = createAsyncThunk(
 
       return res.data;
     } catch (error: any) {
-      if (error?.response) {
-        return rejectWithValue(error.response.data);
-      }
-      return error;
+      let message = error?.response?.data?.message;
+      dispatch(
+        serviceActions.responseReject(
+          message ? message : ERROR_MESSAGE.noResponse
+        )
+      );
+      console.log("Server error: ", error);
     }
   }
 );
@@ -47,10 +48,13 @@ export const addNewDoseToDB = createAsyncThunk(
 
       return response.data;
     } catch (error: any) {
-      if (!error.response) {
-        throw error;
-      }
-      return rejectWithValue(error.response.data);
+      let message = error?.response?.data?.message;
+      dispatch(
+        serviceActions.responseReject(
+          message ? message : ERROR_MESSAGE.noResponse
+        )
+      );
+      console.log("Server error: ", error);
     }
   }
 );

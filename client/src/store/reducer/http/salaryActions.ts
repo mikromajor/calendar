@@ -1,11 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host, $authHost } from "./host";
-import {
-  ISalaryDate,
-  IPayload,
-} from "../../../types/salaryTypes";
-import { IServerRes } from "../../../types/userTypes";
+import { ISalaryDate, IPayload } from "types/salaryTypes";
+import { IServerRes } from "types/userTypes";
 import { serviceActions } from "../serviceReducer";
+import { ERROR_MESSAGE } from "constants/serviceConstants";
 
 // model ServerRes {
 //   user?:{token:string; message:string // for userInfo};
@@ -29,14 +27,15 @@ export const getSalary = createAsyncThunk(
       dispatch(
         serviceActions.responseOk(message ? message : "")
       );
-      return res.data;
+      return res.data.salary;
     } catch (error: any) {
-      let eRespons = error?.respons;
+      let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          eRespons ? eRespons.data : error
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
+      console.log("Server error: ", error);
     }
   }
 );
@@ -56,20 +55,15 @@ export const serverSalaryCalculate = createAsyncThunk(
       dispatch(
         serviceActions.responseOk(message ? message : "")
       );
-      return res.data;
+      return res.data.salary;
     } catch (error: any) {
-      let eRespons = error?.respons;
+      let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          eRespons ? eRespons.data : error
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
-      // if (!error.res) {
-      //   throw error;
-      // }
-      // return rejectWithValue(
-      //   "Server not responding. Salary vacation data not update"
-      // );
+      console.log("Server error: ", error);
     }
   }
 );

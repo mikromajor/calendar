@@ -1,5 +1,5 @@
-import { useAppSelector } from "../../hooks/redux";
-import { AlcoState } from "../../../types/alcoTypes";
+import { useAppSelector } from "hooks/redux";
+import { AlcoState } from "types/alcoTypes";
 import { converterStringToNumb } from "./converterStringToNumb";
 
 export const getTotalDrankData = (alcoState: AlcoState) => {

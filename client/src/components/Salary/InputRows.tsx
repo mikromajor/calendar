@@ -2,12 +2,12 @@ import {
   StyledTableCell,
   StyledTableRow,
 } from "./StyledElements";
-import { useAppSelector } from "../../store/hooks/redux";
-import { ISalaryInputsKeys } from "../../types/salaryTypes";
+import { useAppSelector } from "store/hooks/redux";
+import { ISalaryInputsKeys } from "types/salaryTypes";
 import {
   SALARY_CONTENT,
   SALARY_INPUTS,
-} from "../../constants/salaryConstants";
+} from "constants/salaryConstants";
 import { TableInput } from "../ui";
 
 export function InputRows() {

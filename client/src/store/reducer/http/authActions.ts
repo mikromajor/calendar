@@ -1,11 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  IServerRes,
-  EmailPassword,
-} from "../../../types/userTypes";
+import { IServerRes, EmailPassword } from "types/userTypes";
 import { $host, $authHost } from "./host";
 import alcoReducer, { alcoActions } from "../alcoReducer";
 import { serviceActions } from "../serviceReducer";
+import { ERROR_MESSAGE } from "constants/serviceConstants";
 
 const saveToken = (token: string) =>
   localStorage.setItem("token", token);
@@ -29,12 +27,13 @@ const fetchUserRegistration = createAsyncThunk(
         serviceActions.responseOk(message ? message : "")
       );
     } catch (error: any) {
-      let eRespons = error?.respons;
+      let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          eRespons ? eRespons.data : error
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
+      console.log("Server error: ", error);
     }
   }
 );
@@ -66,12 +65,13 @@ const fetchUserLogin = createAsyncThunk(
           alcoActions.updateAlcoSliceAfterLogin(alcoState)
         );
     } catch (error: any) {
-      let eRespons = error?.respons;
+      let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          eRespons ? eRespons.data : error
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
+      console.log("Server error: ", error);
     }
   }
 );
@@ -79,6 +79,12 @@ const fetchUserLogin = createAsyncThunk(
 const fetchUserAuth = createAsyncThunk(
   "user/fetchUserAuth",
   async (_, { rejectWithValue, dispatch, getState }) => {
+    let savedToken = localStorage.getItem("token");
+    if (!savedToken)
+      return dispatch(
+        serviceActions.responseReject(ERROR_MESSAGE.noAuth)
+      );
+
     try {
       const res = await $authHost.get<IServerRes>(
         "api/user/auth"
@@ -92,12 +98,13 @@ const fetchUserAuth = createAsyncThunk(
         serviceActions.responseOk(message ? message : "")
       );
     } catch (error: any) {
-      let eRespons = error?.respons;
+      let message = error?.response?.data?.message;
       dispatch(
         serviceActions.responseReject(
-          eRespons ? eRespons.data : error
+          message ? message : ERROR_MESSAGE.noResponse
         )
       );
+      console.log("Server error: ", error);
     }
   }
 );

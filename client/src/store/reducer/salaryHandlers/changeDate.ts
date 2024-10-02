@@ -1,7 +1,4 @@
-import {
-  IPayload,
-  ISalaryInit,
-} from "../../../types/salaryTypes";
+import { IPayload, ISalaryInit } from "types/salaryTypes";
 import { checkMonth, isNum } from ".";
 
 export const changeDate = (

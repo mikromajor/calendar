@@ -2,8 +2,8 @@ import {
   StyledTableCell,
   StyledTableRow,
 } from "./StyledElements";
-import { useAppSelector } from "../../store/hooks/redux";
-import { SALARY_CONTENT } from "../../constants/salaryConstants";
+import { useAppSelector } from "store/hooks/redux";
+import { SALARY_CONTENT } from "constants/salaryConstants";
 import { MobileCalendar } from "../ui";
 
 export const DateRow = () => {
@@ -17,7 +17,11 @@ export const DateRow = () => {
       <StyledTableCell component='th' scope='row'>
         {content.date}
       </StyledTableCell>
-      <StyledTableCell>
+      <StyledTableCell
+        component='td'
+        scope='row'
+        align='right'
+      >
         <MobileCalendar />
       </StyledTableCell>
     </StyledTableRow>

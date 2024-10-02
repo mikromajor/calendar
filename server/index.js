@@ -1,9 +1,12 @@
+// const https = require("https");
+// const fs = require("fs");
+// var privateKey = fs.readFileSync("key.pem", "utf8");
+// var certificate = fs.readFileSync("cert.pem", "utf8");
+
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 require("dotenv").config();
 const sequelize = require("./db");
-const models = require("./models/models");
 const router = require("./routes/index");
 const errorHandler = require("./middleware/ErrorHandlingMiddleware");
 
@@ -15,9 +18,9 @@ app.use(cors()); // allows to send requests from browser
 app.use(express.json()); //allows app to parse .json
 app.use(express.static("build"));
 app.use("/api", router);
-app.use("/years", (req, res) => {
-  res.status(200).json({ message: "years path" });
-});
+// app.use("/years", (req, res) => {
+//   res.status(200).json({ message: "years path" });
+// });// testing example
 app.use(errorHandler);
 
 const start = async () => {
@@ -33,11 +36,32 @@ const start = async () => {
 };
 
 start();
+// const credentials = { key: privateKey, cert: certificate };
 
-// remember
-// app.use("/api", (req, res) => {
-//   res.status(200).json({ message: "api path" });
-// });
-// app.use("/years", (req, res) => {
-//   res.status(200).json({ message: "years path" });
-// });
+// const startHTTPS = async () => {
+//   try {
+//     await sequelize.authenticate();
+//     await sequelize.sync();
+
+//     https
+//       .createServer(credentials, app)
+//       .listen(PORT, () => {
+//         console.log(`Server started on port ${PORT}`);
+//       });
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };
+// startHTTPS();
+
+//https://www.ssl.com/article/what-is-a-certificate-authority-ca/
+// https://www.ssl.com/basicssl/  // 36$/year
+
+//openssl genrsa -out key.pem
+//openssl req -new -key key.pem -out csr.pem  //Get error //=> fix: create openssl.cnf  by hand in c:\Program Files\PostgreSQL\psqlODBC\etc\openssl.cnf
+
+//openssl x509 -req -days 1827 -in csr.pem -signkey key.pem -out cert.pem
+
+// if you want to run app behind proxy server:
+// add to client packege.json :
+//  ,"proxy": "http://localhost:7000"

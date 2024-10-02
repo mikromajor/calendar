@@ -37,7 +37,6 @@ export const SALARY_INIT = {
   ...SALARY_INPUTS,
   ...SALARY_RESULTS,
   ...SALARY_DATE,
-  service: SERVICE_INIT,
 };
 
 export const COEFFICIENTS = {

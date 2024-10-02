@@ -2,13 +2,13 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { INIT_ALCO_STATE } from "../../constants/alcoConstants";
+import { INIT_ALCO_STATE } from "constants/alcoConstants";
 import {
   getAlcoYear,
   addNewDoseToDB,
 } from "./http/alcoActions";
-import { IServerRes } from "../../types/userTypes";
-import { AlcoState } from "../../types/alcoTypes";
+import { IServerRes } from "types/userTypes";
+import { AlcoState } from "types/alcoTypes";
 
 export const alcoSlice = createSlice({
   name: "alcoState",

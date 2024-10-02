@@ -3,14 +3,15 @@
 @import "./App";
 
 @import "./components/AlcoCounter/AlcoCounter.scss";
-@import "./components/AlcoCounter/Calendar.scss";
+@import "./components/AlcoCounter/Calendar/Calendar.scss";
 
-@import "./components/AlcoCounter/alcoComponents/Display/Display";
-@import "./components//AlcoCounter/alcoComponents/ControlPanel/ControlPanel";
-@import "./components/AlcoCounter/alcoComponents/ControlPanel/Inputs/Input";
+@import "./components/AlcoCounter/Display/Display";
+@import "./components//AlcoCounter/ControlPanel/ControlPanel";
+@import "./components/AlcoCounter/ControlPanel/AlcoInput";
 
 //TODO:
-//+1. check and correct all separated files
-//2. use https://habr.com/ru/companies/ruvds/articles/460793/
+
+//7. use https://habr.com/ru/companies/ruvds/articles/460793/
 // to shrink imports "../../../../store/"  => "store/"
 // tool https://github.com/tleunen/babel-plugin-module-resolver
+//8. use ccs_modules

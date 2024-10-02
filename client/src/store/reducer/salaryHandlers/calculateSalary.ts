@@ -4,10 +4,7 @@ import {
   determExtraSalary,
   determStandardSalary,
 } from ".";
-import {
-  IPayload,
-  ISalaryInit,
-} from "../../../types/salaryTypes";
+import { IPayload, ISalaryInit } from "types/salaryTypes";
 
 export const calculateSalary = (
   salary: ISalaryInit,

@@ -1,14 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import TextField from "@mui/material/TextField";
 import { StyledTableCell } from "../Salary/StyledElements";
-import { ISalaryInit } from "../../types/salaryTypes";
+import { ISalaryInit } from "types/salaryTypes";
 import {
   useAppSelector,
   useAppDispatch,
-} from "../../store/hooks/redux";
-import { serverSalaryCalculate } from "../../store/reducer/http/salaryActions";
+} from "store/hooks/redux";
+import { serverSalaryCalculate } from "store/reducer/http/salaryActions";
 import { inputsValidation } from "../Salary/handlers/inputsValidation";
-import { salaryActions } from "../../store/reducer/salaryReducer";
+import { salaryActions } from "store/reducer/salaryReducer";
+import { Skeleton } from "@mui/material";
 interface ITableInputProps {
   keyWord: keyof ISalaryInit;
 }
@@ -16,7 +17,6 @@ type E = React.ChangeEvent<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
-//-
 export const TableInput = ({
   keyWord,
 }: ITableInputProps) => {
@@ -54,18 +54,25 @@ export const TableInput = ({
   const processChange = (e: E) => {
     const val = Number(e.currentTarget.value);
     dispatch(salaryActions.updateInput({ [keyWord]: val }));
-
     debounce(() => sentServerRequest(val));
   };
 
   return (
-    <StyledTableCell align='right'>
-      <TextField
-        value={inpVal}
-        onChange={processChange}
-        disabled={isLoading}
-        error={!isInputValueValid}
-      />
+    <StyledTableCell
+      component='td'
+      scope='row'
+      align='right'
+    >
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        <TextField
+          value={inpVal}
+          onChange={processChange}
+          disabled={isLoading}
+          error={!isInputValueValid}
+        />
+      )}
     </StyledTableCell>
   );
 };

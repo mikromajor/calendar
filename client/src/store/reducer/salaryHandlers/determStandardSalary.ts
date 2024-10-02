@@ -1,4 +1,4 @@
-import { ISalaryInit } from "../../../types/salaryTypes";
+import { ISalaryInit } from "types/salaryTypes";
 
 export const determStandardSalary = (
   salary: ISalaryInit

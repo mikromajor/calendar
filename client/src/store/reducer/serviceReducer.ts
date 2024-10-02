@@ -3,7 +3,7 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 
-import SERVICE_INIT from "../../constants/serviceConstants";
+import SERVICE_INIT from "constants/serviceConstants";
 
 export const serviceSlice = createSlice({
   name: "serviceSlice",
@@ -37,6 +37,13 @@ export const serviceSlice = createSlice({
       serviceState.isError = false;
     },
     addMessage: (
+      serviceState,
+      action: PayloadAction<string>
+    ) => {
+      serviceState.message = action.payload;
+      serviceState.isError = false;
+    },
+    addErrorMessage: (
       serviceState,
       action: PayloadAction<string>
     ) => {

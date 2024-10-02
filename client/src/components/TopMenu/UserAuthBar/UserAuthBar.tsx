@@ -4,9 +4,9 @@ import { AuthModal } from "./AuthModal";
 import { Registration } from "./Registration";
 import { Login } from "./Login";
 import { Logout } from "./Logout";
-import { ModalOpen } from "../../../types/userTypes";
-import { useAppSelector } from "../../../store/hooks/redux";
-import { TOP_MENU_CONTENT } from "../../../constants/userConstants";
+import { ModalOpen } from "types/userTypes";
+import { useAppSelector } from "store/hooks/redux";
+import { TOP_MENU_CONTENT } from "constants/userConstants";
 
 export default function UserAuthBar() {
   const [open, setOpen] = useState<ModalOpen>("");

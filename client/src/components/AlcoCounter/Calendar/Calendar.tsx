@@ -17,10 +17,10 @@ import LinearProgress from "@mui/material/LinearProgress";
 import {
   useAppSelector,
   useAppDispatch,
-} from "../../../../store/hooks/redux";
-import { alcoActions } from "../../../../store/reducer/alcoReducer";
-import { getAlcoYear } from "../../../../store/reducer/http/alcoActions";
-import { DayInfo } from "../../../../types/alcoTypes";
+} from "store/hooks/redux";
+import { alcoActions } from "store/reducer/alcoReducer";
+import { getAlcoYear } from "store/reducer/http/alcoActions";
+import { DayInfo } from "types/alcoTypes";
 import updateLocale from "dayjs/plugin/updateLocale";
 
 dayjs.extend(updateLocale);

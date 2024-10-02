@@ -2,20 +2,21 @@ import {
   StyledTableCell,
   StyledTableRow,
 } from "./StyledElements";
-import { useAppSelector } from "../../store/hooks/redux";
-import { ISalaryResultsKeys } from "../../types/salaryTypes";
+import { useAppSelector } from "store/hooks/redux";
+import { ISalaryResultsKeys } from "types/salaryTypes";
 import {
   SALARY_CONTENT,
   SALARY_RESULTS,
-} from "../../constants/salaryConstants";
+} from "constants/salaryConstants";
+import { Skeleton } from "@mui/material";
 
 export function ResultsRows() {
-  const { currentLang } = useAppSelector(
-    (store) => store.userReducer
-  );
-  const salary = useAppSelector(
-    (store) => store.salaryReducer
-  );
+  const { userReducer, salaryReducer, serviceReducer } =
+    useAppSelector((store) => store);
+  const { currentLang } = userReducer;
+  const salary = salaryReducer;
+  const { isLoading } = serviceReducer;
+
   const content = SALARY_CONTENT[currentLang];
   const resultsKeys = Object.keys(
     SALARY_RESULTS
@@ -29,7 +30,7 @@ export function ResultsRows() {
           </StyledTableCell>
 
           <StyledTableCell align='right'>
-            {salary[key]}
+            {isLoading ? <Skeleton /> : salary[key]}
           </StyledTableCell>
         </StyledTableRow>
       ))}
