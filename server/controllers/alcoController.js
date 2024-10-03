@@ -62,9 +62,7 @@ class AlcoController {
         month,
         day,
       });
-      return res.json({
-        alcoState,
-      });
+      return res.json(alcoState);
     } catch (e) {
       next(
         ApiError.internal("Error. The new dose wasn't add.")
