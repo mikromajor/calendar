@@ -1,8 +1,9 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "server_for_useful_calculators",
   "main": "index.js",
+  "author": "AlexSolianyk",
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js"
