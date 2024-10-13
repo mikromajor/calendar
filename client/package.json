@@ -2,6 +2,7 @@
   "name": "useful_calculators",
   "version": "0.4.0",
   "private": true,
+  "author": "AlexSolianyk",
   "dependencies": {
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
