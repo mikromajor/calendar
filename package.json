@@ -1,6 +1,7 @@
 {
   "name": "useful_calculators",
-  "version": "0.3.6",
+  "version": "3.3",
+  "description": "current version use local storage to save user's data",
   "private": true,
   "homepage": "https://mikromajor.github.io/useful_calculators/",
   "dependencies": {
