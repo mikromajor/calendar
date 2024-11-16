@@ -1,12 +1,12 @@
-## SERVER
+# SERVER
 
-# First steps
+## First steps
 
 - nvm use node 16
 
 - npm install
 
-# Install and configure PostgreSQL:
+## Install and configure PostgreSQL:
 
 **for ubuntu:** https://blog.databasemart.com/how-to-install-postgresql-on-ubuntu-20-04-lts/
 
@@ -22,6 +22,6 @@
 
 ---
 
-# Run server
+## Run server
 
 - npm run dev // run server
