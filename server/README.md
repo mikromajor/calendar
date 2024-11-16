@@ -14,7 +14,7 @@
 
 > $ sudo -u postgres psql // log you into the PostgreSQL prompt,
 
-> \password postgres 7891 // add password 7891
+> \password postgres  // after this add password 7891 two times
 
 > $ sudo -u postgres createdb calc_db // create new database
 
