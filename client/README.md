@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Before start
+
+In project used node-v16, so you should installed node-v16 or nvm
+If you have nvm installed:
+
+- nvm install v16
+
+- nvm use node 16
+
+- npm install
+
 ## Available Scripts
 
 In the project directory, you can run:
