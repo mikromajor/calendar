@@ -1,12 +1,12 @@
-## SERVER
+# SERVER
 
-# First steps
+## First steps
 
 - nvm use node 16
 
 - npm install
 
-# Install and configure PostgreSQL:
+## Install and configure PostgreSQL:
 
 **for ubuntu:** https://blog.databasemart.com/how-to-install-postgresql-on-ubuntu-20-04-lts/
 
@@ -14,7 +14,7 @@
 
 > $ sudo -u postgres psql // log you into the PostgreSQL prompt,
 
-> \password postgres 7891 // add password 7891
+> \password postgres  // after this add password 7891 two times
 
 > $ sudo -u postgres createdb calc_db // create new database
 
@@ -22,6 +22,6 @@
 
 ---
 
-# Run server
+## Run server
 
 - npm run dev // run server
